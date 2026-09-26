@@ -19,8 +19,8 @@
   --c-hima: #845600;
   --c-kao: #84306a;
   --tone: var(--accent);
-  --font-title: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
-  --font-body: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  --font-title: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif CJK JP", "Noto Serif JP", serif;
+  --font-body: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
   --size-hero: 76px;
   --size-seal: 64px;
   --size-stat: 44px;
