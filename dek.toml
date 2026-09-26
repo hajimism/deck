@@ -1,0 +1,3 @@
+# dek project
+# Where dist/ is published: GitHub Pages serves the root dist/ built by CI.
+url = "https://hajimism.github.io/deck/"

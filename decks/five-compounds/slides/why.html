@@ -1,0 +1,51 @@
+<section class="slide" data-layout="split" data-folio="02">
+  <div class="col">
+    <p class="kicker">なぜ複利なのか</p>
+    <h2 class="slide-title">しごと人生は、<br>思っているより長い</h2>
+    <p class="lede">いまの二十代は、八十歳近くまで働くかもしれません。これだけ長いと、効いてくるのは一回の頑張りではなく、<span class="mark">構造</span>です。</p>
+    <div class="span">
+      <p class="label">22歳から80歳まで</p>
+      <p><span class="stat">58</span><span class="unit">年</span></p>
+      <div class="bar"><span class="bar-now"></span></div>
+      <p class="note">社会人4年目は、まだ最初の7%。</p>
+    </div>
+  </div>
+  <div class="stage">
+    <p class="label">毎年10%ずつ上手くなる、とすると</p>
+    <svg class="chart" viewBox="0 0 640 400" role="img" aria-label="単利は40年で5倍、複利は40年で45倍">
+      <g class="grid">
+        <line x1="50" y1="360" x2="610" y2="360"/>
+        <line x1="50" y1="292" x2="610" y2="292"/>
+        <line x1="50" y1="224" x2="610" y2="224"/>
+        <line x1="50" y1="156" x2="610" y2="156"/>
+        <line x1="50" y1="88" x2="610" y2="88"/>
+        <line x1="50" y1="20" x2="610" y2="20"/>
+      </g>
+      <g class="axis">
+        <text x="40" y="364" text-anchor="end">0</text>
+        <text x="40" y="228" text-anchor="end">20倍</text>
+        <text x="40" y="92" text-anchor="end">40倍</text>
+        <text x="50" y="386" text-anchor="middle">0年</text>
+        <text x="185" y="386" text-anchor="middle">10年</text>
+        <text x="320" y="386" text-anchor="middle">20年</text>
+        <text x="455" y="386" text-anchor="middle">30年</text>
+        <text x="590" y="386" text-anchor="middle">40年</text>
+      </g>
+      <g data-step="why-simple">
+        <path class="line-simple" d="M 50.0 353.2 L 590.0 326.0" pathLength="1"/>
+        <circle class="dot-simple" cx="590" cy="326" r="6"/>
+        <text class="tag-simple" x="600" y="318" text-anchor="end">単利 5倍</text>
+      </g>
+      <g data-step="why-compound">
+        <path class="line-compound" d="M 50.0 353.2 L 63.5 352.5 L 77.0 351.8 L 90.5 350.9 L 104.0 350.0 L 117.5 349.0 L 131.0 348.0 L 144.5 346.7 L 158.0 345.4 L 171.5 344.0 L 185.0 342.4 L 198.5 340.6 L 212.0 338.7 L 225.5 336.5 L 239.0 334.2 L 252.5 331.6 L 266.0 328.8 L 279.5 325.6 L 293.0 322.2 L 306.5 318.4 L 320.0 314.3 L 333.5 309.7 L 347.0 304.6 L 360.5 299.1 L 374.0 293.0 L 387.5 286.3 L 401.0 279.0 L 414.5 270.9 L 428.0 261.9 L 441.5 252.1 L 455.0 241.3 L 468.5 229.5 L 482.0 216.4 L 495.5 202.1 L 509.0 186.3 L 522.5 168.9 L 536.0 149.8 L 549.5 128.8 L 563.0 105.7 L 576.5 80.2 L 590.0 52.2" pathLength="1"/>
+        <circle class="dot-compound" cx="590" cy="52.2" r="7"/>
+        <text class="tag-compound" x="576" y="44" text-anchor="end">複利 45倍</text>
+        <text class="gap-note" x="330" y="250">差がつくのは後半</text>
+      </g>
+    </svg>
+    <div class="legend">
+      <p><span class="key key-simple"></span><b>単利</b> 毎年、同じだけ伸びる（1 + 0.1 × 年数）</p>
+      <p><span class="key key-compound"></span><b>複利</b> 伸びた分を元手に、さらに伸びる（1.1 ^ 年数）</p>
+    </div>
+  </div>
+</section>

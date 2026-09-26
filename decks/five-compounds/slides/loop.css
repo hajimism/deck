@@ -1,0 +1,138 @@
+.head {
+  display: grid;
+  gap: calc(var(--gap) * 0.3);
+}
+
+.stage {
+  display: grid;
+  grid-template-columns: 1fr var(--arc-col) 1fr;
+  grid-template-rows: auto 1fr auto;
+  align-items: center;
+  column-gap: calc(var(--gap) * 0.5);
+}
+
+.exec,
+.chance {
+  grid-row: 1 / 4;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+  padding: var(--gap);
+  border: var(--hair) solid var(--line-soft);
+  border-radius: var(--radius);
+  background: var(--paper-card);
+}
+
+.exec {
+  grid-column: 1;
+  align-self: stretch;
+  justify-content: center;
+}
+
+.chance {
+  grid-column: 3;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  text-align: center;
+  --seal-box: 120px;
+  --size-seal: 80px;
+}
+
+.chance .label {
+  align-self: stretch;
+  text-align: left;
+}
+
+.chance p:last-child {
+  color: var(--tone);
+  font-family: var(--font-title);
+  font-size: var(--size-lede);
+  font-weight: 600;
+}
+
+.seals {
+  display: flex;
+  gap: var(--gap);
+}
+
+.seals div {
+  display: grid;
+  justify-items: center;
+  gap: calc(var(--gap) * 0.2);
+  color: var(--tone);
+  font-weight: 700;
+  font-size: var(--size-small);
+}
+
+.booster {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.6);
+  padding-top: calc(var(--gap) * 0.6);
+  border-top: var(--hair) dashed var(--line-soft);
+  font-size: var(--size-small);
+  line-height: 1.6;
+  --seal-box: 64px;
+  --size-seal: 40px;
+}
+
+.booster b {
+  color: var(--tone);
+}
+
+.arrows {
+  grid-column: 2;
+  grid-row: 1 / 4;
+  width: 100%;
+  height: auto;
+}
+
+.arc {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: var(--rule);
+  stroke-dasharray: 1;
+}
+
+.arrowhead {
+  fill: var(--accent);
+}
+
+.slide.is-current .arc {
+  stroke-dasharray: 400;
+  animation: draw var(--dur-draw) var(--ease-draw) backwards;
+}
+
+.slide.is-current .arc + .arc {
+  animation-delay: calc(var(--stagger) * 6);
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 400;
+  }
+}
+
+.slide:not(.is-current) .arc {
+  stroke-dasharray: none;
+}
+
+.flow {
+  fill: var(--accent);
+  font-size: var(--size-caption);
+  font-weight: 700;
+}
+
+.bottom {
+  font-family: var(--font-title);
+  font-size: var(--size-lede);
+  font-weight: 600;
+  text-align: center;
+}
+
+.slide {
+  --arc-col: 260px;
+  --seal-box: 76px;
+  --size-seal: 48px;
+}

@@ -1,0 +1,412 @@
+/*
+ * five-compounds — a warm paper handout.
+ * Sumi ink on cream paper. Each of the five compounds owns one colour and one kanji seal;
+ * a slide sets --tone to the compound it is about. Every page states its point as its
+ * heading and carries a running head and folio, so the PDF reads without the talk.
+ */
+.slide {
+  --fg: #1d1a16;
+  --bg: #f6f1e7;
+  --accent: #b3361f;
+  --muted: #5f584e;
+  --paper-deep: #ece4d4;
+  --paper-card: #fbf8f2;
+  --line: #1d1a16;
+  --line-soft: #d9cfbd;
+  --c-ude: #b3361f;
+  --c-dougu: #2a4a8a;
+  --c-iki: #1f6b4b;
+  --c-hima: #845600;
+  --c-kao: #84306a;
+  --tone: var(--accent);
+  --font-title: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
+  --font-body: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  --size-hero: 76px;
+  --size-seal: 64px;
+  --size-stat: 44px;
+  --size-title: 38px;
+  --size-lede: 20px;
+  --size-body: 17px;
+  --size-small: 14px;
+  --size-caption: 12px;
+  --gap: 24px;
+  --margin: 64px;
+  --pad: 88px var(--margin) 56px;
+  --radius: 10px;
+  --hair: 1px;
+  --rule: 3px;
+  --seal-box: 96px;
+  --side: 430px;
+  --rise: 12px;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-draw: cubic-bezier(0.6, 0, 0.2, 1);
+  --dur-rise: 0.6s;
+  --dur-draw: 1.6s;
+  --dur-long: 2.4s;
+  --stagger: 0.12s;
+  --step-transition: 0.5s var(--ease-out);
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: var(--pad);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: 1.7;
+  font-feature-settings: "palt";
+}
+
+/* Running head and folio. The folio comes from data-folio on the section. */
+.slide::before {
+  content: "しごとに埋め込む5つの複利";
+  position: absolute;
+  top: calc(var(--gap) * 1.2);
+  left: var(--margin);
+  right: var(--margin);
+  padding-bottom: calc(var(--gap) * 0.35);
+  border-bottom: var(--hair) solid var(--line-soft);
+  color: var(--muted);
+  font-size: var(--size-caption);
+  letter-spacing: 0.2em;
+  text-align: left;
+}
+
+.slide::after {
+  content: attr(data-folio);
+  position: absolute;
+  top: calc(var(--gap) * 1.2);
+  right: var(--margin);
+  color: var(--tone);
+  font-family: var(--font-title);
+  font-size: var(--size-small);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.slide * {
+  box-sizing: border-box;
+}
+
+.slide p,
+.slide ol,
+.slide ul,
+.slide dl,
+.slide dd,
+.slide h2,
+.slide h3 {
+  margin: 0;
+}
+
+.slide .slide-title {
+  font-family: var(--font-title);
+  font-size: var(--size-title);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+}
+
+.slide .kicker {
+  color: var(--tone);
+  font-size: var(--size-small);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.slide .lede {
+  font-size: var(--size-lede);
+  line-height: 1.75;
+}
+
+.slide .note {
+  color: var(--muted);
+  font-size: var(--size-small);
+  line-height: 1.7;
+}
+
+.slide .label {
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.slide .mark {
+  background: linear-gradient(transparent 62%, var(--paper-deep) 62%);
+  color: var(--tone);
+  font-weight: 700;
+}
+
+.slide .stat {
+  font-family: var(--font-title);
+  font-size: var(--size-stat);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--tone);
+}
+
+.slide .unit {
+  margin-left: 0.2em;
+  color: var(--muted);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+/* A kanji seal: the mark of one compound. Set --tone on it or on the slide. */
+.slide .seal {
+  display: inline-grid;
+  place-items: center;
+  width: var(--seal-box);
+  height: var(--seal-box);
+  border: var(--rule) solid var(--tone);
+  border-radius: var(--radius);
+  color: var(--tone);
+  font-family: var(--font-title);
+  font-size: var(--size-seal);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.slide .seal.is-filled {
+  background: var(--tone);
+  color: var(--paper-card);
+}
+
+.slide .ude { --tone: var(--c-ude); }
+.slide .dougu { --tone: var(--c-dougu); }
+.slide .iki { --tone: var(--c-iki); }
+.slide .hima { --tone: var(--c-hima); }
+.slide .kao { --tone: var(--c-kao); }
+
+.slide .card {
+  padding: calc(var(--gap) * 0.7) calc(var(--gap) * 0.8);
+  border: var(--hair) solid var(--line-soft);
+  border-radius: var(--radius);
+  background: var(--paper-card);
+}
+
+.slide .chip {
+  display: inline-block;
+  padding: 0 0.6em;
+  border: var(--hair) solid var(--tone);
+  border-radius: var(--radius);
+  color: var(--tone);
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 1.8;
+}
+
+.slide .source {
+  position: absolute;
+  left: var(--margin);
+  right: var(--margin);
+  bottom: calc(var(--gap) * 0.9);
+  color: var(--muted);
+  font-size: var(--size-caption);
+}
+
+/* @layout cover
+<section class="slide" data-layout="cover">
+  <p class="kicker">配布資料</p>
+  <h2 class="slide-title">The talk in one line</h2>
+  <p class="lede">What it is about.</p>
+</section>
+*/
+.slide[data-layout="cover"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--gap);
+}
+
+.slide[data-layout="cover"] .slide-title {
+  font-size: var(--size-hero);
+  line-height: 1.2;
+}
+
+/* @layout default
+<section class="slide" data-layout="default" data-folio="02">
+  <h2 class="slide-title">A heading that states the point</h2>
+  <div class="stage">
+    <div class="card" data-step="1">One point per beat</div>
+  </div>
+</section>
+*/
+.slide[data-layout="default"] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.slide[data-layout="default"] .stage {
+  flex: 1;
+  min-height: 0;
+}
+
+/* @layout split
+<section class="slide" data-layout="split" data-folio="02">
+  <div class="col">
+    <h2 class="slide-title">The claim</h2>
+    <p class="lede">Why it holds.</p>
+  </div>
+  <div class="stage">Figure or episode</div>
+</section>
+*/
+.slide[data-layout="split"] {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: calc(var(--gap) * 2);
+  align-items: stretch;
+}
+
+.slide .col {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.7);
+  min-width: 0;
+}
+
+.slide .stage {
+  position: relative;
+  min-width: 0;
+}
+
+/* @layout compound
+<section class="slide" data-layout="compound" data-folio="05">
+  <div class="col ude">
+    <p class="kicker">複利 01 · 実行</p>
+    <div class="seal">腕</div>
+    <h2 class="slide-title">腕の複利</h2>
+    <p class="lede">Definition.</p>
+    <dl class="facts">
+      <div><dt>貯まる場所</dt><dd>自分の身体</dd></div>
+      <div><dt>弱点</dt><dd>使わないと鈍る</dd></div>
+    </dl>
+  </div>
+  <div class="stage">
+    <p class="label">エピソード</p>
+    <ol class="timeline">
+      <li data-step="1"><span class="when">一年目</span><p>What happened.</p></li>
+    </ol>
+  </div>
+</section>
+*/
+.slide[data-layout="compound"] {
+  display: grid;
+  grid-template-columns: var(--side) 1fr;
+  gap: calc(var(--gap) * 2);
+  align-items: stretch;
+}
+
+.slide[data-layout="compound"] .col {
+  padding-right: calc(var(--gap) * 2);
+  border-right: var(--hair) solid var(--line-soft);
+}
+
+.slide[data-layout="compound"] .slide-title {
+  color: var(--tone);
+}
+
+.slide .facts {
+  display: grid;
+  gap: calc(var(--gap) * 0.4);
+  margin-top: auto;
+}
+
+.slide .facts > div {
+  display: grid;
+  grid-template-columns: 6em 1fr;
+  gap: calc(var(--gap) * 0.5);
+  padding-top: calc(var(--gap) * 0.4);
+  border-top: var(--hair) solid var(--line-soft);
+  font-size: var(--size-small);
+}
+
+.slide .facts dt {
+  color: var(--tone);
+  font-weight: 700;
+}
+
+.slide .timeline {
+  display: grid;
+  gap: calc(var(--gap) * 0.6);
+  padding: 0;
+  list-style: none;
+}
+
+.slide .timeline > li {
+  position: relative;
+  padding-left: calc(var(--gap) * 1.2);
+  border-left: var(--rule) solid var(--tone);
+}
+
+.slide .when {
+  display: block;
+  color: var(--tone);
+  font-family: var(--font-title);
+  font-size: var(--size-lede);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* @layout center
+<section class="slide" data-layout="center" data-folio="14">
+  <h2 class="slide-title">One sentence worth keeping</h2>
+</section>
+*/
+.slide[data-layout="center"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap);
+  text-align: center;
+}
+
+/* Beats: hidden things keep their box, so every beat has the same layout. */
+.slide.is-current [data-step] {
+  opacity: 0;
+  transform: translateY(var(--rise));
+  transition: var(--step-transition);
+}
+
+.slide.is-current [data-step].is-shown {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+::view-transition-old(slide) {
+  --step-transition: 0.25s ease both;
+  animation: fade-out var(--step-transition);
+}
+
+::view-transition-new(slide) {
+  --step-transition: 0.35s ease both;
+  animation: fade-in var(--step-transition);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide.is-current [data-step] {
+    transition: none;
+    animation: none;
+  }
+
+  ::view-transition-old(slide),
+  ::view-transition-new(slide) {
+    animation: none;
+  }
+}

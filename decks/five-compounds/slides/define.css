@@ -1,0 +1,99 @@
+.steps {
+  display: grid;
+  gap: calc(var(--gap) * 0.6);
+  margin-top: calc(var(--gap) * 0.4);
+  padding: 0;
+  list-style: none;
+}
+
+.steps li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: calc(var(--gap) * 0.7);
+  align-items: start;
+}
+
+.num {
+  display: grid;
+  place-items: center;
+  width: calc(var(--gap) * 1.6);
+  height: calc(var(--gap) * 1.6);
+  border-radius: 50%;
+  background: var(--fg);
+  color: var(--bg);
+  font-family: var(--font-title);
+  font-weight: 600;
+}
+
+.steps b {
+  font-size: var(--size-lede);
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.spiral {
+  width: 100%;
+  max-height: calc(var(--gap) * 19);
+}
+
+.spiral-path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: calc(var(--rule) * 1.4);
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+}
+
+.slide.is-current .spiral-path {
+  animation: draw var(--dur-long) var(--ease-draw) backwards;
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+.labels text {
+  fill: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 700;
+}
+
+.motto {
+  display: flex;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.motto span {
+  padding: 0 0.8em;
+  border: var(--hair) solid var(--accent);
+  border-radius: var(--radius);
+  color: var(--accent);
+  font-family: var(--font-title);
+  font-size: var(--size-lede);
+  font-weight: 600;
+}
+
+
+.motto i {
+  align-self: center;
+  color: var(--muted);
+  font-style: normal;
+}
+
+.turn {
+  fill: var(--bg);
+  stroke: var(--accent);
+  stroke-width: var(--rule);
+}
+
+.caption {
+  text-align: center;
+}

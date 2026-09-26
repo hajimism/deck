@@ -1,0 +1,88 @@
+.slide {
+  --seal-box: 48px;
+  --size-seal: 28px;
+}
+
+.zero {
+  margin-top: auto;
+  display: grid;
+  gap: calc(var(--gap) * 0.3);
+  padding: var(--gap);
+  border-radius: var(--radius);
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.zero .label {
+  color: var(--line-soft);
+}
+
+.zero-num {
+  font-family: var(--font-title);
+  font-size: var(--size-hero);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.zero-num span {
+  color: var(--line-soft);
+  font-size: var(--size-stat);
+}
+
+.zero b {
+  color: var(--paper-card);
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.loops {
+  flex: 1;
+  display: grid;
+  align-content: space-evenly;
+  gap: calc(var(--gap) * 0.5);
+  padding: 0;
+  list-style: none;
+}
+
+.loops li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: calc(var(--gap) * 0.7);
+  align-items: center;
+  padding-bottom: calc(var(--gap) * 0.5);
+  border-bottom: var(--hair) solid var(--line-soft);
+}
+
+.loops p {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--gap) * 0.3);
+}
+
+.loops p span {
+  padding: 0 0.7em;
+  border-radius: var(--radius);
+  background: var(--paper-deep);
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 2;
+}
+
+.loops p span:last-of-type {
+  box-shadow: inset 0 0 0 var(--hair) var(--tone);
+  color: var(--tone);
+}
+
+.loops p span:last-of-type::after {
+  content: " ↺";
+}
+
+.loops i {
+  color: var(--muted);
+  font-style: normal;
+}

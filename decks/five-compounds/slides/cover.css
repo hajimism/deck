@@ -1,0 +1,112 @@
+.slide {
+  --seal-box: 64px;
+  --size-seal: 38px;
+}
+
+.curve {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.curve path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.curve-simple {
+  stroke: var(--line-soft);
+  stroke-width: var(--rule);
+}
+
+.curve-compound {
+  stroke: var(--accent);
+  stroke-width: calc(var(--rule) * 2);
+  opacity: 0.35;
+}
+
+.slide.is-current .curve path {
+  animation: draw var(--dur-long) var(--ease-draw) var(--stagger) forwards;
+}
+
+.slide:not(.is-current) .curve path {
+  stroke-dashoffset: 0;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.slide-title {
+  position: relative;
+}
+
+.lede {
+  position: relative;
+  max-width: 44em;
+  color: var(--muted);
+}
+
+.five {
+  position: relative;
+  display: flex;
+  gap: calc(var(--gap) * 1.2);
+  margin-top: calc(var(--gap) * 0.8);
+  padding: 0;
+  list-style: none;
+}
+
+.five li {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  column-gap: calc(var(--gap) * 0.5);
+  align-items: center;
+}
+
+.five .seal {
+  grid-row: span 2;
+  background: var(--paper-card);
+}
+
+.name,
+.what {
+  justify-self: start;
+  padding-right: 0.3em;
+  background: var(--bg);
+}
+
+.name {
+  color: var(--tone);
+  font-family: var(--font-title);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.what {
+  color: var(--muted);
+  font-size: var(--size-small);
+  line-height: 1.3;
+}
+
+.slide.is-current .five li {
+  animation: rise var(--dur-rise) var(--ease-out) backwards;
+}
+
+.slide.is-current .five li:nth-child(2) { animation-delay: calc(var(--stagger) * 1); }
+.slide.is-current .five li:nth-child(3) { animation-delay: calc(var(--stagger) * 2); }
+.slide.is-current .five li:nth-child(4) { animation-delay: calc(var(--stagger) * 3); }
+.slide.is-current .five li:nth-child(5) { animation-delay: calc(var(--stagger) * 4); }
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--rise));
+  }
+}

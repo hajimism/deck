@@ -1,0 +1,61 @@
+.slide {
+  --seal-box: 36px;
+  --size-seal: 20px;
+}
+
+.head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: end;
+  gap: calc(var(--gap) * 2);
+}
+
+.head .note {
+  max-width: 34em;
+  justify-self: end;
+}
+
+.sheet {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 8em 1fr 1fr 1fr;
+  grid-template-rows: auto repeat(5, 1fr);
+  border-top: var(--rule) solid var(--fg);
+}
+
+.th {
+  padding: calc(var(--gap) * 0.4) calc(var(--gap) * 0.5);
+  border-bottom: var(--hair) solid var(--fg);
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.rh {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.4);
+  border-bottom: var(--hair) solid var(--line-soft);
+  color: var(--tone);
+  font-family: var(--font-title);
+  font-size: var(--size-lede);
+  font-weight: 600;
+}
+
+.rh .seal {
+  border-width: calc(var(--hair) * 2);
+}
+
+.cell {
+  position: relative;
+  padding: calc(var(--gap) * 0.3) calc(var(--gap) * 0.5);
+  border-bottom: var(--hair) solid var(--line-soft);
+  border-left: var(--hair) dashed var(--line-soft);
+  background-image: linear-gradient(transparent calc(100% - var(--gap) * 0.8), var(--line-soft) calc(100% - var(--gap) * 0.8), var(--line-soft) calc(100% - var(--gap) * 0.8 + var(--hair)), transparent calc(100% - var(--gap) * 0.8 + var(--hair)));
+}
+
+.ex {
+  color: var(--muted);
+  font-size: var(--size-caption);
+}

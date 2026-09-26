@@ -1,0 +1,127 @@
+.slide {
+  --tone: var(--c-ude);
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.7);
+}
+
+.grow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(var(--gap) * 0.6);
+  padding: 0;
+  list-style: none;
+}
+
+.grow .card {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.35);
+}
+
+.grow .card:nth-child(3) {
+  border-color: var(--tone);
+  border-width: var(--rule);
+}
+
+.what {
+  font-size: var(--size-small);
+  line-height: 1.65;
+}
+
+.scope {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(var(--hair) * 3);
+  margin-top: auto;
+  padding-top: calc(var(--gap) * 0.3);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  text-align: center;
+}
+
+.scope span {
+  border-radius: calc(var(--radius) * 0.4);
+  background: var(--paper-deep);
+  color: var(--muted);
+}
+
+.scope .on {
+  background: var(--tone);
+  color: var(--paper-card);
+}
+
+.trap {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: var(--gap);
+  gap: calc(var(--gap) * 0.2);
+  padding: calc(var(--gap) * 0.6) calc(var(--gap) * 0.8);
+  border-left: var(--rule) solid var(--fg);
+  background: var(--paper-deep);
+  font-size: var(--size-small);
+}
+
+.trap-head {
+  font-weight: 700;
+  font-size: var(--size-body);
+}
+
+.trap-text {
+  display: grid;
+  gap: calc(var(--gap) * 0.2);
+}
+
+.stairs {
+  width: calc(var(--gap) * 9);
+  height: auto;
+  overflow: visible;
+}
+
+.stairs path {
+  fill: none;
+  stroke-linejoin: round;
+  stroke-width: var(--rule);
+}
+
+.flat { stroke: var(--muted); stroke-dasharray: var(--rule) var(--rule); }
+.up { stroke: var(--tone); }
+
+.stairs text {
+  font-size: var(--size-caption);
+  font-weight: 700;
+}
+
+.t-up { fill: var(--tone); }
+.t-flat { fill: var(--muted); }
+
+.sub {
+  padding-bottom: calc(var(--gap) * 0.3);
+  border-bottom: var(--hair) dashed var(--line-soft);
+  color: var(--muted);
+  font-size: var(--size-small);
+}
+
+.sub b {
+  color: var(--tone);
+}
+
+.grow {
+  flex: 1;
+}
+
+.what {
+  flex: 1;
+}
+
+.voice {
+  color: var(--tone);
+  font-family: var(--font-title);
+  font-size: var(--size-small);
+  font-weight: 600;
+  line-height: 1.5;
+}

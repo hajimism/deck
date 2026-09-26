@@ -1,0 +1,96 @@
+.slide {
+  --tone: var(--c-hima);
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.8);
+}
+
+.calc {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.calc .card {
+  display: grid;
+  gap: calc(var(--gap) * 0.25);
+}
+
+.calc .stat {
+  font-size: calc(var(--size-stat) * 0.8);
+}
+
+.chain {
+  flex: 1;
+  display: grid;
+  align-content: space-evenly;
+  gap: calc(var(--gap) * 0.6);
+  padding: 0;
+  list-style: none;
+}
+
+.chain li {
+  display: grid;
+  grid-template-columns: 11em 1fr 6em;
+  gap: calc(var(--gap) * 0.6);
+  align-items: center;
+}
+
+.what {
+  display: grid;
+  line-height: 1.4;
+}
+
+.what span {
+  color: var(--muted);
+  font-size: var(--size-caption);
+}
+
+.bar {
+  display: flex;
+  gap: calc(var(--hair) * 2);
+  height: calc(var(--gap) * 1.2);
+}
+
+.seg {
+  border-radius: calc(var(--radius) * 0.4);
+  background: var(--tone);
+}
+
+/* 135 minutes per week spans the whole track. */
+.a { width: 22.2%; }
+.b { width: 44.4%; opacity: 0.7; }
+.c { width: 33.3%; opacity: 0.45; }
+
+.slide.is-current .is-shown .seg:last-child {
+  animation: grow var(--dur-draw) var(--ease-out) backwards;
+  transform-origin: left center;
+}
+
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.val {
+  color: var(--tone);
+  font-family: var(--font-title);
+  font-size: var(--size-lede);
+  font-weight: 600;
+  text-align: right;
+}
+
+.sum {
+  padding-top: calc(var(--gap) * 0.5);
+  border-top: var(--hair) solid var(--line-soft);
+}
+
+.sum b {
+  color: var(--tone);
+  font-family: var(--font-title);
+  font-size: calc(var(--size-stat) * 0.7);
+}

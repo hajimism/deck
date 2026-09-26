@@ -1,0 +1,123 @@
+.slide {
+  --tone: var(--c-dougu);
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.7);
+}
+
+.jobs {
+  flex: 1;
+  display: grid;
+  align-content: space-evenly;
+  gap: calc(var(--gap) * 0.8);
+  padding: 0;
+  list-style: none;
+}
+
+.jobs li {
+  display: grid;
+  grid-template-columns: 5em 1fr 15em;
+  grid-template-rows: auto auto;
+  column-gap: calc(var(--gap) * 0.7);
+  row-gap: calc(var(--gap) * 0.2);
+  align-items: center;
+}
+
+.job {
+  font-family: var(--font-title);
+  font-size: var(--size-lede);
+  font-weight: 600;
+  color: var(--tone);
+}
+
+.track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.4);
+  height: calc(var(--gap) * 1.6);
+}
+
+.days {
+  height: 100%;
+  border-radius: calc(var(--radius) * 0.4);
+  background: var(--tone);
+}
+
+.d10 { width: 80%; }
+.d2 { width: 16%; }
+.d05 { width: 4%; }
+
+.slide.is-current .is-shown .days {
+  animation: grow var(--dur-draw) var(--ease-out) backwards;
+  transform-origin: left center;
+}
+
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.val {
+  font-family: var(--font-title);
+  font-size: var(--size-lede);
+  font-weight: 600;
+  color: var(--tone);
+  white-space: nowrap;
+}
+
+.kit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--gap) * 0.25);
+}
+
+.kit span {
+  padding: 0 0.6em;
+  border-radius: calc(var(--radius) * 0.4);
+  background: var(--tone);
+  color: var(--paper-card);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  line-height: 2;
+}
+
+.kit .new {
+  background: var(--paper-card);
+  color: var(--tone);
+  box-shadow: inset 0 0 0 var(--hair) var(--tone);
+}
+
+.kit .none {
+  background: none;
+  color: var(--muted);
+  box-shadow: inset 0 0 0 var(--hair) var(--line-soft);
+}
+
+.what {
+  grid-column: 2 / 4;
+  color: var(--muted);
+  font-size: var(--size-small);
+  line-height: 1.6;
+}
+
+.sum {
+  margin-top: auto;
+  padding-top: calc(var(--gap) * 0.5);
+  border-top: var(--hair) solid var(--line-soft);
+  font-size: var(--size-lede);
+}
+
+.sum b {
+  color: var(--tone);
+  font-family: var(--font-title);
+  font-size: var(--size-stat);
+}
+
+.sum s {
+  color: var(--muted);
+}
