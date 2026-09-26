@@ -1,0 +1,90 @@
+.lead {
+  margin-top: auto;
+}
+
+.lt {
+  display: flex;
+  align-items: baseline;
+  gap: calc(var(--gap) * 0.5);
+  margin-top: calc(var(--gap) * 0.3);
+}
+
+.was {
+  color: var(--lime);
+}
+
+.to {
+  color: var(--gray-mid);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.now {
+  color: var(--orange);
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.9);
+}
+
+.tower {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.25);
+}
+
+.tower li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--gap);
+  padding: calc(var(--gap) * 0.1) calc(var(--gap) * 0.9);
+  font-size: var(--size-body);
+}
+
+.tower li span {
+  font-size: var(--size-caption);
+  font-weight: 700;
+}
+
+.tower li:nth-child(1) { transform: translateX(calc(var(--gap) * 1.6)) rotate(-1.5deg); }
+.tower li:nth-child(2) { transform: translateX(calc(var(--gap) * 0.4)) rotate(1deg); }
+.tower li:nth-child(3) { transform: translateX(calc(var(--gap) * 1.2)) rotate(-1deg); }
+.tower li:nth-child(4) { transform: translateX(calc(var(--gap) * 0.2)) rotate(1deg); }
+.tower li:nth-child(5) { transform: translateX(calc(var(--gap) * 0.8)) rotate(-0.8deg); }
+.tower li:nth-child(6) { transform: none; }
+
+.tower li {
+  margin-right: calc(var(--gap) * 1.6);
+}
+
+.slide.is-current .tower.is-shown li {
+  animation: drop var(--dur-pop) var(--ease-pop) backwards;
+}
+
+.slide.is-current .tower.is-shown li:nth-child(5) { animation-delay: var(--stagger); }
+.slide.is-current .tower.is-shown li:nth-child(4) { animation-delay: calc(var(--stagger) * 2); }
+.slide.is-current .tower.is-shown li:nth-child(3) { animation-delay: calc(var(--stagger) * 3); }
+.slide.is-current .tower.is-shown li:nth-child(2) { animation-delay: calc(var(--stagger) * 4); }
+.slide.is-current .tower.is-shown li:nth-child(1) { animation-delay: calc(var(--stagger) * 5); }
+
+@keyframes drop {
+  from {
+    opacity: 0;
+    translate: 0 calc(var(--gap) * -2);
+  }
+}
+
+.voices {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(var(--gap) * 0.6);
+  font-size: var(--size-small);
+}
+
+.punch {
+  font-size: var(--size-lede);
+  font-weight: 800;
+}

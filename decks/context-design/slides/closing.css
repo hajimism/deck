@@ -1,0 +1,110 @@
+.deco {
+  position: absolute;
+}
+
+.d1 {
+  top: 0;
+  left: calc(var(--gap) * 3);
+  width: calc(var(--gap) * 9);
+}
+
+.d2 {
+  top: calc(var(--gap) * 3);
+  right: 0;
+  width: calc(var(--gap) * 3.5);
+}
+
+.d3 {
+  bottom: 0;
+  right: calc(var(--gap) * 8);
+  width: calc(var(--gap) * 6);
+}
+
+.d4 {
+  bottom: calc(var(--gap) * 4);
+  left: 0;
+  width: calc(var(--gap) * 4);
+}
+
+.toast {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.4);
+  font-size: var(--size-small);
+}
+
+.toast svg {
+  width: calc(var(--gap) * 0.7);
+  height: calc(var(--gap) * 0.7);
+  fill: var(--green-ink);
+}
+
+.slide.is-current .toast {
+  animation: ring var(--dur-draw) var(--ease-out) calc(var(--stagger) * 4) backwards;
+}
+
+@keyframes ring {
+  0% { opacity: 0; transform: translateY(calc(var(--rise) * -2)); }
+  40% { opacity: 1; transform: none; }
+  55% { transform: rotate(-3deg); }
+  70% { transform: rotate(3deg); }
+  85% { transform: rotate(-1deg); }
+}
+
+.slide-title {
+  position: relative;
+  font-size: calc(var(--size-title) * 1.25);
+}
+
+.lede {
+  position: relative;
+  color: var(--muted);
+  font-size: var(--size-body);
+}
+
+.final {
+  position: relative;
+  margin-top: calc(var(--gap) * 0.4);
+  padding: calc(var(--gap) * 0.3) calc(var(--gap) * 1.2);
+  border-radius: var(--pill);
+  background: var(--lime);
+  color: var(--black);
+  font-size: calc(var(--size-lede) * 1.4);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.cursor {
+  position: absolute;
+}
+
+.c1 {
+  left: calc(var(--gap) * 4);
+  top: calc(var(--gap) * 8.5);
+}
+
+.c2 {
+  right: calc(var(--gap) * 9);
+  bottom: calc(var(--gap) * 5.2);
+}
+
+.slide.is-current .cursor {
+  animation: arrive var(--dur-long) var(--ease-out) backwards;
+}
+
+.slide.is-current .c2 {
+  animation-delay: calc(var(--stagger) * 3);
+}
+
+@keyframes arrive {
+  from {
+    opacity: 0;
+    transform: translate(calc(var(--gap) * -2), calc(var(--gap) * 2));
+  }
+}
+
+.source {
+  bottom: calc(var(--gap) * 2.4);
+  text-align: center;
+}

@@ -1,0 +1,44 @@
+<section class="slide" data-bg="lavender" data-layout="default" data-folio="07">
+  <p class="kicker">03 ・ 行動は、生成される</p>
+  <h2 class="slide-title">人の行動も、コンテキストから<span class="hl">「生成」</span>されている</h2>
+  <div class="mind">
+    <p class="old"><s>こうするから、こうなる</s></p>
+    <i>→</i>
+    <p class="new">この文脈なら、こうなりやすい</p>
+    <p class="formula">P( 次の行動 | コンテキスト )</p>
+  </div>
+  <div class="stage">
+    <div class="card dist" data-tone="white" data-step="gen-llm">
+      <p class="label">言語モデル</p>
+      <p class="ctx">「むかしむかし、あるところに」</p>
+      <ol class="bars">
+        <li class="top"><span class="opt">おじいさんが</span><span class="track"><span class="fill p72"></span></span><span class="pct">72%</span></li>
+        <li><span class="opt">お姫さまが</span><span class="track"><span class="fill p9"></span></span><span class="pct">9%</span></li>
+        <li><span class="opt">小さな村が</span><span class="track"><span class="fill p7"></span></span><span class="pct">7%</span></li>
+        <li><span class="opt">その他</span><span class="track"><span class="fill p12"></span></span><span class="pct">12%</span></li>
+      </ol>
+      <p class="gen">→ 「…おじいさんが住んでいました」</p>
+    </div>
+    <div class="card dist" data-tone="peach" data-step="gen-a">
+      <p class="label">定例 A ・ 最初のひとこと</p>
+      <p class="ctx">「それ、前にも失敗したよね」</p>
+      <ol class="bars">
+        <li class="top"><span class="opt">懸念を重ねる</span><span class="track"><span class="fill p58"></span></span><span class="pct">58%</span></li>
+        <li><span class="opt">黙っておく</span><span class="track"><span class="fill p27"></span></span><span class="pct">27%</span></li>
+        <li><span class="opt">新しい案を出す</span><span class="track"><span class="fill p15"></span></span><span class="pct">15%</span></li>
+      </ol>
+      <p class="gen">→ 「たしかに、リスクもありますね…」</p>
+    </div>
+    <div class="card dist" data-tone="lime" data-step="gen-b">
+      <p class="label">定例 B ・ 最初のひとこと</p>
+      <p class="ctx">「いいね、それに足すなら」</p>
+      <ol class="bars">
+        <li class="top"><span class="opt">案を重ねる</span><span class="track"><span class="fill p56"></span></span><span class="pct">56%</span></li>
+        <li><span class="opt">質問する</span><span class="track"><span class="fill p28"></span></span><span class="pct">28%</span></li>
+        <li><span class="opt">懸念を言う</span><span class="track"><span class="fill p16"></span></span><span class="pct">16%</span></li>
+      </ol>
+      <p class="gen">→ 「じゃあ、こういうのはどう？」</p>
+    </div>
+  </div>
+  <p class="caption" data-step="gen-b">同じメンバー、同じ議題でも、最初のひとことが変わるだけで、生成される行動の分布が変わる。（数字はイメージ）</p>
+</section>

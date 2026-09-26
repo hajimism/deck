@@ -1,0 +1,57 @@
+.cover-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: calc(var(--gap) * 2.5);
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 1.1);
+}
+
+.hl {
+  color: var(--lime);
+}
+
+.lede {
+  color: var(--muted);
+  font-size: var(--size-body);
+}
+
+.blocks {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, calc(var(--gap) * 5.4));
+  gap: calc(var(--gap) * 0.5);
+}
+
+.cursor {
+  position: absolute;
+}
+
+.cur-a {
+  top: calc(var(--gap) * 4.2);
+  left: calc(var(--gap) * 9.4);
+}
+
+.cur-b {
+  bottom: calc(var(--gap) * 1.2);
+  left: calc(var(--gap) * -1.5);
+}
+
+.slide.is-current .cursor {
+  animation: drift var(--dur-long) var(--ease-out) backwards;
+}
+
+.slide.is-current .cur-b {
+  animation-delay: calc(var(--stagger) * 4);
+}
+
+@keyframes drift {
+  from {
+    opacity: 0;
+    transform: translate(calc(var(--gap) * 3), calc(var(--gap) * 2));
+  }
+}

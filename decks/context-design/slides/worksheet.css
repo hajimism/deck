@@ -1,0 +1,53 @@
+.stage {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(var(--gap) * 0.8);
+}
+
+.q {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.5);
+  padding: calc(var(--gap) * 0.9);
+}
+
+.q-head {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.4);
+  font-size: var(--size-lede);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.num {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: calc(var(--gap) * 1.4);
+  height: calc(var(--gap) * 1.4);
+  border-radius: var(--pill);
+  background: var(--black);
+  color: var(--white);
+  font-size: var(--size-small);
+}
+
+.box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.25);
+  padding: calc(var(--gap) * 0.6) calc(var(--gap) * 0.7);
+  border-radius: var(--radius-small);
+  background: var(--gray);
+}
+
+.blank {
+  flex: 1;
+  border-bottom: var(--rule) dashed var(--gray-mid);
+}
+
+.ex {
+  font-size: var(--size-caption);
+  font-weight: 600;
+}

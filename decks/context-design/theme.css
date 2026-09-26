@@ -1,0 +1,487 @@
+/*
+ * context-design — bold, playful brand pages.
+ * Flat colour fields, oversized heavy type, and simple geometry (circles, half circles, pills,
+ * squares) in the five vivid shape colours. Cards are big rounded blocks with no shadows.
+ * Colour rule:
+ *   - Each chapter owns one field (data-bg): 01 butter, 02 sky, 03 lavender, 04 pink.
+ *     The cover and the closing are black bookends.
+ *   - Two colours carry meaning: Control is peach/orange, Context is lime/green.
+ *   - Everything else is neutral: white cards, and black for the one thing to remember.
+ *   - The five vivid shape colours appear only on the bookends and as small decoration.
+ * Every page states its point as its heading, so the PDF reads without the talk.
+ */
+.slide {
+  --black: #000000;
+  --white: #ffffff;
+  --gray: #f0f0f0;
+  --gray-mid: #d9d9d9;
+  --red: #f24e1e;
+  --orange: #ff7262;
+  --violet: #a259ff;
+  --blue: #1abcfe;
+  --green: #0acf83;
+  --yellow: #ffcd29;
+  --lime: #e4ff97;
+  --pink: #ffc7f2;
+  --lavender: #e0d4ff;
+  --sky: #c4ebff;
+  --butter: #fff0a8;
+  --mint: #c2f5d8;
+  --peach: #ffd6c4;
+  --plum: #6d28d9;
+  --red-ink: #c2320a;
+  --green-ink: #05663a;
+  --blue-ink: #0a64a8;
+  --violet-ink: #6b21d6;
+  --fg: var(--black);
+  --bg: var(--white);
+  --muted: #3d3d3d;
+  --accent: var(--violet-ink);
+  --line: var(--black);
+  --c: var(--violet);
+  --font-title: "Inter", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  --font-body: "Inter", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  --font-mono: "SF Mono", "Menlo", "Consolas", "Noto Sans Mono CJK JP", monospace;
+  --size-hero: 92px;
+  --size-mega: 132px;
+  --size-stat: 56px;
+  --size-title: 46px;
+  --size-lede: 20px;
+  --size-body: 16px;
+  --size-small: 14px;
+  --size-caption: 12px;
+  --gap: 24px;
+  --margin: 64px;
+  --pad: 60px var(--margin) 56px;
+  --radius: 28px;
+  --radius-small: 16px;
+  --pill: 999px;
+  --hair: 1px;
+  --rule: 2px;
+  --rise: 16px;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-pop: 0.7s;
+  --dur-draw: 1.2s;
+  --dur-long: 2.4s;
+  --stagger: 0.09s;
+  --step-transition: 0.5s var(--ease-out);
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: var(--pad);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: 1.65;
+  font-feature-settings: "palt";
+}
+
+/* Colour fields. */
+.slide[data-bg="white"] { --bg: var(--white); }
+.slide[data-bg="lime"] { --bg: var(--lime); }
+.slide[data-bg="pink"] { --bg: var(--pink); }
+.slide[data-bg="lavender"] { --bg: var(--lavender); }
+.slide[data-bg="sky"] { --bg: var(--sky); }
+.slide[data-bg="butter"] { --bg: var(--butter); }
+.slide[data-bg="mint"] { --bg: var(--mint); }
+.slide[data-bg="peach"] { --bg: var(--peach); }
+
+.slide[data-bg="black"] {
+  --bg: var(--black);
+  --fg: var(--white);
+  --muted: #c8c8c8;
+  --line: var(--white);
+  --accent: var(--lime);
+}
+
+.slide[data-bg="plum"] {
+  --bg: var(--plum);
+  --fg: var(--white);
+  --muted: #eadcff;
+  --line: var(--white);
+  --accent: var(--lime);
+}
+
+/* Running title and folio at the foot of every page. */
+.slide::before {
+  content: "すべてはコンテキストデザインである";
+  position: absolute;
+  left: var(--margin);
+  bottom: calc(var(--gap) * 0.9);
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: left;
+}
+
+.slide::after {
+  content: attr(data-folio);
+  position: absolute;
+  right: var(--margin);
+  bottom: calc(var(--gap) * 0.7);
+  display: grid;
+  place-items: center;
+  width: calc(var(--gap) * 1.3);
+  height: calc(var(--gap) * 1.3);
+  border-radius: var(--pill);
+  background: var(--fg);
+  color: var(--bg);
+  font-size: var(--size-caption);
+  font-weight: 800;
+}
+
+.slide * {
+  box-sizing: border-box;
+}
+
+.slide p,
+.slide ol,
+.slide ul,
+.slide dl,
+.slide dd,
+.slide h2,
+.slide h3 {
+  margin: 0;
+}
+
+.slide ol,
+.slide ul {
+  padding: 0;
+  list-style: none;
+}
+
+.slide .slide-title {
+  font-family: var(--font-title);
+  font-size: var(--size-title);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.035em;
+}
+
+/* A section tag: an outlined pill. */
+.slide .kicker {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0 0.9em;
+  border: var(--rule) solid var(--fg);
+  border-radius: var(--pill);
+  color: var(--fg);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 2.1;
+}
+
+.slide .lede {
+  font-size: var(--size-lede);
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.slide .note {
+  color: var(--muted);
+  font-size: var(--size-small);
+  line-height: 1.65;
+}
+
+.slide .label {
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+/* A highlighter: a colour block behind the words. */
+.slide .mark {
+  padding: 0 0.12em;
+  border-radius: calc(var(--radius-small) * 0.4);
+  background: var(--c);
+  color: var(--black);
+}
+
+.slide .stat {
+  font-family: var(--font-title);
+  font-size: var(--size-stat);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+/* A big rounded block. No shadow, no border: colour does the work. */
+.slide .card {
+  position: relative;
+  padding: calc(var(--gap) * 1) calc(var(--gap) * 1.1);
+  border-radius: var(--radius);
+  background: var(--c);
+  color: var(--black);
+}
+
+.slide .card .note,
+.slide .card .label {
+  color: var(--black);
+}
+
+.slide .pill {
+  display: inline-block;
+  padding: 0 1em;
+  border-radius: var(--pill);
+  background: var(--c);
+  color: var(--black);
+  font-weight: 800;
+  line-height: 2.2;
+  white-space: nowrap;
+}
+
+/* Colour picks for cards, pills, shapes and marks: data-tone="…". */
+.slide [data-tone="white"] { --c: var(--white); }
+.slide [data-tone="black"] { --c: var(--black); }
+.slide [data-tone="gray"] { --c: var(--gray); }
+.slide [data-tone="red"] { --c: var(--red); }
+.slide [data-tone="orange"] { --c: var(--orange); }
+.slide [data-tone="violet"] { --c: var(--violet); }
+.slide [data-tone="blue"] { --c: var(--blue); }
+.slide [data-tone="green"] { --c: var(--green); }
+.slide [data-tone="yellow"] { --c: var(--yellow); }
+.slide [data-tone="lime"] { --c: var(--lime); }
+.slide [data-tone="pink"] { --c: var(--pink); }
+.slide [data-tone="lavender"] { --c: var(--lavender); }
+.slide [data-tone="sky"] { --c: var(--sky); }
+.slide [data-tone="butter"] { --c: var(--butter); }
+.slide [data-tone="mint"] { --c: var(--mint); }
+.slide [data-tone="peach"] { --c: var(--peach); }
+
+.slide .card[data-tone="black"],
+.slide .pill[data-tone="black"] {
+  color: var(--white);
+}
+
+.slide .card[data-tone="black"] .note,
+.slide .card[data-tone="black"] .label {
+  color: var(--gray-mid);
+}
+
+/* Geometry. Size a shape with width; data-shape sets its form, data-tone its colour. */
+.slide .shape {
+  display: block;
+  aspect-ratio: 1;
+  background: var(--c);
+}
+
+.slide .shape[data-shape="circle"] { border-radius: var(--pill); }
+.slide .shape[data-shape="half"] { aspect-ratio: 2 / 1; border-radius: var(--pill) var(--pill) 0 0; }
+.slide .shape[data-shape="half-down"] { aspect-ratio: 2 / 1; border-radius: 0 0 var(--pill) var(--pill); }
+.slide .shape[data-shape="half-left"] { aspect-ratio: 1 / 2; border-radius: var(--pill) 0 0 var(--pill); }
+.slide .shape[data-shape="half-right"] { aspect-ratio: 1 / 2; border-radius: 0 var(--pill) var(--pill) 0; }
+.slide .shape[data-shape="quarter"] { border-radius: 100% 0 0 0; }
+.slide .shape[data-shape="quarter-br"] { border-radius: 0 0 100% 0; }
+.slide .shape[data-shape="capsule"] { aspect-ratio: 5 / 2; border-radius: var(--pill); }
+.slide .shape[data-shape="capsule-v"] { aspect-ratio: 2 / 5; border-radius: var(--pill); }
+.slide .shape[data-shape="rounded"] { border-radius: var(--radius); }
+.slide .shape[data-shape="leaf"] { border-radius: var(--pill) 0; }
+.slide .shape[data-shape="leaf-alt"] { border-radius: 0 var(--pill); }
+
+/* A speech bubble: rounded with one sharp corner. */
+.slide .bubble {
+  padding: calc(var(--gap) * 0.55) calc(var(--gap) * 0.8);
+  border-radius: var(--radius) var(--radius) var(--radius) calc(var(--radius-small) * 0.25);
+  background: var(--c);
+  color: var(--black);
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+/* A multiplayer cursor, the one piece of product UI kept as a motif. */
+.slide .cursor {
+  display: inline-flex;
+  align-items: flex-start;
+  pointer-events: none;
+}
+
+.slide .cursor svg {
+  width: calc(var(--gap) * 1);
+  height: calc(var(--gap) * 1);
+  fill: var(--c);
+  stroke: var(--black);
+  stroke-width: 1.2;
+  overflow: visible;
+}
+
+.slide .cursor-name {
+  margin-top: calc(var(--gap) * 0.8);
+  margin-left: calc(var(--gap) * -0.25);
+  padding: 0 0.8em;
+  border-radius: var(--pill);
+  background: var(--c);
+  color: var(--black);
+  font-size: var(--size-small);
+  font-weight: 800;
+  line-height: 2;
+  white-space: nowrap;
+}
+
+.slide .source {
+  position: absolute;
+  left: var(--margin);
+  right: calc(var(--margin) * 2);
+  bottom: calc(var(--gap) * 2.1);
+  color: var(--muted);
+  font-size: var(--size-caption);
+}
+
+.slide .col {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.8);
+  min-width: 0;
+}
+
+.slide .stage {
+  position: relative;
+  min-width: 0;
+}
+
+/* Shapes pop in when a slide arrives. Give a shape .pop and it scales up from nothing. */
+.slide.is-current .pop {
+  animation: pop var(--dur-pop) var(--ease-pop) backwards;
+}
+
+.slide.is-current .pop:nth-of-type(2) { animation-delay: var(--stagger); }
+.slide.is-current .pop:nth-of-type(3) { animation-delay: calc(var(--stagger) * 2); }
+.slide.is-current .pop:nth-of-type(4) { animation-delay: calc(var(--stagger) * 3); }
+.slide.is-current .pop:nth-of-type(5) { animation-delay: calc(var(--stagger) * 4); }
+.slide.is-current .pop:nth-of-type(6) { animation-delay: calc(var(--stagger) * 5); }
+.slide.is-current .pop:nth-of-type(7) { animation-delay: calc(var(--stagger) * 6); }
+
+@keyframes pop {
+  from {
+    transform: scale(0);
+  }
+}
+
+/* @layout cover
+<section class="slide" data-bg="black" data-layout="cover" data-folio="01">
+  <p class="kicker">配布資料</p>
+  <h2 class="slide-title">The talk in one line</h2>
+  <p class="lede">What it is about.</p>
+</section>
+*/
+.slide[data-layout="cover"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--gap);
+}
+
+.slide[data-layout="cover"] .slide-title {
+  font-size: var(--size-hero);
+  line-height: 1.08;
+  letter-spacing: -0.05em;
+}
+
+/* @layout default
+<section class="slide" data-bg="white" data-layout="default" data-folio="02">
+  <p class="kicker">Section</p>
+  <h2 class="slide-title">A heading that states the point</h2>
+  <div class="stage">
+    <div class="card" data-tone="lime" data-step="1">One point per beat</div>
+  </div>
+</section>
+*/
+.slide[data-layout="default"] {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide[data-layout="default"] .stage {
+  flex: 1;
+  min-height: 0;
+  margin-top: calc(var(--gap) * 0.5);
+  margin-bottom: calc(var(--gap) * 0.9);
+}
+
+/* @layout split
+<section class="slide" data-bg="white" data-layout="split" data-folio="02">
+  <div class="col">
+    <p class="kicker">Section</p>
+    <h2 class="slide-title">The claim</h2>
+    <p class="lede">Why it holds.</p>
+  </div>
+  <div class="stage">Figure or episode</div>
+</section>
+*/
+.slide[data-layout="split"] {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: calc(var(--gap) * 2);
+  align-items: stretch;
+  padding-bottom: calc(var(--gap) * 3);
+}
+
+/* @layout center
+<section class="slide" data-bg="plum" data-layout="center" data-folio="12">
+  <h2 class="slide-title">One sentence worth keeping</h2>
+</section>
+*/
+.slide[data-layout="center"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap);
+  text-align: center;
+}
+
+/* Beats: hidden things keep their box, so every beat has the same layout. */
+.slide.is-current [data-step] {
+  opacity: 0;
+  transform: translateY(var(--rise));
+  transition: var(--step-transition);
+}
+
+.slide.is-current [data-step].is-shown {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+::view-transition-old(slide) {
+  --step-transition: 0.25s ease both;
+  animation: fade-out var(--step-transition);
+}
+
+::view-transition-new(slide) {
+  --step-transition: 0.35s ease both;
+  animation: fade-in var(--step-transition);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide.is-current [data-step],
+  .slide.is-current .pop {
+    transition: none;
+    animation: none;
+  }
+
+  ::view-transition-old(slide),
+  ::view-transition-new(slide) {
+    animation: none;
+  }
+}

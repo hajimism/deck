@@ -1,0 +1,36 @@
+<section class="slide" data-bg="sky" data-layout="default" data-folio="06">
+  <p class="kicker">02 ・ CONTEXT, NOT CONTROL</p>
+  <h2 class="slide-title">AIとの協業で、ぼくらはもう体験している</h2>
+  <div class="stage">
+    <div class="chats" data-step="ai-prompt">
+      <div class="card chat" data-tone="white">
+        <div class="ask">
+          <p class="label">指示だけ</p>
+          <p class="bubble" data-tone="gray">ログイン画面を作って</p>
+          <p class="verdict">→ どこかで見た画面。細かく指示しても、なかなか良くならない</p>
+        </div>
+        <div class="mock" aria-hidden="true"><span class="m-title"></span><span class="m-input"></span><span class="m-input"></span><span class="m-btn">Submit</span></div>
+      </div>
+      <div class="card chat" data-tone="white">
+        <div class="ask">
+          <p class="label">コンテキストつき</p>
+          <p class="files"><span class="pill" data-tone="lime">AGENTS.md</span><span class="pill" data-tone="lime">Button.tsx</span><span class="pill" data-tone="lime">tokens.css</span><span class="pill" data-tone="lime">利用者の多くは60代</span></p>
+          <p class="bubble" data-tone="gray">ログイン画面を作って</p>
+          <p class="verdict good">→ チームの画面が、一発で出てくる</p>
+        </div>
+        <div class="mock brand" aria-hidden="true"><span class="m-title"></span><span class="m-input"></span><span class="m-input"></span><span class="m-btn">ログイン</span></div>
+      </div>
+    </div>
+
+    <div class="right" data-step="ai-map">
+      <div class="card map" data-tone="black">
+        <p class="row head"><span>AI に渡すもの</span><span></span><span>チームに渡すもの</span></p>
+        <p class="row"><span>AGENTS.md・プロンプト</span><i>=</i><span>ミッション・規約・価値観</span></p>
+        <p class="row"><span>既存のコード</span><i>=</i><span>過去の事例・判断の記録</span></p>
+        <p class="row"><span>テスト・lint</span><i>=</i><span>軽い自動チェック・ふりかえり</span></p>
+        <p class="row key"><span>出力がいまいち → <b>コンテキストを足す</b></span><i>=</i><span>問題が起きた → <b>ルールでなく背景を足す</b></span></p>
+      </div>
+      <p class="card meta" data-tone="white">ちなみにこの資料も、AI と作っています。渡したのは規約（AGENTS.md）と自動チェック（lint）と元の文章だけ。</p>
+    </div>
+  </div>
+</section>
