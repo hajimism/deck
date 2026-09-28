@@ -1,0 +1,610 @@
+/*
+ * care-swing — a startup pitch-deck handout.
+ * Ink and paper, oversized heavy type, mono labels, bento cards, and soft glows.
+ * Colour rule:
+ *   - Two colours carry the argument. Blue is the score: form, rule, institution, justice.
+ *     Coral is the live response: care, improvisation, this person here.
+ *   - The swing gradient (blue → violet → coral) is the movement between them.
+ *     It is used for the one phrase to remember, never for body text.
+ *   - Chapter doors, the thesis, and the closing are ink. Everything else is paper.
+ * Every page states its point as its heading, so the PDF reads without the talk.
+ */
+.slide {
+  --ink: #0c0c11;
+  --ink-2: #16161d;
+  --ink-3: #24242e;
+  --paper: #f7f6f2;
+  --paper-2: #ecebe4;
+  --white: #ffffff;
+  --gray: #8a8a96;
+  --score: #2f55ff;
+  --score-ink: #1f3fd6;
+  --score-soft: #e2e7ff;
+  --score-lite: #8ea2ff;
+  --live: #ff5b35;
+  --live-ink: #c2320e;
+  --live-soft: #ffe3d9;
+  --live-lite: #ff9a80;
+  --violet: #8b4dff;
+  --violet-lite: #c3a0ff;
+  --score-glow: rgb(47 85 255 / 0.55);
+  --live-glow: rgb(255 91 53 / 0.5);
+  --violet-glow: rgb(139 77 255 / 0.45);
+  --fg: var(--ink);
+  --bg: var(--paper);
+  --muted: #55555f;
+  --accent: var(--score-ink);
+  --line: #dcdad2;
+  --surface: var(--white);
+  --c: var(--surface);
+  --on-c: var(--ink);
+  --swing: linear-gradient(100deg, var(--score) 0%, var(--violet) 52%, var(--live) 100%);
+  --swing-ink: linear-gradient(100deg, var(--score-ink) 0%, #6b2fe0 50%, var(--live-ink) 100%);
+  --font-title: "Inter", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  --font-body: "Inter", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  --font-mono: "SF Mono", "JetBrains Mono", "Menlo", "Consolas", "Noto Sans Mono CJK JP", monospace;
+  --size-numeral: 240px;
+  --size-hero: 80px;
+  --size-stat: 60px;
+  --size-title: 40px;
+  --size-lede: 20px;
+  --size-body: 16px;
+  --size-small: 14px;
+  --size-caption: 12px;
+  --gap: 24px;
+  --margin: 64px;
+  --pad: 56px var(--margin) 64px;
+  --radius: 22px;
+  --radius-small: 12px;
+  --pill: 999px;
+  --hair: 1px;
+  --rule: 2px;
+  --blur: 60px;
+  --rise: 14px;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-pop: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --dur-pop: 0.7s;
+  --dur-draw: 1.2s;
+  --dur-long: 2.4s;
+  --stagger: 0.08s;
+  --step-transition: 0.5s var(--ease-out);
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: var(--pad);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: 1.7;
+  font-feature-settings: "palt";
+}
+
+/* Paper carries a faint dot grid, like a product canvas. */
+.slide[data-bg="paper"] {
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--line) var(--hair), transparent var(--hair));
+  background-size: calc(var(--gap) * 1.25) calc(var(--gap) * 1.25);
+}
+
+.slide[data-bg="ink"] {
+  --fg: var(--white);
+  --bg: var(--ink);
+  --muted: #a9a9b6;
+  --accent: var(--score-lite);
+  --line: var(--ink-3);
+  --surface: var(--ink-2);
+  --on-c: var(--white);
+}
+
+/* Running title and folio at the foot of every page. */
+.slide::before {
+  content: "ケアと成熟は、デザインできるか";
+  position: absolute;
+  left: var(--margin);
+  bottom: calc(var(--gap) * 1.1);
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.slide::after {
+  content: attr(data-folio);
+  position: absolute;
+  right: var(--margin);
+  bottom: calc(var(--gap) * 1.1);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.slide * {
+  box-sizing: border-box;
+}
+
+.slide p,
+.slide ol,
+.slide ul,
+.slide dl,
+.slide dd,
+.slide h2,
+.slide h3,
+.slide blockquote,
+.slide figure {
+  margin: 0;
+}
+
+.slide ol,
+.slide ul {
+  padding: 0;
+  list-style: none;
+}
+
+.slide b,
+.slide strong {
+  font-weight: 800;
+}
+
+.slide .slide-title {
+  font-family: var(--font-title);
+  font-size: var(--size-title);
+  font-weight: 800;
+  line-height: 1.24;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+/* A section tag in mono: "02 — DIAGNOSIS". */
+.slide .kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.slide .kicker::before {
+  content: "";
+  width: 0.7em;
+  height: 0.7em;
+  border-radius: var(--pill);
+  background: var(--swing);
+}
+
+.slide .lede {
+  color: var(--muted);
+  font-size: var(--size-lede);
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.slide .note {
+  color: var(--muted);
+  font-size: var(--size-small);
+  line-height: 1.7;
+}
+
+.slide .label {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* The swing gradient as text, for the one phrase to remember. */
+.slide .grad {
+  background: var(--swing-ink);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.slide[data-bg="ink"] .grad {
+  background: linear-gradient(100deg, var(--score-lite), var(--violet-lite) 50%, var(--live-lite));
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.slide .stat {
+  font-family: var(--font-title);
+  font-size: var(--size-stat);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+/* A bento card. Paper cards are white with a hairline; toned cards are filled. */
+.slide .card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.4);
+  min-width: 0;
+  padding: calc(var(--gap) * 1) calc(var(--gap) * 1.1);
+  border: var(--hair) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--c);
+  color: var(--on-c);
+}
+
+.slide .card .note,
+.slide .card .label {
+  color: inherit;
+  opacity: 0.86;
+}
+
+.slide .card[data-tone] {
+  border-color: transparent;
+}
+
+.slide .pill {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.5em;
+  padding: 0 0.9em;
+  border-radius: var(--pill);
+  background: var(--c);
+  color: var(--on-c);
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 2.1;
+  white-space: nowrap;
+}
+
+/* A small mono chip for card headers. */
+.slide .tag {
+  align-self: flex-start;
+  padding: 0 0.7em;
+  border: var(--hair) solid currentcolor;
+  border-radius: var(--pill);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.9;
+  text-transform: uppercase;
+}
+
+/* Tones for cards, pills, glows: data-tone="…". */
+.slide [data-tone="white"] { --c: var(--white); --on-c: var(--ink); }
+.slide [data-tone="paper"] { --c: var(--paper-2); --on-c: var(--ink); }
+.slide [data-tone="ink"] { --c: var(--ink); --on-c: var(--white); }
+.slide [data-tone="ink-2"] { --c: var(--ink-2); --on-c: var(--white); }
+.slide [data-tone="score"] { --c: var(--score); --on-c: var(--white); }
+.slide [data-tone="score-soft"] { --c: var(--score-soft); --on-c: var(--ink); }
+.slide [data-tone="live"] { --c: var(--live); --on-c: var(--ink); }
+.slide [data-tone="live-soft"] { --c: var(--live-soft); --on-c: var(--ink); }
+.slide [data-tone="swing"] { --c: var(--swing); --on-c: var(--white); }
+
+/* A takeaway bar: the one line to keep from this page. */
+.slide .punch {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.6);
+  padding: calc(var(--gap) * 0.7) calc(var(--gap) * 1);
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--white);
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.slide .punch::before {
+  content: "";
+  flex: none;
+  width: calc(var(--gap) * 0.5);
+  height: calc(var(--gap) * 0.5);
+  border-radius: var(--pill);
+  background: var(--swing);
+}
+
+.slide[data-bg="ink"] .punch {
+  background: var(--white);
+  color: var(--ink);
+}
+
+/* A statement with a gradient rule on its left. */
+.slide .quote {
+  padding-left: calc(var(--gap) * 1);
+  border-left: calc(var(--rule) * 2) solid var(--violet);
+  border-image: var(--swing) 1;
+  font-size: var(--size-lede);
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+/* A list with gradient dots. */
+.slide .list {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.35);
+}
+
+.slide .list li {
+  position: relative;
+  padding-left: calc(var(--gap) * 0.8);
+}
+
+.slide .list li::before {
+  content: "";
+  position: absolute;
+  top: 0.68em;
+  left: 0;
+  width: 0.4em;
+  height: 0.4em;
+  border-radius: var(--pill);
+  background: var(--swing);
+}
+
+/* A comparison table. */
+.slide .matrix {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border: var(--hair) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: var(--size-small);
+  line-height: 1.55;
+}
+
+.slide .matrix th,
+.slide .matrix td {
+  padding: calc(var(--gap) * 0.55) calc(var(--gap) * 0.8);
+  border-bottom: var(--hair) solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.slide .matrix tr:last-child th,
+.slide .matrix tr:last-child td {
+  border-bottom: 0;
+}
+
+.slide .matrix thead th {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.slide .matrix tbody th {
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.slide .grid {
+  --cols: 3;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .grid[data-cols="2"] { --cols: 2; }
+.slide .grid[data-cols="3"] { --cols: 3; }
+.slide .grid[data-cols="4"] { --cols: 4; }
+.slide .grid[data-cols="5"] { --cols: 5; }
+
+.slide .col {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.7);
+  min-width: 0;
+}
+
+.slide .stage {
+  position: relative;
+  min-width: 0;
+}
+
+.slide .source {
+  position: absolute;
+  left: var(--margin);
+  right: var(--margin);
+  bottom: calc(var(--gap) * 2.3);
+  color: var(--muted);
+  font-size: var(--size-caption);
+}
+
+/* A soft coloured light behind the content: a full-bleed layer that never overflows.
+   Place it with --gx / --gy (percent of the slide) and size it with --gr. Keep text off its core. */
+.slide .glow {
+  --gx: 85%;
+  --gy: 15%;
+  --gr: 42%;
+  --gc: var(--score-glow);
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(circle at var(--gx) var(--gy), var(--gc), transparent var(--gr));
+  pointer-events: none;
+}
+
+.slide .glow[data-tone="live"] { --gc: var(--live-glow); }
+.slide .glow[data-tone="violet"] { --gc: var(--violet-glow); }
+
+/* Things pop in when a slide arrives. */
+.slide.is-current .pop {
+  animation: pop var(--dur-pop) var(--ease-pop) backwards;
+}
+
+.slide.is-current .pop:nth-child(2) { animation-delay: var(--stagger); }
+.slide.is-current .pop:nth-child(3) { animation-delay: calc(var(--stagger) * 2); }
+.slide.is-current .pop:nth-child(4) { animation-delay: calc(var(--stagger) * 3); }
+.slide.is-current .pop:nth-child(5) { animation-delay: calc(var(--stagger) * 4); }
+.slide.is-current .pop:nth-child(6) { animation-delay: calc(var(--stagger) * 5); }
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(var(--rise)) scale(0.96);
+  }
+}
+
+/* @layout cover
+<section class="slide" data-bg="ink" data-layout="cover" data-folio="01">
+  <p class="kicker">Handout</p>
+  <h2 class="slide-title">The talk in one line</h2>
+  <p class="lede">What it is about.</p>
+</section>
+*/
+.slide[data-layout="cover"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--gap) * 1.1);
+}
+
+.slide[data-layout="cover"] .slide-title {
+  position: relative;
+  z-index: 1;
+  font-size: var(--size-hero);
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+}
+
+/* @layout chapter
+<section class="slide" data-bg="ink" data-layout="chapter" data-folio="05">
+  <p class="numeral grad">01</p>
+  <div class="col">
+    <p class="kicker">Chapter 01 — Observation</p>
+    <h2 class="slide-title">The chapter's claim</h2>
+    <p class="lede">The question it answers.</p>
+  </div>
+</section>
+*/
+.slide[data-layout="chapter"] {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: calc(var(--gap) * 2.5);
+}
+
+.slide[data-layout="chapter"] .slide-title {
+  font-size: var(--size-stat);
+  line-height: 1.16;
+  letter-spacing: -0.04em;
+}
+
+.slide .numeral {
+  font-family: var(--font-title);
+  font-size: var(--size-numeral);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.07em;
+}
+
+/* @layout default
+<section class="slide" data-bg="paper" data-layout="default" data-folio="02">
+  <p class="kicker">Section</p>
+  <h2 class="slide-title">A heading that states the point</h2>
+  <div class="stage">
+    <div class="card" data-step="1">One point per beat</div>
+  </div>
+</section>
+*/
+.slide[data-layout="default"] {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.55);
+}
+
+.slide[data-layout="default"] .stage {
+  flex: 1;
+  min-height: 0;
+  margin-top: calc(var(--gap) * 0.6);
+}
+
+/* @layout split
+<section class="slide" data-bg="paper" data-layout="split" data-folio="02">
+  <div class="col">
+    <p class="kicker">Section</p>
+    <h2 class="slide-title">The claim</h2>
+    <p class="lede">Why it holds.</p>
+  </div>
+  <div class="stage">Figure or episode</div>
+</section>
+*/
+.slide[data-layout="split"] {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: calc(var(--gap) * 2);
+  align-items: stretch;
+}
+
+/* @layout center
+<section class="slide" data-bg="ink" data-layout="center" data-folio="12">
+  <h2 class="slide-title">One sentence worth keeping</h2>
+</section>
+*/
+.slide[data-layout="center"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--gap) * 1);
+  text-align: center;
+}
+
+/* Beats: hidden things keep their box, so every beat has the same layout. */
+.slide.is-current [data-step] {
+  opacity: 0;
+  transform: translateY(var(--rise));
+  transition: var(--step-transition);
+}
+
+.slide.is-current [data-step].is-shown {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+::view-transition-old(slide) {
+  --step-transition: 0.25s ease both;
+  animation: fade-out var(--step-transition);
+}
+
+::view-transition-new(slide) {
+  --step-transition: 0.35s ease both;
+  animation: fade-in var(--step-transition);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide.is-current [data-step],
+  .slide.is-current .pop {
+    transition: none;
+    animation: none;
+  }
+
+  ::view-transition-old(slide),
+  ::view-transition-new(slide) {
+    animation: none;
+  }
+}

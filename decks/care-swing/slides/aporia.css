@@ -1,0 +1,50 @@
+[data-glow="aporia"] {
+  --gx: 50%;
+  --gy: 115%;
+  --gr: 48%;
+}
+
+.top,
+.big,
+.pair {
+  position: relative;
+  z-index: 1;
+}
+
+.big {
+  font-size: calc(var(--size-title) * 1.25);
+  line-height: 1.3;
+}
+
+.lede.top {
+  font-size: var(--size-body);
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.8);
+  width: 100%;
+  margin-top: calc(var(--gap) * 0.4);
+  text-align: left;
+}
+
+.side {
+  gap: calc(var(--gap) * 0.5);
+  padding: calc(var(--gap) * 1) calc(var(--gap) * 1.2);
+  border-color: var(--ink-3);
+}
+
+.head {
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.side .note {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.t-good { color: var(--violet-lite); }
+.t-bad { color: var(--gray); }

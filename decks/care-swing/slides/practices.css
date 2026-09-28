@@ -1,0 +1,86 @@
+.lede {
+  font-size: var(--size-body);
+}
+
+.slide[data-layout] .stage {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+  margin-top: calc(var(--gap) * 0.4);
+}
+
+.three {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.6);
+}
+
+.way {
+  gap: calc(var(--gap) * 0.4);
+  padding: calc(var(--gap) * 1) calc(var(--gap) * 1.1);
+}
+
+.num {
+  align-self: flex-start;
+  font-size: var(--size-title);
+  background: var(--swing-ink);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.name {
+  font-size: calc(var(--size-lede) * 1.1);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.way .note {
+  opacity: 1;
+  color: var(--ink);
+}
+
+.eg {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.1);
+  margin-top: auto;
+  padding-top: calc(var(--gap) * 0.5);
+  border-top: var(--hair) solid var(--line);
+  color: var(--muted);
+  font-size: var(--size-small);
+  line-height: 1.6;
+}
+
+.eg .label {
+  opacity: 1;
+}
+
+.formula {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35em;
+  font-family: var(--font-mono);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.formula i {
+  padding: 0 0.6em;
+  border-radius: var(--pill);
+  color: var(--white);
+  font-style: normal;
+  line-height: 1.9;
+}
+
+.f-score { background: var(--score-ink); }
+.f-live { background: var(--live-ink); }
+
+.grad-lite {
+  background: linear-gradient(100deg, var(--score-lite), var(--violet-lite) 50%, var(--live-lite));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}

@@ -1,0 +1,55 @@
+.slide {
+  padding-bottom: calc(var(--gap) * 3.5);
+}
+
+.three {
+  align-items: stretch;
+  margin-bottom: calc(var(--gap) * 0.8);
+}
+
+.crit {
+  gap: calc(var(--gap) * 0.5);
+  padding: calc(var(--gap) * 1) calc(var(--gap) * 1.1);
+}
+
+.num {
+  font-family: var(--font-title);
+  font-size: var(--size-stat);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.crit:nth-child(1) .num {
+  color: var(--score-ink);
+}
+
+.crit:nth-child(2) .num {
+  color: var(--violet);
+}
+
+.crit:nth-child(3) .num {
+  color: var(--live-ink);
+}
+
+.head {
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.body {
+  flex: 1;
+  color: var(--muted);
+  font-size: var(--size-body);
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+.take {
+  padding-top: calc(var(--gap) * 0.45);
+  border-top: var(--hair) solid var(--line);
+  font-size: var(--size-small);
+  font-weight: 800;
+  line-height: 1.5;
+}

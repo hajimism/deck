@@ -1,0 +1,50 @@
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+  justify-content: center;
+}
+
+.kinds {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.5);
+}
+
+.kind {
+  gap: calc(var(--gap) * 0.5);
+  padding: calc(var(--gap) * 0.9);
+}
+
+.kind .stat {
+  font-size: var(--size-title);
+}
+
+.kind .note {
+  min-height: 3.4em;
+}
+
+.bubble {
+  align-self: flex-start;
+  padding: calc(var(--gap) * 0.3) calc(var(--gap) * 0.6);
+  border-radius: var(--radius-small) var(--radius-small) var(--radius-small) 0;
+  background: var(--c);
+  color: var(--on-c);
+  font-weight: 800;
+}
+
+.fit {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.fit.is-hit {
+  color: var(--score-ink);
+}
+
+.fit::before {
+  content: "→ ";
+}

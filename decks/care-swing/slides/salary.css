@@ -1,0 +1,70 @@
+.stage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.thread {
+  gap: calc(var(--gap) * 0.6);
+}
+
+.thread-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.45);
+}
+
+.comments li {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.avatar {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: calc(var(--gap) * 1.5);
+  height: calc(var(--gap) * 1.5);
+  border-radius: var(--pill);
+  background: var(--c);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 800;
+}
+
+.bubble {
+  padding: calc(var(--gap) * 0.35) calc(var(--gap) * 0.6);
+  border-radius: 0 var(--radius-small) var(--radius-small) var(--radius-small);
+  background: var(--paper-2);
+  font-size: var(--size-small);
+}
+
+.missing .bubble {
+  border: var(--rule) dashed var(--live);
+  background: var(--white);
+  color: var(--live-ink);
+  font-weight: 700;
+}
+
+.missing-tag {
+  position: absolute;
+  top: calc(var(--gap) * -0.45);
+  right: calc(var(--gap) * 0.4);
+  padding: 0 0.6em;
+  border-radius: var(--pill);
+  background: var(--live);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  line-height: 1.7;
+}

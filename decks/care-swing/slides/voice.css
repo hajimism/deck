@@ -1,0 +1,113 @@
+.stage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--gap) * 0.7);
+}
+
+.versus {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.6);
+}
+
+.side {
+  gap: calc(var(--gap) * 0.55);
+  padding: calc(var(--gap) * 1) calc(var(--gap) * 1.2);
+}
+
+.head {
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.3);
+}
+
+.rows li {
+  display: grid;
+  grid-template-columns: 5em auto 1fr auto;
+  align-items: center;
+  gap: calc(var(--gap) * 0.4);
+  font-size: var(--size-small);
+}
+
+.who {
+  font-weight: 700;
+}
+
+.in,
+.out {
+  padding: 0 0.7em;
+  border-radius: var(--pill);
+  background: var(--white);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  line-height: 2.1;
+  white-space: nowrap;
+}
+
+.box {
+  padding: calc(var(--gap) * 0.2) calc(var(--gap) * 0.5);
+  border-radius: var(--radius-small);
+  text-align: center;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.box-score {
+  background: var(--score);
+  color: var(--white);
+  font-size: var(--size-caption);
+}
+
+.body-flow {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: calc(var(--gap) * 0.4);
+}
+
+.box-live {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.1);
+  padding: calc(var(--gap) * 0.5);
+  border: var(--rule) solid var(--live);
+  background: var(--white);
+  color: var(--ink);
+}
+
+.box-live .note {
+  font-size: var(--size-caption);
+  line-height: 1.5;
+}
+
+.out-voice {
+  display: grid;
+  place-items: center;
+  width: calc(var(--gap) * 2.6);
+  height: calc(var(--gap) * 2.6);
+  padding: 0;
+  background: var(--swing);
+  color: var(--white);
+  font-family: var(--font-title);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.side > .note {
+  margin-top: auto;
+}
+
+.grad-on-ink {
+  background: linear-gradient(100deg, var(--score-lite), var(--violet-lite) 50%, var(--live-lite));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}

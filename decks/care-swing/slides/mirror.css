@@ -1,0 +1,177 @@
+.lede {
+  font-size: var(--size-body);
+}
+
+.slide[data-layout] .stage {
+  flex: none;
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: calc(var(--gap) * 0.8);
+  margin-top: calc(var(--gap) * 0.4);
+}
+
+.maps {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.map-row {
+  gap: calc(var(--gap) * 0.6);
+  padding: calc(var(--gap) * 1) calc(var(--gap) * 1.1);
+}
+
+.map-row .note {
+  opacity: 1;
+  color: var(--ink);
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.2);
+}
+
+.eq {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.eq i {
+  padding: 0 0.6em;
+  border-radius: var(--pill);
+  color: var(--white);
+  font-style: normal;
+  line-height: 1.8;
+}
+
+.e-score { background: var(--score-ink); }
+.e-live { background: var(--live-ink); }
+
+/* A gradient arrow between the music and the society side. */
+.to {
+  position: relative;
+  height: var(--rule);
+  margin-bottom: calc(var(--gap) * 0.7);
+  background: var(--swing);
+}
+
+.to::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: calc(var(--gap) * 0.45);
+  height: calc(var(--gap) * 0.45);
+  border-top: var(--rule) solid var(--live);
+  border-right: var(--rule) solid var(--live);
+  translate: 0 -50%;
+  rotate: 45deg;
+}
+
+.illich {
+  gap: calc(var(--gap) * 0.6);
+  padding: calc(var(--gap) * 1.1) calc(var(--gap) * 1.2);
+}
+
+.illich .tag {
+  color: var(--live-lite);
+}
+
+.who b {
+  font-size: calc(var(--size-lede) * 1.35);
+  line-height: 1.3;
+}
+
+/* Illich pinned to the far coral end: the seat that turned out to be empty. */
+.seatbar {
+  position: relative;
+  height: calc(var(--gap) * 2);
+}
+
+.seg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--gap) * 0.45);
+  border-radius: var(--pill);
+  background: var(--swing);
+}
+
+.pin {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 0.7em;
+  border-radius: var(--pill);
+  background: var(--live);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 2;
+  text-transform: uppercase;
+}
+
+.line-out {
+  margin-top: auto;
+  padding-top: calc(var(--gap) * 0.6);
+  border-top: var(--hair) solid var(--ink-3);
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+/* The gradient phrase sits on ink here, so use the light swing. */
+.card.illich .grad {
+  background: linear-gradient(100deg, var(--score-lite), var(--violet-lite) 50%, var(--live-lite));
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.seatbar {
+  height: calc(var(--gap) * 3);
+}
+
+.seg {
+  bottom: calc(var(--gap) * 1);
+}
+
+.pin {
+  top: calc(var(--gap) * 0.2);
+}
+
+.end {
+  position: absolute;
+  bottom: 0;
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 700;
+}
+
+.end-score { left: 0; color: var(--score-lite); }
+.end-live { right: 0; color: var(--live-lite); }
+
+.aside {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+  padding: 0 calc(var(--gap) * 0.4);
+}
+
+.aside .tag {
+  flex: none;
+  color: var(--live-ink);
+}

@@ -1,0 +1,57 @@
+.stage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.map {
+  font-size: var(--size-body);
+}
+
+.map th,
+.map td {
+  padding: calc(var(--gap) * 0.65) calc(var(--gap) * 0.9);
+  vertical-align: middle;
+}
+
+.map thead th:nth-child(3) {
+  color: var(--live-ink);
+}
+
+.map tbody th {
+  width: 22%;
+}
+
+.map td:nth-child(2) {
+  width: 36%;
+  color: var(--muted);
+}
+
+.map td:nth-child(2) b {
+  color: var(--fg);
+}
+
+.p {
+  display: inline-block;
+  margin-right: 0.8em;
+  padding: 0 0.6em;
+  border-radius: var(--pill);
+  background: var(--live-soft);
+  color: var(--live-ink);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  line-height: 1.9;
+}
+
+.move {
+  background: var(--live-soft);
+}
+
+.move b {
+  color: var(--live-ink);
+}
+
+.map tbody tr:nth-child(odd) .move {
+  background: color-mix(in srgb, var(--live-soft) 70%, var(--white));
+}

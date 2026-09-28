@@ -1,0 +1,166 @@
+.slide {
+  --dot: calc(var(--gap) * 0.55);
+  --tick-h: calc(var(--gap) * 1);
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+  margin-top: calc(var(--gap) * 0.2);
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.home {
+  gap: calc(var(--gap) * 0.55);
+}
+
+.rule {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.2);
+}
+
+.home .note {
+  margin-top: auto;
+}
+
+.groove {
+  gap: calc(var(--gap) * 0.5);
+}
+
+.lanes {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.35);
+}
+
+.lane {
+  display: grid;
+  grid-template-columns: 9em minmax(0, 1fr) 12em;
+  align-items: center;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.name {
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.verdict {
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+/* A track: 8 cells, each with a faint beat line at its centre. */
+.track {
+  position: relative;
+  height: calc(var(--gap) * 1.5);
+  border-radius: var(--radius-small);
+  background:
+    linear-gradient(90deg, transparent calc(50% - var(--hair)), var(--score-lite) calc(50% - var(--hair)), var(--score-lite) calc(50% + var(--hair)), transparent calc(50% + var(--hair))) 0 0 / 12.5% 100% repeat-x,
+    var(--paper);
+}
+
+.lane-beat .track {
+  background: transparent;
+}
+
+.tick,
+.dot {
+  position: absolute;
+  top: 50%;
+  translate: -50% -50%;
+}
+
+.tick {
+  width: calc(var(--rule) * 2);
+  height: var(--tick-h);
+  border-radius: var(--pill);
+  background: var(--score);
+}
+
+.lane-beat .verdict {
+  color: var(--score-ink);
+}
+
+.dot {
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: var(--pill);
+  background: var(--score);
+}
+
+.lane-random .dot {
+  background: var(--gray);
+}
+
+.lane-swing .dot {
+  left: var(--to);
+  background: var(--swing);
+}
+
+.slide.is-current .lane-swing .dot {
+  animation: swing-in var(--dur-long) var(--ease-out) both;
+  animation-delay: var(--dur-pop);
+}
+
+@keyframes swing-in {
+  from {
+    left: var(--from);
+  }
+}
+
+.tick:nth-child(1), .lane-metro .dot:nth-child(1) { left: 6.25%; }
+.tick:nth-child(2), .lane-metro .dot:nth-child(2) { left: 18.75%; }
+.tick:nth-child(3), .lane-metro .dot:nth-child(3) { left: 31.25%; }
+.tick:nth-child(4), .lane-metro .dot:nth-child(4) { left: 43.75%; }
+.tick:nth-child(5), .lane-metro .dot:nth-child(5) { left: 56.25%; }
+.tick:nth-child(6), .lane-metro .dot:nth-child(6) { left: 68.75%; }
+.tick:nth-child(7), .lane-metro .dot:nth-child(7) { left: 81.25%; }
+.tick:nth-child(8), .lane-metro .dot:nth-child(8) { left: 93.75%; }
+
+.lane-random .dot:nth-child(1) { left: 11%; }
+.lane-random .dot:nth-child(2) { left: 15%; }
+.lane-random .dot:nth-child(3) { left: 37%; }
+.lane-random .dot:nth-child(4) { left: 40%; }
+.lane-random .dot:nth-child(5) { left: 53%; }
+.lane-random .dot:nth-child(6) { left: 77%; }
+.lane-random .dot:nth-child(7) { left: 85%; }
+.lane-random .dot:nth-child(8) { left: 89%; }
+
+/* On-beats pulled a little ahead, off-beats pushed late: the same pattern every bar. */
+.lane-swing .dot:nth-child(1) { --from: 6.25%; --to: 5%; }
+.lane-swing .dot:nth-child(2) { --from: 18.75%; --to: 21.25%; }
+.lane-swing .dot:nth-child(3) { --from: 31.25%; --to: 30%; }
+.lane-swing .dot:nth-child(4) { --from: 43.75%; --to: 46.25%; }
+.lane-swing .dot:nth-child(5) { --from: 56.25%; --to: 55%; }
+.lane-swing .dot:nth-child(6) { --from: 68.75%; --to: 71.25%; }
+.lane-swing .dot:nth-child(7) { --from: 81.25%; --to: 80%; }
+.lane-swing .dot:nth-child(8) { --from: 93.75%; --to: 96.25%; }
+
+.traits {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.6);
+}
+
+.trait {
+  gap: calc(var(--gap) * 0.2);
+  padding: calc(var(--gap) * 0.7) calc(var(--gap) * 1);
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--violet);
+}

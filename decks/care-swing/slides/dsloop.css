@@ -1,0 +1,114 @@
+.slide {
+  --rx: 236px;
+  --ry: 234px;
+  --node-w: 180px;
+  --tx: 262px;
+  --ty: 258px;
+}
+
+.slide[data-layout="split"] {
+  grid-template-columns: 5fr 8fr;
+}
+
+.lead {
+  justify-content: center;
+}
+
+.lead .punch {
+  margin-top: calc(var(--gap) * 0.6);
+}
+
+.orbit {
+  display: grid;
+  place-items: center;
+}
+
+.orbit > * {
+  grid-area: 1 / 1;
+}
+
+.track {
+  width: calc(var(--tx) * 2);
+  height: calc(var(--ty) * 2);
+  border: var(--rule) dashed var(--score-lite);
+  border-radius: 50%;
+}
+
+.hub {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--gap) * 0.3);
+  text-align: center;
+}
+
+.hub .stat {
+  font-size: var(--size-title);
+  line-height: 1.15;
+  color: var(--score-ink);
+}
+
+.stations,
+.arrows {
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+.stations li,
+.arrows li {
+  --a: calc(360deg / 7 * var(--i));
+  position: absolute;
+  left: 0;
+  top: 0;
+  translate: calc(-50% + sin(var(--a)) * var(--rx)) calc(-50% - cos(var(--a)) * var(--ry));
+}
+
+.stations li:nth-child(1), .arrows li:nth-child(1) { --i: 0; }
+.stations li:nth-child(2), .arrows li:nth-child(2) { --i: 1; }
+.stations li:nth-child(3), .arrows li:nth-child(3) { --i: 2; }
+.stations li:nth-child(4), .arrows li:nth-child(4) { --i: 3; }
+.stations li:nth-child(5), .arrows li:nth-child(5) { --i: 4; }
+.stations li:nth-child(6), .arrows li:nth-child(6) { --i: 5; }
+.stations li:nth-child(7), .arrows li:nth-child(7) { --i: 6; }
+
+.arrows li {
+  --a: calc(360deg / 7 * (var(--i) + 0.5));
+  translate: calc(-50% + sin(var(--a)) * var(--tx)) calc(-50% - cos(var(--a)) * var(--ty));
+    width: calc(var(--gap) * 0.6);
+  height: calc(var(--gap) * 0.7);
+  background: var(--score);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  rotate: var(--a);
+}
+
+.station {
+  width: var(--node-w);
+  gap: calc(var(--gap) * 0.15);
+  padding: calc(var(--gap) * 0.45) calc(var(--gap) * 0.6);
+  border-radius: var(--radius-small);
+  font-size: var(--size-caption);
+  line-height: 1.5;
+}
+
+.station small {
+  color: var(--muted);
+  font-size: var(--size-caption);
+}
+
+.num {
+  color: var(--score-ink);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.is-loss .num {
+  color: var(--live-ink);
+}
+
+.slide.is-current .station {
+  animation: pop var(--dur-pop) var(--ease-pop) backwards;
+  animation-delay: calc(var(--stagger) * var(--i));
+}

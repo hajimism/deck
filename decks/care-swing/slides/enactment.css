@@ -1,0 +1,108 @@
+.stage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.4);
+}
+
+.mark {
+  color: var(--muted);
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.mark.is-ok {
+  color: var(--live-ink);
+}
+
+.chain {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.35);
+  flex-wrap: nowrap;
+}
+
+.step {
+  padding: 0 0.8em;
+  border: var(--hair) solid var(--line);
+  border-radius: var(--pill);
+  background: var(--c);
+  color: var(--on-c);
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 2.3;
+  white-space: nowrap;
+}
+
+.wrong .step {
+  color: var(--muted);
+  background: var(--white);
+}
+
+.arrow {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.cycle .step {
+  border-color: transparent;
+}
+
+.cycle .arrow {
+  color: var(--live-ink);
+}
+
+.cycle {
+  justify-content: space-between;
+}
+
+.back {
+  display: flex;
+  justify-content: center;
+  margin: calc(var(--gap) * -0.4) calc(var(--gap) * 2.4) 0 calc(var(--gap) * 1.8);
+  height: calc(var(--gap) * 1.3);
+  border: var(--rule) dashed var(--live-lite);
+  border-top: 0;
+  border-radius: 0 0 var(--radius-small) var(--radius-small);
+}
+
+.back span {
+  translate: 0 60%;
+  padding: 0 0.6em;
+  background: var(--white);
+  color: var(--live-ink);
+  font-size: var(--size-small);
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.right {
+  padding-bottom: calc(var(--gap) * 1.3);
+}
+
+.right {
+  border-color: var(--live-lite);
+}
+
+.ask {
+  gap: calc(var(--gap) * 0.5);
+}
+
+.ask .q {
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.ask .grad {
+  background: linear-gradient(100deg, var(--score-lite), var(--violet-lite) 50%, var(--live-lite));
+  background-clip: text;
+  -webkit-background-clip: text;
+}

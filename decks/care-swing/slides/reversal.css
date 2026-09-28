@@ -1,0 +1,136 @@
+.lede {
+  font-size: var(--size-body);
+}
+
+.slide[data-layout] .stage {
+  flex: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.8);
+  margin-top: calc(var(--gap) * 0.3);
+}
+
+.flip {
+  gap: calc(var(--gap) * 0.45);
+  padding: calc(var(--gap) * 1) calc(var(--gap) * 1.2);
+}
+
+.flip-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.formula {
+  font-family: var(--font-mono);
+  font-size: var(--size-small);
+  font-weight: 800;
+}
+
+.formula i {
+  padding: 0 0.6em;
+  border-radius: var(--pill);
+  color: var(--white);
+  font-style: normal;
+  line-height: 1.9;
+}
+
+.f-score { background: var(--score-ink); }
+.f-live { background: var(--live-ink); }
+
+.flip-title {
+  font-size: calc(var(--size-title) * 0.7);
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.flip .note {
+  opacity: 1;
+}
+
+.voice {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.05);
+  padding: calc(var(--gap) * 0.45) calc(var(--gap) * 0.7);
+  border-radius: var(--radius-small);
+  background: var(--white);
+}
+
+.voice p {
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.voice cite {
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.same {
+  margin-top: calc(var(--gap) * 0.2);
+  opacity: 1;
+}
+
+.duo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.4);
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.15);
+  padding: calc(var(--gap) * 0.55) calc(var(--gap) * 0.7);
+  border-radius: var(--radius-small);
+  background: var(--white);
+}
+
+.player b {
+  font-size: var(--size-small);
+  line-height: 1.4;
+}
+
+.verdict {
+  margin-top: auto;
+  padding-top: calc(var(--gap) * 0.2);
+  font-weight: 800;
+}
+
+/* Two ways of sounding the same notes: short and dry, or long and ringing. */
+.wave {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.2);
+  height: calc(var(--gap) * 0.8);
+  margin-top: calc(var(--gap) * 0.2);
+}
+
+.wave i {
+  height: calc(var(--gap) * 0.5);
+  border-radius: var(--pill);
+}
+
+.wave-dry i {
+  flex: 0 0 calc(var(--gap) * 0.3);
+  background: var(--score);
+}
+
+.wave-dry i:nth-child(odd) {
+  height: calc(var(--gap) * 0.8);
+}
+
+.wave-wet i {
+  flex: 1;
+  height: calc(var(--gap) * 0.7);
+  background: linear-gradient(90deg, var(--live), var(--live-soft));
+}
+
+.wave-wet i:nth-child(even) {
+  height: calc(var(--gap) * 0.45);
+}

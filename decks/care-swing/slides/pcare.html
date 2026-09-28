@@ -1,0 +1,66 @@
+<section class="slide" data-bg="paper" data-layout="default" data-folio="45">
+  <p class="kicker">08 — Care by probability</p>
+  <h2 class="slide-title">ケアの成立は、<span class="grad">5つの確率の掛け算</span></h2>
+  <p class="lede">放置もコントロールもしない＝ケアの発生確率を、0にも1にもせず、<b>その間で上げていく</b>こと。</p>
+
+  <div class="stage">
+    <ol class="factors">
+      <li class="card factor" data-step="pcare-1">
+        <span class="tag">P1 ・ 機会</span>
+        <b class="name">機会がある</b>
+        <span class="val">0.8</span>
+        <span class="run">累積 0.80</span>
+      </li>
+      <li class="card factor" data-step="pcare-2">
+        <span class="tag">P2 ・ 気づく</span>
+        <b class="name">誰かが気づく</b>
+        <span class="val">0.6</span>
+        <span class="run">累積 0.48</span>
+      </li>
+      <li class="card factor" data-step="pcare-3">
+        <span class="tag">P3 ・ 引き受ける</span>
+        <b class="name">その人が引き受ける</b>
+        <span class="val">0.5</span>
+        <span class="run">累積 0.24</span>
+      </li>
+      <li class="card factor" data-step="pcare-4">
+        <span class="tag">P4 ・ 適切</span>
+        <b class="name">ケアが適切である</b>
+        <span class="val">0.7</span>
+        <span class="run">累積 0.17</span>
+      </li>
+      <li class="card factor" data-step="pcare-5">
+        <span class="tag">P5 ・ 受け取る</span>
+        <b class="name">相手に受け取られる</b>
+        <span class="val">0.6</span>
+        <span class="run">累積 0.10</span>
+      </li>
+    </ol>
+
+    <div class="card result" data-tone="ink">
+      <div class="total">
+        <span class="label">P(ケア) ＝ P1×P2×P3×P4×P5</span>
+        <span class="nums">
+          <span class="stat num">1.00</span>
+          <span class="stat num" data-step="pcare-1" data-count="1">0.80</span>
+          <span class="stat num" data-step="pcare-2" data-count="2">0.48</span>
+          <span class="stat num" data-step="pcare-3" data-count="3">0.24</span>
+          <span class="stat num" data-step="pcare-4" data-count="4">0.17</span>
+          <span class="stat num" data-step="pcare-5" data-count="5">0.10</span>
+        </span>
+      </div>
+      <div class="meter">
+        <span class="bar" aria-hidden="true">
+          <span class="fill"></span>
+          <span class="cut" data-step="pcare-1" data-cut="1"></span>
+          <span class="cut" data-step="pcare-2" data-cut="2"></span>
+          <span class="cut" data-step="pcare-3" data-cut="3"></span>
+          <span class="cut" data-step="pcare-4" data-cut="4"></span>
+          <span class="cut" data-step="pcare-5" data-cut="5"></span>
+        </span>
+        <p class="take">一つひとつが「そこそこ」でも、掛け算は小さくなる。<br><b>どこか一段を上げれば、全体が上がる。</b></p>
+        <p class="caveat">※ 値は説明用の例。各段は独立ではないので厳密な掛け算ではないが、枠組みとしては十分。</p>
+      </div>
+    </div>
+  </div>
+</section>

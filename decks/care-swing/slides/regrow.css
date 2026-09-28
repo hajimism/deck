@@ -1,0 +1,124 @@
+.slide {
+  padding-bottom: calc(var(--gap) * 3.5);
+}
+
+.site {
+  display: grid;
+  grid-template-columns: calc(var(--gap) * 5) calc(var(--gap) * 9) 1fr 1.25fr;
+  grid-template-rows: auto 1fr 1fr;
+  gap: calc(var(--gap) * 0.5) calc(var(--gap) * 1.4);
+  align-content: center;
+  margin-bottom: calc(var(--gap) * 0.6);
+}
+
+.h-case { grid-area: 1 / 1; }
+.h-gone { grid-area: 1 / 2; }
+.h-hope { grid-area: 1 / 3; }
+.h-grew { grid-area: 1 / 4; }
+.c-a { grid-area: 2 / 1; }
+.g-a { grid-area: 2 / 2; }
+.c-b { grid-area: 3 / 1; }
+.g-b { grid-area: 3 / 2; }
+.hope { grid-area: 2 / 3 / 4 / 4; }
+.w-a { grid-area: 2 / 4; }
+.w-b { grid-area: 3 / 4; }
+
+.case {
+  align-self: center;
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.gone {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--rule) dashed var(--score-lite);
+  border-radius: var(--radius);
+  color: var(--score-ink);
+  font-size: calc(var(--size-lede) * 1.2);
+  font-weight: 800;
+}
+
+.gone span {
+  position: relative;
+}
+
+.gone span::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -0.25em;
+  right: -0.25em;
+  height: var(--rule);
+  background: var(--score-ink);
+}
+
+.gone::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: calc(var(--gap) * -1.3);
+  width: calc(var(--gap) * 1.2);
+  border-top: var(--rule) solid var(--gray);
+}
+
+.hope {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--gap) * 0.6);
+  border: var(--rule) dashed var(--live-lite);
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.hope::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: calc(var(--gap) * -1.3);
+  width: calc(var(--gap) * 1.2);
+  border-top: var(--rule) solid var(--gray);
+}
+
+.hope-what {
+  color: var(--muted);
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.stamp {
+  padding: 0 0.9em;
+  border: var(--rule) solid var(--live-ink);
+  border-radius: var(--radius-small);
+  color: var(--live-ink);
+  font-size: var(--size-small);
+  font-weight: 800;
+  line-height: 2;
+  rotate: -6deg;
+}
+
+.grew {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.2);
+  padding: calc(var(--gap) * 0.7) calc(var(--gap) * 1);
+  border-radius: var(--radius);
+  background: var(--score-soft);
+}
+
+.grew .tag {
+  color: var(--score-ink);
+}
+
+.said {
+  font-size: calc(var(--size-lede) * 1.3);
+  font-weight: 800;
+  line-height: 1.3;
+}

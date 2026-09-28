@@ -1,0 +1,135 @@
+.slide {
+  --r4: 340px;
+  --r3: 250px;
+  --r2: 160px;
+  --r1: 84px;
+}
+
+[data-glow="end"] {
+  --gx: 88%;
+  --gy: 30%;
+  --gr: 38%;
+}
+
+[data-glow="end2"] {
+  --gx: -6%;
+  --gy: 112%;
+  --gr: 34%;
+}
+
+.top,
+.finale {
+  position: relative;
+  z-index: 1;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: calc(var(--gap) * 2);
+}
+
+.lead {
+  gap: calc(var(--gap) * 0.55);
+}
+
+.lead .lede {
+  font-size: var(--size-body);
+}
+
+.lead .quote {
+  font-size: var(--size-lede);
+}
+
+.hot {
+  color: var(--live-lite);
+}
+
+.ripple {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--r4);
+  height: var(--r4);
+}
+
+.ring {
+  grid-area: 1 / 1;
+  display: flex;
+  justify-content: center;
+  border: var(--rule) solid var(--live-lite);
+  border-radius: var(--pill);
+}
+
+.r4 { width: var(--r4); height: var(--r4); opacity: 0.55; border-style: dashed; border-color: var(--violet-lite); }
+.r3 { width: var(--r3); height: var(--r3); opacity: 0.75; border-color: var(--violet-lite); }
+.r2 { width: var(--r2); height: var(--r2); }
+.r1 {
+  align-items: center;
+  width: var(--r1);
+  height: var(--r1);
+  border: 0;
+  background: var(--live);
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.rl {
+  translate: 0 -50%;
+  height: fit-content;
+  padding: 0 0.7em;
+  border-radius: var(--pill);
+  background: var(--ink);
+  color: var(--white);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  line-height: 1.8;
+  white-space: nowrap;
+}
+
+.slide.is-current .ring {
+  animation: ripple var(--dur-long) var(--ease-out) backwards;
+}
+
+.slide.is-current .r2 { animation-delay: calc(var(--stagger) * 3); }
+.slide.is-current .r3 { animation-delay: calc(var(--stagger) * 6); }
+.slide.is-current .r4 { animation-delay: calc(var(--stagger) * 9); }
+
+@keyframes ripple {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+}
+
+.finale {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.4);
+  margin-top: calc(var(--gap) * 0.8);
+  padding-top: calc(var(--gap) * 0.8);
+  border-top: var(--hair) solid var(--ink-3);
+}
+
+.pre {
+  font-size: var(--size-body);
+  font-weight: 500;
+}
+
+.hero {
+  font-family: var(--font-title);
+  font-size: var(--size-hero);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+}
+
+.def {
+  color: var(--muted);
+  font-size: var(--size-caption);
+}
+
+.def b {
+  color: var(--white);
+}

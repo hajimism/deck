@@ -1,0 +1,137 @@
+.who {
+  font-size: var(--size-body);
+}
+
+.slide[data-layout] .stage {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.55);
+  margin-top: calc(var(--gap) * 0.3);
+}
+
+.bar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: calc(var(--gap) * 1.3);
+  padding: 0 calc(var(--gap) * 0.8);
+  border-radius: var(--pill);
+  background: var(--swing-ink);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 0.8fr repeat(4, minmax(0, 1fr)) 0.8fr;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.stop {
+  gap: calc(var(--gap) * 0.3);
+  padding: calc(var(--gap) * 0.8);
+}
+
+.name {
+  font-size: var(--size-title);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.stop .note {
+  flex: 1;
+  opacity: 1;
+  color: var(--muted);
+}
+
+/* How much of each stage is written score (blue) vs made on the spot (coral). */
+.mix {
+  --w: 80%;
+  display: block;
+  height: calc(var(--gap) * 0.4);
+  overflow: hidden;
+  border-radius: var(--pill);
+  background: var(--live);
+}
+
+.mix i {
+  display: block;
+  width: var(--w);
+  height: 100%;
+  background: var(--score);
+}
+
+[data-k="1"] .mix { --w: 82%; }
+[data-k="2"] .mix { --w: 62%; }
+[data-k="3"] .mix { --w: 40%; }
+[data-k="4"] .mix { --w: 18%; }
+
+[data-k="1"] .name { color: var(--score-ink); }
+[data-k="4"] .name { color: var(--live-ink); }
+
+.seat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--gap) * 0.3);
+  padding: calc(var(--gap) * 0.6);
+  border: var(--rule) dashed var(--gray);
+  border-radius: var(--radius);
+  color: var(--muted);
+  text-align: center;
+}
+
+.seat .tag {
+  align-self: center;
+}
+
+.seat b {
+  color: var(--fg);
+  font-size: var(--size-body);
+  line-height: 1.4;
+}
+
+.seat .note {
+  font-size: var(--size-caption);
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.3);
+  color: var(--muted);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.key {
+  width: calc(var(--gap) * 0.5);
+  height: calc(var(--gap) * 0.5);
+  margin-left: calc(var(--gap) * 0.3);
+  border-radius: var(--pill);
+}
+
+.key:first-child {
+  margin-left: 0;
+}
+
+.key-score { background: var(--score); }
+.key-live { background: var(--live); }
+
+.legend-note {
+  font-weight: 500;
+}
+
+.pole {
+  white-space: nowrap;
+}
+
+.pole-score,
+.pole-live {
+  opacity: 1;
+}

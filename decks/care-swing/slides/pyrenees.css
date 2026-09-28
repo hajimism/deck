@@ -1,0 +1,107 @@
+.lead {
+  justify-content: center;
+  gap: calc(var(--gap) * 0.8);
+}
+
+.lesson {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.5);
+  margin-top: calc(var(--gap) * 0.4);
+}
+
+.slide[data-layout] .stage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* A field card with faint contour lines, like a topographic map. */
+.map {
+  gap: calc(var(--gap) * 0.9);
+  padding: calc(var(--gap) * 1.2) calc(var(--gap) * 1.4);
+  overflow: hidden;
+  background:
+    repeating-radial-gradient(circle at 88% 20%, transparent 0 calc(var(--gap) * 1.2), var(--ink-3) calc(var(--gap) * 1.2) calc(var(--gap) * 1.2 + var(--hair))),
+    var(--ink);
+}
+
+.map-head {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.map-head .tag {
+  color: var(--score-lite);
+}
+
+.trail {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.9);
+}
+
+/* The dashed path that joins the waypoints. */
+.trail::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--gap) * 0.6);
+  bottom: calc(var(--gap) * 1.6);
+  left: calc(var(--gap) * 0.6 - var(--hair));
+  border-left: var(--rule) dashed var(--gray);
+}
+
+.wp {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: calc(var(--gap) * 0.7);
+  align-items: start;
+}
+
+.wp b {
+  font-size: var(--size-lede);
+  line-height: 1.45;
+}
+
+.dot {
+  display: grid;
+  place-items: center;
+  width: calc(var(--gap) * 1.2);
+  height: calc(var(--gap) * 1.2);
+  border-radius: var(--pill);
+  background: var(--ink-3);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 800;
+}
+
+.wp-twist .dot {
+  background: var(--live);
+  color: var(--ink);
+}
+
+.wp-twist b {
+  color: var(--live-lite);
+}
+
+.stamp {
+  position: absolute;
+  right: calc(var(--gap) * 1.2);
+  bottom: calc(var(--gap) * 4.4);
+  padding: 0 0.8em;
+  border: var(--rule) solid var(--live-lite);
+  border-radius: var(--radius-small);
+  color: var(--live-lite);
+  font-family: var(--font-mono);
+  font-size: var(--size-small);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 2;
+  text-transform: uppercase;
+  rotate: -8deg;
+}

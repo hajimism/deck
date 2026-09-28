@@ -1,0 +1,115 @@
+.slide {
+  padding-bottom: calc(var(--gap) * 3.5);
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--gap) * 1.2);
+  margin-bottom: calc(var(--gap) * 0.6);
+}
+
+.stairs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: end;
+  gap: calc(var(--gap) * 0.4);
+  padding-bottom: calc(var(--gap) * 0.2);
+  border-bottom: var(--rule) solid var(--ink);
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: calc(var(--gap) * 0.25);
+  padding: calc(var(--gap) * 0.8);
+  border: var(--hair) solid var(--line);
+  border-radius: var(--radius) var(--radius) var(--radius-small) var(--radius-small);
+  background: var(--white);
+  color: var(--muted);
+}
+
+.step:nth-child(1) {
+  height: 62%;
+}
+
+.step:nth-child(2) {
+  height: 80%;
+}
+
+.step:nth-child(3) {
+  height: 98%;
+}
+
+.kanji {
+  font-family: var(--font-title);
+  font-size: var(--size-stat);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.what {
+  font-size: var(--size-body);
+  font-weight: 700;
+}
+
+.step.is-shu {
+  border-color: transparent;
+  background: var(--score-ink);
+  color: var(--white);
+}
+
+.hint {
+  font-size: var(--size-small);
+  line-height: 1.55;
+}
+
+.step.is-shu .hint {
+  color: var(--score-soft);
+}
+
+.explain {
+  justify-content: center;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.explain .tag {
+  color: var(--score-ink);
+}
+
+.def {
+  font-size: var(--size-lede);
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.ask {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: calc(var(--gap) * 1.2);
+  padding: calc(var(--gap) * 0.8) calc(var(--gap) * 1.2);
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--white);
+}
+
+.pre {
+  color: var(--paper-2);
+  font-size: var(--size-small);
+  line-height: 1.6;
+}
+
+.q {
+  font-size: calc(var(--size-title) * 0.75);
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.q .grad {
+  background: linear-gradient(100deg, var(--score-lite), var(--violet-lite) 50%, var(--live-lite));
+  background-clip: text;
+  -webkit-background-clip: text;
+}

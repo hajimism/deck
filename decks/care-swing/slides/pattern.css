@@ -1,0 +1,87 @@
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.8);
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 7fr 4fr;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.matrix {
+  font-size: var(--size-body);
+}
+
+.row-cheap th,
+.row-cheap td {
+  background: var(--score-soft);
+}
+
+.row-dear th,
+.row-dear td {
+  background: var(--live-soft);
+}
+
+.chart {
+  justify-content: space-between;
+}
+
+.bars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.bar-col {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.2);
+  line-height: 1.4;
+}
+
+.bar-col .note {
+  min-height: 2.8em;
+  font-size: var(--size-caption);
+}
+
+.bar-area {
+  display: flex;
+  align-items: flex-end;
+  height: calc(var(--gap) * 5.5);
+}
+
+.bar {
+  display: block;
+  width: 100%;
+  border-radius: var(--radius-small) var(--radius-small) 0 0;
+}
+
+.bar-cheap {
+  height: 100%;
+  background: var(--score);
+}
+
+.bar-dear {
+  height: 16%;
+  background: var(--live);
+}
+
+.slide.is-current .bar {
+  transform-origin: bottom;
+  animation: grow var(--dur-draw) var(--ease-out) backwards;
+}
+
+@keyframes grow {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+.foot {
+  display: grid;
+  grid-template-columns: 7fr 4fr;
+  align-items: center;
+  gap: calc(var(--gap) * 0.6);
+}

@@ -1,0 +1,92 @@
+.lead {
+  justify-content: center;
+  gap: calc(var(--gap) * 0.7);
+}
+
+.big {
+  margin-top: calc(var(--gap) * 0.4);
+  font-size: calc(var(--size-title) * 0.72);
+  font-weight: 800;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+}
+
+.who {
+  margin-top: calc(var(--gap) * -0.4);
+  padding-left: calc(var(--gap) * 1.2);
+  font-weight: 700;
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.band {
+  gap: calc(var(--gap) * 0.6);
+  padding: calc(var(--gap) * 1.1) calc(var(--gap) * 1.3);
+}
+
+.ring-area {
+  position: relative;
+  height: calc(var(--gap) * 12);
+}
+
+.wires {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.wires line {
+  stroke: var(--violet-lite);
+  stroke-width: var(--rule);
+  stroke-dasharray: 4 3;
+  vector-effect: non-scaling-stroke;
+}
+
+.player {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: calc(var(--gap) * 4.4);
+  height: calc(var(--gap) * 4.4);
+  border-radius: var(--pill);
+  background: var(--c);
+  color: var(--on-c);
+  font-weight: 800;
+  translate: -50% -50%;
+}
+
+.p-a { left: 50%; top: 15%; }
+.p-b { left: 16%; top: 85%; }
+.p-c { left: 84%; top: 85%; }
+
+.groove {
+  position: absolute;
+  left: 50%;
+  top: 62%;
+  display: grid;
+  place-items: center;
+  width: calc(var(--gap) * 6.5);
+  height: calc(var(--gap) * 6.5);
+  border-radius: var(--pill);
+  background: radial-gradient(circle, var(--violet-glow), transparent 70%);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: var(--size-small);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  translate: -50% -50%;
+}
+
+.grad-on-ink {
+  background: linear-gradient(100deg, var(--score-lite), var(--violet-lite) 50%, var(--live-lite));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}

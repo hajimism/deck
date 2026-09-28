@@ -1,0 +1,162 @@
+.lead {
+  justify-content: center;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.profile {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: calc(var(--gap) * 0.6) calc(var(--gap) * 1);
+  padding: calc(var(--gap) * 1.1) calc(var(--gap) * 1.2);
+}
+
+.who {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.2);
+}
+
+.name {
+  font-size: var(--size-title);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.years {
+  color: var(--score-lite);
+  font-family: var(--font-mono);
+  font-size: var(--size-lede);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.years span {
+  padding: 0 0.2em;
+  color: var(--live-lite);
+}
+
+.life {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.45);
+  padding-top: calc(var(--gap) * 0.6);
+  border-top: var(--hair) solid var(--ink-3);
+}
+
+.life li {
+  display: grid;
+  grid-template-columns: calc(var(--gap) * 3.2) 1fr;
+  align-items: baseline;
+  gap: calc(var(--gap) * 0.5);
+  font-size: var(--size-body);
+  line-height: 1.55;
+}
+
+.life .tag {
+  justify-self: start;
+  color: var(--score-lite);
+}
+
+.life li:nth-child(2) .tag {
+  color: var(--violet-lite);
+}
+
+.life li:nth-child(3) .tag {
+  color: var(--live-lite);
+}
+
+.curve {
+  gap: calc(var(--gap) * 0.3);
+  padding: calc(var(--gap) * 0.8) calc(var(--gap) * 1.1);
+}
+
+.curve-head {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.plot {
+  width: 100%;
+  height: auto;
+}
+
+.axis {
+  stroke: var(--line);
+  stroke-width: var(--rule);
+}
+
+.threshold {
+  stroke: var(--gray);
+  stroke-width: var(--rule);
+  stroke-dasharray: 6 6;
+}
+
+.rise,
+.fall {
+  fill: none;
+  stroke-width: calc(var(--rule) * 2);
+  stroke-linecap: round;
+}
+
+.rise {
+  stroke: var(--score);
+}
+
+.fall {
+  stroke: var(--live);
+}
+
+.peak {
+  fill: var(--ink);
+}
+
+.curve-legend {
+  display: grid;
+  grid-template-columns: 39fr 12fr 49fr;
+  gap: calc(var(--gap) * 0.5);
+  font-size: var(--size-small);
+  font-weight: 800;
+}
+
+.curve-legend .up {
+  color: var(--score-ink);
+}
+
+.curve-legend .cut {
+  text-align: center;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  letter-spacing: 0.08em;
+}
+
+.curve-legend .down {
+  color: var(--live-ink);
+  text-align: right;
+}
+
+.slide.is-current .rise,
+.slide.is-current .fall {
+  stroke-dasharray: 1000;
+  animation: draw var(--dur-draw) var(--ease-out) backwards;
+}
+
+.slide.is-current .fall {
+  animation-delay: calc(var(--stagger) * 6);
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1000;
+  }
+}

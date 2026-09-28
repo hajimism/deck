@@ -1,0 +1,135 @@
+.slide {
+  --x-w: calc(var(--gap) * 4);
+  padding-bottom: calc(var(--gap) * 3.5);
+}
+
+.lede {
+  max-width: 62em;
+  font-size: var(--size-body);
+}
+
+.cancel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--gap) * 0.45);
+}
+
+.head,
+.pair {
+  display: grid;
+  grid-template-columns: 1fr var(--x-w) 1fr;
+  align-items: center;
+}
+
+.head .label {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  padding-left: calc(var(--gap) * 0.9);
+  color: var(--ink);
+}
+
+.head .mid {
+  justify-content: center;
+  padding-left: 0;
+  color: var(--muted);
+}
+
+.head .mid::before {
+  display: none;
+}
+
+.head .label::before {
+  content: "";
+  width: 0.8em;
+  height: 0.8em;
+  border-radius: var(--pill);
+}
+
+.head .is-live::before {
+  background: var(--live);
+}
+
+.head .is-score::before {
+  background: var(--score);
+}
+
+.trait,
+.op {
+  position: relative;
+  padding: calc(var(--gap) * 0.5) calc(var(--gap) * 0.9);
+  border-radius: var(--radius-small);
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.trait {
+  background: var(--live-soft);
+  color: var(--ink);
+}
+
+.op {
+  background: var(--score-ink);
+  color: var(--white);
+}
+
+.t {
+  position: relative;
+  transition: color var(--step-transition);
+}
+
+.pair:has(.strike.is-shown) .t {
+  color: var(--muted);
+}
+
+.strike {
+  position: absolute;
+  top: 50%;
+  left: -0.2em;
+  right: -0.2em;
+  height: var(--rule);
+  background: var(--live-ink);
+}
+
+.slide.is-current .strike {
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.slide.is-current .strike.is-shown {
+  transform: none;
+}
+
+.x {
+  position: relative;
+  justify-self: center;
+  width: calc(var(--x-w) - var(--gap) * 1.2);
+  height: var(--rule);
+  background: var(--swing);
+}
+
+.x::before,
+.x::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: calc(var(--gap) * 0.45);
+  height: calc(var(--gap) * 0.45);
+  border-top: var(--rule) solid var(--score);
+  translate: 0 -50%;
+}
+
+.x::before {
+  left: 0;
+  border-left: var(--rule) solid var(--score);
+  rotate: -45deg;
+}
+
+.x::after {
+  right: 0;
+  border-top-color: var(--live);
+  border-right: var(--rule) solid var(--live);
+  rotate: 45deg;
+}

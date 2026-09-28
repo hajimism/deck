@@ -1,0 +1,95 @@
+.slide[data-layout="split"] {
+  grid-template-columns: 5fr 6fr;
+}
+
+.lead {
+  justify-content: center;
+}
+
+.people {
+  gap: calc(var(--gap) * 0.45);
+  margin-top: calc(var(--gap) * 0.3);
+}
+
+.people .label {
+  color: var(--gray);
+  opacity: 1;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: calc(var(--gap) * 8.5) 1fr;
+  align-items: center;
+}
+
+.dots {
+  display: flex;
+  gap: calc(var(--gap) * 0.25);
+}
+
+.dots i {
+  width: calc(var(--gap) * 0.5);
+  height: calc(var(--gap) * 0.5);
+  border-radius: var(--pill);
+  background: var(--score-lite);
+}
+
+.dots.is-many i {
+  background: var(--live);
+}
+
+.big {
+  margin-top: calc(var(--gap) * 0.3);
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.big b {
+  color: var(--live-lite);
+}
+
+.walls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: calc(var(--gap) * 0.6);
+  align-self: center;
+}
+
+.wall {
+  gap: calc(var(--gap) * 0.4);
+  padding: calc(var(--gap) * 0.9);
+}
+
+.voice {
+  font-size: var(--size-body);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.fix {
+  margin-top: auto;
+  padding-top: calc(var(--gap) * 0.4);
+  border-top: var(--hair) solid var(--line);
+  font-size: var(--size-small);
+  line-height: 1.6;
+}
+
+.fix::before {
+  content: "打ち手 →";
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  letter-spacing: 0.1em;
+  color: var(--live-ink);
+  font-weight: 800;
+}
+
+.fix b {
+  color: var(--live-ink);
+}
+
+.wall[data-tone] .fix {
+  border-top-color: var(--live-lite);
+}

@@ -1,0 +1,70 @@
+[data-glow="mid"] {
+  --gx: 50%;
+  --gy: 120%;
+  --gr: 55%;
+}
+
+.kicker,
+.slide-title,
+.road {
+  position: relative;
+  z-index: 1;
+}
+
+.slide-title {
+  font-size: var(--size-stat);
+  line-height: 1.25;
+}
+
+.road {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1fr;
+  gap: calc(var(--gap) * 0.6);
+  width: 100%;
+  margin-top: calc(var(--gap) * 1.2);
+}
+
+.side,
+.path {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--gap) * 0.3);
+  padding: calc(var(--gap) * 1);
+  border-radius: var(--radius);
+}
+
+.side {
+  border: var(--hair) solid var(--ink-3);
+  background: var(--ink-2);
+}
+
+.side-head,
+.path-head {
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.side-l .side-head {
+  color: var(--score-lite);
+}
+
+.side-r .side-head {
+  color: var(--gray);
+}
+
+.path {
+  background: var(--white);
+  color: var(--ink);
+}
+
+.path .note {
+  color: var(--ink-3);
+}
+
+.lane {
+  width: 60%;
+  height: calc(var(--rule) * 3);
+  border-radius: var(--pill);
+  background: var(--swing);
+}

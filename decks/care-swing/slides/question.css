@@ -1,0 +1,57 @@
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.7);
+}
+
+.chain {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: calc(var(--gap) * 1.2);
+}
+
+.chain li {
+  position: relative;
+}
+
+.chain li + li::before {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  left: calc(var(--gap) * -1);
+  color: var(--muted);
+  font-weight: 800;
+  translate: 0 -50%;
+}
+
+.step-head {
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.bottom {
+  display: grid;
+  grid-template-columns: 6fr 5fr;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.ask {
+  justify-content: center;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.ask-text {
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.define-text {
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.define-card {
+  gap: calc(var(--gap) * 0.3);
+}

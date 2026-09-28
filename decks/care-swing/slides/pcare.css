@@ -1,0 +1,143 @@
+.slide {
+  --p1: 80%;
+  --p2: 48%;
+  --p3: 24%;
+  --p4: 16.8%;
+  --p5: 10%;
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.7);
+}
+
+.factors {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.9);
+}
+
+.factor {
+  gap: calc(var(--gap) * 0.4);
+  padding: calc(var(--gap) * 0.9) calc(var(--gap) * 0.8);
+}
+
+.factor + .factor::before {
+  content: "×";
+  position: absolute;
+  top: 50%;
+  left: calc(var(--gap) * -0.45);
+  translate: -50% -50%;
+  color: var(--live-ink);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.factor .tag {
+  color: var(--live-ink);
+}
+
+.name {
+  font-size: var(--size-small);
+  line-height: 1.45;
+  white-space: nowrap;
+}
+
+.val {
+  font-size: var(--size-stat);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.run {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+}
+
+.result {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: calc(var(--gap) * 1.6);
+  padding: calc(var(--gap) * 1.2) calc(var(--gap) * 1.4);
+}
+
+.total {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.3);
+}
+
+.total .label {
+  color: var(--live-lite);
+  opacity: 1;
+}
+
+.nums {
+  display: grid;
+}
+
+.num {
+  grid-area: 1 / 1;
+  background: var(--ink);
+  padding-right: 0.12em;
+  font-size: var(--size-hero);
+  font-variant-numeric: tabular-nums;
+}
+
+.meter {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.bar {
+  position: relative;
+  display: block;
+  height: calc(var(--gap) * 0.9);
+  overflow: hidden;
+  border-radius: var(--pill);
+  background: var(--ink-3);
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--live), var(--live-lite));
+}
+
+.cut {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--ink-3);
+}
+
+.cut[data-cut="1"] { left: var(--p1); }
+.cut[data-cut="2"] { left: var(--p2); }
+.cut[data-cut="3"] { left: var(--p3); }
+.cut[data-cut="4"] { left: var(--p4); }
+.cut[data-cut="5"] { left: var(--p5); }
+
+.slide.is-current .cut[data-step] {
+  transform: none;
+}
+
+.take {
+  font-size: var(--size-body);
+  line-height: 1.6;
+}
+
+.take b {
+  color: var(--live-lite);
+}
+
+.caveat {
+  color: var(--gray);
+  font-size: var(--size-caption);
+}

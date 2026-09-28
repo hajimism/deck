@@ -1,0 +1,11 @@
+[data-glow="door"] {
+  --gx: 100%;
+  --gy: 100%;
+  --gr: 48%;
+}
+
+.numeral,
+.door {
+  position: relative;
+  z-index: 1;
+}

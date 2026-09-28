@@ -1,0 +1,65 @@
+.slide[data-layout="split"] {
+  grid-template-columns: 5fr 7fr;
+}
+
+.lead {
+  justify-content: center;
+}
+
+.garden {
+  gap: calc(var(--gap) * 0.4);
+  margin-top: calc(var(--gap) * 0.3);
+}
+
+.elems {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.3);
+}
+
+.elems .pill {
+  font-size: var(--size-lede);
+}
+
+.tail {
+  font-weight: 700;
+}
+
+.conds {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: calc(var(--gap) * 0.6);
+  align-self: center;
+}
+
+.cond {
+  gap: calc(var(--gap) * 0.35);
+  padding: calc(var(--gap) * 0.9);
+}
+
+.n {
+  color: var(--live-ink);
+  font-family: var(--font-mono);
+  font-size: var(--size-small);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.name {
+  font-size: var(--size-lede);
+  line-height: 1.35;
+}
+
+.key {
+  margin-top: auto;
+  padding-top: calc(var(--gap) * 0.4);
+  border-top: var(--hair) solid var(--line);
+  font-size: var(--size-small);
+  font-weight: 800;
+  line-height: 1.55;
+}
+
+.cond[data-tone] .key {
+  border-top-color: var(--live-lite);
+}

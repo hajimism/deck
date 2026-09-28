@@ -1,0 +1,74 @@
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.9);
+}
+
+.ethics {
+  font-size: var(--size-body);
+}
+
+.ethics th,
+.ethics td {
+  padding: calc(var(--gap) * 0.62) calc(var(--gap) * 1);
+}
+
+.ethics thead th.h-score,
+.ethics thead th.h-live {
+  font-family: var(--font-title);
+  font-size: var(--size-lede);
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.ethics thead th.h-score {
+  color: var(--score-ink);
+}
+
+.ethics thead th.h-live {
+  color: var(--live-ink);
+}
+
+.ethics tbody th {
+  width: 20%;
+  color: var(--muted);
+  font-size: var(--size-small);
+}
+
+.ethics .c-score,
+.ethics .h-score {
+  width: 40%;
+  background: var(--score-soft);
+}
+
+.ethics .c-live,
+.ethics .h-live {
+  width: 40%;
+  background: var(--live-soft);
+}
+
+.ethics .pole td {
+  padding-top: calc(var(--gap) * 0.5);
+  padding-bottom: calc(var(--gap) * 0.5);
+}
+
+.ethics .pill {
+  font-size: var(--size-body);
+}
+
+.gilligan {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.8);
+  color: var(--muted);
+}
+
+.gilligan .tag {
+  flex: none;
+  align-self: center;
+  color: var(--fg);
+}
+
+.ethics thead th {
+  border-bottom: var(--hair) solid var(--line);
+}

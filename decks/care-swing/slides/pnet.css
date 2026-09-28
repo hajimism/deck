@@ -1,0 +1,74 @@
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.halves {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.6);
+}
+
+.half {
+  gap: calc(var(--gap) * 0.6);
+  padding: calc(var(--gap) * 0.9) calc(var(--gap) * 1);
+}
+
+.hd {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+  font-size: var(--size-lede);
+}
+
+.hd .tag {
+  color: var(--live-ink);
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.35);
+}
+
+.rows li {
+  display: grid;
+  grid-template-columns: calc(var(--gap) * 2.6) 1fr;
+  align-items: baseline;
+  gap: calc(var(--gap) * 0.5);
+  padding-top: calc(var(--gap) * 0.35);
+  border-top: var(--hair) solid var(--line);
+  font-size: var(--size-small);
+  line-height: 1.6;
+}
+
+.axis {
+  justify-self: start;
+  padding: 0 0.7em;
+  border-radius: var(--pill);
+  background: var(--live-soft);
+  color: var(--ink);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  line-height: 2;
+  white-space: nowrap;
+}
+
+.rows b {
+  color: var(--live-ink);
+}
+
+.punch {
+  flex-wrap: wrap;
+  row-gap: 0;
+  font-size: var(--size-body);
+}
+
+.sub {
+  flex-basis: 100%;
+  padding-left: calc(var(--gap) * 1.1);
+  color: var(--gray);
+  font-size: var(--size-small);
+  font-weight: 500;
+}

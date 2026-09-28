@@ -1,0 +1,119 @@
+.stage {
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+  gap: calc(var(--gap) * 1);
+  margin-top: calc(var(--gap) * 0.3);
+}
+
+.intro {
+  gap: calc(var(--gap) * 0.5);
+}
+
+.who {
+  gap: calc(var(--gap) * 0.3);
+  padding: calc(var(--gap) * 0.7) calc(var(--gap) * 0.9);
+}
+
+.shift {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.pole {
+  gap: calc(var(--gap) * 0.1);
+  padding: calc(var(--gap) * 0.55) calc(var(--gap) * 0.9);
+}
+
+.pole b {
+  font-size: var(--size-lede);
+}
+
+.pole em {
+  font-style: normal;
+  text-decoration: underline;
+  text-decoration-thickness: var(--rule);
+  text-underline-offset: 0.2em;
+}
+
+.arrow {
+  align-self: center;
+  color: var(--violet);
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.fish {
+  font-weight: 700;
+}
+
+.right {
+  gap: calc(var(--gap) * 0.5);
+}
+
+.stairs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: end;
+  gap: calc(var(--gap) * 0.35);
+  height: calc(var(--gap) * 12.2);
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: calc(var(--gap) * 0.3);
+  height: 100%;
+}
+
+.mark {
+  display: flex;
+  justify-content: center;
+  min-height: 2.1em;
+}
+
+.mark .pill {
+  align-self: center;
+  padding: 0 0.7em;
+  font-size: var(--size-caption);
+}
+
+.riser {
+  gap: calc(var(--gap) * 0.15);
+  padding: calc(var(--gap) * 0.6) calc(var(--gap) * 0.6);
+  border-radius: var(--radius-small);
+  font-size: var(--size-small);
+  line-height: 1.5;
+}
+
+.step:nth-child(1) .riser { height: 42%; }
+.step:nth-child(2) .riser { height: 54%; }
+.step:nth-child(3) .riser { height: 66%; }
+.step:nth-child(4) .riser { height: 78%; }
+.step:nth-child(5) .riser { height: 90%; }
+
+.riser .note {
+  font-size: var(--size-caption);
+  line-height: 1.55;
+}
+
+.num {
+  font-family: var(--font-title);
+  font-size: var(--size-title);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.grad-on-ink {
+  background: linear-gradient(100deg, var(--score-lite), var(--violet-lite) 50%, var(--live-lite));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.punch {
+  font-size: var(--size-body);
+}

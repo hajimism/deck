@@ -1,0 +1,77 @@
+.stage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.shift {
+  display: grid;
+  grid-template-columns: 4fr auto 6fr;
+  align-items: stretch;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.to {
+  align-self: center;
+  color: var(--live-ink);
+  font-size: var(--size-title);
+  font-weight: 800;
+}
+
+.shift .card {
+  justify-content: center;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.big {
+  font-size: calc(var(--size-lede) * 1.2);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.into {
+  border: var(--rule) solid var(--live-lite);
+}
+
+.into b {
+  color: var(--live-ink);
+}
+
+.ctx {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: calc(var(--gap) * 0.4);
+}
+
+.ctx .pill {
+  border: var(--hair) solid var(--line);
+}
+
+.trap {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  align-items: center;
+  gap: calc(var(--gap) * 1.2);
+}
+
+.why {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.35);
+}
+
+.line {
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.55;
+}
+
+.warn {
+  color: var(--live-lite);
+}
+
+.into .note {
+  opacity: 1;
+}

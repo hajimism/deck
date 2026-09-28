@@ -1,0 +1,30 @@
+.chapters {
+  gap: calc(var(--gap) * 0.5);
+}
+
+.chapters .card {
+  justify-content: space-between;
+  min-height: calc(var(--gap) * 8.6);
+}
+
+.no {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.card[data-tone="ink"] .no {
+  color: var(--white);
+}
+
+.ch-head {
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.ch-head + .note {
+  flex: 1;
+}
+
