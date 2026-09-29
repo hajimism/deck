@@ -1,0 +1,75 @@
+.slide {
+  --dot: 20px;
+}
+
+.how {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.how li {
+  display: flex;
+  gap: calc(var(--gap) * 0.6);
+  align-items: flex-start;
+  font-size: var(--size-lede);
+  line-height: 1.55;
+}
+
+.sheet {
+  gap: calc(var(--gap) * 0.35);
+  padding: var(--gap) calc(var(--gap) * 1.1);
+}
+
+.sheet-head,
+.sheet-row {
+  display: grid;
+  grid-template-columns: 8.5em 7em 1fr;
+  align-items: end;
+  column-gap: var(--gap);
+}
+
+.sheet-head .label {
+  color: var(--muted);
+}
+
+.sheet-row b {
+  color: var(--c-ink);
+  line-height: 1.9;
+}
+
+.dots {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 1.9em;
+}
+
+.dots i {
+  width: var(--dot);
+  height: var(--dot);
+  border: var(--rule) solid var(--c-ink);
+  border-radius: var(--pill);
+}
+
+.sheet-foot {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.3);
+  margin-top: calc(var(--gap) * 0.5);
+  padding-top: calc(var(--gap) * 0.5);
+  border-top: var(--rule) solid var(--ink);
+}
+
+.field {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--gap);
+}
+
+.field .label {
+  flex: none;
+  width: 13em;
+  color: var(--ink);
+  line-height: 2.4;
+}

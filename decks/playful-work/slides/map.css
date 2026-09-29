@@ -1,0 +1,52 @@
+.route {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+[data-now] .note {
+  font-size: var(--size-body);
+}
+
+.rail li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  padding-right: var(--gap);
+  padding-top: calc(var(--gap) * 1.4);
+  color: var(--fg);
+}
+
+.rail li[data-now]::before {
+  scale: 1.1;
+}
+
+.rail b {
+  font-size: calc(var(--size-lede) * 1.25);
+  font-weight: 800;
+}
+
+.stop {
+  color: var(--tool-ink);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  letter-spacing: 0.1em;
+}
+
+.rail .sticker {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + var(--gap) * 1.1);
+  translate: -50% 0;
+  font-size: var(--size-small);
+  text-align: center;
+}
+
+.rail .sticker::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  height: calc(var(--gap) * 1.1);
+  border-left: var(--rule) dashed var(--toy-ink);
+}

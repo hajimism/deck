@@ -1,0 +1,873 @@
+/*
+ * playful-work — a risograph zine on graph paper.
+ * The graph paper is gravity: deadlines, quality, the main line of the work.
+ * Two inks carry the argument, as in a two-drum riso print:
+ *   - Blue is the tool face: serious, committed, the work other people rely on.
+ *   - Fluorescent pink is the toy face: play, detours, the part nobody asked for.
+ *   - Where the two inks overprint (mix-blend-mode: multiply) the purple is
+ *     the point of the talk: both faces at once. Purple is used for that and nothing else.
+ *   - Yellow is a highlighter, for the phrase to remember.
+ * Cards are outlined in ink with a hard offset shadow, like cut paper pasted into a zine.
+ * Stickers tilt. Every page states its point as its heading, so the PDF reads without the talk.
+ */
+.slide {
+  --ink: #1c1e2e;
+  --paper: #f5f1e8;
+  --paper-2: #ebe5d6;
+  --card: #fffdf8;
+  --white: #ffffff;
+  --tool: #2148d6;
+  --tool-ink: #1c3cb4;
+  --tool-soft: #dde4fb;
+  --tool-lite: #9fb2ff;
+  --toy: #ff4d94;
+  --toy-ink: #b8104f;
+  --toy-soft: #ffdcea;
+  --both: #6b2fc0;
+  --both-ink: #5a23a8;
+  --both-soft: #e9ddfb;
+  --sun: #ffd84a;
+  --sun-soft: #fff0b0;
+  --grid: rgb(33 72 214 / 0.09);
+  --grid-bold: rgb(33 72 214 / 0.17);
+  --grid-on-ink: rgb(255 255 255 / 0.1);
+  --fg: var(--ink);
+  --bg: var(--paper);
+  --muted: #565866;
+  --accent: var(--toy-ink);
+  --line: var(--ink);
+  --line-soft: #d6cfbd;
+  --c: var(--card);
+  --c-ink: var(--ink);
+  --c-soft: var(--paper-2);
+  --shadow: var(--ink);
+  --font-title: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  --font-body: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  --font-round: "Hiragino Maru Gothic ProN", "Hiragino Maru Gothic Pro", "Kosugi Maru", "Noto Sans CJK JP", sans-serif;
+  --font-mono: "SF Mono", "JetBrains Mono", "Menlo", "Consolas", "Noto Sans Mono CJK JP", monospace;
+  --size-mega: 300px;
+  --size-hero: 84px;
+  --size-stat: 52px;
+  --size-title: 38px;
+  --size-lede: 19px;
+  --size-body: 16px;
+  --size-small: 14px;
+  --size-caption: 12px;
+  --cell: 32px;
+  --gap: 24px;
+  --margin: 64px;
+  --pad: 56px var(--margin) 68px;
+  --radius: 18px;
+  --radius-small: 10px;
+  --pill: 999px;
+  --hair: 1px;
+  --rule: 2px;
+  --offset: 5px;
+  --offset-small: 3px;
+  --tilt: -2.5deg;
+  --tilt-r: 2deg;
+  --rise: 14px;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-pop: cubic-bezier(0.34, 1.5, 0.64, 1);
+  --ease-draw: cubic-bezier(0.6, 0, 0.2, 1);
+  --dur-pop: 0.6s;
+  --dur-draw: 1.4s;
+  --stagger: 0.08s;
+  --delay: 0s;
+  --detour-delay: 0.5s;
+  --step-transition: 0.45s var(--ease-out);
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: var(--pad);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid) var(--hair), transparent var(--hair)),
+    linear-gradient(90deg, var(--grid) var(--hair), transparent var(--hair));
+  background-size: var(--cell) var(--cell);
+  background-position: calc(var(--cell) * -0.5) calc(var(--cell) * -0.5);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: 1.7;
+  font-feature-settings: "palt";
+  counter-reset: folio var(--dek-slide-number) folios var(--dek-slide-count);
+}
+
+/* Ink fields: chapter doors and the closing are printed solid blue. */
+.slide[data-bg="ink"] {
+  --fg: var(--white);
+  --bg: var(--tool);
+  --muted: #e4e9ff;
+  --accent: var(--sun);
+  --grid: var(--grid-on-ink);
+  --shadow: var(--ink);
+}
+
+/* Running head and folio, set in mono at the foot of every page. */
+.slide::before {
+  content: "力の湧く仕事とは？";
+  position: absolute;
+  left: var(--margin);
+  bottom: calc(var(--gap) * 1.1);
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.slide::after {
+  content: "p." counter(folio, decimal-leading-zero) " / " counter(folios);
+  position: absolute;
+  right: var(--margin);
+  bottom: calc(var(--gap) * 1.1);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.slide * {
+  box-sizing: border-box;
+}
+
+.slide p,
+.slide ol,
+.slide ul,
+.slide dl,
+.slide dd,
+.slide dt,
+.slide h2,
+.slide h3,
+.slide blockquote,
+.slide figure {
+  margin: 0;
+}
+
+.slide ol,
+.slide ul {
+  padding: 0;
+  list-style: none;
+}
+
+.slide b,
+.slide strong {
+  font-weight: 800;
+}
+
+.slide svg {
+  display: block;
+  overflow: visible;
+}
+
+/* Tones: a block sets data-tone and its children read --c, --c-ink, --c-soft. */
+.slide [data-tone="tool"] {
+  --c: var(--tool);
+  --c-ink: var(--tool-ink);
+  --c-soft: var(--tool-soft);
+}
+
+.slide [data-tone="toy"] {
+  --c: var(--toy);
+  --c-ink: var(--toy-ink);
+  --c-soft: var(--toy-soft);
+}
+
+.slide [data-tone="both"] {
+  --c: var(--both);
+  --c-ink: var(--both-ink);
+  --c-soft: var(--both-soft);
+}
+
+.slide [data-tone="sun"] {
+  --c: var(--sun);
+  --c-ink: var(--ink);
+  --c-soft: var(--sun-soft);
+}
+
+.slide .slide-title {
+  font-family: var(--font-title);
+  font-size: var(--size-title);
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* A section tag: two overprinted dots, then mono text. */
+.slide .kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8em;
+  color: var(--tool-ink);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.slide .kicker::before {
+  content: "";
+  width: 1.5em;
+  height: 0.9em;
+  background:
+    radial-gradient(circle at 30% 50%, var(--tool) 0.45em, transparent calc(0.45em + var(--hair))),
+    radial-gradient(circle at 70% 50%, var(--toy) 0.45em, transparent calc(0.45em + var(--hair)));
+  background-blend-mode: multiply;
+}
+
+.slide[data-bg="ink"] .kicker {
+  color: var(--white);
+}
+
+.slide .lede {
+  color: var(--muted);
+  font-size: var(--size-lede);
+  font-weight: 500;
+  line-height: 1.75;
+}
+
+.slide .note {
+  color: var(--muted);
+  font-size: var(--size-small);
+  line-height: 1.7;
+}
+
+.slide .label {
+  color: var(--c-ink);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.slide .source {
+  color: var(--muted);
+  font-size: var(--size-caption);
+  line-height: 1.6;
+}
+
+/* Highlighter: yellow by default, a tone's soft ink when set. */
+.slide .mark {
+  padding: 0 0.12em;
+  background: linear-gradient(transparent 55%, var(--sun) 55%, var(--sun) 92%, transparent 92%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.slide .mark[data-tone] {
+  color: var(--c-ink);
+  background: linear-gradient(transparent 55%, var(--c-soft) 55%, var(--c-soft) 92%, transparent 92%);
+}
+
+/* Cut paper: an ink outline with a hard offset shadow. */
+.slide .card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.4);
+  padding: calc(var(--gap) * 0.9) var(--gap);
+  border: var(--rule) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--offset) var(--offset) 0 var(--shadow);
+}
+
+.slide .card[data-tone] {
+  --shadow: var(--c);
+}
+
+.slide .card[data-fill] {
+  background: var(--c-soft);
+}
+
+.slide .card h3 {
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+/* A small rounded tag. */
+.slide .chip {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.4em;
+  padding: 0.2em 0.8em;
+  border: var(--rule) solid var(--c-ink);
+  border-radius: var(--pill);
+  color: var(--c-ink);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.slide .chip[data-fill] {
+  border-color: var(--c);
+  background: var(--c);
+  color: var(--white);
+}
+
+.slide .chip[data-fill][data-tone="toy"],
+.slide .chip[data-fill][data-tone="sun"] {
+  color: var(--ink);
+}
+
+/* A sticker slapped on the page: tilted, rounded type, the other ink as its shadow. */
+.slide .sticker {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 0.35em 0.9em;
+  border-radius: var(--radius-small);
+  background: var(--c);
+  color: var(--ink);
+  font-family: var(--font-round);
+  font-weight: 700;
+  line-height: 1.4;
+  box-shadow: var(--offset-small) var(--offset-small) 0 var(--ink);
+  transform: rotate(var(--tilt));
+}
+
+.slide .sticker[data-tone="tool"],
+.slide .sticker[data-tone="both"] {
+  color: var(--white);
+}
+
+.slide .sticker[data-tilt="r"] {
+  transform: rotate(var(--tilt-r));
+}
+
+/* A circled index number: ①, ②… as a filled disc. */
+.slide .num {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 2em;
+  height: 2em;
+  border-radius: var(--pill);
+  background: var(--c);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: var(--size-small);
+  font-weight: 800;
+}
+
+.slide .num[data-tone="toy"],
+.slide .num[data-tone="sun"] {
+  color: var(--ink);
+}
+
+.slide .stat {
+  color: var(--c-ink);
+  font-family: var(--font-title);
+  font-size: var(--size-stat);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.slide .col {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.7);
+  min-width: 0;
+}
+
+.slide .stage {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* A line to remember, printed on an ink bar. */
+.slide .punch {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  padding: calc(var(--gap) * 0.55) var(--gap);
+  border-radius: var(--radius-small);
+  background: var(--ink);
+  color: var(--white);
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.5;
+  grid-column: 1 / -1;
+}
+
+.slide .punch::before {
+  content: "";
+  flex: none;
+  width: 0.7em;
+  height: 0.7em;
+  border-radius: var(--pill);
+  background: var(--toy);
+  box-shadow: 0.25em 0.15em 0 var(--tool-lite);
+}
+
+/* A big quoted sentence in rounded type. */
+.slide .quote {
+  font-family: var(--font-round);
+  font-size: var(--size-stat);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* SVG strokes that draw themselves as the slide arrives. Give the path pathLength="1". */
+.slide .trace {
+  fill: none;
+  stroke: var(--c);
+  stroke-width: var(--rule);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.slide.is-current .trace {
+  animation: draw var(--dur-draw) var(--ease-draw) backwards;
+  animation-delay: var(--delay);
+}
+
+/* The pink detour leaves the main line a beat after the line is drawn. */
+.slide .detour {
+  stroke-width: calc(var(--rule) * 2.5);
+  --delay: var(--detour-delay);
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+/* Things pop in when a slide arrives. */
+.slide.is-current .pop {
+  animation: pop var(--dur-pop) var(--ease-pop) backwards;
+}
+
+.slide.is-current .pop:nth-child(2) { animation-delay: var(--stagger); }
+.slide.is-current .pop:nth-child(3) { animation-delay: calc(var(--stagger) * 2); }
+.slide.is-current .pop:nth-child(4) { animation-delay: calc(var(--stagger) * 3); }
+.slide.is-current .pop:nth-child(5) { animation-delay: calc(var(--stagger) * 4); }
+.slide.is-current .pop:nth-child(6) { animation-delay: calc(var(--stagger) * 5); }
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    translate: 0 var(--rise);
+    scale: 0.94;
+  }
+}
+
+/* @layout cover
+<section class="slide" data-layout="cover">
+  <p class="kicker">2026</p>
+  <h2 class="slide-title">力の湧く仕事とは？</h2>
+  <p class="lede">What it is about.</p>
+  <div class="stage">Illustration</div>
+</section>
+*/
+.slide[data-layout="cover"] {
+  display: grid;
+  grid-template-columns: 5fr 6fr;
+  align-items: center;
+  gap: calc(var(--gap) * 1.5);
+}
+
+.slide[data-layout="cover"] .slide-title {
+  font-size: var(--size-hero);
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+}
+
+/* @layout door
+<section class="slide" data-bg="ink" data-layout="door">
+  <p class="door-num">1</p>
+  <div class="col">
+    <p class="kicker">CHAPTER 1</p>
+    <h2 class="slide-title">The chapter's claim</h2>
+    <p class="lede">The question it answers.</p>
+  </div>
+</section>
+*/
+.slide[data-layout="door"] {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: calc(var(--gap) * 2.5);
+  padding-left: calc(var(--margin) * 1.5);
+}
+
+.slide[data-layout="door"] .slide-title {
+  font-size: var(--size-stat);
+  line-height: 1.2;
+}
+
+/* A chapter numeral, overprinted in both inks and slightly out of register. */
+.slide .door-num {
+  position: relative;
+  color: var(--sun);
+  font-family: var(--font-round);
+  font-size: var(--size-mega);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+  text-shadow: calc(var(--offset) * 2) calc(var(--offset) * 1.4) 0 var(--toy-ink);
+}
+
+/* @layout default
+<section class="slide" data-layout="default">
+  <p class="kicker">SECTION</p>
+  <h2 class="slide-title">A heading that states the point</h2>
+  <div class="stage">
+    <div class="card" data-step="1">One point per beat</div>
+  </div>
+</section>
+*/
+.slide[data-layout="default"] {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide[data-layout="default"] > .stage {
+  flex: 1;
+  margin-top: calc(var(--gap) * 0.6);
+}
+
+/* @layout split
+<section class="slide" data-layout="split">
+  <div class="col">
+    <p class="kicker">SECTION</p>
+    <h2 class="slide-title">The claim</h2>
+    <p class="lede">Why it holds.</p>
+  </div>
+  <div class="stage">Figure</div>
+</section>
+*/
+.slide[data-layout="split"] {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: calc(var(--gap) * 2);
+  align-items: center;
+}
+
+/* @layout center
+<section class="slide" data-layout="center">
+  <p class="kicker">KEY</p>
+  <h2 class="slide-title">One sentence worth keeping</h2>
+</section>
+*/
+.slide[data-layout="center"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap);
+  text-align: center;
+}
+
+/* Beats: hidden things keep their box, so every beat has the same layout. */
+.slide.is-current [data-step] {
+  opacity: 0;
+  translate: 0 var(--rise);
+  transition: var(--step-transition);
+  transition-property: opacity, translate;
+}
+
+.slide.is-current [data-step].is-shown {
+  opacity: 1;
+  translate: none;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+::view-transition-old(slide) {
+  --step-transition: 0.22s ease both;
+  animation: fade-out var(--step-transition);
+}
+
+::view-transition-new(slide) {
+  --step-transition: 0.32s ease both;
+  animation: fade-in var(--step-transition);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide.is-current [data-step],
+  .slide.is-current .pop,
+  .slide.is-current .trace {
+    transition: none;
+    animation: none;
+  }
+
+  ::view-transition-old(slide),
+  ::view-transition-new(slide) {
+    animation: none;
+  }
+}
+
+/* ---- Shared parts used on several slides ---- */
+
+/* A speech bubble: what people actually say. */
+.slide .bubble {
+  position: relative;
+  align-self: flex-start;
+  padding: 0.5em 0.9em;
+  border: var(--rule) solid var(--line);
+  border-radius: var(--radius-small) var(--radius-small) var(--radius-small) 0;
+  background: var(--card);
+  color: var(--ink);
+  font-size: var(--size-small);
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.slide .bubble[data-tone] {
+  border-color: var(--c-ink);
+  background: var(--c-soft);
+}
+
+.slide .bubble[data-muted] {
+  border-style: dashed;
+  border-color: var(--muted);
+  background: var(--paper-2);
+  color: var(--muted);
+}
+
+/* Six windows: a row-label column, then the tool face and the toy face. */
+.slide .panes {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  grid-auto-rows: auto;
+  column-gap: calc(var(--gap) * 0.8);
+  row-gap: calc(var(--gap) * 0.55);
+  align-items: stretch;
+}
+
+.slide .panes > .label {
+  display: flex;
+  align-items: center;
+  padding-right: calc(var(--gap) * 0.4);
+  color: var(--ink);
+  font-size: var(--size-small);
+}
+
+.slide .panes > .label[data-tone] {
+  justify-content: center;
+  color: var(--c-ink);
+  font-size: var(--size-small);
+}
+
+/* One window: a title bar with two dots, like a small app window. */
+.slide .pane {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  padding: calc(var(--gap) * 0.95) calc(var(--gap) * 0.8) calc(var(--gap) * 0.55);
+  border: var(--rule) solid var(--line);
+  border-radius: var(--radius-small);
+  background: var(--card);
+  box-shadow: var(--offset-small) var(--offset-small) 0 var(--c);
+}
+
+.slide .pane::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: calc(var(--gap) * 0.5);
+  border-bottom: var(--rule) solid var(--line);
+  border-radius: calc(var(--radius-small) - var(--rule)) calc(var(--radius-small) - var(--rule)) 0 0;
+  background:
+    radial-gradient(circle at calc(var(--gap) * 0.55) 50%, var(--c) 0.22em, transparent calc(0.22em + var(--hair))),
+    radial-gradient(circle at calc(var(--gap) * 1.05) 50%, var(--line-soft) 0.22em, transparent calc(0.22em + var(--hair))),
+    var(--c-soft);
+}
+
+.slide .pane[data-shut] {
+  border-style: dashed;
+  border-color: var(--muted);
+  background: var(--paper-2);
+  box-shadow: none;
+}
+
+.slide .pane[data-shut]::before {
+  border-bottom-style: dashed;
+  border-bottom-color: var(--muted);
+  background: var(--paper-2);
+}
+
+.slide .pane b {
+  color: var(--c-ink);
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.slide .pane[data-shut] b {
+  color: var(--muted);
+}
+
+/* One type of detour: its number sticker, name, gist, tries, and a tip. */
+.slide .kata {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+  padding: var(--gap) calc(var(--gap) * 1.1);
+  border: var(--rule) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--offset) var(--offset) 0 var(--c);
+}
+
+.slide .kata h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: var(--size-title);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* A to-try list with empty checkboxes. */
+.slide .try {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55em;
+}
+
+.slide .try li {
+  display: flex;
+  gap: 0.7em;
+  align-items: baseline;
+  font-size: var(--size-lede);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.slide .try li::before {
+  content: "";
+  flex: none;
+  width: 0.95em;
+  height: 0.95em;
+  border: var(--rule) solid var(--c-ink);
+  border-radius: calc(var(--radius-small) * 0.35);
+  translate: 0 0.12em;
+}
+
+/* A blank to write in: a dotted rule the width of its box. */
+.slide .blank {
+  flex: 1;
+  min-width: 0;
+  min-height: 1.9em;
+  border-bottom: var(--rule) dotted var(--muted);
+  color: var(--toy-ink);
+  font-family: var(--font-round);
+  line-height: 1.9;
+}
+
+.slide[data-bg="ink"] .kicker::before {
+  background:
+    radial-gradient(circle at 30% 50%, var(--sun) 0.45em, transparent calc(0.45em + var(--hair))),
+    radial-gradient(circle at 70% 50%, var(--toy) 0.45em, transparent calc(0.45em + var(--hair)));
+}
+
+/* The route of the day, drawn as a rail line with one station per chapter. */
+.slide .rail {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: var(--rule) solid var(--fg);
+}
+
+.slide .rail li {
+  position: relative;
+  padding-top: calc(var(--gap) * 0.9);
+  color: var(--muted);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.slide .rail li::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--gap) * -0.4 - var(--rule) * 0.5);
+  left: 0;
+  width: calc(var(--gap) * 0.8);
+  height: calc(var(--gap) * 0.8);
+  border: var(--rule) solid var(--fg);
+  border-radius: var(--pill);
+  background: var(--bg);
+}
+
+.slide .rail li[data-now] {
+  color: var(--fg);
+}
+
+.slide .rail li[data-now]::before {
+  border-color: var(--ink);
+  background: var(--toy);
+  box-shadow: var(--offset-small) var(--offset-small) 0 var(--sun);
+  scale: 1.35;
+}
+
+.slide .rail li[data-done]::before {
+  background: var(--fg);
+}
+
+.slide[data-layout="door"] .rail {
+  position: absolute;
+  left: calc(var(--margin) * 1.5);
+  right: var(--margin);
+  bottom: calc(var(--gap) * 4);
+}
+
+/* Two types of detour side by side, the second arriving on its beat. */
+.slide .pair-kata {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--gap) * 1.4);
+  align-items: stretch;
+}
+
+.slide .kata h3 .sticker {
+  font-size: var(--size-lede);
+}
+
+.slide .kata h3 .label {
+  margin-left: auto;
+  color: var(--muted);
+}
+
+.slide .kata .gist {
+  font-size: var(--size-lede);
+  line-height: 1.6;
+}
+
+.slide .kata .tip {
+  display: flex;
+  gap: 0.7em;
+  align-items: baseline;
+  margin-top: auto;
+  padding-top: calc(var(--gap) * 0.6);
+  border-top: var(--rule) dashed var(--line-soft);
+  color: var(--muted);
+  font-size: var(--size-small);
+}
+
+.slide .kata .tip .chip {
+  flex: none;
+}

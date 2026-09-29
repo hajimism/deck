@@ -1,0 +1,81 @@
+.takeaways {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: calc(var(--gap) * 1.2);
+  align-items: stretch;
+}
+
+.take {
+  gap: calc(var(--gap) * 0.7);
+  padding: calc(var(--gap) * 1.2);
+}
+
+.take .num {
+  font-size: var(--size-lede);
+}
+
+.take h3 {
+  font-size: calc(var(--size-lede) * 1.3);
+  line-height: 1.5;
+}
+
+.take .note {
+  margin-top: auto;
+  font-size: var(--size-body);
+}
+
+.slide {
+  --pic-h: 120px;
+  --disc-s: 96px;
+}
+
+.pic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--pic-h);
+  width: 100%;
+}
+
+.venn span {
+  width: var(--disc-s);
+  height: var(--disc-s);
+  border-radius: var(--pill);
+  mix-blend-mode: multiply;
+}
+
+.venn span[data-tone="tool"] {
+  background: var(--tool-lite);
+}
+
+.venn span[data-tone="toy"] {
+  margin-left: calc(var(--disc-s) * -0.35);
+  background: var(--toy);
+}
+
+.wins {
+  display: grid;
+  grid-template-columns: repeat(2, calc(var(--disc-s) * 0.75));
+  grid-auto-rows: calc(var(--pic-h) * 0.27);
+  gap: calc(var(--gap) * 0.3);
+  align-content: center;
+}
+
+.wins span {
+  align-self: stretch;
+  border: var(--rule) solid var(--ink);
+  border-radius: calc(var(--radius-small) * 0.6);
+  background: var(--c-soft);
+  box-shadow: var(--offset-small) var(--offset-small) 0 var(--c);
+}
+
+.wins span[data-shut] {
+  border-style: dashed;
+  border-color: var(--muted);
+  background: var(--paper-2);
+  box-shadow: none;
+}
+
+svg.pic .trace {
+  stroke-width: calc(var(--rule) * 2.5);
+}

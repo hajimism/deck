@@ -1,0 +1,45 @@
+.fixes {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.4);
+}
+
+.fix-head,
+.fix {
+  display: grid;
+  grid-template-columns: 8em 11em 1fr;
+  align-items: center;
+  column-gap: var(--gap);
+}
+
+.fix-head {
+  padding: 0 calc(var(--gap) * 0.8);
+}
+
+.fix-head .label {
+  color: var(--muted);
+}
+
+.fix {
+  padding: calc(var(--gap) * 0.3) calc(var(--gap) * 0.8);
+  box-shadow: var(--offset-small) var(--offset-small) 0 var(--c);
+}
+
+.fix .bubble {
+  justify-self: start;
+  align-self: center;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  font-family: var(--font-round);
+  font-size: var(--size-body);
+}
+
+.fix .chip {
+  justify-self: start;
+  align-self: center;
+}
+
+.fix > p:last-child {
+  font-size: var(--size-body);
+  line-height: 1.55;
+}

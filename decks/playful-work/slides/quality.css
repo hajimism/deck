@@ -1,0 +1,110 @@
+.spectrum {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-rows: auto auto 1fr auto;
+  column-gap: calc(var(--gap) * 0.5);
+  row-gap: calc(var(--gap) * 0.6);
+}
+
+.steps {
+  display: contents;
+}
+
+.rung {
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  padding: calc(var(--gap) * 0.7) calc(var(--gap) * 0.7);
+  border: var(--rule) solid var(--line);
+  border-radius: var(--radius-small);
+  background: var(--card);
+  box-shadow: var(--offset-small) var(--offset-small) 0 var(--c);
+}
+
+.rung:nth-child(1) { grid-column: 1; }
+.rung:nth-child(2) { grid-column: 2; }
+.rung:nth-child(3) { grid-column: 3; }
+.rung:nth-child(4) { grid-column: 4; }
+.rung:nth-child(5) { grid-column: 5; }
+
+.rung[data-kind="ctrl"] {
+  border-style: dashed;
+  border-color: var(--muted);
+  background: var(--paper-2);
+  box-shadow: none;
+  --c-ink: var(--muted);
+}
+
+.rung[data-kind="auto"] {
+  background: var(--c-soft);
+}
+
+.rung b {
+  font-size: var(--size-lede);
+  line-height: 1.4;
+}
+
+.zones {
+  grid-row: 2;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  column-gap: calc(var(--gap) * 0.5);
+}
+
+.zone {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  padding-top: 0.5em;
+  border-top: calc(var(--rule) * 2) solid var(--ink);
+  font-size: var(--size-small);
+  font-weight: 800;
+}
+
+.zone[data-kind="ctrl"] {
+  border-top-style: dotted;
+  border-top-color: var(--muted);
+  color: var(--muted);
+}
+
+.zone[data-kind="auto"] {
+  border-top-color: var(--both);
+  color: var(--both-ink);
+}
+
+.divide {
+  grid-column: 2 / 4;
+  grid-row: 1 / 4;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.divide::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--gap) * -0.6);
+  bottom: calc(var(--gap) * 1.6);
+  left: 50%;
+  border-left: calc(var(--rule) * 1.5) dashed var(--toy-ink);
+}
+
+.divide .sticker {
+  align-self: flex-end;
+  margin-bottom: calc(var(--gap) * 0.4);
+  position: relative;
+  font-size: var(--size-body);
+  text-align: center;
+}
+
+.punch {
+  grid-row: 4;
+}
+.zone .note {
+  font-weight: 500;
+}

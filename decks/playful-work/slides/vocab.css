@@ -1,0 +1,42 @@
+.ears {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--gap) * 1.4);
+  align-items: start;
+  align-content: center;
+}
+
+.ear {
+  gap: calc(var(--gap) * 0.8);
+  padding: calc(var(--gap) * 1.1);
+}
+
+.said {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.said .bubble {
+  font-size: calc(var(--size-lede) * 1.1);
+}
+
+.said .bubble:nth-child(2) {
+  margin-left: calc(var(--gap) * 1.5);
+}
+
+.said .bubble:nth-child(3) {
+  margin-left: calc(var(--gap) * 0.6);
+}
+
+.verdict {
+  margin-top: calc(var(--gap) * 0.3);
+  padding-top: calc(var(--gap) * 0.6);
+  border-top: var(--rule) dashed var(--line-soft);
+  font-size: var(--size-lede);
+  font-weight: 700;
+}
+
+.verdict b {
+  color: var(--c-ink);
+}

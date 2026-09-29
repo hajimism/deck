@@ -1,0 +1,43 @@
+.slide {
+  --track-w: 900px;
+}
+
+.quote {
+  font-size: var(--size-stat);
+}
+
+.track {
+  width: var(--track-w);
+  max-width: 100%;
+}
+
+.trace[data-tone="tool"] {
+  stroke-width: calc(var(--rule) * 2.5);
+}
+
+.track-label {
+  fill: var(--tool-ink);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.track-label[data-tone="toy"] {
+  fill: var(--toy-ink);
+}
+
+.halves {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gap);
+  width: var(--track-w);
+}
+
+.half {
+  align-items: center;
+  padding: calc(var(--gap) * 0.6) var(--gap);
+}
+
+.half b {
+  color: var(--c-ink);
+  font-size: var(--size-lede);
+}

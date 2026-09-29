@@ -1,0 +1,33 @@
+.loop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--gap);
+}
+
+.loop-svg {
+  width: 100%;
+}
+
+.main {
+  stroke-width: calc(var(--rule) * 3);
+}
+
+.merged {
+  fill: none;
+  stroke: var(--both);
+  stroke-width: calc(var(--rule) * 6);
+  stroke-linecap: round;
+}
+
+.stop {
+  fill: var(--card);
+  stroke: var(--c);
+  stroke-width: calc(var(--rule) * 2);
+}
+
+.svg-label {
+  fill: var(--c-ink);
+  font-size: var(--size-body);
+  font-weight: 800;
+}

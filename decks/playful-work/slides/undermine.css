@@ -1,0 +1,118 @@
+.slide {
+  --chart-h: 220px;
+  --bar-w: 28px;
+}
+
+.exp {
+  gap: calc(var(--gap) * 0.7);
+  padding: calc(var(--gap) * 1.1);
+}
+
+.chart {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: var(--chart-h) auto;
+  column-gap: var(--gap);
+  border-bottom: var(--rule) solid var(--ink);
+}
+
+.phase {
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 0.6em;
+  font-weight: 800;
+}
+
+.phase .note {
+  font-size: var(--size-caption);
+  font-weight: 600;
+}
+
+.bars {
+  grid-row: 1;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: var(--gap);
+  align-items: end;
+  height: 100%;
+}
+
+.bars[data-group="a"] {
+  translate: calc(var(--bar-w) * -0.6) 0;
+}
+
+.bars[data-group="b"] {
+  translate: calc(var(--bar-w) * 0.6) 0;
+}
+
+.bars[data-group="b"] {
+  grid-row: 1;
+}
+
+.bar {
+  justify-self: center;
+  width: var(--bar-w);
+  border: var(--rule) solid var(--ink);
+  border-bottom: none;
+  border-radius: calc(var(--radius-small) * 0.5) calc(var(--radius-small) * 0.5) 0 0;
+}
+
+[data-group="a"] .bar {
+  background: var(--toy);
+}
+
+[data-group="b"] .bar {
+  background: var(--tool-lite);
+}
+
+.bar[data-h="high"] { height: 90%; }
+.bar[data-h="mid"] { height: 55%; }
+.bar[data-h="low"] { height: 22%; }
+
+.slide.is-current .bar {
+  animation: grow var(--dur-draw) var(--ease-out) backwards;
+  transform-origin: bottom;
+}
+
+@keyframes grow {
+  from {
+    scale: 1 0;
+  }
+}
+
+.legend {
+  display: flex;
+  gap: var(--gap);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.legend li::before {
+  content: "";
+  width: 0.9em;
+  height: 0.9em;
+  border: var(--rule) solid var(--ink);
+  border-radius: calc(var(--radius-small) * 0.3);
+  background: var(--tool-lite);
+}
+
+.legend li[data-group="a"]::before {
+  background: var(--toy);
+}
+
+.drop {
+  position: absolute;
+  right: calc(var(--gap) * 0.6);
+  top: calc(var(--gap) * 2.6);
+  font-size: var(--size-small);
+  text-align: center;
+}

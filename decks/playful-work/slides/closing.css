@@ -1,0 +1,20 @@
+.slide {
+  --track-w: 760px;
+}
+
+.quote {
+  font-size: var(--size-hero);
+}
+
+.track {
+  width: var(--track-w);
+}
+
+.trace[data-tone="line"] {
+  --c: var(--white);
+  stroke-width: calc(var(--rule) * 2.5);
+}
+
+.lede {
+  color: var(--white);
+}

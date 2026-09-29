@@ -1,0 +1,56 @@
+.sheet {
+  gap: calc(var(--gap) * 0.7);
+  padding: calc(var(--gap) * 1.2);
+}
+
+.row {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--gap);
+}
+
+.row > .label {
+  flex: none;
+  width: 8em;
+  color: var(--ink);
+  font-size: var(--size-small);
+  line-height: 2.2;
+}
+
+.types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.types span {
+  padding: 0.2em 0.7em;
+  border: var(--rule) solid var(--line-soft);
+  border-radius: var(--pill);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.types span[data-picked] {
+  border-color: var(--toy-ink);
+  color: var(--toy-ink);
+  box-shadow: 0 0 0 var(--rule) var(--toy-soft);
+}
+
+.sheet .blank {
+  font-size: var(--size-lede);
+}
+
+.example {
+  text-align: right;
+}
+
+.row[data-stack] {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: calc(var(--gap) * 0.2);
+}
+
+.row[data-stack] > .label {
+  width: auto;
+}

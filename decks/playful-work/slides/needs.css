@@ -1,0 +1,56 @@
+.nutrients {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--gap) * 1.2);
+}
+
+.needs-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: calc(var(--gap) * 1.2);
+}
+
+.need {
+  gap: calc(var(--gap) * 0.3);
+  padding: calc(var(--gap) * 1.1) var(--gap);
+}
+
+.need .en {
+  align-self: flex-start;
+  color: var(--tool-ink);
+  font-family: var(--font-round);
+  font-size: calc(var(--size-lede) * 1.1);
+  letter-spacing: 0.02em;
+  background: linear-gradient(transparent 60%, var(--toy-soft) 60%);
+}
+
+.need h3 {
+  font-size: var(--size-title);
+  line-height: 1.2;
+}
+
+.need .bubble {
+  margin-top: calc(var(--gap) * 0.4);
+}
+
+.soil {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--gap) * 1.2);
+}
+
+.env {
+  padding: calc(var(--gap) * 0.7) var(--gap);
+  gap: calc(var(--gap) * 0.2);
+}
+
+.env b {
+  font-size: var(--size-lede);
+}
+
+.env:not([data-tone]) {
+  border-style: dashed;
+  background: var(--paper-2);
+  box-shadow: none;
+}

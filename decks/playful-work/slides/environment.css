@@ -1,0 +1,70 @@
+.rules-use {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--gap) * 0.7);
+}
+
+.use {
+  padding: calc(var(--gap) * 0.6) calc(var(--gap) * 0.8);
+  gap: calc(var(--gap) * 0.3);
+}
+
+.use[data-off] {
+  border-style: dashed;
+  background: var(--paper-2);
+  box-shadow: none;
+}
+
+.use[data-off] .chip {
+  --c-ink: var(--muted);
+}
+
+.use b {
+  font-size: var(--size-lede);
+}
+
+.rules-use .note {
+  grid-column: 1 / -1;
+}
+
+.house {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+  padding: var(--gap);
+  border: var(--rule) solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--offset) var(--offset) 0 var(--ink);
+}
+
+.roof {
+  color: var(--muted);
+}
+
+.facade {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.facade .pane {
+  min-height: calc(var(--gap) * 4.2);
+  justify-content: center;
+}
+
+.facade .pane b {
+  font-size: var(--size-body);
+}
+
+.tape {
+  position: absolute;
+  right: calc(var(--gap) * 0.5);
+  bottom: calc(var(--gap) * 0.4);
+  font-size: var(--size-caption);
+}
+
+.person {
+  align-self: flex-end;
+  font-size: var(--size-body);
+}

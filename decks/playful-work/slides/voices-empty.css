@@ -1,0 +1,28 @@
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.7);
+}
+
+.panes {
+  row-gap: calc(var(--gap) * 0.5);
+}
+
+.pane {
+  flex-direction: row;
+  align-items: center;
+  gap: calc(var(--gap) * 0.7);
+  padding-top: calc(var(--gap) * 0.85);
+  padding-bottom: calc(var(--gap) * 0.45);
+}
+
+.pane b {
+  flex: none;
+  width: 5.2em;
+  font-family: var(--font-round);
+  font-weight: 400;
+}
+
+.pane .bubble {
+  align-self: center;
+}

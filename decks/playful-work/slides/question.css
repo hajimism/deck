@@ -1,0 +1,43 @@
+.days {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  align-content: center;
+  gap: calc(var(--gap) * 0.9) calc(var(--gap) * 1.4);
+}
+
+.day {
+  gap: calc(var(--gap) * 0.8);
+  padding: calc(var(--gap) * 1.1) calc(var(--gap) * 1.2);
+}
+
+.checks {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.45);
+}
+
+.checks li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.7em;
+  align-items: baseline;
+  font-size: var(--size-lede);
+  line-height: 1.5;
+}
+
+.checks li::before {
+  content: "✓";
+  grid-row: span 2;
+  color: var(--both-ink);
+  font-weight: 800;
+}
+
+.checks[data-off] li::before {
+  content: "–";
+  color: var(--muted);
+}
+
+.checks .note {
+  grid-column: 2;
+}
