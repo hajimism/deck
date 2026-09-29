@@ -11,7 +11,7 @@
     },
   },
   "packages": {
-    "@hajimism/dek": ["@hajimism/dek@github:hajimism/dek#3b0299c", { "dependencies": { "zod": "^4.6.5" }, "bin": { "dek": "src/cli.ts" } }, "hajimism-dek-3b0299c", "sha512-RGyexiWIYWNZ93Qeeu1EoPMpX7CQ+g2EKVUnRYl8E8NPFq9dOARB1SRDvnxiXNBc4kAHWGZQr4fg9bWBeI32QQ=="],
+    "@hajimism/dek": ["@hajimism/dek@github:hajimism/dek#5e92445", { "dependencies": { "zod": "^4.6.5" }, "bin": { "dek": "src/cli.ts" } }, "hajimism-dek-5e92445", "sha512-1A3clhHKRFu1KLE+2SHdVuMRC/sjVxgxOUSoKmS61VjL6CDDPUmPMZhaEJyeOYcI/zZnI3VQE/QO6CbM/gEt4w=="],
 
     "playwright": ["playwright@1.63.0", "", { "dependencies": { "playwright-core": "1.63.0" }, "bin": { "playwright": "cli.js" } }, "sha512-+7ziBLidS4NaNCdt57SUDT+wYmmd5fmiQejUic/kb+YsYSCPyOOE9sebzMjNmQrsnNpDJqd4WHvV/8lfKfUDUg=="],
 
