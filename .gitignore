@@ -4,3 +4,4 @@ dist/
 .dek/server.json
 node_modules/
 refs/
+.dek/marks.json
