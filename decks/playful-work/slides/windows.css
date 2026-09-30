@@ -1,3 +1,16 @@
 .panes {
-  row-gap: calc(var(--gap) * 0.7);
+  row-gap: calc(var(--gap) * 0.9);
+}
+
+.pane {
+  gap: calc(var(--gap) * 0.35);
+  padding: calc(var(--gap) * 1.2) var(--gap) calc(var(--gap) * 0.8);
+}
+
+.pane b {
+  font-size: calc(var(--size-lede) * 1.15);
+}
+
+.pane .note {
+  font-size: var(--size-body);
 }
