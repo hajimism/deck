@@ -1,0 +1,38 @@
+.rewrites {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--gap);
+}
+
+.rewrite {
+  display: grid;
+  grid-template-columns: 0.7fr auto 1.6fr;
+  align-items: center;
+  gap: calc(var(--gap) * 0.8);
+}
+
+.rewrite .card {
+  justify-content: center;
+  height: 100%;
+  min-height: calc(var(--gap) * 6);
+  padding: var(--gap) calc(var(--gap) * 1.1);
+}
+
+.rewrite .card[data-tone="before"] h3 {
+  color: var(--before);
+  font-size: var(--size-title);
+  font-size: calc(var(--size-lede) * 1.3);
+}
+
+.rewrite .card[data-tone="after"] h3 {
+  font-size: calc(var(--size-lede) * 1.15);
+  line-height: 1.55;
+}
+
+.hint {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+  margin-top: calc(var(--gap) * 0.3);
+}

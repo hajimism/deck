@@ -1,0 +1,52 @@
+.sheet {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  gap: calc(var(--gap) * 0.6) var(--gap);
+  margin-bottom: calc(var(--gap) * 0.4);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.1);
+  padding: calc(var(--gap) * 0.6) calc(var(--gap) * 0.8);
+  border: var(--hair) solid var(--line);
+  border-radius: var(--radius-small);
+  background: var(--card);
+}
+
+.field .label {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.4);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--size-small);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.field .num {
+  font-size: var(--size-caption);
+}
+
+.field[data-kind="before"] {
+  border-style: dashed;
+  border-color: var(--before);
+  background: var(--before-soft);
+}
+
+.field[data-kind="after"] {
+  border-color: var(--delta-ink);
+  box-shadow: inset var(--heavy) 0 0 var(--delta);
+}
+
+.field[data-kind="pair"] {
+  justify-content: center;
+  background: var(--tape-soft);
+}
+
+.q {
+  font-weight: 800;
+}

@@ -1,0 +1,28 @@
+.ticket {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.4);
+  padding: var(--gap) calc(var(--gap) * 2);
+  border: var(--rule) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.ask {
+  font-size: var(--size-title);
+  font-weight: 800;
+}
+
+.blank-in {
+  display: inline-block;
+  min-width: 4em;
+  margin: 0 0.2em;
+  border-bottom: var(--heavy) solid var(--delta);
+  color: var(--delta-ink);
+}
+
+.end {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+}

@@ -1,0 +1,33 @@
+.widen {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 1.4);
+  width: calc(var(--cm) * 22);
+  margin-top: calc(var(--gap) * 3);
+}
+
+.widen .pin {
+  gap: 0;
+  line-height: 1.35;
+}
+
+.widen .pin b {
+  font-size: var(--size-lede);
+}
+
+.widen .pin small {
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.pin[data-at="pay"] { left: 22%; }
+.pin[data-at="value"] { left: 78%; }
+
+.widen .band {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 22%;
+  width: 56%;
+  background: var(--ink);
+}

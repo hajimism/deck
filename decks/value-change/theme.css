@@ -1,0 +1,804 @@
+/*
+ * value-change — a tape measure on drafting paper.
+ * The talk is about measuring sticks (物差し): whose scale a change is read on.
+ * So every page hangs under a ruler, and the page's own place in the talk is a tag on it.
+ * Colour rule:
+ *   - Tape yellow is the measuring stick itself: chapter doors, the cover, the closing,
+ *     and the one phrase to remember (.mark). Never body text.
+ *   - Gray is Before: the state as it is, the work as asked, the plain answer.
+ *   - Red is Δ, the change: After, the new tick on the scale, the value that was recognised.
+ *     Red is used for that and nothing else.
+ *   - Everything else is ink on paper, with hairline drafting boxes.
+ * Every page states its point as its heading, so the PDF reads without the talk.
+ */
+.slide {
+  --ink: #15161a;
+  --ink-2: #2a2c33;
+  --paper: #f4f3ef;
+  --paper-2: #e8e6df;
+  --card: #ffffff;
+  --white: #ffffff;
+  --tape: #ffc62a;
+  --tape-deep: #f2b100;
+  --tape-soft: #fff0bf;
+  --delta: #d9301c;
+  --delta-ink: #b3200e;
+  --delta-soft: #fbe2dc;
+  --before: #626570;
+  --before-soft: #e3e4e8;
+  --tick: rgb(21 22 26 / 0.55);
+  --tick-soft: rgb(21 22 26 / 0.22);
+  --grid: rgb(21 22 26 / 0.045);
+  --fg: var(--ink);
+  --bg: var(--paper);
+  --muted: #55575f;
+  --accent: var(--delta-ink);
+  --line: var(--ink);
+  --line-soft: #cfccc2;
+  --c: var(--ink);
+  --c-ink: var(--ink);
+  --c-soft: var(--paper-2);
+  --label: var(--muted);
+  --font-title: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  --font-body: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  --font-mono: "SF Mono", "JetBrains Mono", "Menlo", "Consolas", "Noto Sans Mono CJK JP", monospace;
+  --size-mega: 260px;
+  --size-hero: 80px;
+  --size-stat: 50px;
+  --size-title: 36px;
+  --size-lede: 19px;
+  --size-body: 16px;
+  --size-small: 14px;
+  --size-caption: 12px;
+  --gap: 24px;
+  --margin: 64px;
+  --ruler: 26px;
+  --cm: 40px;
+  --pad: 64px var(--margin) 56px;
+  --radius: 6px;
+  --radius-small: 3px;
+  --pill: 999px;
+  --hair: 1px;
+  --rule: 2px;
+  --heavy: 4px;
+  --rise: 12px;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-draw: cubic-bezier(0.65, 0, 0.25, 1);
+  --dur-rise: 0.55s;
+  --dur-draw: 1.2s;
+  --stagger: 0.07s;
+  --delay: 0s;
+  --step-transition: 0.45s var(--ease-out);
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: var(--pad);
+  /* The ruler: mm ticks, half-cm ticks, cm ticks, then a faint drafting grid under the page. */
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--line) var(--hair), transparent var(--hair)),
+    repeating-linear-gradient(90deg, var(--tick) 0 var(--hair), transparent var(--hair) var(--cm)),
+    repeating-linear-gradient(90deg, var(--tick) 0 var(--hair), transparent var(--hair) calc(var(--cm) / 2)),
+    repeating-linear-gradient(90deg, var(--tick-soft) 0 var(--hair), transparent var(--hair) calc(var(--cm) / 10)),
+    linear-gradient(var(--grid) var(--hair), transparent var(--hair)),
+    linear-gradient(90deg, var(--grid) var(--hair), transparent var(--hair));
+  background-size:
+    100% var(--ruler),
+    100% calc(var(--ruler) * 0.7),
+    100% calc(var(--ruler) * 0.45),
+    100% calc(var(--ruler) * 0.25),
+    var(--cm) var(--cm),
+    var(--cm) var(--cm);
+  background-position:
+    0 calc(var(--ruler) * -1 + var(--hair)),
+    var(--margin) 0,
+    var(--margin) 0,
+    var(--margin) 0,
+    var(--margin) var(--ruler),
+    var(--margin) var(--ruler);
+  background-repeat: no-repeat, repeat-x, repeat-x, repeat-x, repeat, repeat;
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: 1.7;
+  font-feature-settings: "palt";
+  counter-reset: folio var(--dek-slide-number) folios var(--dek-slide-count);
+}
+
+/* Tape fields: the cover, chapter doors, and the closing are printed on the tape itself. */
+.slide[data-bg="tape"] {
+  --bg: var(--tape);
+  --muted: #3b3524;
+  --accent: var(--ink);
+  --tick: rgb(21 22 26 / 0.75);
+  --tick-soft: rgb(21 22 26 / 0.35);
+  --grid: transparent;
+  --line-soft: rgb(21 22 26 / 0.25);
+}
+
+/* Running head, set small at the foot of every page. */
+.slide::before {
+  content: "価値の本質は変化である";
+  position: absolute;
+  left: var(--margin);
+  bottom: calc(var(--gap) * 0.9);
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+/* Folio: a tag hanging from the ruler at this page's place in the talk. */
+.slide::after {
+  content: counter(folio, decimal-leading-zero) " / " counter(folios);
+  position: absolute;
+  top: calc(var(--ruler) - var(--hair));
+  left: calc(var(--margin) + (100% - var(--margin) * 2) * (var(--dek-slide-number) - 1) / (var(--dek-slide-count) - 1));
+  translate: -50% 0;
+  padding: 0.2em 0.7em 0.25em;
+  border-radius: 0 0 var(--radius-small) var(--radius-small);
+  background: var(--ink);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.slide * {
+  box-sizing: border-box;
+}
+
+.slide p,
+.slide ol,
+.slide ul,
+.slide dl,
+.slide dd,
+.slide dt,
+.slide h2,
+.slide h3,
+.slide blockquote,
+.slide figure {
+  margin: 0;
+}
+
+.slide ol,
+.slide ul {
+  padding: 0;
+  list-style: none;
+}
+
+.slide b,
+.slide strong {
+  font-weight: 800;
+}
+
+.slide svg {
+  display: block;
+  overflow: visible;
+}
+
+/* Tones: a block sets data-tone and its children read --c, --c-ink, --c-soft. */
+.slide [data-tone="before"] {
+  --c: var(--before);
+  --c-ink: var(--before);
+  --c-soft: var(--before-soft);
+  --label: var(--c-ink);
+}
+
+.slide [data-tone="after"] {
+  --c: var(--delta);
+  --c-ink: var(--delta-ink);
+  --c-soft: var(--delta-soft);
+  --label: var(--c-ink);
+}
+
+.slide [data-tone="tape"] {
+  --c: var(--tape);
+  --c-ink: var(--ink);
+  --c-soft: var(--tape-soft);
+}
+
+.slide .slide-title {
+  font-family: var(--font-title);
+  font-size: var(--size-title);
+  font-weight: 800;
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* A section tag in mono, led by a short red measure bar. */
+.slide .kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-small);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.slide .kicker::before {
+  content: "";
+  width: calc(var(--gap) * 1.2);
+  height: var(--heavy);
+  background: var(--delta);
+}
+
+.slide[data-bg="tape"] .kicker::before {
+  background: var(--ink);
+}
+
+.slide .lede {
+  max-width: 46em;
+  color: var(--ink-2);
+  font-size: var(--size-lede);
+  line-height: 1.7;
+}
+
+.slide[data-bg="tape"] .lede {
+  color: var(--ink);
+}
+
+.slide .note {
+  color: var(--muted);
+  font-size: var(--size-small);
+  line-height: 1.65;
+}
+
+/* A mono label, like a dimension written on a drawing. */
+.slide .label {
+  color: var(--label);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.slide .source {
+  color: var(--muted);
+  font-size: var(--size-caption);
+}
+
+/* Tape highlighter for the phrase to remember. */
+.slide .mark {
+  padding: 0 0.15em;
+  background: linear-gradient(transparent 55%, var(--tape) 55%);
+  box-decoration-break: clone;
+}
+
+/* A drafting box: white, hairline ink, square corners, a tone bar on its left. */
+.slide .card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.35);
+  padding: calc(var(--gap) * 0.8) var(--gap);
+  border: var(--hair) solid var(--line);
+  border-radius: var(--radius-small);
+  background: var(--card);
+  box-shadow: inset var(--heavy) 0 0 var(--c-ink);
+}
+
+.slide .card:not([data-tone]) {
+  box-shadow: none;
+}
+
+.slide .card[data-tone="before"] {
+  border-style: dashed;
+  border-color: var(--before);
+  background: var(--before-soft);
+  color: var(--ink-2);
+  box-shadow: none;
+}
+
+.slide .card[data-tone="after"] {
+  border-color: var(--delta-ink);
+}
+
+.slide .card[data-fill] {
+  border-color: var(--c-ink);
+  background: var(--c-soft);
+}
+
+.slide .card h3 {
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+/* A small tag. */
+.slide .tag {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.15em 0.65em;
+  border: var(--hair) solid var(--c-ink);
+  border-radius: var(--radius-small);
+  color: var(--c-ink);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.slide .tag[data-fill] {
+  border-color: var(--c);
+  background: var(--c);
+  color: var(--white);
+}
+
+.slide .tag[data-fill][data-tone="tape"] {
+  color: var(--ink);
+}
+
+/* An index number in a square, like a callout on a drawing. */
+.slide .num {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 1.9em;
+  height: 1.9em;
+  border-radius: var(--radius-small);
+  background: var(--c-ink);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: var(--size-small);
+  font-weight: 800;
+}
+
+.slide .num[data-tone="tape"] {
+  color: var(--ink);
+  background: var(--tape);
+}
+
+/* The Δ badge: this is the change. */
+.slide .delta {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: var(--pill);
+  background: var(--delta);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* A number set large in mono. */
+.slide .stat {
+  color: var(--c-ink);
+  font-family: var(--font-mono);
+  font-size: var(--size-stat);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+/* What someone actually says: a quoted voice. */
+.slide .voice {
+  position: relative;
+  align-self: flex-start;
+  padding: 0.45em 0.9em;
+  border-radius: var(--radius);
+  background: var(--c-soft);
+  color: var(--c-ink);
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.slide .voice::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--gap) * 0.6);
+  bottom: calc(var(--gap) * -0.3);
+  border: calc(var(--gap) * 0.3) solid transparent;
+  border-top-color: var(--c-soft);
+  border-bottom: 0;
+}
+
+.slide .col {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+  min-width: 0;
+}
+
+.slide .stage {
+  position: relative;
+  min-height: 0;
+  min-width: 0;
+}
+
+/* A line to remember, printed across a strip of tape. */
+.slide .punch {
+  align-self: flex-start;
+  padding: 0.5em 1em 0.5em 1.1em;
+  background:
+    repeating-linear-gradient(90deg, var(--tick) 0 var(--hair), transparent var(--hair) calc(var(--cm) / 4)) top left / 100% calc(var(--gap) * 0.35) repeat-x,
+    var(--tape);
+  color: var(--ink);
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+/*
+ * A drawn scale: a bar with ticks, and marks placed on it.
+ * Put .pin children inside and position them with left in the slide's own CSS.
+ */
+.slide .scale {
+  position: relative;
+  height: calc(var(--gap) * 1.6);
+  border: var(--rule) solid var(--line);
+  border-radius: var(--radius-small);
+  background:
+    repeating-linear-gradient(90deg, var(--tick) 0 var(--hair), transparent var(--hair) var(--cm)) top left / 100% 60% repeat-x,
+    repeating-linear-gradient(90deg, var(--tick-soft) 0 var(--hair), transparent var(--hair) calc(var(--cm) / 5)) top left / 100% 30% repeat-x,
+    var(--tape);
+}
+
+.slide .pin {
+  position: absolute;
+  bottom: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--gap) * 0.2);
+  translate: -50% 0;
+  color: var(--c-ink);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.slide .pin::after {
+  content: "";
+  width: var(--rule);
+  height: calc(var(--gap) * 1.6 + var(--gap) * 0.5);
+  margin-bottom: calc(var(--gap) * -1.6 - var(--rule));
+  background: var(--c);
+}
+
+/* The route of the day, drawn on a tape: one segment per chapter. */
+.slide .rail {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border: var(--rule) solid var(--line);
+  border-radius: var(--radius-small);
+  background: var(--card);
+  counter-reset: stage;
+}
+
+.slide .rail li {
+  counter-increment: stage;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.25);
+  padding: calc(var(--gap) * 0.6) calc(var(--gap) * 0.7);
+  border-left: var(--hair) solid var(--line);
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.slide .rail li:first-child {
+  border-left: 0;
+}
+
+.slide .rail li::before {
+  content: counter(stage, decimal-leading-zero);
+  font-family: var(--font-mono);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.slide .rail li[data-now] {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.slide .rail li[data-now]::before {
+  color: var(--tape);
+}
+
+.slide .rail li[data-done] {
+  color: var(--muted);
+}
+
+/* SVG strokes that draw themselves as the slide arrives. Give the path pathLength="1". */
+.slide .trace {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.slide.is-current .trace {
+  animation: draw var(--dur-draw) var(--ease-draw) var(--delay) both;
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+/* Things rise in, one after another, when a slide arrives. */
+.slide.is-current .rise {
+  animation: rise var(--dur-rise) var(--ease-out) both;
+}
+
+.slide.is-current .rise:nth-child(2) { animation-delay: var(--stagger); }
+.slide.is-current .rise:nth-child(3) { animation-delay: calc(var(--stagger) * 2); }
+.slide.is-current .rise:nth-child(4) { animation-delay: calc(var(--stagger) * 3); }
+.slide.is-current .rise:nth-child(5) { animation-delay: calc(var(--stagger) * 4); }
+.slide.is-current .rise:nth-child(6) { animation-delay: calc(var(--stagger) * 5); }
+.slide.is-current .rise:nth-child(7) { animation-delay: calc(var(--stagger) * 6); }
+.slide.is-current .rise:nth-child(8) { animation-delay: calc(var(--stagger) * 7); }
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 var(--rise);
+  }
+}
+
+/* @layout cover
+<section class="slide" data-bg="tape" data-layout="cover">
+  <div class="col">
+    <p class="kicker">研修資料</p>
+    <h2 class="slide-title">価値の本質は変化である</h2>
+    <p class="lede">What it is about.</p>
+  </div>
+  <div class="stage">Figure</div>
+</section>
+*/
+.slide[data-layout="cover"] {
+  display: grid;
+  grid-template-columns: 6fr 5fr;
+  align-items: center;
+  gap: calc(var(--gap) * 2);
+  padding-top: calc(var(--ruler) + var(--gap) * 2);
+}
+
+.slide[data-layout="cover"] .slide-title {
+  font-size: var(--size-hero);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+/* @layout door
+<section class="slide" data-bg="tape" data-layout="door">
+  <p class="door-num">01</p>
+  <div class="col">
+    <p class="kicker">CHAPTER 1 / 5</p>
+    <h2 class="slide-title">The chapter's claim</h2>
+    <p class="lede">The question it answers.</p>
+  </div>
+  <ol class="rail">…five li, one with data-now…</ol>
+</section>
+*/
+.slide[data-layout="door"] {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  column-gap: calc(var(--gap) * 2.5);
+  row-gap: var(--gap);
+  padding-top: calc(var(--ruler) + var(--gap));
+  padding-bottom: calc(var(--gap) * 2.6);
+}
+
+.slide[data-layout="door"] .slide-title {
+  font-size: var(--size-stat);
+  line-height: 1.2;
+}
+
+.slide[data-layout="door"] .rail {
+  grid-column: 1 / -1;
+  background: transparent;
+}
+
+.slide[data-layout="door"] .rail li[data-done],
+.slide[data-layout="door"] .rail li:not([data-now]) {
+  color: var(--muted);
+}
+
+.slide[data-layout="door"] .rail li[data-now] {
+  color: var(--white);
+}
+
+/* A chapter numeral in mono, with a red Δ subscript cut into it. */
+.slide .door-num {
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: var(--size-mega);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.08em;
+}
+
+/* @layout default
+<section class="slide" data-layout="default">
+  <p class="kicker">SECTION</p>
+  <h2 class="slide-title">A heading that states the point</h2>
+  <div class="stage">
+    <div class="card" data-step="1">One point per beat</div>
+  </div>
+</section>
+*/
+.slide[data-layout="default"] {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.45);
+}
+
+.slide[data-layout="default"] > .stage {
+  flex: 1;
+  margin-top: calc(var(--gap) * 0.7);
+}
+
+/* @layout split
+<section class="slide" data-layout="split">
+  <div class="col">
+    <p class="kicker">SECTION</p>
+    <h2 class="slide-title">The claim</h2>
+    <p class="lede">Why it holds.</p>
+  </div>
+  <div class="stage">Figure</div>
+</section>
+*/
+.slide[data-layout="split"] {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: calc(var(--gap) * 2);
+  align-items: center;
+}
+
+/* @layout center
+<section class="slide" data-layout="center">
+  <p class="kicker">KEY</p>
+  <h2 class="slide-title">One sentence worth keeping</h2>
+</section>
+*/
+.slide[data-layout="center"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap);
+  text-align: center;
+}
+
+.slide[data-layout="center"] .slide-title {
+  font-size: var(--size-stat);
+  line-height: 1.3;
+}
+
+/* Beats: hidden things keep their box, so every beat has the same layout. */
+.slide.is-current [data-step] {
+  opacity: 0;
+  translate: 0 var(--rise);
+  transition: var(--step-transition);
+  transition-property: opacity, translate;
+}
+
+.slide.is-current [data-step].is-shown {
+  opacity: 1;
+  translate: none;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+::view-transition-old(slide) {
+  --step-transition: 0.22s ease both;
+  animation: fade-out var(--step-transition);
+}
+
+::view-transition-new(slide) {
+  --step-transition: 0.32s ease both;
+  animation: fade-in var(--step-transition);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide.is-current [data-step],
+  .slide.is-current .rise,
+  .slide.is-current .trace {
+    transition: none;
+    animation: none;
+  }
+
+  ::view-transition-old(slide),
+  ::view-transition-new(slide) {
+    animation: none;
+  }
+}
+
+/* ---- Shared parts used on several slides ---- */
+
+/*
+ * Before → After: two states and the Δ between them.
+ * <div class="shift"><div class="card" data-tone="before">…</div><span class="delta">Δ</span><div class="card" data-tone="after">…</div></div>
+ */
+.slide .shift {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .shift > .delta {
+  align-self: center;
+}
+
+/* A person in a story: an initial in a circle, then what they did. */
+.slide .who {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 2.4em;
+  height: 2.4em;
+  border: var(--rule) solid var(--c-ink);
+  border-radius: var(--pill);
+  background: var(--card);
+  color: var(--c-ink);
+  font-family: var(--font-mono);
+  font-size: var(--size-small);
+  font-weight: 800;
+}
+
+/* A blank to write in: a dotted rule the width of its box. */
+.slide .blank {
+  flex: 1;
+  min-height: calc(var(--gap) * 1.4);
+  border-bottom: var(--rule) dotted var(--line-soft);
+}
+
+/* An emotion curve of a journey: the SVG fills its box, steps sit under it. */
+.slide .journey {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: calc(var(--gap) * 0.4);
+}
+
+.slide .journey svg {
+  width: 100%;
+  height: 100%;
+}
+
+.slide .steps {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  gap: calc(var(--gap) * 0.3);
+  color: var(--ink-2);
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.slide .steps li[data-dip] {
+  color: var(--delta-ink);
+}

@@ -1,0 +1,66 @@
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.3);
+  margin-top: calc(var(--gap) * 0.6);
+  padding-top: calc(var(--gap) * 0.7);
+  border-top: var(--rule) solid var(--line);
+  font-size: var(--size-small);
+  font-weight: 600;
+}
+
+.meta div {
+  display: flex;
+  align-items: baseline;
+  gap: var(--gap);
+}
+
+.meta dt {
+  width: 3em;
+  color: var(--ink);
+}
+
+.gauge {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.9);
+  padding: calc(var(--gap) * 1.4) calc(var(--gap) * 1.3) calc(var(--gap) * 1.2);
+  border: var(--rule) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.gauge-q {
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.arc {
+  width: 100%;
+  height: auto;
+  margin-bottom: calc(var(--gap) * -0.6);
+  fill: none;
+  stroke: var(--delta);
+  stroke-width: var(--heavy);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.gauge .scale {
+  margin-top: calc(var(--gap) * 1.6);
+}
+
+.gauge .pin:first-child {
+  left: 15%;
+}
+
+.gauge .pin:last-child {
+  left: 85%;
+}
+
+.gauge-delta {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+  font-size: var(--size-lede);
+}

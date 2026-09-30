@@ -1,0 +1,101 @@
+.order {
+  display: flex;
+  gap: calc(var(--gap) * 0.4);
+  margin-top: calc(var(--gap) * 0.4);
+  counter-reset: order;
+}
+
+.order li {
+  flex: 1;
+  padding: calc(var(--gap) * 0.4) calc(var(--gap) * 0.7);
+  border: var(--hair) solid var(--line);
+  border-radius: var(--radius-small);
+  background: var(--card);
+  font-size: var(--size-small);
+  font-weight: 800;
+  counter-increment: order;
+}
+
+.order li::before {
+  content: counter(order) "  ";
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+.order li[data-now] {
+  border-color: var(--delta);
+  background: var(--delta);
+  color: var(--white);
+}
+
+.order li[data-now]::before {
+  color: var(--white);
+}
+
+.accounts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--gap) * 1.5);
+  margin-bottom: calc(var(--gap) * 0.5);
+}
+
+.account {
+  gap: calc(var(--gap) * 0.7);
+  padding: var(--gap);
+}
+
+.balance {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: calc(var(--gap) * 0.2);
+}
+
+.balance i {
+  height: calc(var(--gap) * 1.2);
+  border: var(--hair) dashed var(--before);
+  border-radius: var(--radius-small);
+}
+
+.balance[data-full] i {
+  border: 0;
+  background: var(--delta);
+}
+
+.cases {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.35);
+  font-size: var(--size-small);
+  line-height: 1.6;
+}
+
+.cases li {
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+.cases li::before {
+  content: "・";
+}
+
+.account .voice {
+  margin-top: auto;
+}
+
+.account[data-tone="before"] .voice {
+  --c-soft: var(--card);
+}
+
+.lesson {
+  gap: calc(var(--gap) * 0.2);
+  padding: calc(var(--gap) * 0.6) calc(var(--gap) * 0.8);
+  font-size: var(--size-small);
+}
+
+.lesson b {
+  font-size: var(--size-body);
+}
+
+.balance i {
+  height: calc(var(--gap) * 1.6);
+}

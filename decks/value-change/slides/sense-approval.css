@@ -1,0 +1,91 @@
+.lanes {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  align-content: center;
+  gap: calc(var(--gap) * 0.8);
+  --lead: calc(var(--gap) * 2.6);
+  --tail: calc(var(--gap) * 6);
+}
+
+.axis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0 var(--tail) 0 var(--lead);
+  border-bottom: var(--rule) solid var(--line);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+}
+
+.axis span {
+  padding: 0 0 calc(var(--gap) * 0.2) calc(var(--gap) * 0.3);
+  border-left: var(--hair) solid var(--line);
+}
+
+.lane {
+  display: grid;
+  grid-template-columns: var(--lead) minmax(0, 1fr) var(--tail);
+  align-items: center;
+}
+
+.track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.3);
+  min-height: calc(var(--gap) * 6);
+  align-items: stretch;
+}
+
+.seg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--gap) * 0.1);
+  padding: calc(var(--gap) * 0.4) calc(var(--gap) * 0.6);
+  border: var(--hair) dashed var(--before);
+  border-radius: var(--radius-small);
+  background: var(--before-soft);
+  font-size: var(--size-small);
+  line-height: 1.45;
+}
+
+.seg span {
+  color: var(--muted);
+  font-size: var(--size-caption);
+}
+
+.seg[data-at="0"] { grid-column: 1; }
+.seg[data-at="1"] { grid-column: 2; }
+.seg[data-at="2"] { grid-column: 3; }
+.seg[data-at="3"] { grid-column: 4; }
+
+.lane:last-child .seg {
+  border-style: solid;
+  border-color: var(--line);
+  background: var(--card);
+}
+
+.seg[data-done] {
+  border-style: solid;
+  border-color: var(--line);
+  background: var(--ink);
+  color: var(--white);
+}
+
+.seg[data-done] span {
+  color: var(--paper-2);
+}
+
+.lane:last-child .seg[data-done] {
+  border-color: var(--delta-ink);
+  background: var(--delta-ink);
+}
+
+.cost {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: calc(var(--gap) * 0.2);
+}

@@ -1,0 +1,40 @@
+.rule {
+  margin-top: calc(var(--gap) * 0.3);
+}
+
+.frame {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.7);
+}
+
+.step {
+  gap: calc(var(--gap) * 0.3);
+  padding: calc(var(--gap) * 0.8) var(--gap);
+}
+
+.step-head {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+  font-family: var(--font-mono);
+  font-size: var(--size-title);
+  line-height: 1.2;
+}
+
+.step[data-tone="before"] .step-head b {
+  color: var(--before);
+}
+
+.step[data-tone="after"] .step-head b {
+  color: var(--delta-ink);
+}
+
+.trap {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+  color: var(--muted);
+  font-size: var(--size-small);
+  font-weight: 700;
+}

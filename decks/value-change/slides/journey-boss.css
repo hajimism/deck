@@ -1,0 +1,86 @@
+.journey {
+  grid-template-rows: auto auto;
+  align-content: center;
+}
+
+.plot {
+  position: relative;
+}
+
+.plot svg {
+  height: auto;
+}
+
+.plot line[data-kind="mid"] {
+  stroke: var(--line-soft);
+  stroke-width: var(--rule);
+  stroke-dasharray: 6 6;
+}
+
+.plot path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: var(--heavy);
+  stroke-linecap: round;
+}
+
+.plot path[data-line="fix"] {
+  stroke: var(--delta);
+  stroke-dasharray: 10 8;
+}
+
+.plot circle {
+  fill: var(--card);
+  stroke: var(--ink);
+  stroke-width: var(--rule);
+}
+
+.plot circle[data-dip] {
+  fill: var(--before);
+  stroke: var(--before);
+}
+
+.axis-label {
+  position: absolute;
+  inset: 0 auto 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 700;
+}
+
+.callout {
+  position: absolute;
+  padding: calc(var(--gap) * 0.45) calc(var(--gap) * 0.8);
+  background: var(--card);
+  font-size: var(--size-small);
+  line-height: 1.5;
+}
+
+.callout b {
+  display: block;
+  font-size: var(--size-body);
+}
+
+.callout[data-kind="dip"] {
+  left: 64%;
+  top: 70%;
+  border-left: var(--heavy) solid var(--before);
+}
+
+.callout[data-kind="fix"] {
+  left: 31%;
+  top: 0;
+  border-left: var(--heavy) solid var(--delta);
+}
+
+.callout[data-kind="fix"] b {
+  color: var(--delta-ink);
+}
+
+.steps li {
+  padding-top: calc(var(--gap) * 0.4);
+  border-top: var(--rule) solid var(--line);
+}

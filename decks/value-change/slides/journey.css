@@ -1,0 +1,111 @@
+.journey {
+  grid-template-rows: auto auto;
+  align-content: center;
+}
+
+.plot {
+  position: relative;
+}
+
+.plot svg {
+  height: auto;
+}
+
+.plot line[data-kind="mid"] {
+  stroke: var(--line-soft);
+  stroke-width: var(--rule);
+  stroke-dasharray: 6 6;
+}
+
+.plot path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: var(--heavy);
+  stroke-linecap: round;
+}
+
+.plot circle {
+  fill: var(--card);
+  stroke: var(--ink);
+  stroke-width: var(--rule);
+}
+
+.plot circle[data-dip] {
+  fill: var(--delta);
+  stroke: var(--delta);
+}
+
+.axis-label {
+  position: absolute;
+  inset: 0 auto 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 700;
+}
+
+.callout {
+  position: absolute;
+  left: 71%;
+  top: 0;
+  padding: calc(var(--gap) * 0.5) calc(var(--gap) * 0.8);
+  border-left: var(--heavy) solid var(--delta);
+  background: var(--card);
+  font-size: var(--size-small);
+  line-height: 1.5;
+}
+
+.callout b {
+  display: block;
+  color: var(--delta-ink);
+  font-size: var(--size-lede);
+}
+
+.steps li {
+  padding-top: calc(var(--gap) * 0.4);
+  border-top: var(--rule) solid var(--line);
+}
+
+.how {
+  display: flex;
+  gap: calc(var(--gap) * 1.2);
+  margin-top: calc(var(--gap) * 0.2);
+  font-weight: 700;
+}
+
+.how li {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.4);
+}
+
+.how li + li::before {
+  content: "→";
+  margin-right: calc(var(--gap) * 0.4);
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+.example {
+  position: absolute;
+  left: 0;
+  top: calc(var(--gap) * -2);
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+  color: var(--ink-2);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.plot {
+  margin-top: calc(var(--gap) * 2.2);
+  padding-top: calc(var(--gap) * 0.6);
+  border-top: var(--hair) dashed var(--line-soft);
+}
+
+.axis-label {
+  top: calc(var(--gap) * 0.6);
+}

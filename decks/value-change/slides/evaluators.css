@@ -1,0 +1,43 @@
+.fork {
+  display: grid;
+  grid-template-columns: 0.7fr 1fr 1fr;
+  align-content: center;
+  gap: calc(var(--gap) * 1.2);
+  align-items: stretch;
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--gap) * 0.4);
+  padding-right: var(--gap);
+  border-right: var(--rule) solid var(--line);
+}
+
+.root .card {
+  padding: var(--gap);
+  background: var(--tape);
+  font-size: var(--size-lede);
+}
+
+.branch {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.branch .card {
+  padding: calc(var(--gap) * 0.7) calc(var(--gap) * 0.9);
+}
+
+.branch .card[data-tone="before"] {
+  font-size: var(--size-small);
+}
+
+.role {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+  font-size: var(--size-lede);
+}

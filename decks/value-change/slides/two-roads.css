@@ -1,0 +1,84 @@
+.roads {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--gap) * 1.5);
+  margin-bottom: calc(var(--gap) * 1.3);
+}
+
+.road-wrap {
+  position: relative;
+  display: flex;
+}
+
+.road {
+  flex: 1;
+  gap: calc(var(--gap) * 0.55);
+  padding: calc(var(--gap) * 0.9) calc(var(--gap) * 1.2);
+}
+
+.focus {
+  position: absolute;
+  inset: calc(var(--gap) * -0.4);
+  border: var(--heavy) solid var(--delta);
+  border-radius: var(--radius);
+}
+
+.road-head {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.2);
+}
+
+.road-head h3 {
+  font-size: var(--size-title);
+  line-height: 1.25;
+}
+
+.road-head .tag {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.chain {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.7);
+  margin: calc(var(--gap) * 0.1) 0;
+}
+
+.chain li {
+  position: relative;
+  padding: calc(var(--gap) * 0.3) calc(var(--gap) * 0.7);
+  border: var(--hair) solid var(--line);
+  border-radius: var(--radius-small);
+  background: var(--card);
+  font-weight: 700;
+}
+
+.chain li + li::before {
+  content: "↓";
+  position: absolute;
+  left: calc(var(--gap) * 0.9);
+  top: calc(var(--gap) * -0.75);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-small);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.chain li[data-first] {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.strength {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.2);
+  margin-top: auto;
+  padding-top: calc(var(--gap) * 0.6);
+  border-top: var(--hair) solid var(--line-soft);
+}

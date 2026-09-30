@@ -1,0 +1,63 @@
+.formula {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+  margin-top: calc(var(--gap) * 0.3);
+}
+
+.formula .term {
+  padding: 0.25em 0.8em;
+  border: var(--rule) solid var(--line);
+  border-radius: var(--radius-small);
+  background: var(--card);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.formula .term[data-tone] {
+  border-color: var(--delta);
+  background: var(--delta);
+  color: var(--white);
+}
+
+.formula .op {
+  font-family: var(--font-mono);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.formula .note {
+  margin-left: calc(var(--gap) * 0.5);
+}
+
+.cases {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gap);
+}
+
+.case {
+  padding: var(--gap);
+}
+
+.case .score {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: calc(var(--gap) * 0.5);
+  border-top: var(--hair) solid var(--line-soft);
+}
+
+.closing-line {
+  margin-top: calc(var(--gap) * 0.5);
+  font-weight: 700;
+}
+
+.case .voice {
+  margin-top: auto;
+}
+
+.case .score {
+  margin-top: calc(var(--gap) * 0.6);
+}
