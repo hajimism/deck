@@ -3,13 +3,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "dek",
-    "lint": "dek lint --visual",
-    "build": "dek build --root-dist && dek pdf --root-dist && bun scripts/index.ts",
+    "dev": "dekc",
+    "lint": "dekc lint --visual",
+    "build": "dekc build --root-dist && dekc pdf --root-dist && bun scripts/index.ts",
     "setup": "playwright install chromium"
   },
   "devDependencies": {
-    "@hajimism/dek": "github:hajimism/dek",
+    "@hajimism/dek": "^0.1.0",
     "playwright": "^1.63.0"
   }
 }
