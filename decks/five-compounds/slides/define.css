@@ -66,6 +66,10 @@
   font-weight: 700;
 }
 
+.label-bg {
+  fill: var(--bg);
+}
+
 .motto {
   display: flex;
   gap: calc(var(--gap) * 0.5);

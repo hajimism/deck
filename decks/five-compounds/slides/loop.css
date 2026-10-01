@@ -35,8 +35,8 @@
   justify-content: center;
   align-self: stretch;
   text-align: center;
-  --seal-box: 120px;
-  --size-seal: 80px;
+  --seal-box: var(--seal-box-chance);
+  --size-seal: var(--size-seal-chance);
 }
 
 .chance .label {
@@ -73,8 +73,8 @@
   border-top: var(--hair) dashed var(--line-soft);
   font-size: var(--size-small);
   line-height: 1.6;
-  --seal-box: 64px;
-  --size-seal: 40px;
+  --seal-box: var(--seal-box-booster);
+  --size-seal: var(--size-seal-booster);
 }
 
 .booster b {
@@ -135,4 +135,8 @@
   --arc-col: 260px;
   --seal-box: 76px;
   --size-seal: 48px;
+  --seal-box-chance: 120px;
+  --size-seal-chance: 80px;
+  --seal-box-booster: 64px;
+  --size-seal-booster: 40px;
 }

@@ -1,3 +1,8 @@
+.slide {
+  --seal-box-triple: 36px;
+  --size-seal-triple: 20px;
+}
+
 .ask {
   display: grid;
   gap: calc(var(--gap) * 0.35);
@@ -58,8 +63,8 @@
   gap: calc(var(--gap) * 0.8);
   padding: 0;
   list-style: none;
-  --seal-box: 36px;
-  --size-seal: 20px;
+  --seal-box: var(--seal-box-triple);
+  --size-seal: var(--size-seal-triple);
 }
 
 .triple li {

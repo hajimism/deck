@@ -1,3 +1,7 @@
+.slide {
+  --live-soft-odd: color-mix(in srgb, var(--live-soft) 70%, var(--white));
+}
+
 .stage {
   display: flex;
   flex-direction: column;
@@ -53,5 +57,5 @@
 }
 
 .map tbody tr:nth-child(odd) .move {
-  background: color-mix(in srgb, var(--live-soft) 70%, var(--white));
+  background: var(--live-soft-odd);
 }
