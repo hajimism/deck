@@ -1,0 +1,54 @@
+.slide .define {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slide .define .slide-title {
+  font-size: var(--size-stat);
+  line-height: 1.6;
+}
+
+.slide .part {
+  padding: 0 0.12em;
+  border-bottom: var(--heavy) solid var(--ai-5);
+  box-decoration-break: clone;
+}
+
+.slide .part[data-side="self"] {
+  background: var(--ai-1);
+  color: var(--ai-6);
+}
+
+.slide .part[data-side="place"] {
+  border-bottom-style: dashed;
+  border-bottom-color: var(--ai-3);
+  color: var(--ink-2);
+}
+
+.slide .sides {
+  gap: var(--gap);
+}
+
+.slide .side {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  align-items: center;
+  gap: calc(var(--gap) * 0.6);
+  padding: calc(var(--gap) * 0.6) var(--gap);
+  border-left: var(--heavy) solid var(--c);
+  border-radius: 0 var(--radius-small) var(--radius-small) 0;
+  background: var(--c-soft);
+}
+
+.slide .side-name {
+  color: var(--c-ink);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.slide .guts {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+}

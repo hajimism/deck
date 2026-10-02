@@ -1,0 +1,45 @@
+.slide .stage .card {
+  justify-content: flex-start;
+  gap: calc(var(--gap) * 0.8);
+  font-size: var(--size-lede);
+  padding: calc(var(--gap) * 1.2) var(--gap);
+}
+
+.slide .stage .card h3 {
+  font-size: calc(var(--size-lede) * 1.3);
+}
+
+.slide .stage .card .num {
+  width: 2.4em;
+  height: 2.4em;
+  font-size: var(--size-lede);
+}
+
+.slide .stage .card .note {
+  padding-top: calc(var(--gap) * 0.6);
+  border-top: var(--hair) dashed var(--line);
+  font-size: var(--size-body);
+}
+
+.slide .pair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--gap) * 0.6);
+  margin-block: calc(var(--gap) * 0.3);
+}
+
+.slide .pair .voice {
+  font-size: var(--size-body);
+}
+
+.slide .pair .voice[data-tone="pale"] {
+  text-decoration: line-through;
+}
+
+.slide[data-layout="default"] > .stage {
+  flex: none;
+}
+
+.slide .punch {
+  margin-top: auto;
+}

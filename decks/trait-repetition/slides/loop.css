@@ -1,0 +1,118 @@
+.slide {
+  --node-w: 190px;
+}
+
+.slide .deepen {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.4);
+}
+
+.slide .deepen .dye {
+  height: calc(var(--gap) * 0.7);
+}
+
+.slide .cycle {
+  position: relative;
+  aspect-ratio: 600 / 560;
+  width: 100%;
+}
+
+.slide .cycle svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.slide .cycle [data-kind="ring"] {
+  fill: var(--ai-1);
+  stroke: var(--ai-2);
+  stroke-width: 1;
+}
+
+.slide .cycle [data-kind="arc"] {
+  fill: none;
+  stroke: var(--ai-5);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.slide .cycle [data-kind="head"] {
+  fill: var(--ai-5);
+}
+
+.slide .cycle [data-kind="spark"] {
+  fill: var(--kari);
+  stroke: var(--white);
+  stroke-width: 3;
+}
+
+.slide .cycle [data-kind="join"] {
+  fill: none;
+  stroke: var(--ben);
+  stroke-width: 4;
+  stroke-dasharray: 8 8;
+}
+
+.slide .node {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: var(--node-w);
+  padding: calc(var(--gap) * 0.45) calc(var(--gap) * 0.5);
+  border: var(--rule) solid var(--c);
+  border-radius: var(--radius);
+  background: var(--card);
+  translate: -50% -50%;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.slide .node b {
+  color: var(--c-ink);
+  font-size: var(--size-lede);
+}
+
+.slide .node span {
+  color: var(--muted);
+  font-size: var(--size-small);
+}
+
+.slide .node[data-at="top"] {
+  left: 50%;
+  top: 14.3%;
+  background: var(--kari-soft);
+}
+
+.slide .node[data-at="right"] { left: 83.3%; top: 50%; }
+.slide .node[data-at="bottom"] { left: 50%; top: 85.7%; }
+.slide .node[data-at="left"] { left: 16.7%; top: 50%; }
+
+.slide .node[data-at="forced"] {
+  left: 90%;
+  top: 5%;
+  width: auto;
+  white-space: nowrap;
+  border-style: dashed;
+  background: var(--ben-soft);
+}
+
+.slide .core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--gap) * 0.2);
+  translate: -50% -50%;
+  text-align: center;
+}
+
+.slide .core b {
+  color: var(--ai-6);
+  font-size: calc(var(--size-title) * 1.05);
+  line-height: 1.25;
+}

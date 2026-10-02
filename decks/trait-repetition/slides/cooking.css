@@ -1,0 +1,50 @@
+.slide .kitchen {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(var(--gap) * 1.5);
+}
+
+.slide .panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--gap);
+  padding: var(--gap);
+  border: var(--hair) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.slide .panel > .label {
+  --c-ink: var(--muted);
+  font-size: var(--size-small);
+}
+
+.slide .meter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: calc(var(--gap) * 0.35) var(--gap);
+}
+
+.slide .who-line {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+  font-weight: 800;
+}
+
+.slide .meter .bar {
+  height: calc(var(--gap) * 1.2);
+}
+
+.slide .meter .stat {
+  min-width: 4.2em;
+  font-size: calc(var(--size-stat) * 0.75);
+  text-align: right;
+}
+
+.slide .bar[data-v="full"] { --v: 1; }
+.slide .bar[data-v="quarter"] { --v: 0.25; }
+.slide .bar[data-v="tenth"] { --v: 0.1; }

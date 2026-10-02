@@ -1,0 +1,21 @@
+.slide .rows {
+  --cols: minmax(0, 5fr) auto minmax(0, 4fr);
+  align-content: center;
+}
+
+.slide .rows li {
+  padding-block: var(--gap);
+  font-size: var(--size-lede);
+}
+
+.slide .rows li b {
+  color: var(--ai-5);
+  font-size: calc(var(--size-lede) * 1.15);
+}
+
+.slide .deepen {
+  width: calc(var(--gap) * 6);
+  height: calc(var(--gap) * 0.9);
+  border-radius: var(--pill);
+  clip-path: polygon(0 35%, 88% 35%, 88% 0, 100% 50%, 88% 100%, 88% 65%, 0 65%);
+}

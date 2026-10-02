@@ -1,0 +1,45 @@
+.slide .summary {
+  display: grid;
+  gap: calc(var(--gap) * 0.4);
+  margin-top: calc(var(--gap) * 0.4);
+  text-align: left;
+}
+
+.slide .summary li {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  padding: calc(var(--gap) * 0.45) calc(var(--gap) * 1.2) calc(var(--gap) * 0.45) calc(var(--gap) * 0.5);
+  border-radius: var(--radius-small);
+  background: var(--ai-1);
+}
+
+.slide .summary p {
+  display: flex;
+  flex-direction: column;
+}
+
+.slide .summary b {
+  font-size: var(--size-lede);
+  line-height: 1.4;
+}
+
+/* Each point is a deeper dip than the one before. */
+.slide .step-no {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: calc(var(--gap) * 2);
+  height: calc(var(--gap) * 2);
+  border-radius: var(--radius-small);
+  background: var(--ai-2);
+  color: var(--ai-6);
+  font-family: var(--font-mono);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.slide .summary li:nth-child(2) .step-no { background: var(--ai-3); }
+.slide .summary li:nth-child(3) .step-no { background: var(--ai-4); color: var(--white); }
+.slide .summary li:nth-child(4) .step-no { background: var(--ai-5); color: var(--white); }
+.slide .summary li:nth-child(5) .step-no { background: var(--ai-6); color: var(--white); }

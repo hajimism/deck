@@ -1,0 +1,50 @@
+.slide .slide-title {
+  font-size: var(--size-stat);
+  line-height: 1.35;
+}
+
+.slide .series {
+  display: grid;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .series li {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.15);
+  padding: calc(var(--gap) * 0.7) var(--gap);
+  border: var(--hair) solid var(--line);
+  border-left: var(--heavy) solid var(--ai-4);
+  border-radius: var(--radius-small);
+  background: var(--card);
+  color: var(--ai-2);
+}
+
+.slide .series .label {
+  --c-ink: var(--ai-2);
+}
+
+.slide .series .note {
+  color: var(--ai-2);
+}
+
+.slide .series li[data-now] {
+  border-left-color: var(--kari);
+  background: var(--white);
+  color: var(--ai-6);
+}
+
+.slide .series li[data-now] .label,
+.slide .series li[data-now] .note {
+  --c-ink: var(--ai-5);
+  color: var(--ai-5);
+}
+
+.slide .series li:last-child {
+  border-style: dashed;
+  border-left-style: solid;
+}
+
+.slide .series b {
+  font-size: var(--size-lede);
+}

@@ -1,0 +1,66 @@
+.slide .why {
+  display: grid;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .why div {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.6);
+  font-weight: 700;
+}
+
+.slide .why dd {
+  margin: 0;
+}
+
+.slide .why .tag {
+  min-width: 9em;
+  justify-content: center;
+}
+
+.slide .books {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.slide .books .task {
+  --c-ink: var(--muted);
+  font-size: var(--size-small);
+}
+
+.slide .book {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: calc(var(--gap) * 0.5) var(--gap);
+  padding: var(--gap);
+  border: var(--hair) solid var(--line);
+  border-left: var(--heavy) solid var(--c);
+  border-radius: var(--radius-small);
+  background: var(--card);
+}
+
+.slide .who-line,
+.slide .result {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+  font-size: var(--size-lede);
+}
+
+.slide .result {
+  color: var(--c-ink);
+  font-weight: 800;
+}
+
+.slide .row-label {
+  color: var(--muted);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.slide .bar[data-v="high"] { --v: 0.85; }
+.slide .bar[data-v="low"] { --v: 0.25; }

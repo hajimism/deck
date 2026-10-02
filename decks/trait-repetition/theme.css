@@ -1,0 +1,818 @@
+/*
+ * trait-repetition — indigo, dipped again and again.
+ * The talk says a trait is the residue of repetition. Indigo cloth works the same way:
+ * one dip leaves a pale blue, a hundred dips leave navy. So depth of indigo means count.
+ * Colour rule:
+ *   - The indigo scale (--ai-1 … --ai-6) is repetition: the deeper, the more often done.
+ *     凸, 黒字, and the loop are drawn in it.
+ *   - Bengara red-brown is the other side: 凹, 赤字, the effort that runs against the grain.
+ *     It is used for that and nothing else.
+ *   - Kariyasu yellow marks the one phrase to remember. Never a fill for a whole box.
+ *   - Everything else is ink on unbleached white.
+ * The selvedge at the top of every page is dyed as far as the talk has gone.
+ * Every page states its point as its heading, so the PDF reads without the talk.
+ */
+.slide {
+  --ai-1: #eef3f6;
+  --ai-2: #cfdfe9;
+  --ai-3: #8fb2ca;
+  --ai-4: #3f6d96;
+  --ai-5: #24507e;
+  --ai-6: #142a4c;
+  --ink: #16202e;
+  --ink-2: #34404f;
+  --paper: #fafbfa;
+  --card: #ffffff;
+  --white: #ffffff;
+  --ben: #b0442a;
+  --ben-ink: #963520;
+  --ben-soft: #f6e2da;
+  --kari: #f2c94c;
+  --kari-soft: #fbedb8;
+  --fg: var(--ink);
+  --bg: var(--paper);
+  --accent: var(--ai-5);
+  --white-weave: rgb(255 255 255 / 0.025);
+  --white-faint: rgb(255 255 255 / 0.12);
+  --white-line: rgb(255 255 255 / 0.25);
+  --field-ai:
+    repeating-linear-gradient(90deg, var(--white-weave) 0 var(--hair), transparent var(--hair) 6px),
+    radial-gradient(120% 90% at 85% 10%, var(--ai-5), transparent 60%);
+  --muted: #5b6574;
+  --line: var(--ai-2);
+  --line-strong: var(--ai-5);
+  --c: var(--ai-5);
+  --c-ink: var(--ai-5);
+  --c-soft: var(--ai-1);
+  --font-title: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  --font-body: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  --font-serif: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif CJK JP", "Noto Serif JP", serif;
+  --font-mono: "SF Mono", "JetBrains Mono", "Menlo", "Consolas", "Noto Sans Mono CJK JP", monospace;
+  --size-mega: 200px;
+  --size-hero: 84px;
+  --size-stat: 48px;
+  --size-title: 36px;
+  --size-lede: 19px;
+  --size-body: 16px;
+  --size-small: 14px;
+  --size-caption: 12px;
+  --gap: 24px;
+  --margin: 64px;
+  --selvedge: 8px;
+  --pad: 60px var(--margin) 56px;
+  --radius: 12px;
+  --radius-small: 6px;
+  --pill: 999px;
+  --hair: 1px;
+  --rule: 2px;
+  --heavy: 6px;
+  --rise: 14px;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-draw: cubic-bezier(0.65, 0, 0.25, 1);
+  --dur-rise: 0.6s;
+  --dur-draw: 1.4s;
+  --dur-dip: 0.9s;
+  --stagger: 0.08s;
+  --delay: 0s;
+  --step-transition: 0.5s var(--ease-out);
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: var(--pad);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: 1.7;
+  font-feature-settings: "palt";
+  counter-reset: folio var(--dek-slide-number) folios var(--dek-slide-count);
+}
+
+/* Indigo fields: the cover, chapter doors, and the closing are cloth that has been dipped many times. */
+.slide[data-bg="ai"] {
+  --bg: var(--ai-6);
+  --fg: var(--white);
+  --muted: var(--ai-3);
+  --line: var(--white-faint);
+  --card: rgb(255 255 255 / 0.06);
+  background: var(--field-ai), var(--bg);
+}
+
+/* The selvedge: a strip at the top, dyed as far as the talk has gone. */
+.slide::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: var(--selvedge);
+  background:
+    linear-gradient(90deg, var(--ai-3), var(--ai-6)) 0 0 / calc(100% * var(--dek-slide-number) / var(--dek-slide-count)) 100% no-repeat,
+    var(--ai-1);
+}
+
+.slide[data-bg="ai"]::before {
+  background:
+    linear-gradient(90deg, var(--ai-3), var(--white)) 0 0 / calc(100% * var(--dek-slide-number) / var(--dek-slide-count)) 100% no-repeat,
+    var(--white-faint);
+}
+
+/* Running head and folio, set small at the foot of every page. */
+.slide::after {
+  content: "仕事のきほん 第2回　個性の本質は反復である　　" counter(folio, decimal-leading-zero) " / " counter(folios);
+  position: absolute;
+  right: var(--margin);
+  bottom: calc(var(--gap) * 0.9);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  white-space: pre;
+}
+
+.slide * {
+  box-sizing: border-box;
+}
+
+.slide p,
+.slide ol,
+.slide ul,
+.slide dl,
+.slide dd,
+.slide dt,
+.slide h2,
+.slide h3,
+.slide blockquote,
+.slide figure {
+  margin: 0;
+}
+
+.slide ol,
+.slide ul {
+  padding: 0;
+  list-style: none;
+}
+
+.slide b,
+.slide strong {
+  font-weight: 800;
+}
+
+.slide svg {
+  display: block;
+  overflow: visible;
+}
+
+/* Tones: a block sets data-tone and its children read --c, --c-ink, --c-soft. */
+.slide [data-tone="deep"] {
+  --c: var(--ai-5);
+  --c-ink: var(--ai-5);
+  --c-soft: var(--ai-1);
+}
+
+.slide [data-tone="pale"] {
+  --c: var(--ai-3);
+  --c-ink: var(--muted);
+  --c-soft: var(--ai-1);
+}
+
+.slide [data-tone="ben"] {
+  --c: var(--ben);
+  --c-ink: var(--ben-ink);
+  --c-soft: var(--ben-soft);
+}
+
+.slide [data-tone="kari"] {
+  --c: var(--kari);
+  --c-ink: var(--ink);
+  --c-soft: var(--kari-soft);
+}
+
+.slide .slide-title {
+  font-family: var(--font-title);
+  font-size: var(--size-title);
+  font-weight: 800;
+  line-height: 1.34;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* A section tag: a small dyed swatch, then the words. */
+.slide .kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  color: var(--ai-4);
+  font-size: var(--size-small);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.slide .kicker::before {
+  content: "";
+  width: calc(var(--gap) * 1.4);
+  height: calc(var(--gap) * 0.5);
+  border-radius: var(--hair);
+  background: linear-gradient(90deg, var(--ai-2), var(--ai-3) 33%, var(--ai-4) 33% 66%, var(--ai-6) 66%);
+}
+
+.slide[data-bg="ai"] .kicker {
+  color: var(--ai-2);
+}
+
+.slide .lede {
+  max-width: 48em;
+  color: var(--ink-2);
+  font-size: var(--size-lede);
+  line-height: 1.7;
+}
+
+.slide[data-bg="ai"] .lede {
+  color: var(--ai-2);
+}
+
+.slide .note {
+  color: var(--muted);
+  font-size: var(--size-small);
+  line-height: 1.65;
+}
+
+.slide .label {
+  color: var(--c-ink);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+/* Kariyasu highlighter for the phrase to remember. */
+.slide .mark {
+  padding: 0 0.15em;
+  background: linear-gradient(transparent 58%, var(--kari) 58%);
+  box-decoration-break: clone;
+}
+
+.slide[data-bg="ai"] .mark,
+.slide .punch .mark {
+  background: none;
+  color: var(--kari);
+}
+
+/* A panel of plain cotton, edged on top in its tone. */
+.slide .card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.35);
+  padding: calc(var(--gap) * 0.8) var(--gap);
+  border: var(--hair) solid var(--line);
+  border-top: var(--heavy) solid var(--c);
+  border-radius: var(--radius-small);
+  background: var(--card);
+}
+
+.slide .card:not([data-tone]) {
+  border-top: var(--hair) solid var(--line);
+}
+
+.slide .card[data-fill] {
+  border-color: var(--c);
+  background: var(--c-soft);
+}
+
+.slide .card h3 {
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.slide .tag {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.12em 0.7em;
+  border: var(--hair) solid var(--c);
+  border-radius: var(--pill);
+  color: var(--c-ink);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.slide .tag[data-fill] {
+  background: var(--c);
+  color: var(--white);
+}
+
+.slide .tag[data-fill][data-tone="kari"] {
+  color: var(--ink);
+}
+
+.slide .num {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 1.9em;
+  height: 1.9em;
+  border-radius: var(--pill);
+  background: var(--c);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: var(--size-small);
+  font-weight: 800;
+}
+
+.slide [data-tone="pale"] .num,
+.slide .num[data-tone="pale"] {
+  color: var(--ai-6);
+}
+
+.slide .stat {
+  color: var(--c-ink);
+  font-family: var(--font-mono);
+  font-size: var(--size-stat);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+/* What someone actually says. */
+.slide .voice {
+  position: relative;
+  align-self: flex-start;
+  padding: 0.45em 0.95em;
+  border-radius: var(--radius);
+  background: var(--c-soft);
+  color: var(--c-ink);
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.slide .voice::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--gap) * 0.7);
+  bottom: calc(var(--gap) * -0.3);
+  border: calc(var(--gap) * 0.3) solid transparent;
+  border-top-color: var(--c-soft);
+  border-bottom: 0;
+}
+
+/* A person in a story: an initial in a circle. */
+.slide .who {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 2.4em;
+  height: 2.4em;
+  border: var(--rule) solid var(--c);
+  border-radius: var(--pill);
+  background: var(--card);
+  color: var(--c-ink);
+  font-family: var(--font-mono);
+  font-size: var(--size-small);
+  font-weight: 800;
+}
+
+.slide .col {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+  min-width: 0;
+}
+
+/* Equal columns: set data-cols on the element. */
+.slide .cols {
+  --n: 2;
+  display: grid;
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+  gap: var(--gap);
+  min-height: 0;
+}
+
+.slide .cols[data-cols="3"] { --n: 3; }
+.slide .cols[data-cols="4"] { --n: 4; }
+
+.slide .stage {
+  position: relative;
+  min-height: 0;
+  min-width: 0;
+}
+
+/* The line to remember: set on a dyed band, with a yellow edge. */
+.slide .punch {
+  align-self: flex-start;
+  padding: 0.55em 1.1em;
+  border-left: var(--heavy) solid var(--kari);
+  border-radius: 0 var(--radius-small) var(--radius-small) 0;
+  background: var(--ai-6);
+  color: var(--white);
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+/* The core equation, written large: terms in boxes, operators between. */
+.slide .formula {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.slide .formula > span {
+  padding: 0.4em 0.9em;
+  border: var(--rule) solid var(--c);
+  border-radius: var(--radius-small);
+  background: var(--c-soft);
+  color: var(--c-ink);
+}
+
+.slide .formula > i {
+  color: var(--ai-4);
+  font-family: var(--font-mono);
+  font-size: var(--size-stat);
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/*
+ * The dye scale: swatches from one dip to many. Each li is one depth.
+ * <ol class="dye"><li>1回</li> … <li>300回</li></ol>
+ */
+.slide .dye {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  gap: var(--hair);
+  border-radius: var(--radius-small);
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 800;
+}
+
+.slide .dye li {
+  display: flex;
+  align-items: flex-end;
+  padding: calc(var(--gap) * 0.3) calc(var(--gap) * 0.4);
+  background: var(--ai-1);
+  color: var(--ai-5);
+}
+
+.slide .dye li:nth-child(2) { background: var(--ai-2); }
+.slide .dye li:nth-child(3) { background: var(--ai-3); color: var(--ai-6); }
+.slide .dye li:nth-child(4) { background: var(--ai-4); color: var(--white); }
+.slide .dye li:nth-child(5) { background: var(--ai-5); color: var(--white); }
+.slide .dye li:nth-child(n+6) { background: var(--ai-6); color: var(--white); }
+
+/* A row of figures in a table: label, then cells. Each li is a row; first child is the row head. */
+.slide .rows {
+  --cols: 1fr 1fr;
+  display: grid;
+  border-top: var(--rule) solid var(--line-strong);
+}
+
+.slide .rows li {
+  display: grid;
+  grid-template-columns: var(--cols);
+  align-items: center;
+  gap: var(--gap);
+  padding: calc(var(--gap) * 0.55) calc(var(--gap) * 0.3);
+  border-bottom: var(--hair) solid var(--line);
+  line-height: 1.5;
+}
+
+.slide .rows li[data-head] {
+  padding-block: calc(var(--gap) * 0.35);
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+/* A horizontal meter: set --v (0–1) on the element; its tone colours the fill. */
+.slide .bar {
+  --v: 0.5;
+  height: calc(var(--gap) * 0.75);
+  border-radius: var(--hair);
+  background: linear-gradient(90deg, var(--c) calc(var(--v) * 100%), var(--c-soft) 0);
+}
+
+/* A blank to write in. */
+.slide .blank {
+  flex: 1;
+  min-height: calc(var(--gap) * 1.4);
+  border-bottom: var(--rule) dotted var(--ai-3);
+}
+
+/* SVG strokes that draw themselves as the slide arrives. Give the path pathLength="1". */
+.slide .trace {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.slide.is-current .trace {
+  animation: draw var(--dur-draw) var(--ease-draw) var(--delay) both;
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+/* Things rise in, one after another, when a slide arrives. */
+.slide.is-current .rise {
+  animation: rise var(--dur-rise) var(--ease-out) both;
+}
+
+.slide.is-current .rise:nth-child(2) { animation-delay: var(--stagger); }
+.slide.is-current .rise:nth-child(3) { animation-delay: calc(var(--stagger) * 2); }
+.slide.is-current .rise:nth-child(4) { animation-delay: calc(var(--stagger) * 3); }
+.slide.is-current .rise:nth-child(5) { animation-delay: calc(var(--stagger) * 4); }
+.slide.is-current .rise:nth-child(6) { animation-delay: calc(var(--stagger) * 5); }
+.slide.is-current .rise:nth-child(7) { animation-delay: calc(var(--stagger) * 6); }
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 var(--rise);
+  }
+}
+
+/* A dip: an element fills with colour from the bottom up, like cloth lowered into the vat. */
+.slide.is-current .dip {
+  animation: dip var(--dur-dip) var(--ease-out) var(--delay) both;
+}
+
+@keyframes dip {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+}
+
+/* @layout cover
+<section class="slide" data-bg="ai" data-layout="cover">
+  <div class="col">
+    <p class="kicker">仕事のきほん 第2回</p>
+    <h2 class="slide-title">個性の本質は反復である</h2>
+    <p class="lede">What it is about.</p>
+  </div>
+  <div class="stage">Figure</div>
+</section>
+*/
+.slide[data-layout="cover"] {
+  display: grid;
+  grid-template-columns: 6fr 5fr;
+  align-items: center;
+  gap: calc(var(--gap) * 2.5);
+}
+
+.slide[data-layout="cover"] .slide-title {
+  font-size: var(--size-hero);
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+}
+
+/* @layout door
+<section class="slide" data-bg="ai" data-layout="door">
+  <p class="door-num">1</p>
+  <div class="col">
+    <p class="kicker">CHAPTER 1 / 5</p>
+    <h2 class="slide-title">The chapter's claim</h2>
+    <p class="lede">The question it answers.</p>
+  </div>
+  <ol class="rail">…five li, one with data-now…</ol>
+</section>
+*/
+.slide[data-layout="door"] {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  column-gap: calc(var(--gap) * 2.5);
+  row-gap: calc(var(--gap) * 1.5);
+  padding-top: calc(var(--gap) * 4);
+}
+
+.slide .door-num {
+  font-family: var(--font-serif);
+  font-size: var(--size-mega);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--ai-3);
+}
+
+.slide[data-layout="door"] .slide-title {
+  font-size: var(--size-stat);
+}
+
+.slide[data-layout="door"] .rail {
+  grid-column: 1 / -1;
+}
+
+/* The route of the day: five chapters, each a deeper dip than the last. */
+.slide .rail {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--hair);
+  counter-reset: stage;
+}
+
+.slide .rail li {
+  counter-increment: stage;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.25);
+  padding: calc(var(--gap) * 0.6) calc(var(--gap) * 0.7);
+  border-top: var(--heavy) solid var(--ai-3);
+  background: var(--card);
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.slide .rail li:nth-child(2) { border-top-color: var(--ai-4); }
+.slide .rail li:nth-child(3) { border-top-color: var(--ai-5); }
+.slide .rail li:nth-child(n+4) { border-top-color: var(--ai-6); }
+
+.slide .rail li::before {
+  content: counter(stage);
+  font-family: var(--font-mono);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.slide[data-bg="ai"] .rail li {
+  border-top-color: var(--white-line);
+  color: var(--ai-3);
+}
+
+.slide[data-bg="ai"] .rail li[data-now] {
+  border-top-color: var(--kari);
+  background: var(--white);
+  color: var(--ai-6);
+}
+
+/* @layout default
+<section class="slide" data-layout="default">
+  <p class="kicker">SECTION</p>
+  <h2 class="slide-title">The claim</h2>
+  <p class="lede">Why it holds.</p>
+  <div class="stage">Figure</div>
+</section>
+*/
+.slide[data-layout="default"] {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.8);
+}
+
+.slide[data-layout="default"] > .stage {
+  flex: 1;
+}
+
+/* @layout split
+<section class="slide" data-layout="split">
+  <div class="col">
+    <p class="kicker">SECTION</p>
+    <h2 class="slide-title">The claim</h2>
+    <p class="lede">Why it holds.</p>
+  </div>
+  <div class="stage">Figure</div>
+</section>
+*/
+.slide[data-layout="split"] {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: calc(var(--gap) * 2);
+  align-items: center;
+}
+
+/* @layout center
+<section class="slide" data-layout="center">
+  <p class="kicker">KEY</p>
+  <h2 class="slide-title">One sentence worth keeping</h2>
+</section>
+*/
+.slide[data-layout="center"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap);
+  text-align: center;
+}
+
+.slide[data-layout="center"] .slide-title {
+  font-size: var(--size-stat);
+  line-height: 1.3;
+}
+
+/* Beats: hidden things keep their box, so every beat has the same layout. */
+.slide.is-current [data-step] {
+  opacity: 0;
+  translate: 0 var(--rise);
+  transition: var(--step-transition);
+  transition-property: opacity, translate;
+}
+
+.slide.is-current [data-step].is-shown {
+  opacity: 1;
+  translate: none;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+::view-transition-old(slide) {
+  --step-transition: 0.22s ease both;
+  animation: fade-out var(--step-transition);
+}
+
+::view-transition-new(slide) {
+  --step-transition: 0.32s ease both;
+  animation: fade-in var(--step-transition);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide.is-current [data-step],
+  .slide.is-current .rise,
+  .slide.is-current .dip,
+  .slide.is-current .trace {
+    transition: none;
+    animation: none;
+  }
+
+  ::view-transition-old(slide),
+  ::view-transition-new(slide) {
+    animation: none;
+  }
+}
+
+/*
+ * The ease matrix: 手間 across, 負担感 down. Four cells; the one with data-goal is 本当に楽.
+ * <div class="matrix"><p data-axis="x">…</p><p data-axis="y">…</p><div data-cell>…</div> ×4</div>
+ */
+.slide .matrix {
+  display: grid;
+  grid-template-columns: auto repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr)) auto;
+  gap: calc(var(--gap) * 0.35);
+}
+
+.slide .matrix [data-axis="y"] {
+  grid-row: 1 / 3;
+  writing-mode: vertical-rl;
+  justify-self: center;
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.slide .matrix [data-axis="x"] {
+  grid-column: 2 / 4;
+  grid-row: 3;
+  justify-self: center;
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.slide .matrix [data-cell] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--gap) * 0.2);
+  padding: calc(var(--gap) * 0.6);
+  border: var(--hair) dashed var(--ai-3);
+  border-radius: var(--radius-small);
+  color: var(--muted);
+  font-size: var(--size-small);
+  line-height: 1.5;
+}
+
+.slide .matrix [data-cell][data-goal] {
+  border: var(--rule) solid var(--ai-6);
+  background: var(--ai-6);
+  color: var(--white);
+}

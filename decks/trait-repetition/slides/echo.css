@@ -1,0 +1,31 @@
+.slide .stage {
+  gap: calc(var(--gap) * 1.5);
+  align-content: center;
+}
+
+.slide .side {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .side > .label {
+  font-size: var(--size-small);
+}
+
+.slide .rows {
+  --cols: minmax(0, 1fr) 13em;
+}
+
+.slide .rows li {
+  min-height: calc(var(--gap) * 4);
+  font-size: var(--size-lede);
+}
+
+.slide .rows li[data-head] {
+  min-height: 0;
+}
+
+.slide .rows .tag {
+  font-size: var(--size-small);
+}

@@ -120,7 +120,7 @@
 
 /* Running head, set small at the foot of every page. */
 .slide::before {
-  content: "価値の本質は変化である";
+  content: "仕事のきほん 第1回　価値の本質は変化である";
   position: absolute;
   left: var(--margin);
   bottom: calc(var(--gap) * 0.9);

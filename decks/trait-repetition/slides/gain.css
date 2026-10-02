@@ -1,0 +1,36 @@
+.slide .kinds .card {
+  justify-content: center;
+  gap: calc(var(--gap) * 0.5);
+  padding: calc(var(--gap) * 1.2);
+}
+
+.slide .kinds .card h3 {
+  font-size: calc(var(--size-lede) * 1.2);
+}
+
+.slide .kinds .label {
+  font-size: var(--size-small);
+}
+
+.slide .card[data-sym]::after {
+  content: "＋";
+  position: absolute;
+  top: calc(var(--gap) * 0.4);
+  right: var(--gap);
+  color: var(--ai-2);
+  font-family: var(--font-mono);
+  font-size: var(--size-mega);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.slide .card[data-sym="minus"]::after {
+  content: "−";
+}
+
+.slide .example {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+  font-weight: 700;
+}

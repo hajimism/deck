@@ -1,0 +1,44 @@
+.slide .tales {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .stories .card {
+  gap: calc(var(--gap) * 0.4);
+  padding: calc(var(--gap) * 0.9) var(--gap);
+}
+
+.slide .result {
+  margin-top: auto;
+  padding-top: calc(var(--gap) * 0.5);
+  border-top: var(--hair) dashed var(--line);
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+  color: var(--ai-5);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.slide .stories .card h3 {
+  font-size: var(--size-lede);
+}
+
+.slide .compare {
+  --cols: minmax(0, 3fr) minmax(0, 3fr) minmax(0, 5fr);
+}
+
+.slide .compare li:not([data-head]) {
+  border-left: var(--heavy) solid var(--c);
+  padding-left: var(--gap);
+}
+
+.slide .compare li[data-tone="deep"] {
+  background: var(--ai-1);
+}
+
+.slide .compare li b:first-child {
+  color: var(--c-ink);
+}

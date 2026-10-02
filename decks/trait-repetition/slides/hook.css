@@ -1,0 +1,94 @@
+.slide {
+  --lane-head: 300px;
+  --lane-tail: 110px;
+}
+
+.slide .week {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .lane {
+  display: grid;
+  grid-template-columns: var(--lane-head) minmax(0, 1fr) var(--lane-tail);
+  align-items: center;
+  gap: var(--gap);
+}
+
+.slide .days {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  text-align: center;
+}
+
+.slide .days li {
+  padding-bottom: calc(var(--gap) * 0.2);
+  border-bottom: var(--rule) solid var(--line);
+}
+
+.slide .lane[data-kind="days"] {
+  padding: 0;
+  border: 0;
+}
+
+.slide .lane:not([data-kind]) {
+  padding: calc(var(--gap) * 0.5) 0;
+  border-bottom: var(--hair) solid var(--line);
+}
+
+.slide .person {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+  font-size: var(--size-lede);
+}
+
+.slide .track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  height: calc(var(--gap) * 3.6);
+  background: repeating-linear-gradient(90deg, var(--ai-1) 0 calc(20% - var(--hair)), var(--paper) calc(20% - var(--hair)) 20%);
+  border-radius: var(--radius-small);
+}
+
+.slide .block {
+  display: grid;
+  place-items: center;
+  margin: calc(var(--gap) * 0.25) var(--hair);
+  border-radius: var(--radius-small);
+  background: var(--c);
+  color: var(--white);
+  font-size: var(--size-small);
+  font-weight: 800;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.slide .block[data-tone="pale"] {
+  background: var(--card);
+  border: var(--rule) dashed var(--ai-3);
+  color: var(--ai-5);
+}
+
+.slide .block[data-at="fri-night"] { grid-column: 9 / 11; }
+.slide .block[data-at="thu"] { grid-column: 8 / 9; font-size: var(--size-caption); }
+.slide .block[data-at="fri"] { grid-column: 9 / 11; }
+
+.slide .spent {
+  display: flex;
+  align-items: baseline;
+  gap: calc(var(--gap) * 0.3);
+}
+
+.slide .spent .stat {
+  font-size: calc(var(--size-stat) * 0.8);
+}
+
+.slide .week .punch {
+  margin-top: calc(var(--gap) * 0.4);
+}

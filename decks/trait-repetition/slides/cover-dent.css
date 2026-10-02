@@ -1,0 +1,131 @@
+.slide {
+  --chart-h: 330px;
+  --floor: 0.42;
+}
+
+.slide .ways {
+  display: grid;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .ways li {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.6);
+  font-weight: 700;
+}
+
+.slide .ways .tag {
+  min-width: 7.5em;
+  justify-content: center;
+}
+
+.slide .profile {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+  padding: var(--gap);
+  border: var(--hair) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.slide .cols-bars {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: end;
+  gap: var(--gap);
+  height: calc(var(--chart-h) + var(--gap) * 3);
+}
+
+/* The floor line: as deep as the work needs, no deeper. */
+.slide .cols-bars::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--gap) * 3 + var(--chart-h) * var(--floor));
+  border-top: var(--rule) dashed var(--kari);
+}
+
+.slide .cols-bars li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--gap) * 0.15);
+  color: var(--c-ink);
+  font-size: var(--size-lede);
+  line-height: 1.2;
+}
+
+.slide .cols-bars .note {
+  font-size: var(--size-caption);
+}
+
+.slide .col-bar {
+  position: relative;
+  display: grid;
+  place-items: start center;
+  width: 100%;
+  height: calc(var(--chart-h) * var(--h));
+  border-radius: var(--radius-small) var(--radius-small) 0 0;
+  background: var(--c);
+}
+
+.slide li[data-h="top"] { --h: 0.86; }
+.slide li[data-h="mid"] { --h: 0.55; }
+.slide li[data-h="mid2"] { --h: 0.48; }
+.slide li[data-h="low"] { --h: 0.16; }
+
+.slide .extra {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  display: grid;
+  place-items: center;
+  height: calc(var(--chart-h) * 0.12);
+  border: var(--rule) dashed var(--ai-5);
+  border-bottom: 0;
+  border-radius: var(--radius-small) var(--radius-small) 0 0;
+  background: var(--ai-1);
+  color: var(--ai-5);
+  font-weight: 800;
+}
+
+/* The patch over the dent: a dashed box reaching the floor line. */
+.slide .patch {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  display: grid;
+  place-items: center;
+  height: calc(var(--chart-h) * (var(--floor) - var(--h)));
+  border: var(--rule) dashed var(--ai-4);
+  border-bottom: 0;
+  background: repeating-linear-gradient(45deg, var(--ai-1) 0 var(--heavy), var(--card) var(--heavy) calc(var(--heavy) * 2));
+  color: var(--ai-5);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.slide .line-label {
+  align-self: flex-end;
+  color: var(--ink);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  padding: 0 calc(var(--gap) * 0.4);
+  border-radius: var(--pill);
+  background: var(--kari-soft);
+}
+
+.slide .shift-note {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+  font-size: var(--size-small);
+}

@@ -1,0 +1,30 @@
+.slide .rise-list {
+  flex: 1;
+}
+
+.slide .rise-list li {
+  justify-content: flex-start;
+  gap: calc(var(--gap) * 0.5);
+  padding: var(--gap) calc(var(--gap) * 0.8);
+  border: var(--hair) solid var(--line);
+  border-top-width: calc(var(--heavy) * 2);
+  font-size: var(--size-lede);
+}
+
+.slide .rise-list li:nth-child(1) { background: var(--ai-1); }
+
+.slide .rise-list li::before {
+  color: var(--ai-4);
+  font-size: var(--size-stat);
+  line-height: 1;
+}
+
+.slide .rise-list .note {
+  font-weight: 500;
+}
+
+.slide .after {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap);
+}

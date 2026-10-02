@@ -1,0 +1,23 @@
+.slide .layer {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.15);
+  padding: calc(var(--gap) * 0.6) var(--gap);
+  border-left: var(--heavy) solid var(--c);
+  border-radius: 0 var(--radius-small) var(--radius-small) 0;
+  background: var(--c-soft);
+}
+
+.slide .matrix {
+  height: calc(var(--gap) * 19);
+}
+
+.slide .matrix [data-cell] b {
+  color: var(--ink);
+  font-size: var(--size-body);
+}
+
+.slide .matrix [data-cell][data-goal] b {
+  color: var(--white);
+  font-size: var(--size-lede);
+}

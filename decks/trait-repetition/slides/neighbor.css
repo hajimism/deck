@@ -1,0 +1,62 @@
+.slide {
+  --dot: 44px;
+}
+
+.slide .peers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(var(--gap) * 1.5);
+  align-content: center;
+}
+
+.slide .group {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.7);
+  padding: var(--gap);
+  border: var(--hair) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.slide .group .label {
+  color: var(--ink-2);
+  font-size: var(--size-body);
+}
+
+.slide .dots {
+  display: grid;
+  grid-template-columns: repeat(5, var(--dot));
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .dots li {
+  height: var(--dot);
+  border: var(--rule) solid var(--ai-2);
+  border-radius: var(--pill);
+  background: var(--ai-1);
+}
+
+.slide .dots li[data-on] {
+  border-color: var(--ai-5);
+  background: var(--ai-5);
+}
+
+.slide .dots li[data-me] {
+  box-shadow: 0 0 0 var(--heavy) var(--kari-soft);
+}
+
+.slide .verdict {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+  font-size: var(--size-lede);
+  font-weight: 800;
+  color: var(--c-ink);
+}
+
+.slide .scope {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+}

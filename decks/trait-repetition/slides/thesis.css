@@ -1,0 +1,38 @@
+.slide .slide-title {
+  font-size: var(--size-hero);
+  line-height: 1.25;
+}
+
+.slide .chain {
+  display: flex;
+  gap: calc(var(--gap) * 0.4);
+  margin-top: var(--gap);
+}
+
+.slide .chain li {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.4);
+  padding: calc(var(--gap) * 0.5) calc(var(--gap) * 0.8);
+  border: var(--hair) solid var(--line);
+  border-radius: var(--pill);
+  background: var(--card);
+  font-size: var(--size-lede);
+}
+
+/* A strip of cloth, uneven: dyed deep only where it was dipped often. */
+.slide .bias {
+  width: 100%;
+  height: calc(var(--gap) * 2.4);
+}
+
+.slide .bias li { background: var(--ai-1); }
+.slide .bias li:nth-child(3),
+.slide .bias li:nth-child(10) { background: var(--ai-2); }
+.slide .bias li:nth-child(4),
+.slide .bias li:nth-child(9) { background: var(--ai-3); }
+.slide .bias li:nth-child(5),
+.slide .bias li:nth-child(8) { background: var(--ai-4); }
+.slide .bias li:nth-child(6) { background: var(--ai-6); }
+.slide .bias li:nth-child(7) { background: var(--ai-5); }
+.slide .bias li:nth-child(n+11) { background: var(--ai-1); }

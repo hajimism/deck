@@ -1,0 +1,50 @@
+.slide .deal {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--gap);
+}
+
+.slide .term-wrap {
+  position: relative;
+  display: flex;
+}
+
+.slide .term {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.3);
+  padding: var(--gap);
+  border: var(--rule) solid var(--ai-2);
+  border-radius: var(--radius-small);
+  background: var(--card);
+}
+
+.slide .term .name {
+  font-size: calc(var(--size-title) * 0.8);
+  font-weight: 800;
+}
+
+.slide .term .tag[data-hold] {
+  visibility: hidden;
+}
+
+/* The frame that lands on today's side of the inequality. */
+.slide .focus {
+  position: absolute;
+  inset: calc(var(--gap) * -0.4);
+  border: var(--heavy) solid var(--ai-6);
+  border-radius: var(--radius);
+  background: var(--ai-1);
+}
+
+.slide .op {
+  align-self: center;
+  color: var(--ai-4);
+  font-family: var(--font-mono);
+  font-size: var(--size-stat);
+  font-style: normal;
+  font-weight: 800;
+}

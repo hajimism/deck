@@ -1,0 +1,35 @@
+.slide .body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--gap) * 1.4);
+}
+
+.slide .people .card {
+  gap: calc(var(--gap) * 0.5);
+  padding: calc(var(--gap) * 1.1) var(--gap);
+}
+
+.slide .people .card h3 {
+  font-size: calc(var(--size-lede) * 1.25);
+}
+
+.slide .gapline {
+  padding-top: var(--gap);
+  border-top: var(--hair) dashed var(--ai-3);
+}
+
+.slide .side-say {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .side-say .label {
+  flex-basis: 100%;
+}
+
+.slide .side-say .voice {
+  font-size: var(--size-lede);
+}

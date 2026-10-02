@@ -1,0 +1,64 @@
+.slide .day {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  padding: var(--gap);
+  border: var(--hair) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.slide .day > .label {
+  --c-ink: var(--muted);
+}
+
+.slide .clock {
+  display: grid;
+  grid-template-columns: 5.2fr 3fr 2.4fr;
+  gap: var(--hair);
+  height: calc(var(--gap) * 9);
+  border-radius: var(--radius-small);
+  overflow: hidden;
+}
+
+.slide .slot {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: calc(var(--gap) * 0.15);
+  padding: calc(var(--gap) * 0.6);
+  background: var(--c-soft);
+  color: var(--c-ink);
+  line-height: 1.35;
+}
+
+.slide .slot[data-tone="deep"] {
+  background: var(--ai-5);
+  color: var(--white);
+}
+
+.slide .slot[data-tone="ben"] {
+  border: var(--rule) dashed var(--ben);
+  background: var(--card);
+  font-size: var(--size-small);
+}
+
+.slide .slot span {
+  font-size: var(--size-small);
+  opacity: 0.85;
+}
+
+.slide .shape {
+  display: grid;
+  grid-template-columns: 5.2fr 5.4fr;
+  gap: var(--gap);
+}
+
+.slide .shape div {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.4);
+  color: var(--c-ink);
+  font-size: var(--size-small);
+  line-height: 1.4;
+}
