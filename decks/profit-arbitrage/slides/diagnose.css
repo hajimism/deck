@@ -1,0 +1,40 @@
+.slide .missing {
+  --cols: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  flex: 1;
+  grid-template-rows: auto repeat(3, minmax(0, 1fr));
+}
+
+.slide .missing li {
+  font-size: var(--size-body);
+}
+
+.slide .missing .lack b {
+  font-size: var(--size-lede);
+}
+
+.slide .missing li[data-head] {
+  font-size: var(--size-caption);
+}
+
+.slide .missing .lack {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .missing .lack .cond {
+  width: 2.4em;
+  height: 2.4em;
+}
+
+.slide .missing .effect b {
+  color: var(--route-ink);
+}
+
+.slide .missing .move {
+  padding: calc(var(--gap) * 0.4) calc(var(--gap) * 0.6);
+  border-left: var(--heavy) solid var(--low);
+  background: var(--low-soft);
+  font-size: var(--size-body);
+  font-weight: 700;
+}

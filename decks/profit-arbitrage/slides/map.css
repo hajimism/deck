@@ -1,0 +1,44 @@
+.slide .route {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: calc(var(--gap) * 0.8);
+}
+
+.slide .route svg {
+  width: 100%;
+  height: calc(var(--gap) * 7);
+}
+
+.slide .route [data-kind="ground"] {
+  fill: var(--h2);
+}
+
+.slide .route [data-kind="trail"] {
+  fill: none;
+  stroke: var(--route);
+  stroke-width: 4;
+  vector-effect: non-scaling-stroke;
+}
+
+.slide .route .rail {
+  margin-top: calc(var(--gap) * -0.8);
+}
+
+.slide .route .rail li {
+  min-height: calc(var(--gap) * 6.4);
+}
+
+.slide .route .rail b {
+  font-size: var(--size-lede);
+}
+
+.slide .route .goal {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--gap);
+}
+
+.slide .route .goal b {
+  font-size: var(--size-lede);
+}

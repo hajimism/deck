@@ -1,0 +1,65 @@
+.slide[data-layout="default"] {
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .howto {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .howto li {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(var(--gap) * 0.4);
+  padding: calc(var(--gap) * 0.45) calc(var(--gap) * 0.6);
+  border-radius: var(--radius-small);
+  background: var(--h2);
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.slide .howto li b {
+  color: var(--route-ink);
+  font-family: var(--font-mono);
+  font-size: var(--size-lede);
+  line-height: 1.2;
+}
+
+.slide .sheet {
+  --cols: repeat(5, minmax(0, 1fr));
+  flex: 1;
+  grid-template-rows: auto auto repeat(2, minmax(0, 1fr));
+  background: var(--card);
+}
+
+.slide .sheet li {
+  align-items: start;
+  font-size: var(--size-small);
+}
+
+.slide .sheet li[data-head] {
+  align-items: center;
+}
+
+.slide .sheet .h {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  color: var(--c-ink);
+}
+
+.slide .sheet li[data-example] {
+  color: var(--ink-2);
+}
+
+.slide .sheet li[data-blank] {
+  align-items: stretch;
+}
+
+.slide .sheet .blank {
+  min-height: 100%;
+  border-bottom: 0;
+  border-right: var(--hair) dashed var(--line);
+}

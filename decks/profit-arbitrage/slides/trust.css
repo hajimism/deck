@@ -1,0 +1,38 @@
+.slide .stairs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: end;
+  gap: calc(var(--gap) * 0.4);
+}
+
+.slide .stairs li {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: calc(var(--gap) * 0.3);
+  height: 50%;
+  padding: var(--gap);
+  border-top: var(--heavy) solid var(--c);
+  background: var(--c-soft);
+}
+
+.slide .stairs li:nth-child(2) { height: 75%; }
+.slide .stairs li:nth-child(3) { height: 100%; }
+
+.slide .stairs .label {
+  font-family: var(--font-mono);
+  font-size: var(--size-lede);
+}
+
+.slide .stairs b {
+  font-size: calc(var(--size-lede) * 1.25);
+  line-height: 1.45;
+}
+
+.slide .stairs .note {
+  color: var(--ink-2);
+}
+
+.slide .punch .cond {
+  vertical-align: middle;
+}

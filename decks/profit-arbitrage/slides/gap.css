@@ -1,0 +1,129 @@
+.slide {
+  --fall-cols: minmax(0, 1fr) calc(var(--gap) * 1.6) minmax(0, 1fr) calc(var(--gap) * 1.6) minmax(0, 1fr);
+  --pay: 10%;
+}
+
+.slide .formula {
+  font-size: var(--size-body);
+}
+
+.slide .formula > i {
+  font-size: var(--size-title);
+}
+
+/* A waterfall drawn to scale: 500, minus 50, leaves the 450 that floats between them. */
+.slide .fall {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .fall .plot {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--fall-cols);
+  height: calc(var(--gap) * 15);
+  border-bottom: var(--rule) solid var(--ink);
+}
+
+.slide .fall .guide {
+  position: absolute;
+  inset: auto 0 0;
+  border-top: var(--rule) dashed var(--muted);
+}
+
+.slide .fall .guide[data-at="top"] { bottom: 100%; }
+.slide .fall .guide[data-at="pay"] { bottom: var(--pay); }
+
+.slide .fall .pillar {
+  position: relative;
+  align-self: end;
+  display: flex;
+  justify-content: center;
+  border-top: var(--heavy) solid var(--c);
+  background: var(--c-soft);
+}
+
+.slide .fall .pillar[data-kind="buyer"] {
+  grid-column: 1;
+  height: 100%;
+  background: var(--h3);
+}
+
+.slide .fall .pillar[data-kind="pay"] {
+  grid-column: 3;
+  height: var(--pay);
+  background: var(--low);
+}
+
+.slide .fall .pillar[data-kind="gap"] {
+  grid-column: 5;
+  align-self: start;
+  height: calc(100% - var(--pay));
+  border: var(--rule) dashed var(--c);
+  border-top: var(--heavy) solid var(--c);
+  background: repeating-linear-gradient(135deg, var(--c-soft) 0 var(--dash), var(--card) var(--dash) calc(var(--dash) * 2));
+}
+
+.slide .fall .val {
+  position: absolute;
+  top: calc(var(--gap) * 0.6);
+  display: flex;
+  align-items: baseline;
+  gap: 0.1em;
+  padding: 0 0.3em;
+  background: var(--card);
+  color: var(--c-ink);
+  font-family: var(--font-mono);
+  font-size: var(--size-stat);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.slide .fall .val small {
+  font-family: var(--font-body);
+  font-size: 0.42em;
+  letter-spacing: 0;
+}
+
+.slide .fall .pillar[data-kind="pay"] .val {
+  top: auto;
+  bottom: calc(100% + var(--gap) * 0.5);
+}
+
+.slide .fall .pillar[data-kind="gap"] .val {
+  top: 40%;
+}
+
+.slide .fall .names {
+  display: grid;
+  grid-template-columns: var(--fall-cols);
+  align-items: start;
+}
+
+.slide .fall .names li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  line-height: 1.45;
+}
+
+.slide .fall .names b {
+  color: var(--c-ink);
+  font-size: var(--size-body);
+}
+
+.slide .fall .names span {
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 700;
+}
+
+.slide .fall .names .op {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-title);
+  font-weight: 800;
+  line-height: 1;
+}

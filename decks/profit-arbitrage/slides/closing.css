@@ -1,0 +1,60 @@
+.slide[data-layout="default"] {
+  gap: var(--gap);
+}
+
+.slide .slide-title {
+  font-size: var(--size-stat);
+}
+
+.slide .asks {
+  display: grid;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .asks li {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  padding: 0 var(--gap);
+  border-left: var(--heavy) solid var(--c);
+  background: var(--card);
+}
+
+.slide .asks .cond {
+  width: 2.6em;
+  height: 2.6em;
+  font-size: var(--size-lede);
+}
+
+.slide .asks p {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--size-title);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.slide .asks b {
+  color: var(--h3);
+}
+
+.slide .asks .note {
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.slide .next {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  color: var(--h1);
+  font-weight: 700;
+}
+
+.slide .next .label {
+  padding: 0.1em 0.8em;
+  border: var(--hair) solid var(--h3);
+  border-radius: var(--pill);
+  color: var(--h3);
+}

@@ -1,0 +1,79 @@
+.slide .ledger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--gap);
+}
+
+.slide .ledger .line {
+  display: grid;
+  grid-template-columns: calc(var(--gap) * 11) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--gap);
+}
+
+.slide .ledger .name {
+  font-size: var(--size-lede);
+}
+
+.slide .ledger .track {
+  display: flex;
+  height: calc(var(--gap) * 3);
+  border-right: var(--rule) solid var(--peak);
+}
+
+.slide .ledger .seg {
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+
+.slide .ledger [data-kind="make"] {
+  flex: 18;
+  background: var(--low);
+  color: var(--white);
+}
+
+.slide .ledger [data-kind="deliver"] {
+  flex: 52;
+  background: repeating-linear-gradient(135deg, var(--low-soft) 0 var(--dash), var(--h1) var(--dash) calc(var(--dash) * 2));
+  border: var(--rule) solid var(--low);
+  color: var(--low-ink);
+}
+
+.slide .ledger [data-kind="gap"] {
+  flex: 82;
+  border: var(--rule) dashed var(--route);
+  background: var(--route-soft);
+  color: var(--route-ink);
+}
+
+.slide .ledger [data-kind="gap"][data-small] {
+  flex: 30;
+}
+
+.slide .ledger .scale {
+  display: flex;
+  justify-content: space-between;
+  margin-left: calc(var(--gap) * 12);
+  color: var(--peak-ink);
+  font-size: var(--size-caption);
+  font-weight: 800;
+}
+
+.slide .ledger .ways {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--gap) * 0.4);
+  margin-left: calc(var(--gap) * 12);
+}
+
+.slide .ledger .ways li:not(.label) {
+  padding: 0.2em 0.9em;
+  border: var(--hair) solid var(--low);
+  border-radius: var(--pill);
+  background: var(--card);
+  font-size: var(--size-small);
+  font-weight: 700;
+}

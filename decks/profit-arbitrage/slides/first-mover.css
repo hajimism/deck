@@ -1,0 +1,90 @@
+.slide .decline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.5);
+  height: calc(var(--gap) * 21);
+}
+
+.slide .decline > .label {
+  color: var(--ink-2);
+  font-size: var(--size-small);
+}
+
+.slide .decline .plot {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.4);
+  border-bottom: var(--rule) solid var(--ink);
+}
+
+.slide .decline .plot li {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: calc(var(--gap) * 0.25);
+  --v: 0.2;
+}
+
+.slide .decline .plot li:nth-child(1) { --v: 0.86; }
+.slide .decline .plot li:nth-child(2) { --v: 0.54; }
+.slide .decline .plot li:nth-child(3) { --v: 0.4; }
+.slide .decline .plot li:nth-child(4) { --v: 0.32; }
+.slide .decline .plot li:nth-child(5) { --v: 0.27; }
+.slide .decline .plot li:nth-child(6) { --v: 0.24; }
+.slide .decline .plot li:nth-child(7) { --v: 0.22; }
+.slide .decline .plot li:nth-child(8) { --v: 0.2; }
+.slide .decline .plot li:nth-child(9) { --v: 0.19; }
+.slide .decline .plot li:nth-child(10) { --v: 0.18; }
+
+.slide .decline .col-bar {
+  width: 100%;
+  height: calc(var(--v) * 85%);
+  border-radius: var(--radius-small) var(--radius-small) 0 0;
+  background: var(--h4);
+}
+
+.slide .decline .plot li[data-first] .col-bar {
+  background: var(--route);
+}
+
+.slide .decline .n {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 800;
+}
+
+.slide .decline .axis {
+  align-self: flex-end;
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 800;
+}
+
+.slide .decline .flag {
+  position: absolute;
+  left: 13%;
+  top: 6%;
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--gap) * 0.4) calc(var(--gap) * 0.7);
+  border-left: var(--heavy) solid var(--route);
+  background: var(--card);
+  font-size: var(--size-small);
+  line-height: 1.5;
+}
+
+.slide .decline .flag b {
+  color: var(--route-ink);
+  font-size: var(--size-body);
+}
+
+.slide .decline .flag[data-at="tail"] {
+  left: auto;
+  right: 0;
+  top: 48%;
+  border-left-color: var(--h4);
+}

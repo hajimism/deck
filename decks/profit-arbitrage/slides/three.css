@@ -1,0 +1,47 @@
+.slide .trio {
+  flex: 1;
+}
+
+.slide .trio .card {
+  gap: calc(var(--gap) * 0.45);
+  padding-block: calc(var(--gap) * 0.8);
+  border-left-width: var(--hair);
+  border-top: var(--heavy) solid var(--c);
+}
+
+.slide .trio .cond {
+  font-size: var(--size-lede);
+}
+
+.slide .trio h3 {
+  font-size: calc(var(--size-lede) * 1.2);
+}
+
+.slide .trio .means {
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--gap) * 0.5) calc(var(--gap) * 0.7);
+  border-radius: var(--radius-small);
+  background: var(--c-soft);
+  color: var(--c-ink);
+  font-size: var(--size-lede);
+}
+
+.slide .trio .gauge {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.3);
+  margin-top: auto;
+}
+
+.slide .trio .gauge .bar {
+  height: calc(var(--gap) * 0.8);
+}
+
+.slide .trio .gauge .bar[data-v="high"] { --v: 0.85; }
+.slide .trio .gauge .bar[data-v="low"] { --v: 0.2; }
+
+.slide .trio .gauge .note {
+  align-self: flex-end;
+  font-size: var(--size-caption);
+}

@@ -1,0 +1,63 @@
+.slide .timeline {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  grid-template-rows: auto auto auto auto;
+  row-gap: calc(var(--gap) * 0.7);
+}
+
+.slide .timeline .ticks {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding-bottom: calc(var(--gap) * 0.3);
+  border-bottom: var(--rule) solid var(--ink);
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 800;
+}
+
+.slide .timeline .ticks span:nth-child(2) {
+  text-align: center;
+}
+
+.slide .timeline .ticks span:last-child {
+  text-align: end;
+}
+
+.slide .timeline .band {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.35);
+  padding: calc(var(--gap) * 0.7) var(--gap);
+  line-height: 1.5;
+}
+
+.slide .timeline .band[data-kind="now"] {
+  grid-column: 1 / 8;
+  border-left: var(--heavy) solid var(--route);
+  background: linear-gradient(90deg, var(--route-soft) 55%, transparent);
+}
+
+.slide .timeline .band[data-kind="next"] {
+  grid-column: 4 / -1;
+  border-right: var(--heavy) solid var(--low);
+  background: linear-gradient(90deg, transparent, var(--low-soft) 35%);
+}
+
+.slide .timeline .band[data-kind="next"] p:not(.label) {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.4);
+}
+
+.slide .timeline .band .label {
+  color: var(--ink);
+  font-size: var(--size-small);
+}
+
+.slide .timeline .fade {
+  grid-column: 3 / 9;
+  justify-self: center;
+  color: var(--route-ink);
+  font-size: var(--size-small);
+}

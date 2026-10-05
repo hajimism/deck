@@ -1,0 +1,756 @@
+/*
+ * profit-arbitrage — a survey map of value.
+ * The talk says a price lives in the evaluator's head, so the same thing is worth more in one
+ * place than another. A topographic map says the same of height: so on every page, height is
+ * how highly a place values a thing, and carrying it uphill is the arbitrage.
+ * Colour rule:
+ *   - Hypsometric tints (--h1 green lowland … --h6 summit brown) are value: the higher, the
+ *     more it is worth there. 麓 is green, 山頂 is brown.
+ *   - Survey vermilion is the route: carrying, the gap you earn, the one phrase to keep.
+ *   - The three conditions own a mark each, used the same way on every page:
+ *       条件1 困っている人 — summit brown triangle (the buyer's tag is high)
+ *       条件2 自分には楽   — lowland green circle (your own cost is low)
+ *       条件3 ほかに少ない — lake blue diamond (few others can reach it)
+ *   - Everything else is ink on survey paper, inside a neatline, with a title block at the foot.
+ * Every page states its point as its heading, so the PDF reads without the talk.
+ */
+.slide {
+  --h1: #dfe8d2;
+  --h2: #eeebc6;
+  --h3: #ecd6a6;
+  --h4: #d9ab78;
+  --h5: #a9693f;
+  --h6: #5b3720;
+  --ink: #1e2722;
+  --ink-2: #3d4842;
+  --paper: #f3f2ea;
+  --card: #fbfaf5;
+  --white: #ffffff;
+  --route: #c43d1e;
+  --route-ink: #a3301a;
+  --route-soft: #f8ddd2;
+  --peak: #9b5a32;
+  --peak-ink: #7f4522;
+  --peak-soft: #f1e3cf;
+  --low: #3f7a4f;
+  --low-ink: #2f6340;
+  --low-soft: #dcead7;
+  --lake: #2c6f9e;
+  --lake-ink: #1f5a84;
+  --lake-soft: #d8e7f1;
+  --forest: #1d3328;
+  --forest-2: #2a4637;
+  --fg: var(--ink);
+  --bg: var(--paper);
+  --accent: var(--route);
+  --muted: #515b55;
+  --line: #d6d6c8;
+  --line-strong: var(--ink);
+  --contour: rgb(155 110 60 / 0.16);
+  --contour-night: rgb(223 232 210 / 0.1);
+  --grat: rgb(30 39 34 / 0.05);
+  --c: var(--ink);
+  --c-ink: var(--ink);
+  --c-soft: var(--card);
+  --font-title: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  --font-body: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  --font-mono: "SF Mono", "JetBrains Mono", "Menlo", "Consolas", "Noto Sans Mono CJK JP", monospace;
+  --size-mega: 180px;
+  --size-hero: 80px;
+  --size-stat: 46px;
+  --size-title: 34px;
+  --size-lede: 19px;
+  --size-body: 16px;
+  --size-small: 14px;
+  --size-caption: 12px;
+  --gap: 24px;
+  --margin: 64px;
+  --neat: 18px;
+  --pad: 56px var(--margin) 64px;
+  --radius: 10px;
+  --radius-small: 5px;
+  --pill: 999px;
+  --hair: 1px;
+  --rule: 2px;
+  --heavy: 5px;
+  --rise: 12px;
+  --dash: 9px;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-draw: cubic-bezier(0.65, 0, 0.25, 1);
+  --dur-rise: 0.6s;
+  --dur-draw: 1.6s;
+  --stagger: 0.08s;
+  --delay: 0s;
+  --step-transition: 0.5s var(--ease-out);
+  --graticule:
+    linear-gradient(90deg, var(--grat) var(--hair), transparent var(--hair)) 0 0 / 160px 160px,
+    linear-gradient(var(--grat) var(--hair), transparent var(--hair)) 0 0 / 160px 160px;
+  --contours:
+    radial-gradient(ellipse 62% 78% at 100% 0%, transparent 0, transparent 22%, var(--contour) 22% calc(22% + var(--rule)), transparent calc(22% + var(--rule)), transparent 36%, var(--contour) 36% calc(36% + var(--rule)), transparent calc(36% + var(--rule)), transparent 50%, var(--contour) 50% calc(50% + var(--rule)), transparent calc(50% + var(--rule)), transparent 64%, var(--contour) 64% calc(64% + var(--rule)), transparent calc(64% + var(--rule)), transparent 78%, var(--contour) 78% calc(78% + var(--rule)), transparent calc(78% + var(--rule)), transparent 92%, var(--contour) 92% calc(92% + var(--rule)), transparent calc(92% + var(--rule)), transparent 100%),
+    radial-gradient(ellipse 34% 52% at 0% 100%, transparent 0, transparent 30%, var(--contour) 30% calc(30% + var(--rule)), transparent calc(30% + var(--rule)), transparent 52%, var(--contour) 52% calc(52% + var(--rule)), transparent calc(52% + var(--rule)), transparent 74%, var(--contour) 74% calc(74% + var(--rule)), transparent calc(74% + var(--rule)), transparent 96%, var(--contour) 96% calc(96% + var(--rule)), transparent calc(96% + var(--rule)), transparent 100%);
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: var(--pad);
+  background: var(--contours), var(--graticule), var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: 1.7;
+  font-feature-settings: "palt";
+  counter-reset: folio var(--dek-slide-number) folios var(--dek-slide-count);
+}
+
+/* Night sheets: the cover's partner pages, chapter doors and the closing, printed on forest. */
+.slide[data-bg="forest"] {
+  --bg: var(--forest);
+  --fg: var(--white);
+  --muted: var(--h1);
+  --line: rgb(223 232 210 / 0.22);
+  --card: rgb(255 255 255 / 0.06);
+  --contour: var(--contour-night);
+  --grat: rgb(255 255 255 / 0.04);
+}
+
+/*
+ * The neatline and the route bar. A thin frame sits inside the edge of every sheet;
+ * along its foot a dashed trail is walked as far as the talk has gone.
+ */
+.slide::before {
+  content: "";
+  position: absolute;
+  inset: var(--neat);
+  border: var(--hair) solid var(--line);
+  background:
+    linear-gradient(90deg, var(--route) 0 calc(100% * var(--dek-slide-number) / var(--dek-slide-count)), transparent 0) 0 100% / 100% var(--rule) no-repeat;
+  pointer-events: none;
+}
+
+/* The title block: series, talk, and sheet number, set small in the foot of the frame. */
+.slide::after {
+  content: "仕事のきほん 第3回　儲けの本質は裁定である　　SHEET " counter(folio, decimal-leading-zero) " / " counter(folios);
+  position: absolute;
+  right: calc(var(--neat) + var(--gap) * 0.8);
+  bottom: calc(var(--neat) + var(--gap) * 0.45);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  white-space: pre;
+}
+
+.slide * {
+  box-sizing: border-box;
+}
+
+.slide p,
+.slide ol,
+.slide ul,
+.slide dl,
+.slide dd,
+.slide dt,
+.slide h2,
+.slide h3,
+.slide figure,
+.slide figcaption {
+  margin: 0;
+}
+
+.slide ol,
+.slide ul {
+  padding: 0;
+  list-style: none;
+}
+
+.slide b,
+.slide strong {
+  font-weight: 800;
+}
+
+.slide svg {
+  display: block;
+  overflow: visible;
+}
+
+/* Tones: a block sets data-tone and its children read --c, --c-ink, --c-soft. */
+.slide [data-tone="peak"],
+.slide [data-cond="1"] {
+  --c: var(--peak);
+  --c-ink: var(--peak-ink);
+  --c-soft: var(--peak-soft);
+}
+
+.slide [data-tone="low"],
+.slide [data-cond="2"] {
+  --c: var(--low);
+  --c-ink: var(--low-ink);
+  --c-soft: var(--low-soft);
+}
+
+.slide [data-tone="lake"],
+.slide [data-cond="3"] {
+  --c: var(--lake);
+  --c-ink: var(--lake-ink);
+  --c-soft: var(--lake-soft);
+}
+
+.slide [data-tone="route"] {
+  --c: var(--route);
+  --c-ink: var(--route-ink);
+  --c-soft: var(--route-soft);
+}
+
+.slide [data-tone="ink"] {
+  --c: var(--ink);
+  --c-ink: var(--ink);
+  --c-soft: var(--h2);
+}
+
+.slide .slide-title {
+  font-family: var(--font-title);
+  font-size: var(--size-title);
+  font-weight: 800;
+  line-height: 1.36;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* A section tag: a survey benchmark (a small triangle on a bar), then the words. */
+.slide .kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  color: var(--route-ink);
+  font-size: var(--size-small);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.slide .kicker::before {
+  content: "";
+  width: 0.95em;
+  height: 0.85em;
+  background: var(--route);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.slide[data-bg="forest"] .kicker {
+  color: var(--h3);
+}
+
+.slide .lede {
+  max-width: 50em;
+  color: var(--ink-2);
+  font-size: var(--size-lede);
+  line-height: 1.7;
+}
+
+.slide[data-bg="forest"] .lede {
+  color: var(--h1);
+}
+
+.slide .note {
+  color: var(--muted);
+  font-size: var(--size-small);
+  line-height: 1.65;
+}
+
+/* Small caps for map labels: legends, axis names, place names. */
+.slide .label {
+  color: var(--c-ink);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+/* The route marker: a vermilion underline for the phrase to keep. */
+.slide .mark {
+  padding: 0 0.1em;
+  background: linear-gradient(transparent 62%, var(--route-soft) 62%);
+  box-decoration-break: clone;
+  color: var(--route-ink);
+}
+
+.slide[data-bg="forest"] .mark,
+.slide .punch .mark {
+  background: none;
+  color: var(--h3);
+}
+
+/* A panel: survey card on paper, edged on the left in its tone. */
+.slide .card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.35);
+  padding: calc(var(--gap) * 0.75) var(--gap);
+  border: var(--hair) solid var(--line);
+  border-left: var(--heavy) solid var(--c);
+  border-radius: var(--radius-small);
+  background: var(--card);
+}
+
+.slide .card[data-fill] {
+  border-color: var(--c);
+  background: var(--c-soft);
+}
+
+.slide .card h3 {
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.slide .tag {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.1em 0.7em;
+  border: var(--hair) solid var(--c);
+  border-radius: var(--pill);
+  color: var(--c-ink);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.slide .tag[data-fill] {
+  background: var(--c);
+  color: var(--white);
+}
+
+/*
+ * The three conditions' map symbols. <span class="cond" data-cond="1">1</span>
+ * 1 is a summit triangle, 2 a lowland circle, 3 a lake diamond.
+ */
+.slide .cond {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 2em;
+  height: 2em;
+  background: var(--c);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: var(--size-small);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.slide .cond[data-cond="1"] {
+  padding-top: 0.55em;
+  clip-path: polygon(50% 0, 100% 92%, 0 92%);
+}
+
+.slide .cond[data-cond="2"] {
+  border-radius: var(--pill);
+}
+
+.slide .cond[data-cond="3"] {
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+
+.slide .kicker .cond {
+  width: 1.7em;
+  height: 1.7em;
+  font-size: var(--size-caption);
+}
+
+/* A condition that is missing: the symbol pales to its soft tint. */
+.slide .cond[data-off] {
+  background: var(--c-soft);
+  color: var(--c-ink);
+}
+
+/* A spot height: a price set like an elevation figure on a map. */
+.slide .price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.2em;
+  color: var(--c-ink);
+  font-family: var(--font-mono);
+  font-size: var(--size-stat);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.slide .price small {
+  font-family: var(--font-body);
+  font-size: 0.42em;
+  letter-spacing: 0;
+}
+
+/* Someone in a story: an initial in a circle. */
+.slide .who {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 2.4em;
+  height: 2.4em;
+  border: var(--rule) solid var(--c);
+  border-radius: var(--pill);
+  background: var(--card);
+  color: var(--c-ink);
+  font-size: var(--size-small);
+  font-weight: 800;
+}
+
+.slide .col {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+  min-width: 0;
+}
+
+/* Equal columns: set data-cols on the element. */
+.slide .cols {
+  --n: 2;
+  display: grid;
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+  gap: var(--gap);
+  min-height: 0;
+}
+
+.slide .cols[data-cols="3"] { --n: 3; }
+.slide .cols[data-cols="4"] { --n: 4; }
+
+.slide .stage {
+  position: relative;
+  min-height: 0;
+  min-width: 0;
+}
+
+/* The line to remember: a forest band with a vermilion trail mark at its head. */
+.slide .punch {
+  align-self: flex-start;
+  padding: 0.55em 1.1em;
+  border-left: var(--heavy) solid var(--route);
+  border-radius: 0 var(--radius-small) var(--radius-small) 0;
+  background: var(--forest);
+  color: var(--white);
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+/* The core equation, written large: terms in boxes, operators between. */
+.slide .formula {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.slide .formula > span {
+  padding: 0.4em 0.9em;
+  border: var(--rule) solid var(--c);
+  border-radius: var(--radius-small);
+  background: var(--c-soft);
+  color: var(--c-ink);
+}
+
+.slide .formula > i {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-stat);
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/*
+ * A table set as rows: each li is a row, its first child the row head.
+ * Set --cols on the list. A li with data-head is the header row.
+ */
+.slide .rows {
+  --cols: 1fr 1fr;
+  display: grid;
+  border-top: var(--rule) solid var(--line-strong);
+}
+
+.slide .rows li {
+  display: grid;
+  grid-template-columns: var(--cols);
+  align-items: center;
+  gap: var(--gap);
+  padding: calc(var(--gap) * 0.55) calc(var(--gap) * 0.3);
+  border-bottom: var(--hair) solid var(--line);
+  line-height: 1.5;
+}
+
+.slide .rows li[data-head] {
+  align-items: end;
+  padding-block: calc(var(--gap) * 0.35);
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+/* A horizontal meter: set --v (0–1) on the element; its tone colours the fill. */
+.slide .bar {
+  --v: 0.5;
+  height: calc(var(--gap) * 0.75);
+  border-radius: var(--hair);
+  background: linear-gradient(90deg, var(--c) calc(var(--v) * 100%), var(--c-soft) 0);
+}
+
+/* A blank to write in. */
+.slide .blank {
+  min-height: calc(var(--gap) * 1.6);
+  border-bottom: var(--rule) dotted var(--h4);
+}
+
+/* SVG strokes that draw themselves as the slide arrives. Give the path pathLength="1". */
+.slide .trace {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.slide.is-current .trace {
+  animation: draw var(--dur-draw) var(--ease-draw) var(--delay) both;
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+/* Things rise in, one after another, when a slide arrives. */
+.slide.is-current .rise {
+  animation: rise var(--dur-rise) var(--ease-out) both;
+}
+
+.slide.is-current .rise:nth-child(2) { animation-delay: var(--stagger); }
+.slide.is-current .rise:nth-child(3) { animation-delay: calc(var(--stagger) * 2); }
+.slide.is-current .rise:nth-child(4) { animation-delay: calc(var(--stagger) * 3); }
+.slide.is-current .rise:nth-child(5) { animation-delay: calc(var(--stagger) * 4); }
+.slide.is-current .rise:nth-child(6) { animation-delay: calc(var(--stagger) * 5); }
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 var(--rise);
+  }
+}
+
+/* @layout cover
+<section class="slide" data-layout="cover">
+  <div class="col">
+    <p class="kicker">仕事のきほんシリーズ 第3回 ／ 研修資料</p>
+    <h2 class="slide-title">儲けの本質は<br>裁定である</h2>
+    <p class="lede">What it is about.</p>
+  </div>
+  <div class="stage">Figure</div>
+</section>
+*/
+.slide[data-layout="cover"] {
+  display: grid;
+  grid-template-columns: 6fr 5fr;
+  align-items: center;
+  gap: calc(var(--gap) * 2);
+}
+
+.slide[data-layout="cover"] .slide-title {
+  font-size: var(--size-hero);
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+}
+
+/* @layout door
+<section class="slide" data-bg="forest" data-layout="door">
+  <p class="door-num">01</p>
+  <div class="col">
+    <p class="kicker">第1章 ／ 4</p>
+    <h2 class="slide-title">The chapter's claim</h2>
+    <p class="lede">The question it answers.</p>
+  </div>
+  <ol class="rail">…four li, one with data-now…</ol>
+</section>
+*/
+.slide[data-layout="door"] {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  column-gap: calc(var(--gap) * 2.5);
+  row-gap: calc(var(--gap) * 1.5);
+  padding-top: calc(var(--gap) * 4);
+}
+
+/* A chapter number set like a spot height: big mono figures with a benchmark under them. */
+.slide .door-num {
+  padding-bottom: calc(var(--gap) * 0.3);
+  border-bottom: var(--heavy) solid var(--route);
+  color: var(--h3);
+  font-family: var(--font-mono);
+  font-size: var(--size-mega);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.slide[data-layout="door"] .slide-title {
+  font-size: var(--size-stat);
+}
+
+.slide[data-layout="door"] .rail {
+  grid-column: 1 / -1;
+}
+
+/* The route of the day: four chapters as waypoints on a trail, climbing left to right. */
+.slide .rail {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--hair);
+  counter-reset: stage;
+}
+
+.slide .rail li {
+  counter-increment: stage;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.25);
+  padding: calc(var(--gap) * 0.6) calc(var(--gap) * 0.7);
+  border-top: var(--heavy) solid var(--h2);
+  background: var(--card);
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.slide .rail li:nth-child(2) { border-top-color: var(--h3); }
+.slide .rail li:nth-child(3) { border-top-color: var(--h4); }
+.slide .rail li:nth-child(n+4) { border-top-color: var(--h5); }
+
+.slide .rail li::before {
+  content: "0" counter(stage);
+  font-family: var(--font-mono);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.slide[data-bg="forest"] .rail li {
+  border-top-color: var(--line);
+  color: var(--h1);
+}
+
+.slide[data-bg="forest"] .rail li[data-now] {
+  border-top-color: var(--route);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* @layout default
+<section class="slide" data-layout="default">
+  <p class="kicker">SECTION</p>
+  <h2 class="slide-title">The claim</h2>
+  <p class="lede">Why it holds.</p>
+  <div class="stage">Figure</div>
+</section>
+*/
+.slide[data-layout="default"] {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.75);
+}
+
+.slide[data-layout="default"] > .stage {
+  flex: 1;
+}
+
+/* @layout split
+<section class="slide" data-layout="split">
+  <div class="col">
+    <p class="kicker">SECTION</p>
+    <h2 class="slide-title">The claim</h2>
+    <p class="lede">Why it holds.</p>
+  </div>
+  <div class="stage">Figure</div>
+</section>
+*/
+.slide[data-layout="split"] {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: calc(var(--gap) * 2);
+  align-items: center;
+}
+
+/* @layout center
+<section class="slide" data-layout="center">
+  <p class="kicker">KEY</p>
+  <h2 class="slide-title">One sentence worth keeping</h2>
+</section>
+*/
+.slide[data-layout="center"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap);
+  text-align: center;
+}
+
+.slide[data-layout="center"] .slide-title {
+  font-size: var(--size-stat);
+  line-height: 1.3;
+}
+
+/* Beats: hidden things keep their box, so every beat has the same layout. */
+.slide.is-current [data-step] {
+  opacity: 0;
+  translate: 0 var(--rise);
+  transition: var(--step-transition);
+  transition-property: opacity, translate;
+}
+
+.slide.is-current [data-step].is-shown {
+  opacity: 1;
+  translate: none;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+::view-transition-old(slide) {
+  --step-transition: 0.22s ease both;
+  animation: fade-out var(--step-transition);
+}
+
+::view-transition-new(slide) {
+  --step-transition: 0.32s ease both;
+  animation: fade-in var(--step-transition);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide.is-current [data-step],
+  .slide.is-current .rise,
+  .slide.is-current .trace {
+    transition: none;
+    animation: none;
+  }
+
+  ::view-transition-old(slide),
+  ::view-transition-new(slide) {
+    animation: none;
+  }
+}

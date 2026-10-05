@@ -1,0 +1,99 @@
+.slide .change {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .change p {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+}
+
+.slide .change .arrow {
+  color: var(--route);
+  font-size: var(--size-title);
+  font-weight: 800;
+}
+
+.slide .climb {
+  position: relative;
+  aspect-ratio: 640 / 460;
+  width: 100%;
+}
+
+.slide .climb svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.slide .climb [data-band="1"] { fill: var(--h1); }
+.slide .climb [data-band="2"] { fill: var(--h2); }
+.slide .climb [data-band="3"] { fill: var(--h3); }
+.slide .climb [data-band="4"] { fill: var(--h4); }
+.slide .climb [data-band="5"] { fill: var(--h5); }
+
+.slide .climb [data-kind="ridge"] {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.slide .climb [data-kind="trail"] {
+  fill: none;
+  stroke: var(--route);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+}
+
+.slide .climb [data-kind="carrier"] {
+  fill: var(--route);
+  stroke: var(--white);
+  stroke-width: 3;
+}
+
+.slide .climb [data-kind="bottle"] {
+  fill: var(--white);
+}
+
+.slide .climb .meter {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.25);
+  padding: calc(var(--gap) * 0.55) calc(var(--gap) * 0.8);
+  border: var(--hair) solid var(--line-strong);
+  border-top: var(--heavy) solid var(--route);
+  border-radius: var(--radius-small);
+  background: var(--card);
+}
+
+.slide .climb .meter .label {
+  color: var(--ink);
+}
+
+.slide .climb .place {
+  position: absolute;
+  padding: 0.1em 0.6em;
+  border-radius: var(--radius-small);
+  background: var(--card);
+  font-family: var(--font-mono);
+  font-size: var(--size-small);
+  font-weight: 800;
+}
+
+.slide .climb .place[data-at="foot"] {
+  left: 2%;
+  bottom: 2%;
+}
+
+.slide .climb .place[data-at="peak"] {
+  right: 6%;
+  top: 2%;
+}

@@ -1,0 +1,28 @@
+.slide .cost {
+  --cols: calc(var(--gap) * 7) minmax(0, 1fr) minmax(0, 1fr);
+  flex: 1;
+  grid-template-rows: auto repeat(3, minmax(0, 1fr));
+}
+
+.slide .cost li > b {
+  font-size: var(--size-lede);
+}
+
+.slide .cost .cell {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.3);
+}
+
+.slide .cost .cell p {
+  font-size: var(--size-body);
+}
+
+.slide .cost .cell p b {
+  color: var(--c-ink);
+}
+
+.slide .cost .bar[data-v="low"] { --v: 0.18; }
+.slide .cost .bar[data-v="mid"] { --v: 0.32; }
+.slide .cost .bar[data-v="high"] { --v: 0.78; }
+.slide .cost .bar[data-v="top"] { --v: 0.95; }

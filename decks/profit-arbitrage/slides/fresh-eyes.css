@@ -1,0 +1,74 @@
+.slide .manual {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.slide .manual .sheet {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+  padding: var(--gap);
+  border: var(--rule) solid var(--ink);
+  border-radius: var(--radius-small);
+  background: var(--card);
+}
+
+.slide .manual .sheet > .label {
+  color: var(--ink);
+  font-size: var(--size-small);
+}
+
+.slide .manual .lines {
+  display: grid;
+  gap: calc(var(--gap) * 0.4);
+}
+
+.slide .manual .lines li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+  padding: calc(var(--gap) * 0.35) calc(var(--gap) * 0.5);
+  border-bottom: var(--hair) solid var(--line);
+}
+
+.slide .manual .lines li[data-stuck] {
+  background: var(--route-soft);
+}
+
+.slide .manual .lines em {
+  flex: none;
+  padding: 0.1em 0.7em;
+  border-radius: var(--radius-small);
+  background: var(--route);
+  color: var(--white);
+  font-size: var(--size-small);
+  font-style: normal;
+  font-weight: 800;
+  rotate: -2deg;
+}
+
+.slide .manual .clock {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.3);
+}
+
+.slide .manual .clock .label {
+  color: var(--ink);
+}
+
+.slide .manual .decay {
+  height: calc(var(--gap) * 0.9);
+  border-radius: var(--hair);
+  background: linear-gradient(90deg, var(--route), var(--route-soft) 80%, transparent);
+}
+
+.slide .manual .ticks {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 800;
+}

@@ -1,0 +1,48 @@
+.slide .legend {
+  display: grid;
+  grid-template-rows: repeat(5, minmax(0, 1fr));
+  border-top: var(--rule) solid var(--ink);
+}
+
+.slide .legend li {
+  display: grid;
+  grid-template-columns: calc(var(--gap) * 4.5) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--gap);
+  border-bottom: var(--hair) solid var(--line);
+}
+
+.slide .legend li > .cond,
+.slide .legend .sym,
+.slide .legend .trio {
+  justify-self: center;
+}
+
+.slide .legend li > .cond {
+  width: 2.6em;
+  height: 2.6em;
+}
+
+.slide .legend .sym {
+  width: calc(var(--gap) * 3);
+  height: var(--rule);
+  border-top: var(--heavy) dashed var(--route);
+}
+
+.slide .legend .trio {
+  display: flex;
+  gap: calc(var(--gap) * 0.2);
+}
+
+.slide .legend .trio .cond {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.slide .legend b {
+  font-size: var(--size-lede);
+}
+
+.slide .legend .note {
+  color: var(--ink-2);
+}

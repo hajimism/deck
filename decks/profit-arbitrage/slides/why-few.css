@@ -1,0 +1,53 @@
+.slide .reasons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: var(--gap);
+}
+
+.slide .reasons .card h3 {
+  font-size: var(--size-stat);
+  line-height: 1.2;
+}
+
+.slide .reasons .card > p:not(.label, .ex) {
+  font-size: calc(var(--size-lede) * 1.15);
+  font-weight: 800;
+}
+
+.slide .reasons .card .ex {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.2);
+  margin-top: auto;
+  padding-top: calc(var(--gap) * 0.6);
+  border-top: var(--hair) solid var(--line);
+  font-size: var(--size-lede);
+  line-height: 1.6;
+}
+
+.slide .reasons .office {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.5);
+  padding: calc(var(--gap) * 0.7) var(--gap);
+  border: var(--rule) dashed var(--route);
+  border-radius: var(--radius-small);
+}
+
+.slide .reasons .office .label {
+  color: var(--route-ink);
+}
+
+.slide .reasons .office li {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .reasons .office .who {
+  width: 3.2em;
+  height: 3.2em;
+  font-size: var(--size-caption);
+}

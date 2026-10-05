@@ -1,0 +1,64 @@
+.slide .bridges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--gap) * 0.35);
+}
+
+.slide .bridges li {
+  padding: 0.2em 0.9em;
+  border: var(--hair) solid var(--route);
+  border-radius: var(--pill);
+  background: var(--card);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.slide .valleys {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: calc(var(--gap) * 0.8) calc(var(--gap) * 2.4);
+}
+
+.slide .valleys .place {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+  padding: var(--gap);
+  border-top: var(--heavy) solid var(--c);
+  background: var(--c-soft);
+}
+
+.slide .valleys .place .label {
+  font-size: var(--size-small);
+}
+
+.slide .valleys .voice {
+  font-size: calc(var(--size-lede) * 1.1);
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.slide .valleys .place .note {
+  margin-top: auto;
+  padding-top: calc(var(--gap) * 1.5);
+  color: var(--ink-2);
+}
+
+.slide .valleys .bridge {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--gap) * 0.4);
+  padding: calc(var(--gap) * 0.7);
+  border: var(--rule) dashed var(--route);
+  border-top: 0;
+  border-radius: 0 0 var(--radius) var(--radius);
+  font-weight: 800;
+}
+
+.slide .valleys .bridge .tag {
+  align-self: center;
+  font-size: var(--size-small);
+}

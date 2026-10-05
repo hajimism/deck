@@ -1,0 +1,88 @@
+.slide .roads {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr) minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: calc(var(--gap) * 0.6) var(--gap);
+}
+
+.slide .roads svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.slide .roads [data-kind="trail"] {
+  fill: none;
+  stroke: var(--route);
+  stroke-width: 4;
+  stroke-dasharray: 12 10;
+  vector-effect: non-scaling-stroke;
+}
+
+.slide .roads .goal {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--gap) * 0.3);
+  padding: calc(var(--gap) * 0.6);
+  border: var(--rule) solid var(--lake);
+  border-radius: var(--radius-small);
+  background: var(--card);
+  text-align: center;
+}
+
+.slide .roads .road {
+  position: relative;
+  grid-row: 2 / 4;
+  align-self: end;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.45);
+  padding: var(--gap);
+  border: var(--hair) solid var(--line-strong);
+  border-radius: var(--radius-small);
+  background: var(--card);
+}
+
+.slide .roads .road[data-at="in"] { grid-column: 1; }
+.slide .roads .road[data-at="out"] { grid-column: 3; }
+
+.slide .roads .head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .roads .head b {
+  font-size: var(--size-lede);
+}
+
+.slide .roads .find {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+  padding: calc(var(--gap) * 0.4) calc(var(--gap) * 0.6);
+  border-radius: var(--radius-small);
+  background: var(--h2);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.slide .roads .hint {
+  position: relative;
+  grid-column: 2;
+  grid-row: 3;
+  align-self: end;
+  padding: calc(var(--gap) * 0.5) calc(var(--gap) * 0.7);
+  border-radius: var(--radius-small);
+  background: var(--forest);
+  color: var(--white);
+  font-size: var(--size-small);
+  font-weight: 700;
+}

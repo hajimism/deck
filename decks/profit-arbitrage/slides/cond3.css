@@ -1,0 +1,78 @@
+.slide .rivals {
+  flex: 1;
+}
+
+.slide .rivals .card {
+  gap: calc(var(--gap) * 0.5);
+  border-left-width: var(--hair);
+  border-top: var(--heavy) solid var(--c);
+}
+
+.slide .rivals .sellers,
+.slide .rivals .peers,
+.slide .rivals .cases {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  margin-top: auto;
+}
+
+.slide .rivals .row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: calc(var(--gap) * 0.35);
+}
+
+.slide .rivals .dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--gap) * 0.2);
+}
+
+.slide .rivals .dots i {
+  width: calc(var(--gap) * 1.05);
+  height: calc(var(--gap) * 1.05);
+  border: var(--rule) solid var(--lake);
+  border-radius: var(--pill);
+  background: var(--lake);
+}
+
+.slide .rivals .dots[data-own] i {
+  background: var(--card);
+}
+
+.slide .rivals .dots[data-own] i:first-child {
+  background: var(--route);
+  border-color: var(--route);
+}
+
+.slide .rivals .cases li {
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--gap) * 0.5) calc(var(--gap) * 0.7);
+  border-radius: var(--radius-small);
+  background: var(--c-soft);
+  line-height: 1.5;
+}
+
+.slide .rivals .cases span {
+  color: var(--c-ink);
+  font-weight: 800;
+}
+
+.slide .rivals .cases span::before {
+  content: "→ ";
+}
+
+.slide .rivals .row .tag {
+  font-size: var(--size-body);
+}
+
+.slide .rivals .row .note {
+  font-size: var(--size-body);
+}
+
+.slide .rivals .cases li {
+  font-size: var(--size-lede);
+}

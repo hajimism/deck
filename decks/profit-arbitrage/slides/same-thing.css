@@ -1,0 +1,133 @@
+.slide {
+  --grow: 0.9s;
+  --lag-high: 0.45s;
+  --lag-val: 0.7s;
+  --lag-rate: 1.5s;
+  --fade: 0.4s;
+  --lag: 0s;
+}
+
+.slide .pair {
+  gap: calc(var(--gap) * 0.5);
+  border-left-color: var(--ink);
+}
+
+.slide .pair .head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--gap);
+  padding-bottom: calc(var(--gap) * 0.4);
+  border-bottom: var(--hair) solid var(--line);
+}
+
+.slide .pair .head b {
+  font-size: var(--size-lede);
+}
+
+.slide .pair .steps {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) calc(var(--gap) * 4.4) minmax(0, 1fr);
+  align-items: end;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .pair .step {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: calc(var(--gap) * 0.35);
+  height: 100%;
+}
+
+/* Bars to scale: 450 is 30% of 1500. The voice card keeps the same proportions. */
+.slide .pair .block {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: calc(var(--gap) * 0.1);
+  height: 24%;
+  min-height: calc(var(--gap) * 4);
+  padding: calc(var(--gap) * 0.5) calc(var(--gap) * 0.6);
+  border-top: var(--heavy) solid var(--c);
+  background: var(--h1);
+  line-height: 1.4;
+}
+
+.slide .pair .step[data-high] .block {
+  height: 80%;
+  background: var(--h3);
+}
+
+.slide .pair .block b {
+  font-size: var(--size-lede);
+}
+
+.slide .pair .block span {
+  color: var(--ink-2);
+  font-size: var(--size-small);
+}
+
+.slide .pair .val {
+  display: flex;
+  align-items: baseline;
+  gap: 0.15em;
+  height: 1.2em;
+  color: var(--c-ink);
+  font-size: calc(var(--size-title) * 1.05);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.slide .pair .val small {
+  font-size: 0.5em;
+}
+
+.slide .pair .rate {
+  align-self: center;
+  padding: 0.2em 0;
+  border: var(--rule) dashed var(--route);
+  border-radius: var(--pill);
+  color: var(--route-ink);
+  font-size: var(--size-small);
+  text-align: center;
+}
+
+/* Motion: when a card appears, its bars grow from the ground, then the labels settle on top. */
+.slide.is-current .pair .block {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path var(--grow) var(--ease-out) var(--lag);
+}
+
+.slide.is-current .pair .step[data-high] {
+  --lag: var(--lag-high);
+}
+
+.slide.is-current .pair .val {
+  opacity: 0;
+  transition: opacity var(--fade) var(--ease-out) calc(var(--lag) + var(--lag-val));
+}
+
+.slide.is-current .pair .rate {
+  opacity: 0;
+  transition: opacity var(--fade) var(--ease-out) var(--lag-rate);
+}
+
+.slide.is-current .pair.is-shown .block {
+  clip-path: inset(0);
+}
+
+.slide.is-current .pair.is-shown .val,
+.slide.is-current .pair.is-shown .rate {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide.is-current .pair .block,
+  .slide.is-current .pair .val,
+  .slide.is-current .pair .rate {
+    transition: none;
+  }
+}

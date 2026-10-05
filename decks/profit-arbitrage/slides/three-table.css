@@ -1,0 +1,24 @@
+.slide .check {
+  --cols: calc(var(--gap) * 6) repeat(3, minmax(0, 1fr));
+  flex: 1;
+  grid-template-rows: auto repeat(3, minmax(0, 1fr));
+}
+
+.slide .check li {
+  font-size: var(--size-lede);
+}
+
+.slide .check li > b {
+  font-size: var(--size-lede);
+}
+
+.slide .check li[data-head] {
+  font-size: var(--size-small);
+}
+
+.slide .check .h {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  color: var(--c-ink);
+}

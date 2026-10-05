@@ -1,0 +1,39 @@
+<section class="slide" data-layout="split">
+  <div class="col">
+    <p class="kicker">はじめに ／ 裁定</p>
+    <h2 class="slide-title">裁定とは、評価の低い場所から高い場所へ運び、差額を得ること</h2>
+    <p class="lede">同じものでも、場所によって評価が違う。この差を使って運び、<b>差額を得る</b>。麓で50円の水も、山頂まで運べば500円で売れる。</p>
+    <div class="card" data-tone="route" data-step="arbitrage-carrier">
+      <p class="label">運ぶ人は、水を一滴も作っていない</p>
+      <div class="change">
+        <p><span class="note">Before</span><b>喉が渇いた登山者</b></p>
+        <p class="arrow">→</p>
+        <p><span class="note">After</span><b>渇きが癒えた登山者</b></p>
+      </div>
+      <p class="note">それでも相手を変えている。<b>運ぶことも、価値を生む仕事。</b></p>
+    </div>
+  </div>
+  <figure class="stage climb">
+    <svg viewBox="0 0 640 460" aria-hidden="true">
+      <defs>
+        <clipPath id="climb-land"><path d="M 0 460 L 0 400 C 140 396, 220 372, 300 300 S 430 92, 530 62 S 610 72, 640 96 L 640 460 Z" /></clipPath>
+      </defs>
+      <g clip-path="url(#climb-land)">
+        <rect data-band="1" x="0" y="340" width="640" height="120" />
+        <rect data-band="2" x="0" y="260" width="640" height="80" />
+        <rect data-band="3" x="0" y="180" width="640" height="80" />
+        <rect data-band="4" x="0" y="110" width="640" height="70" />
+        <rect data-band="5" x="0" y="0" width="640" height="110" />
+      </g>
+      <path data-kind="ridge" d="M 0 400 C 140 396, 220 372, 300 300 S 430 92, 530 62 S 610 72, 640 96" />
+      <path data-trail pathLength="1" data-kind="trail" d="M 60 397 C 160 392, 230 366, 300 300 S 430 92, 530 62" />
+      <g data-carrier transform="translate(60 397)">
+        <circle data-kind="carrier" r="15" />
+        <rect data-kind="bottle" x="-4" y="-9" width="8" height="15" rx="2" />
+      </g>
+    </svg>
+    <p class="meter"><span class="label">いまの売値</span><span class="price" data-tone="route"><span data-price>500</span><small>円</small></span></p>
+    <p class="place" data-at="foot">麓 50円</p>
+    <p class="place" data-at="peak">山頂 500円</p>
+  </figure>
+</section>

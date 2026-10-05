@@ -1,0 +1,103 @@
+.slide .meta {
+  display: grid;
+  gap: calc(var(--gap) * 0.3);
+  margin-top: calc(var(--gap) * 0.4);
+  padding-top: calc(var(--gap) * 0.8);
+  border-top: var(--hair) solid var(--line-strong);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.slide .meta div {
+  display: grid;
+  grid-template-columns: 4em minmax(0, 1fr);
+}
+
+.slide .meta dt {
+  color: var(--muted);
+}
+
+.slide .relief {
+  position: relative;
+  aspect-ratio: 520 / 520;
+  width: 100%;
+  border: var(--hair) solid var(--line-strong);
+  border-radius: var(--radius-small);
+  background: var(--card);
+  overflow: hidden;
+}
+
+.slide .relief svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: calc(100% * 480 / 520);
+}
+
+.slide .relief use {
+  stroke: var(--h5);
+  stroke-width: 0.25;
+  vector-effect: non-scaling-stroke;
+}
+
+.slide .relief [data-h="1"] { fill: var(--h1); }
+.slide .relief [data-h="2"] { fill: var(--h2); }
+.slide .relief [data-h="3"] { fill: var(--h3); }
+.slide .relief [data-h="4"] { fill: var(--h4); }
+.slide .relief [data-h="5"] { fill: var(--h5); }
+.slide .relief [data-h="6"] { fill: var(--h6); }
+
+.slide .relief [data-kind="route"] {
+  fill: none;
+  stroke: var(--route);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 10 8;
+}
+
+.slide .relief [data-kind="pin"] {
+  fill: var(--route);
+  stroke: var(--white);
+  stroke-width: 3;
+}
+
+.slide .relief [data-kind="summit"] {
+  fill: var(--white);
+  stroke: var(--route);
+  stroke-width: 3;
+}
+
+.slide .spot {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.2);
+  padding: calc(var(--gap) * 0.4) calc(var(--gap) * 0.6);
+  border: var(--hair) solid var(--line-strong);
+  border-radius: var(--radius-small);
+  background: var(--card);
+}
+
+.slide .spot .label {
+  color: var(--ink-2);
+}
+
+.slide .spot[data-at="foot"] {
+  left: 4%;
+  top: 50%;
+}
+
+.slide .spot[data-at="peak"] {
+  right: 5%;
+  top: 4%;
+}
+
+.slide .relief figcaption {
+  position: absolute;
+  inset: auto 0 0;
+  padding: calc(var(--gap) * 0.5) calc(var(--gap) * 0.8);
+  border-top: var(--hair) solid var(--line-strong);
+  background: var(--card);
+  font-size: var(--size-small);
+  font-weight: 800;
+}

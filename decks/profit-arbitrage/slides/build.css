@@ -1,0 +1,73 @@
+.slide .makers {
+  flex: 1;
+}
+
+.slide .makers .card {
+  gap: calc(var(--gap) * 0.45);
+  border-left-width: var(--hair);
+  border-top: var(--heavy) solid var(--c);
+}
+
+.slide .makers .head {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.6);
+  color: var(--c-ink);
+}
+
+.slide .makers .head .cond {
+  width: 2.6em;
+  height: 2.6em;
+}
+
+.slide .makers .what {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.slide .makers .what b {
+  font-size: var(--size-title);
+}
+
+.slide .makers .means {
+  padding: calc(var(--gap) * 0.3) calc(var(--gap) * 0.6);
+  border-radius: var(--radius-small);
+  background: var(--c-soft);
+  color: var(--c-ink);
+  font-weight: 800;
+}
+
+.slide .makers h3 {
+  margin-top: calc(var(--gap) * 0.2);
+  font-size: var(--size-body);
+}
+
+.slide .makers .flow {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.3);
+  margin-top: calc(var(--gap) * 0.2);
+}
+
+.slide .makers .flow li {
+  display: grid;
+  flex: none;
+  grid-template-columns: calc(var(--gap) * 3) minmax(0, 1fr);
+  align-items: baseline;
+  gap: calc(var(--gap) * 0.4);
+  padding: calc(var(--gap) * 0.3) 0;
+  border-bottom: var(--hair) dashed var(--line);
+  font-size: var(--size-small);
+  line-height: 1.55;
+}
+
+.slide .makers .flow li[data-end] {
+  margin-top: auto;
+  padding: calc(var(--gap) * 0.6) calc(var(--gap) * 0.5);
+  border: 0;
+  border-radius: var(--radius-small);
+  background: var(--c-soft);
+  font-weight: 800;
+}
