@@ -1,0 +1,57 @@
+.slide .answers {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.7);
+  align-items: stretch;
+}
+
+.slide .answers .card {
+  justify-content: flex-start;
+  gap: calc(var(--gap) * 0.6);
+  padding: calc(var(--gap) * 1.1) var(--gap);
+  border-top: var(--heavy) solid var(--c);
+}
+
+.slide .answers h3 {
+  font-size: var(--size-title);
+  line-height: 1.3;
+}
+
+.slide .answers .outcome {
+  border-top-color: var(--ink);
+  background: var(--night);
+  color: var(--white);
+}
+
+.slide .answers .outcome .chip {
+  background: var(--veil-2);
+  color: var(--white);
+}
+
+.slide .answers .outcome .note {
+  color: var(--violet-light);
+}
+
+.slide .answers .go {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: calc(var(--gap) * 0.6);
+  border-top: var(--hair) solid var(--line-strong);
+  color: var(--c-ink);
+  font-size: var(--size-small);
+  font-weight: 800;
+}
+
+.slide .answers .outcome .go {
+  border-top-color: var(--veil-line-2);
+  color: var(--white);
+}
+
+.slide .answers .go b {
+  font-family: var(--font-num);
+  font-size: var(--size-hero);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}

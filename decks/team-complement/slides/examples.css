@@ -1,0 +1,18 @@
+.slide .grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .grid .card {
+  gap: calc(var(--gap) * 0.5);
+  padding: calc(var(--gap) * 0.8) calc(var(--gap) * 0.9);
+  font-size: var(--size-body);
+  line-height: 1.7;
+}
+
+.slide .grid .chip {
+  margin-right: 0.6em;
+  vertical-align: 0.1em;
+}

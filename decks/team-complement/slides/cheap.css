@@ -1,0 +1,51 @@
+.slide[data-layout="split"][data-wide] {
+  grid-template-columns: 6fr 5fr;
+}
+
+.slide .deal {
+  display: grid;
+  gap: calc(var(--gap) * 0.8);
+}
+
+.slide .price {
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .meter {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) 5.5em;
+  align-items: center;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .meter .who {
+  font-family: var(--font-body);
+}
+
+.slide .meter .bar {
+  height: calc(var(--gap) * 1.1);
+  border-radius: var(--radius-small);
+  background: linear-gradient(90deg, var(--c) calc(var(--w) * 100% / 6), var(--panel-2) 0);
+}
+
+.slide .meter [data-w="1"] { --w: 1; }
+.slide .meter [data-w="6"] { --w: 6; }
+
+.slide .meter .stat {
+  justify-content: flex-end;
+  font-size: var(--size-stat);
+}
+
+.slide .ledger {
+  display: grid;
+  gap: calc(var(--gap) * 0.4);
+}
+
+.slide .ledger .card {
+  gap: calc(var(--gap) * 0.15);
+  padding: calc(var(--gap) * 0.6) var(--gap);
+}
+
+.slide .ledger b {
+  font-size: var(--size-lede);
+}

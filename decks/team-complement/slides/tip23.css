@@ -1,0 +1,74 @@
+.slide {
+  --size-say: 22px;
+  --plan-h: 110px;
+}
+
+.slide .tip {
+  gap: calc(var(--gap) * 0.7);
+}
+
+.slide .tip .ng,
+.slide .tip .ok {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7em;
+  font-size: var(--size-say);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.slide .tip .ng {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: var(--coral);
+}
+
+.slide .tip .ok + .ng {
+  margin-top: calc(var(--gap) * 0.4);
+}
+
+.slide .tip .ok {
+  padding: calc(var(--gap) * 0.6) calc(var(--gap) * 0.7);
+  border-radius: var(--radius-small);
+  background: var(--paper);
+}
+
+.slide .tip .q {
+  font-size: var(--size-say);
+  line-height: 1.6;
+}
+
+.slide .plan {
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+  gap: var(--rule);
+  overflow: hidden;
+  border-radius: var(--radius-small);
+}
+
+.slide .plan p {
+  display: grid;
+  gap: calc(var(--gap) * 0.1);
+  align-content: space-between;
+  min-height: var(--plan-h);
+  padding: calc(var(--gap) * 0.8);
+  background: var(--c-fill);
+  color: var(--white);
+  line-height: 1.45;
+}
+
+.slide .plan .label {
+  color: var(--white);
+}
+
+.slide .plan b {
+  font-size: var(--size-lede);
+}
+
+.slide .tip .chip:not([data-fill]) {
+  font-size: var(--size-small);
+}
+
+.slide .tip .note {
+  margin-top: auto;
+}

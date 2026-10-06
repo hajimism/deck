@@ -1,0 +1,22 @@
+.slide .side {
+  gap: calc(var(--gap) * 0.7);
+}
+
+.slide .steps {
+  display: grid;
+  gap: calc(var(--gap) * 0.4);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.slide .steps li {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+}
+
+.slide .side .note {
+  margin-top: auto;
+  padding-top: calc(var(--gap) * 0.6);
+  border-top: var(--hair) solid var(--line-strong);
+}

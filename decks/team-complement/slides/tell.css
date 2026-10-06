@@ -1,0 +1,29 @@
+.slide .composer {
+  display: grid;
+  gap: calc(var(--gap) * 0.5);
+  padding: calc(var(--gap) * 1.2) calc(var(--gap) * 1.4);
+  border: var(--rule) solid var(--line);
+  border-radius: var(--radius);
+}
+
+.slide .composer .label {
+  color: var(--muted);
+}
+
+.slide .composer .line {
+  font-size: var(--size-title);
+  font-weight: 800;
+  line-height: 1.8;
+}
+
+.slide .slot {
+  padding: 0.05em 0.5em;
+  border: var(--rule) dashed var(--c);
+  border-radius: var(--radius-small);
+  background: var(--c-soft);
+  color: var(--c-ink);
+}
+
+.slide .say {
+  color: var(--c-ink);
+}

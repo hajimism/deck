@@ -1,0 +1,73 @@
+.slide .defs {
+  display: grid;
+  gap: calc(var(--gap) * 0.5);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.slide .defs div {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+}
+
+.slide .defs .chip {
+  font-size: var(--size-small);
+}
+
+.slide .chef {
+  display: block;
+  font-size: var(--size-small);
+  line-height: 1.7;
+}
+
+.slide .chef b {
+  display: block;
+  margin-bottom: calc(var(--gap) * 0.2);
+}
+
+.slide .room {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  gap: 0;
+  height: 100%;
+}
+
+.slide .room .ceil,
+.slide .room .floor {
+  display: flex;
+  align-items: baseline;
+  gap: calc(var(--gap) * 0.6);
+  padding: calc(var(--gap) * 0.7) var(--gap);
+  background: var(--c-soft);
+  color: var(--c-ink);
+  font-size: var(--size-lede);
+}
+
+.slide .room .ceil {
+  border-bottom: var(--heavy) solid var(--c);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.slide .room .floor {
+  border-top: var(--heavy) solid var(--c);
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.slide .room .space {
+  display: grid;
+  place-items: center;
+  border-inline: var(--rule) dashed var(--line-strong);
+  background: repeating-linear-gradient(0deg, var(--panel) 0 var(--gap), var(--paper) var(--gap) calc(var(--gap) * 2));
+}
+
+.slide .room .space .label {
+  padding: 0.3em 0.9em;
+  border-radius: var(--pill);
+  background: var(--paper);
+  color: var(--muted);
+}
+
+.slide .room .punch {
+  margin-top: var(--gap);
+}

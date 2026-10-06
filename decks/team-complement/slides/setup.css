@@ -1,0 +1,25 @@
+.slide .dir {
+  gap: calc(var(--gap) * 0.5);
+  border-top: var(--heavy) solid var(--c);
+}
+
+.slide .dir .how {
+  color: var(--c-ink);
+  font-weight: 700;
+}
+
+.slide .cases {
+  display: grid;
+  gap: calc(var(--gap) * 0.5);
+  margin-top: calc(var(--gap) * 0.2);
+}
+
+.slide .cases li {
+  display: grid;
+  gap: calc(var(--gap) * 0.15);
+  padding: calc(var(--gap) * 0.55) calc(var(--gap) * 0.7);
+  border-radius: var(--radius-small);
+  background: var(--paper);
+  font-size: var(--size-small);
+  line-height: 1.6;
+}

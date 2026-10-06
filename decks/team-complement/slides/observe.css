@@ -1,0 +1,15 @@
+.slide .lens {
+  gap: calc(var(--gap) * 0.7);
+  padding: calc(var(--gap) * 1.2) var(--gap);
+  border-top: var(--heavy) solid var(--c);
+}
+
+.slide .lens h3 {
+  font-size: var(--size-title);
+  line-height: 1.35;
+}
+
+.slide .lens .note {
+  margin-top: auto;
+  font-size: var(--size-body);
+}

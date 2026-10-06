@@ -1,0 +1,37 @@
+.slide {
+  --profile-h-face: 130px;
+}
+
+.slide .face {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--gap);
+}
+
+.slide .face .one {
+  --profile-h: var(--profile-h-face);
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .face .label {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: var(--size-small);
+}
+
+.slide .face .bubble {
+  background: var(--c-soft);
+  color: var(--c-ink);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.slide .face .vs {
+  color: var(--muted);
+  font-size: var(--size-small);
+  font-weight: 800;
+  line-height: 1.5;
+  text-align: center;
+}

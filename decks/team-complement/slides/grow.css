@@ -1,0 +1,32 @@
+.slide .why {
+  gap: calc(var(--gap) * 0.6);
+  border-top: var(--heavy) solid var(--c);
+}
+
+.slide .cycle {
+  display: grid;
+  gap: calc(var(--gap) * 0.3);
+  font-weight: 800;
+}
+
+.slide .cycle li {
+  padding: calc(var(--gap) * 0.45) calc(var(--gap) * 0.7);
+  border-radius: var(--radius-small);
+  background: var(--paper);
+}
+
+.slide .cycle li + li::before {
+  content: "↻ ";
+  color: var(--c-ink);
+}
+
+.slide .why .bubble {
+  background: var(--c-soft);
+  color: var(--c-ink);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.slide .why .note {
+  margin-top: auto;
+}

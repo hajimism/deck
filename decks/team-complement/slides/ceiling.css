@@ -1,0 +1,117 @@
+.slide {
+  --tick: 20%;
+}
+
+.slide .team {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: calc(var(--gap) * 0.5);
+  margin: 0;
+}
+
+.slide .team figcaption {
+  font-size: var(--size-lede);
+}
+
+.slide .chart {
+  display: grid;
+  grid-template-columns: 1.6em minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  column-gap: calc(var(--gap) * 0.4);
+  row-gap: calc(var(--gap) * 0.3);
+  min-height: 0;
+}
+
+/* The scale: 0 to 5, each figure centred on its gridline. */
+.slide .ticks {
+  position: relative;
+  color: var(--muted);
+  font-family: var(--font-num);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  line-height: 1;
+  text-align: right;
+}
+
+.slide .ticks li {
+  position: absolute;
+  right: 0;
+  translate: 0 50%;
+}
+
+.slide .ticks li:nth-child(1) { bottom: calc(var(--tick) * 5); }
+.slide .ticks li:nth-child(2) { bottom: calc(var(--tick) * 4); }
+.slide .ticks li:nth-child(3) { bottom: calc(var(--tick) * 3); }
+.slide .ticks li:nth-child(4) { bottom: calc(var(--tick) * 2); }
+.slide .ticks li:nth-child(5) { bottom: var(--tick); }
+.slide .ticks li:nth-child(6) { bottom: 0; }
+
+.slide .plot {
+  position: relative;
+  border-bottom: var(--rule) solid var(--ink-2);
+  background: repeating-linear-gradient(to top, var(--line-strong) 0 var(--hair), transparent var(--hair) var(--tick));
+}
+
+.slide .bars {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: end;
+  gap: calc(var(--gap) * 0.5);
+  height: 100%;
+  padding-inline: calc(var(--gap) * 0.5);
+}
+
+.slide .bars li {
+  --v: 0;
+  height: calc(var(--v) * var(--tick));
+  border-radius: var(--radius-small) var(--radius-small) 0 0;
+  background: var(--c);
+}
+
+.slide .bars [data-v="3"] { --v: 3; }
+.slide .bars [data-v="5"] { --v: 5; }
+
+/* The column that was cut back: its lost height, from 3 to 5, left as a dashed outline. */
+.slide .bars li[data-cut] {
+  position: relative;
+}
+
+.slide .bars li[data-cut]::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 100%;
+  height: calc(100% * 2 / 3);
+  border: var(--rule) dashed var(--slate);
+  border-bottom: 0;
+  border-radius: var(--radius-small) var(--radius-small) 0 0;
+}
+
+/* A floor or ceiling: a dashed line across the plot at data-at. */
+.slide .level {
+  --at: 0;
+  position: absolute;
+  inset: auto 0 calc(var(--at) * var(--tick));
+  border-top: var(--rule) dashed var(--c-ink);
+}
+
+.slide .level[data-at="3"] { --at: 3; }
+.slide .level[data-at="5"] { --at: 5; }
+
+
+.slide .level[data-ghost] {
+  border-top-color: var(--slate);
+}
+
+
+.slide .names {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.5);
+  padding-inline: calc(var(--gap) * 0.5);
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+}

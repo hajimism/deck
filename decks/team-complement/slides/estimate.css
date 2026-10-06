@@ -1,0 +1,55 @@
+.slide .flow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: calc(var(--gap) * 1.4);
+}
+
+.slide .flow .card {
+  gap: calc(var(--gap) * 0.25);
+  padding: calc(var(--gap) * 0.8) var(--gap);
+  font-size: var(--size-lede);
+}
+
+.slide .flow .card + .card::before {
+  content: "→";
+  position: absolute;
+  left: calc(var(--gap) * -1.15);
+  top: 50%;
+  translate: 0 -50%;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.slide .flow .num {
+  margin-bottom: calc(var(--gap) * 0.25);
+}
+
+.slide .days {
+  display: grid;
+  gap: calc(var(--gap) * 0.4);
+}
+
+.slide .day {
+  display: grid;
+  grid-template-columns: 3em minmax(0, 1fr);
+  align-items: center;
+}
+
+.slide .days .bar {
+  display: flex;
+  gap: var(--rule);
+  overflow: hidden;
+  border-radius: var(--radius-small);
+  color: var(--white);
+  font-size: var(--size-small);
+  font-weight: 800;
+}
+
+.slide .days .bar span {
+  padding: calc(var(--gap) * 0.35) calc(var(--gap) * 0.6);
+  background: var(--c-fill);
+  white-space: nowrap;
+}
+
+.slide .days [data-w="30"] { flex: 3; }
+.slide .days [data-w="70"] { flex: 7; }

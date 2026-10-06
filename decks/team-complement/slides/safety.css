@@ -1,0 +1,38 @@
+.slide .chain {
+  display: grid;
+  gap: calc(var(--gap) * 0.3);
+  counter-reset: chain;
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.slide .chain li {
+  counter-increment: chain;
+  display: flex;
+  gap: 0.6em;
+}
+
+.slide .chain li::before {
+  content: counter(chain);
+  color: var(--c-ink);
+  font-family: var(--font-num);
+}
+
+.slide .def .quote {
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.slide .acts {
+  display: grid;
+  gap: calc(var(--gap) * 0.4);
+}
+
+.slide .acts .card {
+  flex-direction: row;
+  align-items: center;
+  gap: calc(var(--gap) * 0.6);
+  padding: calc(var(--gap) * 0.6) calc(var(--gap) * 0.8);
+  line-height: 1.5;
+}

@@ -1,0 +1,84 @@
+.slide {
+  --profile-h-person: 64px;
+}
+
+.slide .meta {
+  display: grid;
+  gap: calc(var(--gap) * 0.3);
+  margin-top: calc(var(--gap) * 0.4);
+  padding-top: calc(var(--gap) * 0.8);
+  border-top: var(--hair) solid var(--line);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.slide .meta div {
+  display: grid;
+  grid-template-columns: 4em minmax(0, 1fr);
+  align-items: baseline;
+}
+
+.slide .meta dt {
+  color: var(--muted);
+}
+
+.slide .deal {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: calc(var(--gap) * 1.2);
+  padding: calc(var(--gap) * 1.2);
+  border: var(--hair) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.slide .deal .people {
+  display: grid;
+  gap: calc(var(--gap) * 0.8);
+}
+
+.slide .deal .person {
+  --profile-h: var(--profile-h-person);
+  display: grid;
+  gap: calc(var(--gap) * 0.35);
+}
+
+.slide .deal .label {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  color: var(--muted);
+}
+
+.slide .deal .who {
+  width: 2em;
+  height: 2em;
+  font-size: var(--size-caption);
+}
+
+.slide .deal .team {
+  --profile-h: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: calc(var(--gap) * 0.35);
+  padding-left: calc(var(--gap) * 1.2);
+  border-left: var(--hair) solid var(--line);
+}
+
+.slide .deal .team .label {
+  color: var(--white);
+  letter-spacing: 0.2em;
+}
+
+.slide .deal .profile span {
+  color: var(--muted);
+}
+
+.slide .deal figcaption {
+  grid-column: 1 / -1;
+  padding-top: calc(var(--gap) * 0.6);
+  border-top: var(--hair) solid var(--line);
+  color: var(--muted);
+  font-size: var(--size-small);
+  font-weight: 700;
+}

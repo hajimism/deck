@@ -1,0 +1,29 @@
+.slide .rows {
+  --cols: 7em minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 1fr);
+  align-content: start;
+}
+
+.slide .rows li {
+  padding-block: calc(var(--gap) * 0.7);
+}
+
+.slide .rows li[data-head] {
+  padding-block: calc(var(--gap) * 0.4);
+}
+
+.slide .rows .label {
+  color: var(--muted);
+}
+
+.slide .rows .h {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  color: var(--c-ink);
+}
+
+.slide .rows .who {
+  width: 2em;
+  height: 2em;
+  font-size: var(--size-caption);
+}

@@ -1,0 +1,42 @@
+.slide .costs {
+  display: grid;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .costs .card {
+  flex-direction: row;
+  align-items: center;
+  gap: calc(var(--gap) * 0.6);
+  padding: calc(var(--gap) * 0.6) var(--gap);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.slide .meeting {
+  justify-content: space-between;
+}
+
+.slide .seats {
+  display: grid;
+  grid-template-columns: repeat(5, max-content);
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .seats .who {
+  width: 4em;
+  height: 4em;
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+}
+
+.slide .meeting .stat {
+  font-size: var(--size-stat);
+}
+
+.slide .meeting .stat small {
+  font-size: 0.36em;
+}
+
+.slide .formula b {
+  margin-left: calc(var(--gap) * 0.4);
+}

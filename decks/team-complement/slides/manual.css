@@ -1,0 +1,47 @@
+.slide .sheet {
+  display: grid;
+  gap: var(--gap);
+  padding: calc(var(--gap) * 1.2);
+  border: var(--hair) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+  box-shadow: 0 var(--gap) calc(var(--gap) * 2.5) var(--panel-2);
+}
+
+.slide .sheet .head {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.7);
+  padding-bottom: calc(var(--gap) * 0.8);
+  border-bottom: var(--hair) solid var(--line);
+  font-size: var(--size-lede);
+}
+
+.slide .sheet .head .who {
+  width: 3em;
+  height: 3em;
+  font-family: var(--font-body);
+}
+
+.slide .sheet .head .label {
+  color: var(--muted);
+}
+
+.slide .items {
+  display: grid;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .items div {
+  display: grid;
+  grid-template-columns: 7.5em minmax(0, 1fr);
+  align-items: baseline;
+  gap: calc(var(--gap) * 0.6);
+  font-size: var(--size-small);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.slide .items .chip {
+  justify-self: start;
+}

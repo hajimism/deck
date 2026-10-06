@@ -1,0 +1,26 @@
+.slide .big {
+  font-size: var(--size-title);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.slide .motto {
+  display: grid;
+  gap: calc(var(--gap) * 0.4);
+  padding: var(--gap) calc(var(--gap) * 1.2);
+  border: var(--rule) solid var(--line);
+  border-radius: var(--radius);
+}
+
+.slide .motto .label {
+  color: var(--muted);
+}
+
+.slide .motto .formula {
+  font-size: var(--size-title);
+}
+
+.slide .motto .formula > i {
+  font-family: var(--font-body);
+  font-size: var(--size-title);
+}

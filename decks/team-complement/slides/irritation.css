@@ -1,0 +1,53 @@
+.slide .decode {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: var(--gap);
+}
+
+.slide .decode .card {
+  justify-content: center;
+  gap: calc(var(--gap) * 0.7);
+  padding: calc(var(--gap) * 1.4);
+}
+
+.slide .decode .voice {
+  font-size: var(--size-title);
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.slide .decode .arrow {
+  align-self: center;
+  padding: calc(var(--gap) * 0.4) calc(var(--gap) * 0.7);
+  border-radius: var(--pill);
+  background: var(--ink);
+  color: var(--white);
+  font-size: var(--size-small);
+  font-weight: 800;
+}
+
+.slide .pair {
+  display: grid;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .pair div {
+  display: grid;
+  gap: calc(var(--gap) * 0.1);
+}
+
+.slide .pair b {
+  color: var(--c-ink);
+  font-size: var(--size-stat);
+  line-height: 1.15;
+}
+
+.slide .pair div + div b {
+  color: var(--coral-ink);
+}
+
+.slide .doubt {
+  display: block;
+  padding: calc(var(--gap) * 0.7) var(--gap);
+}

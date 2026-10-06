@@ -1,0 +1,74 @@
+.slide .gap2 {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) auto minmax(0, 1.2fr);
+  align-items: stretch;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .poster {
+  justify-content: center;
+  background: var(--violet-soft);
+}
+
+.slide .poster .label {
+  color: var(--violet-ink);
+}
+
+.slide .poster .motto {
+  color: var(--violet-ink);
+  font-size: var(--size-stat);
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.slide .days {
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .days > .label {
+  color: var(--coral-ink);
+  font-size: var(--size-small);
+}
+
+.slide .log {
+  display: grid;
+  gap: calc(var(--gap) * 0.3);
+  font-size: var(--size-lede);
+  font-weight: 700;
+}
+
+.slide .log li {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  padding: calc(var(--gap) * 0.3) calc(var(--gap) * 0.6);
+  border-radius: var(--radius-small);
+  background: var(--paper);
+}
+
+.slide .result {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.6);
+  margin-top: auto;
+  padding: calc(var(--gap) * 0.6) var(--gap);
+  border-radius: var(--radius-small);
+  background: var(--coral-soft);
+  color: var(--coral-ink);
+  font-size: var(--size-lede);
+}
+
+.slide .result .label {
+  color: var(--coral-ink);
+}
+
+.slide .but {
+  align-self: center;
+  padding: calc(var(--gap) * 0.4) calc(var(--gap) * 0.7);
+  border-radius: var(--pill);
+  background: var(--coral-ink);
+  color: var(--white);
+  font-size: var(--size-title);
+  line-height: 1;
+  font-weight: 800;
+}

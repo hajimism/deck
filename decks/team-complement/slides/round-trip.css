@@ -1,0 +1,65 @@
+.slide .loop {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--gap);
+}
+
+.slide .loop .end {
+  display: grid;
+  justify-items: center;
+  gap: calc(var(--gap) * 0.3);
+  font-size: var(--size-lede);
+}
+
+.slide .loop .end .who {
+  width: 4.2em;
+  height: 4.2em;
+  font-family: var(--font-body);
+  font-size: var(--size-lede);
+}
+
+.slide .lanes {
+  display: grid;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .lanes .card {
+  gap: calc(var(--gap) * 0.15);
+  padding: calc(var(--gap) * 0.6) calc(var(--gap) * 1.2);
+  font-size: var(--size-lede);
+}
+
+.slide .lanes .card::after {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  color: var(--c);
+  font-size: var(--size-stat);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.slide .lanes .card:first-child {
+  margin-right: calc(var(--gap) * 1.6);
+}
+
+.slide .lanes .card:first-child::after {
+  content: "→";
+  right: calc(var(--gap) * -1.6);
+}
+
+.slide .lanes .card:last-child {
+  margin-left: calc(var(--gap) * 1.6);
+}
+
+.slide .lanes .card:last-child::after {
+  content: "←";
+  left: calc(var(--gap) * -1.6);
+}
+
+.slide .cols .card {
+  gap: calc(var(--gap) * 0.15);
+  padding: calc(var(--gap) * 0.7) var(--gap);
+  font-size: var(--size-lede);
+}

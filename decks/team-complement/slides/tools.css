@@ -1,0 +1,42 @@
+.slide .tool {
+  gap: calc(var(--gap) * 0.55);
+  border-top: var(--heavy) solid var(--c);
+}
+
+.slide .qs {
+  display: grid;
+  gap: calc(var(--gap) * 0.25);
+  counter-reset: q;
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.slide .qs li {
+  counter-increment: q;
+  display: grid;
+  grid-template-columns: 1.6em minmax(0, 1fr);
+  padding: calc(var(--gap) * 0.35) calc(var(--gap) * 0.5);
+  border-radius: var(--radius-small);
+  background: var(--paper);
+}
+
+.slide .qs li::before {
+  content: counter(q);
+  color: var(--c-ink);
+  font-family: var(--font-num);
+  font-weight: 800;
+}
+
+.slide .tool .note {
+  margin-top: auto;
+}
+
+.slide .tool .tip {
+  margin-top: auto;
+  padding: calc(var(--gap) * 0.5) calc(var(--gap) * 0.6);
+  border-radius: var(--radius-small);
+  background: var(--c-soft);
+  font-size: var(--size-small);
+  line-height: 1.6;
+}

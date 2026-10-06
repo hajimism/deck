@@ -1,0 +1,50 @@
+.slide .loop {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 15em));
+  gap: calc(var(--gap) * 1.6);
+  margin-top: calc(var(--gap) * 0.4);
+}
+
+.slide .loop .card {
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--gap) * 0.4);
+  padding: var(--gap);
+  font-size: var(--size-lede);
+  line-height: 1.5;
+}
+
+.slide .loop .card + .card::before {
+  content: "→";
+  position: absolute;
+  left: calc(var(--gap) * -1.2);
+  top: 50%;
+  translate: 0 -50%;
+  color: var(--violet-light);
+  font-weight: 800;
+}
+
+/* The last step feeds the first again. */
+.slide .loop .card:last-child {
+  border: var(--rule) solid var(--violet-light);
+}
+
+.slide .loop .card:last-child::after {
+  content: "↻ 1へ";
+  position: absolute;
+  right: calc(var(--gap) * 0.6);
+  bottom: calc(var(--gap) * 0.4);
+  color: var(--violet-light);
+  font-size: var(--size-caption);
+  font-weight: 800;
+}
+
+.slide .next {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  margin-top: calc(var(--gap) * 0.6);
+  color: var(--muted);
+  font-size: var(--size-small);
+  font-weight: 700;
+}

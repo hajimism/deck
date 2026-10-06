@@ -1,0 +1,54 @@
+.slide {
+  --profile-h-shallow: 90px;
+  --box: 1.4em;
+}
+
+.slide .shallow {
+  --profile-h: var(--profile-h-shallow);
+  flex-direction: row;
+  align-items: center;
+  gap: var(--gap);
+}
+
+.slide .shallow .profile {
+  flex: none;
+  width: 6em;
+}
+
+.slide .list {
+  display: grid;
+  gap: calc(var(--gap) * 0.7);
+  padding: calc(var(--gap) * 1.2);
+  border: var(--hair) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+  box-shadow: 0 var(--gap) calc(var(--gap) * 2.5) var(--panel-2);
+}
+
+.slide .list > .label {
+  color: var(--mint-ink);
+}
+
+.slide .list ul {
+  display: grid;
+  gap: calc(var(--gap) * 0.45);
+}
+
+.slide .list li {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  padding: calc(var(--gap) * 0.55) calc(var(--gap) * 0.7);
+  border-radius: var(--radius-small);
+  background: var(--panel);
+  font-weight: 700;
+}
+
+.slide .list .box {
+  flex: none;
+  width: var(--box);
+  height: var(--box);
+  border: var(--rule) solid var(--mint);
+  border-radius: var(--radius-small);
+  background: var(--mint-soft);
+}

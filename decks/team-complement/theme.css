@@ -1,0 +1,814 @@
+/*
+ * team-complement — a pitch deck for a product called "team".
+ * The talk says a team carries one person's 凸 to another person's 凹, so every page is set
+ * like a startup pitch: one claim per page in heavy type, a metric or a product mock as proof.
+ * The recurring figure is the 凸凹 profile: a person drawn as a row of columns, one per kind
+ * of work. The solid part is what they do with ease; the dashed empty part above it is their
+ * 凹. A team is profiles laid over one another until the dashed space is filled.
+ * Colour rule:
+ *   - Each person owns a hue, the same on every page: A violet, B coral, C mint.
+ *   - Violet is also the brand: the claim to keep, the active chapter, the definition.
+ *   - Slate is cost: coordination, waiting, the work that buys nothing.
+ *   - Night sheets (cover, chapter doors, closing) are navy with a violet and coral glow.
+ * Every page states its point as its heading, so the PDF reads without the talk.
+ */
+.slide {
+  --ink: #0d1020;
+  --ink-2: #363b52;
+  --paper: #ffffff;
+  --panel: #f3f4f9;
+  --panel-2: #e9ebf3;
+  --white: #ffffff;
+  --violet: #5b3df5;
+  --violet-ink: #4426e0;
+  --violet-soft: #ece8ff;
+  --violet-light: #a99bff;
+  --coral: #f2552c;
+  --coral-ink: #b8350f;
+  --coral-soft: #ffe8e0;
+  --mint: #12a37f;
+  --mint-ink: #0a7058;
+  --mint-soft: #daf4ec;
+  --slate: #8a90a6;
+  --slate-ink: #555b72;
+  --slate-soft: #eceef4;
+  --night: #0b0d1c;
+  --night-2: #161a33;
+  --glow-a: rgb(91 61 245 / 0.55);
+  --glow-b: rgb(242 85 44 / 0.32);
+  --veil: rgb(255 255 255 / 0.08);
+  --muted-night: #b3b8d0;
+  --veil-2: rgb(255 255 255 / 0.1);
+  --veil-3: rgb(255 255 255 / 0.07);
+  --veil-line: rgb(255 255 255 / 0.14);
+  --veil-line-2: rgb(255 255 255 / 0.32);
+  --fg: var(--ink);
+  --bg: var(--paper);
+  --accent: var(--violet);
+  --muted: #5d6379;
+  --line: #e2e4ee;
+  --line-strong: #c4c8d8;
+  --card: var(--panel);
+  --c: var(--violet);
+  --c-ink: var(--violet-ink);
+  --c-soft: var(--violet-soft);
+  --c-fill: var(--violet);
+  --grad: linear-gradient(100deg, var(--violet) 0%, var(--coral) 100%);
+  --font-title: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  --font-body: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  --font-num: "Avenir Next", "Helvetica Neue", "Hiragino Sans", "Noto Sans CJK JP", sans-serif;
+  --size-mega: 200px;
+  --size-big: 120px;
+  --size-hero: 84px;
+  --size-stat: 52px;
+  --size-title: 36px;
+  --size-lede: 20px;
+  --size-body: 17px;
+  --size-small: 15px;
+  --size-caption: 12.5px;
+  --gap: 24px;
+  --margin: 72px;
+  --foot: 30px;
+  --pad: 60px var(--margin) 84px;
+  --radius: 20px;
+  --radius-small: 10px;
+  --pill: 999px;
+  --hair: 1px;
+  --rule: 2px;
+  --heavy: 6px;
+  --profile-h: 180px;
+  --rise: 14px;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-draw: cubic-bezier(0.65, 0, 0.25, 1);
+  --dur-rise: 0.6s;
+  --dur-draw: 1.4s;
+  --stagger: 0.08s;
+  --delay: 0s;
+  --step-transition: 0.5s var(--ease-out);
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: var(--pad);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: 1.7;
+  font-feature-settings: "palt";
+  counter-reset: folio var(--dek-slide-number) folios var(--dek-slide-count);
+}
+
+/* Night sheets: navy, lit from the top right in violet and from the bottom left in coral. */
+.slide[data-bg="night"] {
+  --bg: var(--night);
+  --fg: var(--white);
+  --muted: var(--muted-night);
+  --line: var(--veil-line);
+  --line-strong: var(--veil-line-2);
+  --card: var(--veil-3);
+  --c-soft: var(--veil);
+  background:
+    radial-gradient(ellipse 55% 70% at 92% 0%, var(--glow-a), transparent 70%),
+    radial-gradient(ellipse 45% 60% at 0% 100%, var(--glow-b), transparent 70%),
+    var(--night);
+}
+
+/*
+ * The foot: the series and talk on the left, the page on the right, and between them a hairline
+ * that fills with the brand gradient as far as the talk has gone.
+ */
+.slide::before {
+  content: "仕事のきほんシリーズ  第4回  |  チームワークを考える";
+  position: absolute;
+  inset: auto calc(var(--margin) + var(--gap) * 3.5) var(--foot) var(--margin);
+  padding-top: calc(var(--gap) * 0.45);
+  background:
+    var(--grad) 0 0 / calc(100% * var(--dek-slide-number) / var(--dek-slide-count)) var(--rule) no-repeat,
+    linear-gradient(var(--line), var(--line)) 0 0 / 100% var(--hair) no-repeat;
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-align: left;
+  white-space: pre;
+  pointer-events: none;
+}
+
+.slide::after {
+  content: counter(folio, decimal-leading-zero) " / " counter(folios);
+  position: absolute;
+  right: var(--margin);
+  bottom: var(--foot);
+  color: var(--muted);
+  font-family: var(--font-num);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.slide * {
+  box-sizing: border-box;
+}
+
+.slide p,
+.slide ol,
+.slide ul,
+.slide dl,
+.slide dd,
+.slide dt,
+.slide h2,
+.slide h3,
+.slide figure,
+.slide figcaption,
+.slide blockquote {
+  margin: 0;
+}
+
+.slide ol,
+.slide ul {
+  padding: 0;
+  list-style: none;
+}
+
+.slide b,
+.slide strong {
+  font-weight: 800;
+}
+
+.slide svg {
+  display: block;
+  overflow: visible;
+}
+
+/* People and meanings: a block sets data-tone and its children read --c, --c-ink, --c-soft. */
+.slide [data-tone="a"] {
+  --c: var(--violet);
+  --c-ink: var(--violet-ink);
+  --c-soft: var(--violet-soft);
+  --c-fill: var(--violet);
+}
+
+.slide [data-tone="b"] {
+  --c: var(--coral);
+  --c-ink: var(--coral-ink);
+  --c-soft: var(--coral-soft);
+  --c-fill: var(--coral-ink);
+}
+
+.slide [data-tone="c"] {
+  --c: var(--mint);
+  --c-ink: var(--mint-ink);
+  --c-soft: var(--mint-soft);
+  --c-fill: var(--mint-ink);
+}
+
+.slide [data-tone="cost"] {
+  --c: var(--slate);
+  --c-ink: var(--slate-ink);
+  --c-soft: var(--slate-soft);
+  --c-fill: var(--slate-ink);
+}
+
+.slide[data-bg="night"] [data-tone] {
+  --c-ink: var(--white);
+  --c-soft: var(--veil);
+}
+
+.slide .slide-title {
+  font-family: var(--font-title);
+  font-size: var(--size-title);
+  font-weight: 800;
+  line-height: 1.34;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* A section label, set like a pitch deck's: a gradient dot, then small tracked letters. */
+.slide .kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  color: var(--violet-ink);
+  font-family: var(--font-num);
+  font-size: var(--size-small);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.slide .kicker::before {
+  content: "";
+  flex: none;
+  width: 0.7em;
+  height: 0.7em;
+  border-radius: var(--pill);
+  background: var(--grad);
+}
+
+.slide[data-bg="night"] .kicker {
+  color: var(--violet-light);
+}
+
+.slide .lede {
+  max-width: 46em;
+  color: var(--ink-2);
+  font-size: var(--size-lede);
+  line-height: 1.7;
+}
+
+.slide[data-bg="night"] .lede {
+  color: var(--muted);
+}
+
+.slide .note {
+  color: var(--muted);
+  font-size: var(--size-small);
+  line-height: 1.65;
+}
+
+/* Small tracked labels: axis names, card heads, who says what. */
+.slide .label {
+  color: var(--c-ink);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+/* The phrase to keep: violet ink on a soft violet underlay. */
+.slide .mark {
+  padding: 0 0.1em;
+  background: linear-gradient(transparent 60%, var(--c-soft) 60%);
+  box-decoration-break: clone;
+  color: var(--c-ink);
+}
+
+.slide[data-bg="night"] .mark,
+.slide .punch .mark {
+  background: none;
+  color: var(--violet-light);
+}
+
+/* A panel: a rounded tile on the page, toned by data-tone; data-fill paints it in its soft tint. */
+.slide .card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.4);
+  padding: var(--gap) calc(var(--gap) * 1.1);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.slide .card[data-fill] {
+  background: var(--c-soft);
+}
+
+.slide .card[data-line] {
+  border: var(--rule) solid var(--c);
+  background: var(--paper);
+}
+
+.slide .card h3 {
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+/* A pill. */
+.slide .chip {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.15em 0.85em;
+  border-radius: var(--pill);
+  background: var(--c-soft);
+  color: var(--c-ink);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.slide .chip[data-fill] {
+  background: var(--c-fill);
+  color: var(--white);
+}
+
+/* A numbered badge: a rounded square in its tone. */
+.slide .num {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 2.2em;
+  height: 2.2em;
+  border-radius: var(--radius-small);
+  background: var(--c-fill);
+  color: var(--white);
+  font-family: var(--font-num);
+  font-size: var(--size-small);
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* The metric: a figure set very large, its unit small beside it. */
+.slide .stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.12em;
+  color: var(--c-ink);
+  font-family: var(--font-num);
+  font-size: var(--size-big);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.slide .stat small {
+  font-family: var(--font-body);
+  font-size: 0.3em;
+  letter-spacing: 0;
+}
+
+/* Someone in a story: an initial in a circle, in their own hue. */
+.slide .who {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 2.6em;
+  height: 2.6em;
+  border-radius: var(--pill);
+  background: var(--c-fill);
+  color: var(--white);
+  font-family: var(--font-num);
+  font-size: var(--size-small);
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* A chat message, as in a product mock. data-side="me" sends it from the right in violet. */
+.slide .bubble {
+  align-self: flex-start;
+  max-width: 34em;
+  padding: calc(var(--gap) * 0.55) calc(var(--gap) * 0.85);
+  border-radius: var(--radius) var(--radius) var(--radius) var(--hair);
+  background: var(--panel-2);
+  color: var(--ink);
+  font-size: var(--size-body);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.slide .bubble[data-side="me"] {
+  align-self: flex-end;
+  border-radius: var(--radius) var(--radius) var(--hair) var(--radius);
+  background: var(--violet);
+  color: var(--white);
+}
+
+/*
+ * The 凸凹 profile: a person as a row of columns, one per kind of work.
+ * <ol class="profile" data-tone="a"><li data-v="4"><span>聞く</span></li>…</ol>
+ * data-v (0–5) is how much of the column they fill with ease; the dashed rest is the 凹.
+ * A li may carry its own data-tone, so a team profile shows who supplies each column.
+ */
+.slide .profile {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  gap: calc(var(--gap) * 0.35);
+  height: var(--profile-h);
+}
+
+.slide .profile li {
+  --v: 0;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.3);
+  min-width: 0;
+}
+
+.slide .profile li::before {
+  content: "";
+  flex: 1;
+  border: var(--rule) dashed var(--line-strong);
+  border-radius: var(--radius-small);
+  background: linear-gradient(to top, var(--c) 0 calc(var(--v) * 20%), transparent 0);
+}
+
+.slide .profile li span {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  line-height: 1.3;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.slide .profile [data-v="1"] { --v: 1; }
+.slide .profile [data-v="2"] { --v: 2; }
+.slide .profile [data-v="3"] { --v: 3; }
+.slide .profile [data-v="4"] { --v: 4; }
+.slide .profile [data-v="5"] { --v: 5; }
+
+/* A column left empty in everyone: the hole the team cannot cover, outlined in coral. */
+.slide .profile li[data-hole]::before {
+  border-color: var(--coral);
+  background: linear-gradient(to top, var(--c) 0 calc(var(--v) * 20%), var(--coral-soft) 0);
+}
+
+.slide .col {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+  min-width: 0;
+}
+
+/* Equal columns: set data-cols on the element. */
+.slide .cols {
+  --n: 2;
+  display: grid;
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+  gap: var(--gap);
+  min-height: 0;
+}
+
+.slide .cols[data-cols="3"] { --n: 3; }
+.slide .cols[data-cols="4"] { --n: 4; }
+.slide .cols[data-cols="5"] { --n: 5; }
+
+.slide .stage {
+  position: relative;
+  min-height: 0;
+  min-width: 0;
+}
+
+/* The line to keep: white on night, a gradient bar at its head. */
+.slide .punch {
+  position: relative;
+  align-self: flex-start;
+  padding: 0.6em 1.2em 0.6em 1.6em;
+  border-radius: var(--radius-small);
+  background: var(--night);
+  color: var(--white);
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.slide .punch::before {
+  content: "";
+  position: absolute;
+  inset: 0.55em auto 0.55em 0.6em;
+  width: var(--heavy);
+  border-radius: var(--pill);
+  background: var(--grad);
+}
+
+.slide[data-bg="night"] .punch {
+  background: var(--veil-2);
+}
+
+/* An inequality or equation written large: terms in tiles, operators between. */
+.slide .formula {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--gap) * 0.6);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.slide .formula > span {
+  padding: 0.5em 1em;
+  border-radius: var(--radius-small);
+  background: var(--c-soft);
+  color: var(--c-ink);
+}
+
+.slide .formula > i {
+  color: var(--muted);
+  font-family: var(--font-num);
+  font-size: var(--size-stat);
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/*
+ * A table set as rows: each li is a row, its first child the row head.
+ * Set --cols on the list. A li with data-head is the header row.
+ */
+.slide .rows {
+  --cols: 1fr 1fr;
+  display: grid;
+}
+
+.slide .rows li {
+  display: grid;
+  grid-template-columns: var(--cols);
+  align-items: center;
+  gap: var(--gap);
+  padding: calc(var(--gap) * 0.55) calc(var(--gap) * 0.5);
+  border-bottom: var(--hair) solid var(--line);
+  line-height: 1.5;
+}
+
+.slide .rows li[data-head] {
+  align-items: end;
+  padding-block: calc(var(--gap) * 0.35);
+  border-bottom: var(--rule) solid var(--ink);
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+/* A blank to write in. */
+.slide .blank {
+  min-height: calc(var(--gap) * 1.6);
+  border-bottom: var(--rule) dotted var(--line-strong);
+}
+
+/* SVG strokes that draw themselves as the slide arrives. Give the path pathLength="1". */
+.slide .trace {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.slide.is-current .trace {
+  animation: draw var(--dur-draw) var(--ease-draw) var(--delay) both;
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+/* Things rise in, one after another, when a slide arrives. */
+.slide.is-current .rise {
+  animation: rise var(--dur-rise) var(--ease-out) both;
+}
+
+.slide.is-current .rise:nth-child(2) { animation-delay: var(--stagger); }
+.slide.is-current .rise:nth-child(3) { animation-delay: calc(var(--stagger) * 2); }
+.slide.is-current .rise:nth-child(4) { animation-delay: calc(var(--stagger) * 3); }
+.slide.is-current .rise:nth-child(5) { animation-delay: calc(var(--stagger) * 4); }
+.slide.is-current .rise:nth-child(6) { animation-delay: calc(var(--stagger) * 5); }
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 var(--rise);
+  }
+}
+
+/* @layout cover
+<section class="slide" data-bg="night" data-layout="cover">
+  <div class="col">
+    <p class="kicker">仕事のきほんシリーズ 第4回 ／ 研修資料</p>
+    <h2 class="slide-title">チームワークを<br>考える</h2>
+    <p class="lede">What it is about.</p>
+  </div>
+  <div class="stage">Figure</div>
+</section>
+*/
+.slide[data-layout="cover"] {
+  display: grid;
+  grid-template-columns: 6fr 5fr;
+  align-items: center;
+  gap: calc(var(--gap) * 2.5);
+}
+
+.slide[data-layout="cover"] .slide-title {
+  font-size: var(--size-hero);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+/* @layout door
+<section class="slide" data-bg="night" data-layout="door">
+  <p class="door-num">01</p>
+  <div class="col">
+    <p class="kicker">CHAPTER 01 ／ 5</p>
+    <h2 class="slide-title">The chapter's claim</h2>
+    <p class="lede">The question it answers.</p>
+  </div>
+  <ol class="rail">…five li, one with data-now…</ol>
+</section>
+*/
+.slide[data-layout="door"] {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  column-gap: calc(var(--gap) * 2.5);
+  row-gap: calc(var(--gap) * 1.5);
+  padding-top: calc(var(--gap) * 3.5);
+}
+
+/* A chapter number: huge light-violet figures. */
+.slide .door-num {
+  color: var(--violet-light);
+  font-family: var(--font-num);
+  font-size: var(--size-mega);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+
+.slide[data-layout="door"] .slide-title {
+  font-size: var(--size-stat);
+  line-height: 1.25;
+}
+
+.slide[data-layout="door"] .rail {
+  grid-column: 1 / -1;
+}
+
+/* The day's agenda: five chapters as tiles, the current one lit. */
+.slide .rail {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.4);
+  counter-reset: stage;
+}
+
+.slide .rail li {
+  counter-increment: stage;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.2);
+  padding: calc(var(--gap) * 0.6) calc(var(--gap) * 0.7);
+  border-radius: var(--radius-small);
+  background: var(--card);
+  color: var(--muted);
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.slide .rail li::before {
+  content: "0" counter(stage);
+  font-family: var(--font-num);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.slide .rail li[data-now] {
+  background: var(--white);
+  color: var(--ink);
+}
+
+.slide .rail li[data-now]::before {
+  color: var(--violet-ink);
+}
+
+/* @layout default
+<section class="slide" data-layout="default">
+  <p class="kicker">SECTION</p>
+  <h2 class="slide-title">The claim</h2>
+  <p class="lede">Why it holds.</p>
+  <div class="stage">Figure</div>
+</section>
+*/
+.slide[data-layout="default"] {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.75);
+}
+
+.slide[data-layout="default"] > .stage {
+  flex: 1;
+}
+
+/* @layout split
+<section class="slide" data-layout="split">
+  <div class="col">
+    <p class="kicker">SECTION</p>
+    <h2 class="slide-title">The claim</h2>
+    <p class="lede">Why it holds.</p>
+  </div>
+  <div class="stage">Figure</div>
+</section>
+*/
+.slide[data-layout="split"] {
+  display: grid;
+  grid-template-columns: 5fr 6fr;
+  gap: calc(var(--gap) * 2.5);
+  align-items: center;
+}
+
+/* @layout center
+<section class="slide" data-layout="center">
+  <p class="kicker">KEY</p>
+  <h2 class="slide-title">One sentence worth keeping</h2>
+</section>
+*/
+.slide[data-layout="center"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap);
+  text-align: center;
+}
+
+.slide[data-layout="center"] .slide-title {
+  font-size: var(--size-stat);
+  line-height: 1.3;
+}
+
+/* Beats: hidden things keep their box, so every beat has the same layout. */
+.slide.is-current [data-step] {
+  opacity: 0;
+  translate: 0 var(--rise);
+  transition: var(--step-transition);
+  transition-property: opacity, translate;
+}
+
+.slide.is-current [data-step].is-shown {
+  opacity: 1;
+  translate: none;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+::view-transition-old(slide) {
+  --step-transition: 0.22s ease both;
+  animation: fade-out var(--step-transition);
+}
+
+::view-transition-new(slide) {
+  --step-transition: 0.32s ease both;
+  animation: fade-in var(--step-transition);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide.is-current [data-step],
+  .slide.is-current .rise,
+  .slide.is-current .trace {
+    transition: none;
+    animation: none;
+  }
+
+  ::view-transition-old(slide),
+  ::view-transition-new(slide) {
+    animation: none;
+  }
+}

@@ -1,0 +1,41 @@
+.slide .kind {
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .kind .say {
+  font-size: var(--size-title);
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.slide .kind .res {
+  color: var(--c-ink);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.slide .quiet {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: calc(var(--gap) * 1.2);
+  font-size: var(--size-small);
+  line-height: 1.7;
+}
+
+.slide .room {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--gap) * 0.4);
+}
+
+.slide .room .bubble {
+  padding: calc(var(--gap) * 0.3) calc(var(--gap) * 0.6);
+  background: var(--paper);
+  font-size: var(--size-small);
+}
+
+.slide .room .bubble[data-tone] {
+  background: var(--c-soft);
+  color: var(--c-ink);
+}
