@@ -1,0 +1,33 @@
+.slide .slide-title {
+  font-size: var(--size-hero);
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
+
+.slide .stage.cols {
+  margin-top: calc(var(--gap) * 0.4);
+}
+
+.slide .card {
+  gap: calc(var(--gap) * 0.45);
+}
+
+.slide .card .label {
+  color: var(--sun-light);
+}
+
+.slide .facts {
+  display: grid;
+  gap: calc(var(--gap) * 0.25);
+  color: var(--muted-night);
+  font-size: var(--size-small);
+}
+
+.slide .facts li::before {
+  content: "— ";
+  color: var(--sun-light);
+}
+
+.slide .facts b {
+  color: var(--white);
+}

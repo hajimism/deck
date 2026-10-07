@@ -1,0 +1,17 @@
+.slide .table {
+  --cols: 9em 13em minmax(0, 1.3fr) minmax(0, 1fr);
+}
+
+.slide .table li {
+  padding-block: var(--gap);
+}
+
+.slide .table .chip {
+  font-size: var(--size-small);
+}
+
+.slide .table .miss {
+  color: var(--rust-ink);
+  font-size: var(--size-small);
+  font-weight: 700;
+}

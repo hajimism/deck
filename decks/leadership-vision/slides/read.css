@@ -1,0 +1,33 @@
+.slide .reads {
+  margin-top: calc(var(--gap) * 0.4);
+}
+
+.slide .reads .card {
+  gap: calc(var(--gap) * 0.6);
+  min-height: calc(var(--gap) * 13);
+  padding: calc(var(--gap) * 1.1);
+}
+
+.slide .reads h3 {
+  font-size: calc(var(--size-lede) * 1.15);
+}
+
+.slide .reads .rows {
+  --cols: 5em minmax(0, 1fr);
+  margin-top: auto;
+}
+
+.slide .reads .rows li {
+  gap: calc(var(--gap) * 0.5);
+  padding-inline: 0;
+}
+
+.slide .reads .rows li:last-child {
+  border-bottom: 0;
+}
+
+.slide .reads .rows span {
+  color: var(--muted);
+  font-size: var(--size-small);
+  font-weight: 700;
+}

@@ -1,0 +1,52 @@
+.slide .stairs ol {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: end;
+  gap: calc(var(--gap) * 0.4);
+  height: calc(var(--gap) * 17);
+  border-bottom: var(--rule) solid var(--ink);
+}
+
+.slide .stairs li {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: calc(var(--gap) * 0.3);
+  padding: var(--gap) calc(var(--gap) * 0.8);
+  border-top: var(--heavy) solid var(--line-strong);
+  background: var(--slate-soft);
+}
+
+.slide .stairs li:nth-child(1) { height: 42%; }
+.slide .stairs li:nth-child(2) { height: 68%; }
+.slide .stairs li:nth-child(3) { height: 100%; }
+
+.slide .stairs li[data-now] {
+  border-top-color: var(--sun);
+  background: var(--sun);
+}
+
+.slide .stairs li .label {
+  color: var(--muted);
+}
+
+.slide .stairs li[data-now] .label,
+.slide .stairs li[data-now] small {
+  color: var(--ink);
+}
+
+.slide .stairs b {
+  font-size: var(--size-lede);
+  line-height: 1.4;
+}
+
+.slide .stairs small {
+  color: var(--ink-2);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.slide .col .card {
+  margin-top: calc(var(--gap) * 0.3);
+}

@@ -1,0 +1,54 @@
+.slide .stage .card {
+  gap: calc(var(--gap) * 0.7);
+}
+
+.slide .say {
+  font-size: calc(var(--size-lede) * 1.25);
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.slide .say b {
+  color: var(--c-ink);
+}
+
+.slide .sides {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .party {
+  display: grid;
+  place-items: center;
+  padding: calc(var(--gap) * 0.7) calc(var(--gap) * 0.5);
+  border: var(--hair) solid var(--line-strong);
+  border-radius: var(--radius);
+  font-weight: 800;
+  text-align: center;
+}
+
+.slide .party[data-foe] {
+  border-color: var(--c-fill);
+  background: var(--c-fill);
+  color: var(--white);
+}
+
+.slide [data-tone="jade"] .party[data-foe] {
+  border-color: var(--rust-ink);
+  background: var(--rust-ink);
+}
+
+.slide [data-tone="jade"] .party:first-child {
+  border-color: var(--jade);
+  background: var(--jade-soft);
+  color: var(--jade-ink);
+}
+
+.slide .vs {
+  align-self: center;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-weight: 700;
+}

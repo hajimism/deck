@@ -1,0 +1,914 @@
+/*
+ * leadership-vision — a founder's pitch for a change.
+ * The talk says a leader envisions the change that should happen and does everything to make
+ * it happen through people, so every page is set like a seed-round pitch: a header with the
+ * series and the page, one claim per page in heavy type, and proof as a chart, a matrix,
+ * or a product mock. Edges are hard and ruled, like a data room, not soft tiles.
+ * The recurring figure is the horizon: the After as a sun above a line, and the line cut into
+ * NOW (読む・今この場), NEXT (設計する・数か月), LATER (育てる・数年). The current one is lit.
+ * Colour rule:
+ *   - Sun (amber) is the brand: the After, the claim to keep, the current horizon.
+ *   - Jade is what works: 使い所, the friend, the core.
+ *   - Rust is what fails: アンチパターン, the enemy, the trap.
+ *   - Slate is neutral: examples, cost, the plain case.
+ *   - Night sheets (cover, chapter doors, the love pages, closing) are evergreen, lit from
+ *     below by a rising sun.
+ * Every page states its point as its heading, so the PDF reads without the talk.
+ */
+.slide {
+  --ink: #0f1f1b;
+  --ink-2: #33433e;
+  --paper: #f4f5f1;
+  --white: #ffffff;
+  --panel: #e8ebe5;
+  --pine: #0a2b25;
+  --pine-2: #12403a;
+  --pine-3: #1c5a4f;
+  --sun: #ff8c1a;
+  --sun-ink: #b04605;
+  --sun-soft: #ffe8cc;
+  --sun-light: #ffb547;
+  --gold: #ffd56b;
+  --glow: rgb(255 140 26 / 0.5);
+  --glow-2: rgb(255 213 107 / 0.22);
+  --jade: #1e9474;
+  --jade-ink: #0c6a52;
+  --jade-soft: #d6efe5;
+  --jade-light: #6fd6b5;
+  --rust: #d2412c;
+  --rust-ink: #a8301e;
+  --rust-soft: #fbe2dc;
+  --rust-light: #ff9a85;
+  --slate: #8a958f;
+  --slate-ink: #4f5a55;
+  --slate-soft: #e4e8e3;
+  --veil: rgb(255 255 255 / 0.07);
+  --veil-2: rgb(255 255 255 / 0.12);
+  --veil-line: rgb(255 255 255 / 0.16);
+  --veil-line-2: rgb(255 255 255 / 0.34);
+  --muted-night: #b5c5bf;
+  --fg: var(--ink);
+  --bg: var(--paper);
+  --accent: var(--sun);
+  --muted: #56645f;
+  --line: #d2d8d0;
+  --line-strong: #97a39c;
+  --card: var(--white);
+  --c: var(--sun);
+  --c-ink: var(--sun-ink);
+  --c-soft: var(--sun-soft);
+  --c-fill: var(--sun);
+  --c-on: var(--ink);
+  --font-title: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  --font-body: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  --font-mono: "SF Mono", "Menlo", "Noto Sans Mono CJK JP", "Hiragino Sans", monospace;
+  --font-num: "Avenir Next", "Helvetica Neue", "Hiragino Sans", "Noto Sans CJK JP", sans-serif;
+  --size-mega: 220px;
+  --size-big: 112px;
+  --size-hero: 76px;
+  --size-stat: 50px;
+  --size-title: 36px;
+  --size-lede: 20px;
+  --size-body: 17px;
+  --size-small: 15px;
+  --size-caption: 12.5px;
+  --gap: 24px;
+  --margin: 72px;
+  --head: 30px;
+  --pad: 92px var(--margin) 56px;
+  --radius: 4px;
+  --radius-small: 2px;
+  --round: 999px;
+  --hair: 1px;
+  --rule: 2px;
+  --heavy: 4px;
+  --rise: 12px;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-draw: cubic-bezier(0.65, 0, 0.25, 1);
+  --dur-rise: 0.6s;
+  --dur-draw: 1.4s;
+  --dur-sun: 2.2s;
+  --stagger: 0.08s;
+  --delay: 0s;
+  --step-transition: 0.5s var(--ease-out);
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: var(--pad);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: 1.7;
+  font-feature-settings: "palt";
+  word-break: auto-phrase;
+  counter-reset: folio var(--dek-slide-number) folios var(--dek-slide-count);
+}
+
+/* Night sheets: evergreen, with a sun rising behind the bottom edge. */
+.slide[data-bg="night"] {
+  --bg: var(--pine);
+  --fg: var(--white);
+  --muted: var(--muted-night);
+  --line: var(--veil-line);
+  --line-strong: var(--veil-line-2);
+  --card: var(--veil);
+  --c-ink: var(--sun-light);
+  --c-soft: var(--veil-2);
+  background:
+    radial-gradient(ellipse 60% 55% at 78% 112%, var(--glow), transparent 70%),
+    radial-gradient(ellipse 90% 70% at 70% 120%, var(--glow-2), transparent 75%),
+    var(--pine);
+}
+
+/* The header: the series and talk on the left, the page on the right, a hairline beneath. */
+.slide::before {
+  content: "仕事のきほんシリーズ ⑤  ／  リーダーシップを考える";
+  position: absolute;
+  inset: var(--head) var(--margin) auto;
+  padding-bottom: calc(var(--gap) * 0.4);
+  border-bottom: var(--hair) solid var(--line);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: left;
+  white-space: pre;
+  pointer-events: none;
+}
+
+.slide::after {
+  content: counter(folio, decimal-leading-zero) " / " counter(folios);
+  position: absolute;
+  top: var(--head);
+  right: var(--margin);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.slide * {
+  box-sizing: border-box;
+}
+
+.slide p,
+.slide ol,
+.slide ul,
+.slide dl,
+.slide dd,
+.slide dt,
+.slide h2,
+.slide h3,
+.slide figure,
+.slide figcaption,
+.slide blockquote {
+  margin: 0;
+}
+
+.slide ol,
+.slide ul {
+  padding: 0;
+  list-style: none;
+}
+
+.slide b,
+.slide strong {
+  font-weight: 800;
+}
+
+.slide svg {
+  display: block;
+  overflow: visible;
+}
+
+/* Meanings: a block sets data-tone and its children read --c, --c-ink, --c-soft, --c-fill. */
+.slide [data-tone="sun"] {
+  --c: var(--sun);
+  --c-ink: var(--sun-ink);
+  --c-soft: var(--sun-soft);
+  --c-fill: var(--sun);
+  --c-on: var(--ink);
+}
+
+.slide [data-tone="jade"] {
+  --c: var(--jade);
+  --c-ink: var(--jade-ink);
+  --c-soft: var(--jade-soft);
+  --c-fill: var(--jade-ink);
+  --c-on: var(--white);
+}
+
+.slide [data-tone="rust"] {
+  --c: var(--rust);
+  --c-ink: var(--rust-ink);
+  --c-soft: var(--rust-soft);
+  --c-fill: var(--rust-ink);
+  --c-on: var(--white);
+}
+
+.slide [data-tone="slate"] {
+  --c: var(--slate);
+  --c-ink: var(--slate-ink);
+  --c-soft: var(--slate-soft);
+  --c-fill: var(--slate-ink);
+  --c-on: var(--white);
+}
+
+.slide[data-bg="night"] [data-tone="sun"] {
+  --c-ink: var(--sun-light);
+  --c-soft: var(--veil-2);
+}
+
+.slide[data-bg="night"] [data-tone="jade"] {
+  --c-ink: var(--jade-light);
+  --c-soft: var(--veil-2);
+}
+
+.slide[data-bg="night"] [data-tone="rust"] {
+  --c-ink: var(--rust-light);
+  --c-soft: var(--veil-2);
+}
+
+.slide[data-bg="night"] [data-tone="slate"] {
+  --c-ink: var(--muted-night);
+  --c-soft: var(--veil-2);
+}
+
+.slide .slide-title {
+  font-family: var(--font-title);
+  font-size: var(--size-title);
+  font-weight: 800;
+  line-height: 1.34;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* A claim set larger than a heading, for a page that is mostly its claim. */
+.slide .slide-title[data-big] {
+  font-size: var(--size-stat);
+  line-height: 1.3;
+}
+
+/* A section label, set like a pitch deck's: a sun square, then tracked mono letters. */
+.slide .kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  color: var(--sun-ink);
+  font-family: var(--font-mono);
+  font-size: var(--size-small);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.slide .kicker::before {
+  content: "";
+  flex: none;
+  width: 0.62em;
+  height: 0.62em;
+  background: var(--sun);
+}
+
+.slide[data-bg="night"] .kicker {
+  color: var(--sun-light);
+}
+
+.slide .lede {
+  max-width: 46em;
+  color: var(--ink-2);
+  font-size: var(--size-lede);
+  line-height: 1.7;
+}
+
+.slide[data-bg="night"] .lede {
+  color: var(--muted);
+}
+
+.slide .note {
+  color: var(--muted);
+  font-size: var(--size-small);
+  line-height: 1.65;
+}
+
+/* Small tracked mono labels: axis names, card heads, field names. */
+.slide .label {
+  color: var(--c-ink);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+}
+
+/* The phrase to keep: underlined in its tone with a heavy rule. */
+.slide .mark {
+  color: var(--c-ink);
+  text-decoration: underline var(--heavy) var(--c);
+  text-underline-offset: 0.22em;
+  text-decoration-skip-ink: none;
+}
+
+/* A panel: a hard-edged white sheet ruled in hairline; data-fill paints it, data-line rules it in its tone. */
+.slide .card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.4);
+  padding: calc(var(--gap) * 0.9) var(--gap);
+  border: var(--hair) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.slide .card[data-fill] {
+  border-color: transparent;
+  background: var(--c-soft);
+}
+
+.slide .card[data-line] {
+  border: var(--rule) solid var(--c);
+}
+
+.slide .card[data-top] {
+  border-top: var(--heavy) solid var(--c);
+}
+
+.slide .card h3 {
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+/* A tag: a hard-edged mono label filled in its tone. */
+.slide .chip {
+  display: inline-flex;
+  align-self: flex-start;
+  justify-self: start;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.1em 0.6em;
+  border-radius: var(--radius-small);
+  background: var(--c-fill);
+  color: var(--c-on);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.7;
+  white-space: nowrap;
+}
+
+.slide .chip[data-ghost] {
+  border: var(--hair) solid var(--c);
+  background: transparent;
+  color: var(--c-ink);
+}
+
+/* A numbered badge: a square in its tone, mono figures. */
+.slide .num {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 2.1em;
+  height: 2.1em;
+  border-radius: var(--radius-small);
+  background: var(--c-fill);
+  color: var(--c-on);
+  font-family: var(--font-mono);
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* The metric: a figure set very large, its unit small beside it. */
+.slide .stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.1em;
+  color: var(--c-ink);
+  font-family: var(--font-num);
+  font-size: var(--size-big);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.slide .stat small {
+  font-family: var(--font-body);
+  font-size: 0.28em;
+  letter-spacing: 0;
+}
+
+.slide .col {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+  min-width: 0;
+}
+
+/* Equal columns: set data-cols on the element. */
+.slide .cols {
+  --n: 2;
+  display: grid;
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+  gap: var(--gap);
+  min-height: 0;
+}
+
+.slide .cols[data-cols="3"] { --n: 3; }
+.slide .cols[data-cols="4"] { --n: 4; }
+.slide .cols[data-cols="5"] { --n: 5; }
+.slide .cols[data-cols="6"] { --n: 6; }
+
+.slide .stage {
+  position: relative;
+  min-height: 0;
+  min-width: 0;
+}
+
+/* The line to keep: ink on a sun block, hard-edged. */
+.slide .punch {
+  align-self: flex-start;
+  padding: 0.5em 1em;
+  border-radius: var(--radius-small);
+  background: var(--sun);
+  color: var(--ink);
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+/* An equation written large: terms in ruled boxes, operators between. */
+.slide .formula {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: calc(var(--gap) * 0.6);
+  font-size: var(--size-lede);
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.slide .formula > span {
+  display: flex;
+  align-items: center;
+  padding: 0.55em 0.9em;
+  border: var(--rule) solid var(--c);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--fg);
+}
+
+.slide .formula > span[data-fill] {
+  border-color: var(--c-fill);
+  background: var(--c-fill);
+  color: var(--c-on);
+}
+
+.slide .formula > i {
+  align-self: center;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-stat);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/*
+ * A gauge: a track filled to data-v tenths (0–10) in its tone, as a meter or a probability.
+ * <div class="gauge" data-v="7" data-tone="sun"></div>. With data-mid, the track centres on zero
+ * and data-v runs from -5 to 5, filling left in rust or right in jade.
+ */
+.slide .gauge {
+  --v: 0;
+  position: relative;
+  height: calc(var(--gap) * 0.55);
+  border-radius: var(--radius-small);
+  background:
+    linear-gradient(var(--c), var(--c)) 0 0 / calc(var(--v) * 10%) 100% no-repeat,
+    var(--c-soft);
+}
+
+.slide .gauge[data-mid] {
+  background:
+    linear-gradient(var(--line-strong), var(--line-strong)) center / var(--rule) 100% no-repeat,
+    linear-gradient(to right, transparent 50%, var(--jade) 50%, var(--jade) calc(50% + max(var(--v), 0) * 10%), transparent 0),
+    linear-gradient(to right, transparent calc(50% + min(var(--v), 0) * 10%), var(--rust) 0, var(--rust) 50%, transparent 50%),
+    var(--slate-soft);
+}
+
+.slide .gauge[data-v="-3"] { --v: -3; }
+.slide .gauge[data-v="-2"] { --v: -2; }
+.slide .gauge[data-v="-1"] { --v: -1; }
+.slide .gauge[data-v="1"] { --v: 1; }
+.slide .gauge[data-v="2"] { --v: 2; }
+.slide .gauge[data-v="3"] { --v: 3; }
+.slide .gauge[data-v="4"] { --v: 4; }
+.slide .gauge[data-v="5"] { --v: 5; }
+.slide .gauge[data-v="6"] { --v: 6; }
+.slide .gauge[data-v="7"] { --v: 7; }
+.slide .gauge[data-v="8"] { --v: 8; }
+.slide .gauge[data-v="9"] { --v: 9; }
+.slide .gauge[data-v="10"] { --v: 10; }
+
+/*
+ * The horizon: a ruled line cut into stretches, each a column with a mono head above its title.
+ * <ol class="horizon"><li data-now><b>NOW</b><span>読む</span><small>今この場</small></li>…</ol>
+ * The li with data-now is lit in sun. On a chapter door it is the agenda.
+ */
+.slide .horizon {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  gap: calc(var(--gap) * 0.25);
+}
+
+.slide .horizon li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.15);
+  padding: calc(var(--gap) * 0.7) calc(var(--gap) * 0.2) 0 0;
+  border-top: var(--heavy) solid var(--line-strong);
+  color: var(--muted);
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.slide .horizon li::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--gap) * -0.42);
+  left: 0;
+  width: calc(var(--gap) * 0.65);
+  height: calc(var(--gap) * 0.65);
+  border-radius: var(--round);
+  background: var(--line-strong);
+}
+
+.slide .horizon b {
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.slide .horizon span {
+  color: var(--fg);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.slide .horizon small {
+  font-size: var(--size-caption);
+  font-weight: 700;
+}
+
+.slide .horizon li[data-now] {
+  border-top-color: var(--sun);
+  color: var(--sun-ink);
+}
+
+.slide .horizon li[data-now]::before {
+  background: var(--sun);
+  box-shadow: 0 0 0 calc(var(--gap) * 0.25) var(--glow);
+}
+
+.slide[data-bg="night"] .horizon li[data-now] {
+  color: var(--sun-light);
+}
+
+/*
+ * A table set as rows: each li is a row, its children the cells. Set --cols on the list.
+ * A li with data-head is the header row.
+ */
+.slide .rows {
+  --cols: 1fr 1fr;
+  display: grid;
+}
+
+.slide .rows li {
+  display: grid;
+  grid-template-columns: var(--cols);
+  align-items: center;
+  gap: var(--gap);
+  padding: calc(var(--gap) * 0.5) calc(var(--gap) * 0.4);
+  border-bottom: var(--hair) solid var(--line);
+  line-height: 1.5;
+}
+
+.slide .rows li[data-head] {
+  align-items: end;
+  padding-block: calc(var(--gap) * 0.3);
+  border-bottom: var(--rule) solid var(--fg);
+  color: var(--muted);
+}
+
+/* The head row keeps the body size, so em-sized columns line up with the rows below. */
+.slide .rows li[data-head] > * {
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+/* A blank to write in. */
+.slide .blank {
+  min-height: calc(var(--gap) * 1.5);
+  border-bottom: var(--rule) dotted var(--line-strong);
+}
+
+/* SVG strokes that draw themselves as the slide arrives. Give the path pathLength="1". */
+.slide .trace {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.slide.is-current .trace {
+  animation: draw var(--dur-draw) var(--ease-draw) var(--delay) both;
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+/* Things rise in, one after another, when a slide arrives. */
+.slide.is-current .rise {
+  animation: rise var(--dur-rise) var(--ease-out) both;
+}
+
+.slide.is-current .rise:nth-child(2) { animation-delay: var(--stagger); }
+.slide.is-current .rise:nth-child(3) { animation-delay: calc(var(--stagger) * 2); }
+.slide.is-current .rise:nth-child(4) { animation-delay: calc(var(--stagger) * 3); }
+.slide.is-current .rise:nth-child(5) { animation-delay: calc(var(--stagger) * 4); }
+.slide.is-current .rise:nth-child(6) { animation-delay: calc(var(--stagger) * 5); }
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 var(--rise);
+  }
+}
+
+/* @layout cover
+<section class="slide" data-bg="night" data-layout="cover">
+  <div class="col">
+    <p class="kicker">仕事のきほんシリーズ 第5回 ／ 研修資料</p>
+    <h2 class="slide-title">リーダーシップを<br>考える</h2>
+    <p class="lede">What it is about.</p>
+  </div>
+  <div class="stage">Figure</div>
+</section>
+*/
+.slide[data-layout="cover"] {
+  display: grid;
+  grid-template-columns: 13fr 10fr;
+  align-items: center;
+  gap: calc(var(--gap) * 2.5);
+}
+
+.slide[data-layout="cover"] .slide-title {
+  font-size: var(--size-hero);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+/* @layout door
+<section class="slide" data-bg="night" data-layout="door">
+  <p class="door-num">01</p>
+  <div class="col">
+    <p class="kicker">CHAPTER 01 ／ THE JOB</p>
+    <h2 class="slide-title">The chapter's claim</h2>
+    <p class="lede">The question it answers.</p>
+  </div>
+  <ol class="horizon">…six li, one with data-now…</ol>
+</section>
+*/
+.slide[data-layout="door"] {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  column-gap: calc(var(--gap) * 2.5);
+  row-gap: calc(var(--gap) * 1.5);
+}
+
+/* A chapter number: huge sun figures. */
+.slide .door-num {
+  color: var(--sun-light);
+  font-family: var(--font-num);
+  font-size: var(--size-mega);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+
+.slide[data-layout="door"] .slide-title {
+  font-size: var(--size-stat);
+  line-height: 1.25;
+}
+
+.slide[data-layout="door"] .horizon {
+  grid-column: 1 / -1;
+}
+
+.slide[data-layout="door"] .horizon span {
+  font-size: var(--size-small);
+}
+
+/* @layout default
+<section class="slide" data-layout="default">
+  <p class="kicker">SECTION</p>
+  <h2 class="slide-title">The claim</h2>
+  <p class="lede">Why it holds.</p>
+  <div class="stage">Figure</div>
+</section>
+*/
+.slide[data-layout="default"] {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.75);
+}
+
+.slide[data-layout="default"] > .stage {
+  flex: 1;
+}
+
+/* @layout stack
+<section class="slide" data-layout="stack">
+  <p class="kicker">SECTION</p>
+  <h2 class="slide-title">The claim</h2>
+  <p class="lede">Why it holds.</p>
+  <div class="stage">Figure at its own height</div>
+</section>
+The default, but the stage keeps its own height and the whole is centred in the frame.
+*/
+.slide[data-layout="stack"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--gap) * 0.75);
+}
+
+/* @layout split
+<section class="slide" data-layout="split">
+  <div class="col">
+    <p class="kicker">SECTION</p>
+    <h2 class="slide-title">The claim</h2>
+    <p class="lede">Why it holds.</p>
+  </div>
+  <div class="stage">Figure</div>
+</section>
+*/
+.slide[data-layout="split"] {
+  display: grid;
+  grid-template-columns: 5fr 6fr;
+  gap: calc(var(--gap) * 2.5);
+  align-items: center;
+}
+
+/* @layout style
+<section class="slide" data-layout="style">
+  <div class="col">
+    <p class="kicker">NOW ／ STYLE 01 OF 06</p>
+    <h2 class="slide-title">① 名前<span>「口ぐせ」</span></h2>
+    <p class="lede">What it does.</p>
+    <div class="card" data-tone="slate">climate: label + gauge data-mid</div>
+    <ol class="horizon">…six li, one with data-now…</ol>
+  </div>
+  <div class="stage">three cards: jade 使い所, rust アンチパターン, slate 例</div>
+</section>
+One of the six leadership styles: its name and its catchphrase large, then where it works,
+how it fails, and an example.
+*/
+.slide[data-layout="style"] {
+  display: grid;
+  grid-template-columns: 5fr 6fr;
+  gap: calc(var(--gap) * 2.2);
+  align-items: center;
+}
+
+.slide[data-layout="style"] .slide-title {
+  font-size: var(--size-stat);
+  line-height: 1.2;
+}
+
+.slide[data-layout="style"] .slide-title span {
+  display: block;
+  margin-top: calc(var(--gap) * 0.4);
+  color: var(--sun-ink);
+  font-size: var(--size-title);
+  line-height: 1.35;
+}
+
+.slide[data-layout="style"] .col > .card .note {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--gap);
+  font-size: var(--size-caption);
+}
+
+.slide[data-layout="style"] .col > .card .note b {
+  color: var(--ink);
+}
+
+.slide[data-layout="style"] .stage .card p {
+  font-size: var(--size-body);
+  line-height: 1.65;
+}
+
+.slide[data-layout="style"] .stage {
+  display: grid;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide[data-layout="style"] .horizon {
+  margin-top: calc(var(--gap) * 0.6);
+}
+
+.slide[data-layout="style"] .horizon li {
+  padding-top: calc(var(--gap) * 0.55);
+}
+
+.slide[data-layout="style"] .horizon span {
+  font-size: var(--size-caption);
+}
+
+/* @layout center
+<section class="slide" data-layout="center">
+  <p class="kicker">KEY</p>
+  <h2 class="slide-title">One sentence worth keeping</h2>
+</section>
+*/
+.slide[data-layout="center"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap);
+  text-align: center;
+}
+
+.slide[data-layout="center"] .slide-title {
+  font-size: var(--size-stat);
+  line-height: 1.3;
+}
+
+/* Beats: hidden things keep their box, so every beat has the same layout. */
+.slide.is-current [data-step] {
+  opacity: 0;
+  translate: 0 var(--rise);
+  transition: var(--step-transition);
+  transition-property: opacity, translate;
+}
+
+.slide.is-current [data-step].is-shown {
+  opacity: 1;
+  translate: none;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+::view-transition-old(slide) {
+  --step-transition: 0.22s ease both;
+  animation: fade-out var(--step-transition);
+}
+
+::view-transition-new(slide) {
+  --step-transition: 0.32s ease both;
+  animation: fade-in var(--step-transition);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide.is-current [data-step],
+  .slide.is-current .rise,
+  .slide.is-current .trace {
+    transition: none;
+    animation: none;
+  }
+
+  ::view-transition-old(slide),
+  ::view-transition-new(slide) {
+    animation: none;
+  }
+}

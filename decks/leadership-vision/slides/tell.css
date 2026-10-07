@@ -1,0 +1,31 @@
+.slide .moves {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: var(--gap);
+  margin-top: calc(var(--gap) * 0.6);
+}
+
+.slide .moves .card {
+  gap: calc(var(--gap) * 0.6);
+  min-height: calc(var(--gap) * 10);
+  padding: calc(var(--gap) * 1.3);
+}
+
+.slide .moves b {
+  font-size: var(--size-title);
+  line-height: 1.35;
+}
+
+.slide .moves .note {
+  margin-top: auto;
+  font-size: var(--size-body);
+}
+
+.slide .moves .op {
+  align-self: center;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-stat);
+  font-weight: 700;
+}

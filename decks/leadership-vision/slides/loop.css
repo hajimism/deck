@@ -1,0 +1,100 @@
+.slide {
+  --cycle: 440px;
+}
+
+.slide .cycle {
+  position: relative;
+  justify-self: center;
+  width: var(--cycle);
+  height: calc(var(--cycle) * 0.955);
+}
+
+.slide .cycle svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.slide .cycle .track {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 2;
+}
+
+.slide .cycle .arc {
+  fill: none;
+  stroke: var(--sun);
+  stroke-width: 6;
+}
+
+.slide .cycle .head {
+  fill: var(--sun);
+}
+
+.slide .cycle .node {
+  position: absolute;
+  display: grid;
+  justify-items: center;
+  gap: calc(var(--gap) * 0.15);
+  width: 11em;
+  padding: calc(var(--gap) * 0.5) calc(var(--gap) * 0.6);
+  border: var(--hair) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  text-align: center;
+}
+
+.slide .cycle .node b {
+  font-size: var(--size-lede);
+}
+
+.slide .cycle .node small {
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.slide .cycle .node[data-at="top"] {
+  top: calc(var(--gap) * -1.2);
+  left: 50%;
+  translate: -50% 0;
+}
+
+.slide .cycle .node[data-at="right"] {
+  right: calc(var(--gap) * -2.4);
+  bottom: calc(var(--gap) * 0.6);
+}
+
+.slide .cycle .node[data-at="left"] {
+  left: calc(var(--gap) * -2.4);
+  bottom: calc(var(--gap) * 0.6);
+}
+
+.slide .cycle .hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  justify-items: center;
+  gap: calc(var(--gap) * 0.2);
+  translate: -50% -40%;
+  text-align: center;
+}
+
+.slide .cycle .hub b {
+  font-size: calc(var(--size-lede) * 1.3);
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.slide .cycle .hub .label {
+  color: var(--muted);
+}
+
+.slide .cycle .flag {
+  position: absolute;
+  right: calc(var(--gap) * -1.2);
+  top: 40%;
+}

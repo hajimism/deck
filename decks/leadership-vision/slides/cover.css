@@ -1,0 +1,112 @@
+.slide {
+  --sun-size: 300px;
+  --sky-h: 230px;
+}
+
+.slide .meta {
+  display: grid;
+  gap: calc(var(--gap) * 0.3);
+  margin-top: calc(var(--gap) * 0.4);
+  padding-top: calc(var(--gap) * 0.8);
+  border-top: var(--hair) solid var(--line);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.slide .meta div {
+  display: grid;
+  grid-template-columns: 4em minmax(0, 1fr);
+  align-items: baseline;
+}
+
+.slide .meta dt {
+  color: var(--muted);
+}
+
+.slide .sunrise {
+  display: grid;
+  gap: calc(var(--gap) * 1.2);
+}
+
+/* The sky: the After as a sun half risen over the horizon line. */
+.slide .sunrise .sky {
+  position: relative;
+  height: var(--sky-h);
+  overflow: hidden;
+  background: radial-gradient(ellipse 60% 75% at 50% 100%, var(--glow), transparent 70%);
+}
+
+.slide .sunrise .sun {
+  position: absolute;
+  bottom: calc(var(--sun-size) * -0.5);
+  left: 50%;
+  width: var(--sun-size);
+  height: var(--sun-size);
+  translate: -50% 0;
+  border-radius: var(--round);
+  background: radial-gradient(circle at 50% 40%, var(--gold), var(--sun) 62%);
+}
+
+.slide.is-current .sunrise .sun {
+  animation: sunrise var(--dur-sun) var(--ease-out) both;
+}
+
+@keyframes sunrise {
+  from {
+    translate: -50% 40%;
+    opacity: 0.4;
+  }
+}
+
+.slide .sunrise .after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  gap: calc(var(--gap) * 0.1);
+}
+
+.slide .sunrise .after .label {
+  color: var(--sun-light);
+}
+
+.slide .sunrise .after b {
+  font-size: var(--size-lede);
+}
+
+.slide .sunrise .horizon li {
+  border-top-color: var(--sun);
+}
+
+.slide .sunrise .horizon li::before {
+  background: var(--sun);
+}
+
+.slide .sunrise .horizon b {
+  color: var(--sun-light);
+}
+
+.slide .sunrise .series {
+  display: flex;
+  gap: calc(var(--gap) * 0.3);
+  justify-content: flex-end;
+}
+
+.slide .sunrise .series li {
+  display: grid;
+  place-items: center;
+  width: 2em;
+  height: 2em;
+  border: var(--hair) solid var(--veil-line-2);
+  border-radius: var(--radius-small);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+}
+
+.slide .sunrise .series li[data-now] {
+  border-color: var(--sun);
+  background: var(--sun);
+  color: var(--ink);
+}

@@ -1,0 +1,56 @@
+.slide .slide-title {
+  display: grid;
+  justify-items: center;
+  gap: calc(var(--gap) * 0.3);
+}
+
+.slide .slide-title span {
+  color: var(--muted-night);
+  font-size: var(--size-title);
+}
+
+.slide .slide-title b {
+  color: var(--white);
+}
+
+.slide .slide-title span[data-rank="1"] {
+  color: var(--white);
+  font-size: var(--size-hero);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.slide .slide-title span[data-rank="1"] b {
+  color: var(--sun-light);
+}
+
+.slide .why {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.5);
+  width: 100%;
+  margin-top: calc(var(--gap) * 0.6);
+}
+
+.slide .why li {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.8em;
+  padding: calc(var(--gap) * 0.7);
+  border-top: var(--heavy) solid var(--veil-line-2);
+  background: var(--veil);
+  font-weight: 700;
+}
+
+.slide .why .label {
+  color: var(--muted-night);
+}
+
+.slide .why li[data-now] {
+  border-top-color: var(--sun);
+}
+
+.slide .why li[data-now] .label {
+  color: var(--sun-light);
+}

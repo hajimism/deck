@@ -1,0 +1,53 @@
+.slide .curve {
+  position: relative;
+  aspect-ratio: 56 / 38;
+}
+
+.slide .curve svg {
+  width: 100%;
+  height: 100%;
+}
+
+.slide .curve .axis {
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.slide .curve .path {
+  fill: none;
+  stroke: var(--sun);
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.slide .curve .miss path {
+  fill: none;
+  stroke: var(--rust);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.slide .curve .tip {
+  fill: var(--sun-ink);
+}
+
+.slide .curve .tag {
+  position: absolute;
+}
+
+.slide .curve .tag[data-at="now"] {
+  left: 30%;
+  top: 80%;
+}
+
+.slide .curve .tag[data-at="next"] {
+  right: 6%;
+  top: -2%;
+}
+
+.slide .curve .axis-label {
+  position: absolute;
+  left: 4%;
+  bottom: -6%;
+  color: var(--muted);
+}

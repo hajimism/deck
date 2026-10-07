@@ -1,0 +1,47 @@
+.slide .contagion {
+  display: grid;
+}
+
+.slide .contagion .chain {
+  display: grid;
+  gap: calc(var(--gap) * 0.25);
+}
+
+.slide .contagion .node {
+  display: grid;
+  gap: calc(var(--gap) * 0.1);
+  padding: calc(var(--gap) * 0.8) var(--gap);
+  border: var(--hair) solid var(--line);
+  border-left: var(--heavy) solid var(--c);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.slide .contagion .node[data-now] {
+  border-color: var(--sun);
+  background: var(--sun);
+}
+
+.slide .contagion .node[data-now] .label,
+.slide .contagion .node[data-now] small {
+  color: var(--ink);
+}
+
+.slide .contagion .node b {
+  font-size: calc(var(--size-lede) * 1.2);
+}
+
+.slide .contagion .node small {
+  color: var(--ink-2);
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.slide .contagion .link {
+  padding-left: calc(var(--gap) * 0.9);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+}

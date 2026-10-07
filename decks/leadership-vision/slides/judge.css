@@ -1,0 +1,65 @@
+.slide {
+  --ring-outer: 300px;
+  --ring-inner: 150px;
+}
+
+.slide .range {
+  display: grid;
+  gap: var(--gap);
+}
+
+.slide .range .body {
+  display: grid;
+  grid-template-columns: var(--ring-outer) minmax(0, 1fr);
+  align-items: center;
+  gap: calc(var(--gap) * 1.2);
+}
+
+.slide .range .rings {
+  position: relative;
+  width: var(--ring-outer);
+  height: var(--ring-outer);
+}
+
+.slide .range .ring {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  translate: -50% 0;
+  border: var(--rule) dashed var(--c);
+  border-radius: var(--round);
+  background: var(--c-soft);
+}
+
+.slide .range .ring[data-tone="sun"] {
+  width: var(--ring-outer);
+  height: var(--ring-outer);
+}
+
+.slide .range .ring[data-tone="slate"] {
+  width: var(--ring-inner);
+  height: var(--ring-inner);
+  border-style: solid;
+  background: var(--slate-soft);
+}
+
+.slide .range .legend {
+  display: grid;
+  gap: var(--gap);
+}
+
+.slide .range .legend li {
+  display: grid;
+  gap: calc(var(--gap) * 0.3);
+  padding-left: calc(var(--gap) * 0.7);
+  border-left: var(--heavy) solid var(--c);
+  font-weight: 700;
+}
+
+.slide .range .after {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: var(--size-lede);
+  font-weight: 800;
+}

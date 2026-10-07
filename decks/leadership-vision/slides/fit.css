@@ -1,0 +1,51 @@
+.slide .same {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 2fr);
+  align-items: stretch;
+  gap: var(--gap);
+  margin-top: calc(var(--gap) * 0.6);
+}
+
+.slide .same .who {
+  display: grid;
+  align-content: center;
+  gap: calc(var(--gap) * 0.4);
+  padding: var(--gap);
+  border-radius: var(--radius);
+  background: var(--pine);
+  color: var(--white);
+}
+
+.slide .same .who .label {
+  color: var(--sun-light);
+}
+
+.slide .same .who b {
+  font-size: var(--size-title);
+}
+
+.slide .same .who small {
+  color: var(--muted-night);
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.slide .same .where {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--gap);
+}
+
+.slide .same .card {
+  justify-content: space-between;
+  min-height: calc(var(--gap) * 10);
+  padding: calc(var(--gap) * 1.2);
+}
+
+.slide .same .card b {
+  color: var(--c-ink);
+  font-size: var(--size-stat);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}

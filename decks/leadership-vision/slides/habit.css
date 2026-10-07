@@ -1,0 +1,41 @@
+.slide .check {
+  display: grid;
+  gap: calc(var(--gap) * 0.5);
+  padding: calc(var(--gap) * 1.1);
+  border: var(--hair) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.slide .check .head {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  font-size: var(--size-lede);
+}
+
+.slide .check .rows {
+  --cols: 1.4em 8em minmax(0, 1fr);
+}
+
+.slide .check .rows li {
+  gap: calc(var(--gap) * 0.6);
+  padding-block: calc(var(--gap) * 0.45);
+}
+
+.slide .check .rows i {
+  width: 1.3em;
+  height: 1.3em;
+  border: var(--rule) solid var(--ink);
+  border-radius: var(--radius-small);
+}
+
+.slide .check .rows span {
+  color: var(--ink-2);
+  font-size: var(--size-small);
+}
+
+.slide .check .rows li[data-head] span {
+  color: var(--muted);
+  font-size: var(--size-caption);
+}

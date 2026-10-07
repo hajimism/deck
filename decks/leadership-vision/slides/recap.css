@@ -1,0 +1,24 @@
+.slide .thesis {
+  font-size: var(--size-lede);
+  font-weight: 700;
+  line-height: 1.75;
+}
+
+.slide .sum {
+  --cols: 6.5em 6.5em minmax(0, 1fr);
+  margin-top: calc(var(--gap) * 0.3);
+  border-top: var(--rule) solid var(--ink);
+}
+
+.slide .sum li {
+  padding-block: calc(var(--gap) * 0.55);
+}
+
+.slide .sum b {
+  font-size: var(--size-lede);
+}
+
+.slide .sum li > span:last-child {
+  color: var(--ink-2);
+  font-size: var(--size-small);
+}

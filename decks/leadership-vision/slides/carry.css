@@ -1,0 +1,60 @@
+.slide .route {
+  display: grid;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .route .node {
+  display: grid;
+  gap: calc(var(--gap) * 0.3);
+  padding: calc(var(--gap) * 0.8) var(--gap);
+  border: var(--hair) solid var(--line);
+  border-left: var(--heavy) solid var(--c);
+  border-radius: var(--radius);
+  background: var(--card);
+  font-size: var(--size-lede);
+}
+
+.slide .route .node[data-to] {
+  border-color: var(--sun);
+  background: var(--sun-soft);
+}
+
+.slide .route .leg {
+  display: grid;
+  grid-template-columns: calc(var(--gap) * 2) minmax(0, 1fr);
+  align-items: center;
+  gap: calc(var(--gap) * 0.5);
+  padding-left: calc(var(--gap) * 0.6);
+}
+
+.slide .route .leg .arrow {
+  justify-self: center;
+  width: var(--heavy);
+  height: calc(var(--gap) * 4);
+  background: linear-gradient(var(--sun), var(--sun)) top / 100% calc(100% - var(--gap) * 0.6) no-repeat;
+  position: relative;
+}
+
+.slide .route .leg .arrow::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  translate: -50% 0;
+  border: calc(var(--gap) * 0.45) solid transparent;
+  border-top: calc(var(--gap) * 0.6) solid var(--sun);
+  border-bottom: 0;
+}
+
+.slide .route .leg p {
+  display: grid;
+  gap: calc(var(--gap) * 0.2);
+  line-height: 1.55;
+}
+
+.slide .route .echo {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-top: calc(var(--gap) * 0.3);
+}

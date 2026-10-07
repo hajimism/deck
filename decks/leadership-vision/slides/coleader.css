@@ -1,0 +1,57 @@
+.slide .duo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1.25fr);
+  align-items: stretch;
+  gap: calc(var(--gap) * 0.6);
+  margin-top: calc(var(--gap) * 0.3);
+}
+
+.slide .duo .card {
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .duo .bars {
+  display: grid;
+  grid-template-columns: 3em minmax(0, 1fr);
+  align-items: center;
+  gap: calc(var(--gap) * 0.4) calc(var(--gap) * 0.5);
+}
+
+.slide .duo .label {
+  color: var(--muted);
+}
+
+.slide .duo .card[data-tone="rust"] .gauge[data-v="2"] {
+  --c: var(--rust);
+}
+
+.slide .duo .card[data-tone="rust"] .gauge[data-v="9"] {
+  --c: var(--jade);
+}
+
+.slide .duo .op {
+  align-self: center;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-stat);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.slide .rule {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4em 0.8em;
+  margin-top: calc(var(--gap) * 0.4);
+  padding: calc(var(--gap) * 0.7) var(--gap);
+  border-radius: var(--radius);
+  background: var(--pine);
+  color: var(--white);
+  font-size: var(--size-lede);
+}
+
+.slide .rule .note {
+  flex-basis: 100%;
+  color: var(--muted-night);
+}

@@ -1,0 +1,16 @@
+.slide .menu {
+  --cols: 15em minmax(0, 1fr) 15em;
+}
+
+.slide .menu li {
+  padding-block: calc(var(--gap) * 0.5);
+}
+
+.slide .menu li:not([data-head]) > span:nth-child(2) {
+  color: var(--ink-2);
+  font-size: var(--size-small);
+}
+
+.slide .menu .chip {
+  font-size: var(--size-caption);
+}

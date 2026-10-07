@@ -1,0 +1,30 @@
+.slide .versus .rows {
+  --cols: 6em minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.slide .versus .rows li {
+  padding-block: calc(var(--gap) * 0.7);
+}
+
+.slide .versus .rows li > span:nth-child(2) {
+  color: var(--muted);
+}
+
+.slide .versus .rows li > span:nth-child(3) {
+  padding-left: calc(var(--gap) * 0.6);
+  border-left: var(--heavy) solid var(--sun);
+}
+
+.slide .versus .rows li[data-head] > span {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  letter-spacing: 0;
+}
+
+.slide .versus .label {
+  color: var(--muted);
+}

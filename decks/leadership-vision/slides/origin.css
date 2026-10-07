@@ -1,0 +1,19 @@
+.slide .stage.cols {
+  margin-top: calc(var(--gap) * 0.3);
+}
+
+.slide .stage .card p b {
+  font-size: var(--size-lede);
+}
+
+.slide .love {
+  margin-top: calc(var(--gap) * 0.5);
+  font-size: var(--size-stat);
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.slide .love span {
+  color: var(--sun-light);
+}

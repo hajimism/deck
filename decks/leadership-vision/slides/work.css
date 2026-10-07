@@ -1,0 +1,52 @@
+.slide[data-layout="default"] {
+  gap: calc(var(--gap) * 0.55);
+}
+
+.slide .steps {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 2fr);
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .steps .card {
+  gap: calc(var(--gap) * 0.3);
+  padding: calc(var(--gap) * 0.55) calc(var(--gap) * 0.8);
+}
+
+.slide .steps b {
+  font-size: var(--size-small);
+  line-height: 1.5;
+}
+
+.slide .sheet {
+  --cols: 15em minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.slide .sheet li {
+  padding-block: calc(var(--gap) * 0.32);
+  font-size: var(--size-small);
+}
+
+.slide .sheet li > span:nth-child(2) {
+  color: var(--ink-2);
+}
+
+.slide .sheet b {
+  display: grid;
+  line-height: 1.35;
+}
+
+.slide .sheet small {
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 700;
+}
+
+.slide .sheet li[data-key] {
+  background: var(--sun-soft);
+}
+
+.slide .sheet .blank {
+  align-self: end;
+  min-height: calc(var(--gap) * 1.2);
+}

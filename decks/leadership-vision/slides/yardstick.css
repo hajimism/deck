@@ -1,0 +1,32 @@
+.slide .manifesto {
+  display: grid;
+  gap: calc(var(--gap) * 0.5);
+  margin-block: calc(var(--gap) * 0.3);
+  padding: calc(var(--gap) * 1.1) calc(var(--gap) * 1.3);
+  border-radius: var(--radius);
+  background: var(--pine);
+  color: var(--white);
+}
+
+.slide .manifesto .label {
+  color: var(--sun-light);
+}
+
+.slide .manifesto .line {
+  font-size: var(--size-stat);
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.slide .manifesto .a {
+  color: var(--muted-night);
+}
+
+.slide .manifesto .b {
+  color: var(--sun-light);
+}
+
+.slide .stage .card {
+  gap: calc(var(--gap) * 0.45);
+}

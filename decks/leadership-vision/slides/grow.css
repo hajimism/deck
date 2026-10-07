@@ -1,0 +1,53 @@
+.slide .traction {
+  display: grid;
+  gap: calc(var(--gap) * 0.3);
+  margin-top: calc(var(--gap) * 0.4);
+}
+
+.slide .traction .bars {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: end;
+  gap: calc(var(--gap) * 0.3);
+  height: calc(var(--gap) * 5);
+  border-bottom: var(--rule) solid var(--ink);
+}
+
+.slide .traction i {
+  background: var(--slate-soft);
+}
+
+.slide .traction i:nth-child(1) { height: 12%; }
+.slide .traction i:nth-child(2) { height: 22%; }
+.slide .traction i:nth-child(3) { height: 36%; background: var(--sun-soft); }
+.slide .traction i:nth-child(4) { height: 54%; background: var(--sun-soft); }
+.slide .traction i:nth-child(5) { height: 76%; background: var(--sun); }
+.slide .traction i:nth-child(6) { height: 100%; background: var(--sun); }
+
+.slide .traction .note {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.slide .routes {
+  display: grid;
+  gap: calc(var(--gap) * 0.7);
+}
+
+.slide .routes .card {
+  gap: calc(var(--gap) * 0.35);
+}
+
+.slide .routes .mech {
+  color: var(--ink-2);
+  font-weight: 700;
+}
+
+.slide .routes .arrow {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+}

@@ -1,0 +1,77 @@
+.slide .two {
+  display: grid;
+  gap: calc(var(--gap) * 0.6);
+  margin-top: calc(var(--gap) * 0.3);
+}
+
+.slide .two li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .two b {
+  font-size: var(--size-lede);
+}
+
+.slide .invite {
+  overflow: hidden;
+  border: var(--hair) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.slide .invite .bar {
+  display: flex;
+  align-items: baseline;
+  gap: calc(var(--gap) * 0.6);
+  padding: calc(var(--gap) * 0.8) var(--gap);
+  background: var(--pine);
+  color: var(--white);
+}
+
+.slide .invite .bar .label {
+  color: var(--sun-light);
+}
+
+.slide .invite .bar b {
+  font-size: var(--size-lede);
+}
+
+.slide .invite .when {
+  margin-left: auto;
+  color: var(--muted-night);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-weight: 700;
+}
+
+.slide .invite .fields {
+  display: grid;
+}
+
+.slide .invite .fields div {
+  display: grid;
+  gap: calc(var(--gap) * 0.25);
+  padding: calc(var(--gap) * 0.8) var(--gap);
+  border-bottom: var(--hair) solid var(--line);
+}
+
+.slide .invite .fields div:last-child {
+  border-bottom: 0;
+}
+
+.slide .invite .fields div[data-key] {
+  border-left: var(--heavy) solid var(--sun);
+  background: var(--sun-soft);
+}
+
+.slide .invite dt {
+  color: var(--muted);
+}
+
+.slide .invite dd {
+  font-size: var(--size-body);
+  line-height: 1.6;
+}

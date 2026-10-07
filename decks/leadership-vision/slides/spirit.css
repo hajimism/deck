@@ -1,0 +1,51 @@
+.slide .versus {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  gap: var(--gap);
+  margin-top: calc(var(--gap) * 0.6);
+}
+
+.slide .versus .card {
+  gap: calc(var(--gap) * 0.6);
+  min-height: calc(var(--gap) * 13);
+  padding: calc(var(--gap) * 1.3);
+  font-size: var(--size-lede);
+  font-weight: 700;
+}
+
+.slide .versus .term {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3em;
+  font-size: var(--size-stat);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.slide .versus .term i {
+  color: var(--muted);
+  font-style: normal;
+}
+
+.slide .versus .term span {
+  color: var(--c-ink);
+}
+
+.slide .versus .note,
+.slide .versus .today {
+  margin-top: auto;
+  padding-top: calc(var(--gap) * 0.6);
+  border-top: var(--hair) solid var(--line);
+}
+
+.slide .versus .note {
+  font-size: var(--size-body);
+}
+
+.slide .versus .today {
+  color: var(--sun-ink);
+  font-size: calc(var(--size-lede) * 1.2);
+  font-weight: 800;
+}

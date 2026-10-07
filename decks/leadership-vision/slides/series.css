@@ -1,0 +1,107 @@
+.slide {
+  --part-1: #ffc62a;
+  --part-2: #24507e;
+  --part-3: #c43d1e;
+  --part-4: #5b3df5;
+  --part-5: var(--sun);
+}
+
+.slide .arc {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.4);
+  margin-top: calc(var(--gap) * 0.3);
+}
+
+.slide .arc li {
+  --p: var(--part-1);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.35);
+  min-height: calc(var(--gap) * 9.5);
+  padding: var(--gap) calc(var(--gap) * 0.8);
+  border-top: calc(var(--heavy) * 2) solid var(--p);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.slide .arc li[data-part="2"] { --p: var(--part-2); }
+.slide .arc li[data-part="3"] { --p: var(--part-3); }
+.slide .arc li[data-part="4"] { --p: var(--part-4); }
+.slide .arc li[data-part="5"] { --p: var(--part-5); }
+
+.slide .arc li[data-now] {
+  background: var(--pine);
+  color: var(--white);
+}
+
+.slide .arc .no {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-lede);
+  font-weight: 700;
+}
+
+.slide .arc li[data-now] .no {
+  color: var(--sun-light);
+}
+
+.slide .arc b {
+  font-size: var(--size-body);
+  line-height: 1.45;
+}
+
+.slide .arc p {
+  margin-top: auto;
+  color: var(--ink-2);
+  font-size: var(--size-small);
+  line-height: 1.6;
+}
+
+.slide .arc li[data-now] p {
+  color: var(--muted-night);
+}
+
+.slide .span {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+  gap: calc(var(--gap) * 0.4);
+}
+
+.slide .span li {
+  padding-top: calc(var(--gap) * 0.35);
+  border-top: var(--rule) solid var(--line-strong);
+  text-align: center;
+}
+
+.slide .span .label {
+  color: var(--muted);
+}
+
+.slide .sense {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--gap) * 0.4);
+  margin-top: calc(var(--gap) * 0.4);
+  padding: calc(var(--gap) * 0.8) var(--gap);
+  border-radius: var(--radius);
+  background: var(--sun-soft);
+}
+
+.slide .sense .label {
+  margin-right: auto;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--size-lede);
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.slide .sense .word {
+  padding: 0.3em 0.9em;
+  border-radius: var(--radius-small);
+  background: var(--ink);
+  color: var(--white);
+  font-weight: 800;
+}

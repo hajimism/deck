@@ -1,0 +1,92 @@
+.slide .stage.cols {
+  align-items: stretch;
+  margin-top: calc(var(--gap) * 0.4);
+}
+
+.slide .shift {
+  display: grid;
+  gap: calc(var(--gap) * 0.4);
+  margin-block: calc(var(--gap) * 0.2);
+}
+
+.slide .shift li {
+  display: grid;
+  grid-template-columns: 3.4em minmax(0, 1fr);
+  align-items: baseline;
+  gap: calc(var(--gap) * 0.5);
+  padding: calc(var(--gap) * 0.55) calc(var(--gap) * 0.7);
+  border-left: var(--heavy) solid var(--c);
+  background: var(--c-soft);
+  line-height: 1.55;
+}
+
+.slide .shift s {
+  color: var(--muted);
+  text-decoration-color: var(--slate);
+}
+
+.slide .flows {
+  display: grid;
+  gap: calc(var(--gap) * 0.7);
+  margin-block: calc(var(--gap) * 0.2);
+}
+
+.slide .flows li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--gap) * 0.3);
+}
+
+.slide .flows .label {
+  flex-basis: 100%;
+}
+
+.slide .flows .node {
+  padding: 0.55em 0.9em;
+  border: var(--hair) solid var(--line-strong);
+  border-radius: var(--radius-small);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.slide .flows .node[data-many] {
+  border-color: var(--jade);
+  background: var(--jade-soft);
+  color: var(--jade-ink);
+}
+
+.slide .flows .node[data-end] {
+  border-color: var(--sun);
+  background: var(--sun);
+}
+
+.slide .flows i {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-style: normal;
+}
+
+.slide .stage .card {
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .stage .card h3 {
+  font-size: calc(var(--size-lede) * 1.2);
+}
+
+.slide .stage .card > .note {
+  margin-top: auto;
+  min-height: 4.4em;
+  padding-top: calc(var(--gap) * 0.6);
+  border-top: var(--hair) solid var(--line);
+  font-size: var(--size-body);
+}
+
+.slide .shift li {
+  font-size: var(--size-lede);
+}
+
+.slide .flows .node {
+  font-size: var(--size-body);
+}

@@ -1,0 +1,115 @@
+.slide {
+  --field: 420px;
+  --core: 230px;
+}
+
+.slide .split-rules {
+  --cols: 4.5em minmax(0, 1fr);
+}
+
+.slide .split-rules small {
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 700;
+}
+
+.slide .split-rules .chip {
+  justify-self: start;
+  font-size: var(--size-small);
+}
+
+.slide .orbit {
+  display: grid;
+  justify-items: center;
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .orbit > .label {
+  justify-self: start;
+}
+
+.slide .orbit .field {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--field);
+  height: var(--field);
+}
+
+.slide .orbit .edge {
+  position: absolute;
+  inset: 0;
+  border: var(--rule) dashed var(--slate);
+  border-radius: var(--round);
+  background: var(--slate-soft);
+}
+
+.slide .orbit .tag {
+  position: absolute;
+  padding: 0.3em 0.7em;
+  border: var(--hair) solid var(--line-strong);
+  border-radius: var(--radius-small);
+  background: var(--card);
+  color: var(--slate-ink);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  line-height: 1.45;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.slide .orbit .tag[data-at="top"] {
+  top: calc(var(--gap) * -0.6);
+  left: 50%;
+  translate: -50% 0;
+}
+
+.slide .orbit .tag[data-at="left"] {
+  top: 50%;
+  left: calc(var(--gap) * -2.2);
+  translate: 0 -50%;
+}
+
+.slide .orbit .tag[data-at="right"] {
+  top: 50%;
+  right: calc(var(--gap) * -1.6);
+  translate: 0 -50%;
+}
+
+.slide .orbit .tag[data-at="bottom"] {
+  bottom: calc(var(--gap) * -0.8);
+  left: 50%;
+  translate: -50% 0;
+  border-color: var(--rust);
+  color: var(--rust-ink);
+}
+
+.slide .orbit .core {
+  position: relative;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: calc(var(--gap) * 0.3);
+  width: var(--core);
+  height: var(--core);
+  border-radius: var(--round);
+  background: radial-gradient(circle at 50% 35%, var(--gold), var(--sun) 70%);
+  color: var(--ink);
+  text-align: center;
+}
+
+.slide .orbit .core .label {
+  color: var(--ink);
+}
+
+.slide .orbit .core b {
+  font-size: var(--size-lede);
+  line-height: 1.4;
+}
+
+.slide .orbit .core small {
+  max-width: 11em;
+  font-size: var(--size-caption);
+  font-weight: 700;
+  line-height: 1.5;
+}

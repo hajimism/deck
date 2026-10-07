@@ -1,0 +1,47 @@
+.slide .tug {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .tug .card {
+  gap: calc(var(--gap) * 0.3);
+}
+
+.slide .tug .card p {
+  font-weight: 700;
+}
+
+.slide .tug .op {
+  align-self: center;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-stat);
+  font-style: normal;
+}
+
+.slide .decide {
+  display: grid;
+  gap: calc(var(--gap) * 0.5);
+  margin-top: calc(var(--gap) * 0.3);
+}
+
+.slide .decide .by {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.slide .decide .by .chip {
+  font-size: var(--size-small);
+}
+
+.slide .decide .by .label {
+  color: var(--muted);
+}
+
+.slide .plan {
+  --cols: 14em 18em minmax(0, 1fr);
+}

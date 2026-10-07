@@ -1,0 +1,97 @@
+.slide .roadmap {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: calc(var(--gap) * 1.1);
+}
+
+.slide .roadmap .vision {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  padding: calc(var(--gap) * 0.7) var(--gap);
+  border-radius: var(--radius);
+  background: var(--pine);
+  color: var(--white);
+}
+
+.slide .roadmap .vision .sun {
+  flex: none;
+  width: calc(var(--gap) * 2.4);
+  height: calc(var(--gap) * 1.2);
+  border-radius: var(--round) var(--round) 0 0;
+  background: radial-gradient(circle at 50% 100%, var(--gold), var(--sun) 70%);
+}
+
+.slide .roadmap .vision p {
+  display: flex;
+  align-items: baseline;
+  gap: var(--gap);
+}
+
+.slide .roadmap .vision .label {
+  color: var(--sun-light);
+}
+
+.slide .roadmap .vision b {
+  font-size: var(--size-lede);
+}
+
+.slide .roadmap .horizon {
+  gap: var(--gap);
+}
+
+.slide .roadmap .horizon li {
+  gap: calc(var(--gap) * 0.45);
+  padding-top: var(--gap);
+}
+
+.slide .roadmap .horizon span {
+  font-size: calc(var(--size-title) * 0.85);
+  line-height: 1.25;
+}
+
+.slide .roadmap .q {
+  color: var(--ink);
+  font-size: var(--size-lede);
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+.slide .roadmap .how {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8em;
+  padding-top: calc(var(--gap) * 0.4);
+  border-top: var(--hair) solid var(--line);
+  color: var(--ink-2);
+}
+
+.slide .roadmap .how i {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--size-caption);
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.slide .roadmap .foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--gap);
+  padding-top: calc(var(--gap) * 0.6);
+  border-top: var(--hair) solid var(--line);
+}
+
+.slide .roadmap .foot .note:first-child {
+  max-width: 40em;
+}
+
+.slide .roadmap .ex {
+  padding: calc(var(--gap) * 0.45) calc(var(--gap) * 0.6);
+  background: var(--slate-soft);
+  color: var(--ink-2);
+  font-size: var(--size-small);
+  font-weight: 500;
+}

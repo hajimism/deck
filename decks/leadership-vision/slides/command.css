@@ -1,0 +1,54 @@
+.slide .orders {
+  display: grid;
+  gap: calc(var(--gap) * 0.6);
+  margin-top: calc(var(--gap) * 0.3);
+}
+
+.slide .orders b {
+  font-size: var(--size-lede);
+  line-height: 1.5;
+}
+
+.slide .odds {
+  display: grid;
+  gap: var(--gap);
+  padding: calc(var(--gap) * 1.4);
+  border-radius: var(--radius);
+  background: var(--pine);
+  color: var(--white);
+}
+
+.slide .odds > .label {
+  color: var(--sun-light);
+}
+
+.slide .odds .claim {
+  font-size: var(--size-title);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.slide .odds .claim .mark {
+  color: var(--sun-light);
+}
+
+.slide .odds .meter {
+  display: grid;
+  gap: calc(var(--gap) * 0.4);
+}
+
+.slide .odds .gauge {
+  --c-soft: var(--veil-2);
+  height: calc(var(--gap) * 1.1);
+}
+
+.slide .odds .meter .note {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted-night);
+  font-size: var(--size-caption);
+}
+
+
+
+

@@ -1,0 +1,16 @@
+.slide .levers {
+  --cols: 2.2em 10.5em minmax(0, 1fr);
+}
+
+.slide .levers li {
+  padding-block: calc(var(--gap) * 0.75);
+}
+
+.slide .levers b {
+  font-size: var(--size-lede);
+}
+
+.slide .levers li:not([data-head]) span:last-child {
+  color: var(--ink-2);
+  font-size: var(--size-small);
+}

@@ -1,0 +1,26 @@
+.slide .pair {
+  margin-block: calc(var(--gap) * 0.3);
+}
+
+.slide .pair .card {
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .pair .alone {
+  display: grid;
+  gap: calc(var(--gap) * 0.15);
+  margin-top: auto;
+  padding-top: calc(var(--gap) * 0.6);
+  border-top: var(--hair) solid var(--line);
+  color: var(--ink-2);
+}
+
+.slide .pair .alone .label {
+  color: var(--rust-ink);
+}
+
+.slide .punch {
+  align-self: stretch;
+  padding: 0.8em 1.1em;
+  font-size: calc(var(--size-lede) * 1.2);
+}
