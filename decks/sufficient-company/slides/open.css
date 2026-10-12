@@ -1,0 +1,38 @@
+.slide .issues {
+  height: 100%;
+  table-layout: fixed;
+}
+
+.slide .issues th:first-child {
+  width: 26%;
+}
+
+.slide .issues th:last-child {
+  width: 34%;
+}
+
+.slide .issues td:first-child {
+  color: var(--kaki-ink);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.slide .issues td:nth-child(2) {
+  font-size: var(--size-small);
+}
+
+.slide .who {
+  display: block;
+  margin-top: 0.3em;
+  color: var(--muted);
+  font-size: var(--size-caption);
+}
+
+.slide .issues th[data-on] {
+  color: var(--ai-ink);
+}
+
+.slide .issues td[data-on] {
+  background: var(--ai-soft);
+  font-weight: 700;
+}

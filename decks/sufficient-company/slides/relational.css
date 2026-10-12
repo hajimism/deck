@@ -1,0 +1,25 @@
+.slide .vs {
+  height: 100%;
+}
+
+.slide .vs td:first-child {
+  width: 9em;
+  color: var(--muted);
+  font-size: var(--size-small);
+  font-weight: 800;
+}
+
+.slide .vs th[data-on] {
+  color: var(--ai-ink);
+}
+
+.slide .vs td[data-on] {
+  width: 48%;
+  background: var(--ai-soft);
+  font-weight: 700;
+}
+
+.slide .vs tbody tr:first-child td[data-on] {
+  border-top-left-radius: var(--radius-small);
+  border-top-right-radius: var(--radius-small);
+}

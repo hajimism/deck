@@ -1,0 +1,53 @@
+.slide .grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, auto 1fr auto auto);
+  gap: 0 calc(var(--gap) * 0.8);
+  row-gap: 0;
+}
+
+.slide .grid .card {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  gap: calc(var(--gap) * 0.45);
+  margin-bottom: calc(var(--gap) * 0.8);
+  padding: calc(var(--gap) * 0.9) var(--gap);
+}
+
+.slide .grid .card:nth-child(n + 4) {
+  margin-bottom: 0;
+}
+
+.slide .head {
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+  font-size: calc(var(--size-lede) * 1.2);
+}
+
+.slide .num {
+  color: var(--ai);
+  font-family: var(--font-num);
+  font-size: var(--size-small);
+  font-weight: 800;
+}
+
+.slide .lack {
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.slide .lack b {
+  margin-right: 0.7em;
+  padding: 0.1em 0.6em;
+  border-radius: var(--round);
+  background: var(--kaki-soft);
+  color: var(--kaki-ink);
+  font-size: var(--size-caption);
+}
+
+.slide .ref {
+  color: var(--muted);
+  font-size: var(--size-caption);
+}

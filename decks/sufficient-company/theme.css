@@ -1,0 +1,537 @@
+/*
+ * sufficient-company — a consultant's handout, one page at a time.
+ * Every page must survive being forwarded alone, so the theme draws three things on every
+ * content page and the slides never hand-place them:
+ *   - the claim as the heading (.slide-title), a plain sentence anyone can read;
+ *   - the chapter tag top right (.chapter: "3/5 会社に当てはめると");
+ *   - the source along the foot (.source), so the evidence can be traced anywhere.
+ * Surfaces are soft fills with generous rounding and no accent borders: a block says what
+ * it is by its fill, never by a stripe on one edge.
+ * Colour rule:
+ *   - Ai (indigo) is the argument: the claim to keep, a lit sufficiency, an implication.
+ *   - Kaki (persimmon brown) is the objection and the warning: 反論, 留保, what goes wrong.
+ *   - Sumi greys carry examples, context, and neutral facts.
+ * The cover is the only deep sheet.
+ */
+.slide {
+  --ink: #17202a;
+  --ink-2: #39424d;
+  --paper: #f7f6f2;
+  --white: #ffffff;
+  --panel: #ecebe5;
+  --panel-2: #e2e0d8;
+  --ai: #24508a;
+  --ai-ink: #1a3d6b;
+  --ai-soft: #e2e9f3;
+  --ai-mid: #b9c9df;
+  --ai-deep: #13263f;
+  --ai-night: #22406a;
+  --ai-glow: rgb(120 160 220 / 0.18);
+  --kaki: #a3561a;
+  --kaki-ink: #87430f;
+  --kaki-soft: #f5e8d9;
+  --kaki-mid: #e6c3a0;
+  --veil: rgb(255 255 255 / 0.08);
+  --veil-line: rgb(255 255 255 / 0.22);
+  --muted-night: #b9c6d6;
+  --fg: var(--ink);
+  --bg: var(--paper);
+  --accent: var(--ai);
+  --muted: #5b6470;
+  --line: #d9d6cd;
+  --line-strong: #a0a5ab;
+  --card: var(--panel);
+  --font-title: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  --font-body: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  --font-num: "Avenir Next", "Helvetica Neue", "Hiragino Sans", "Noto Sans CJK JP", sans-serif;
+  --size-hero: 68px;
+  --size-stat: 40px;
+  --size-title: 30px;
+  --size-lede: 18px;
+  --size-body: 16px;
+  --size-small: 14px;
+  --size-caption: 12px;
+  --icon: 15px;
+  --icon-big: 26px;
+  --gap: 22px;
+  --margin: 60px;
+  --head: 26px;
+  --foot: 22px;
+  --pad: 72px var(--margin) 74px;
+  --radius: 16px;
+  --radius-small: 10px;
+  --round: 999px;
+  --hair: 1px;
+  --rule: 2px;
+  --rise: 10px;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-rise: 0.6s;
+  --stagger: 0.08s;
+  --step-transition: 0.5s var(--ease-out);
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: var(--pad);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: 1.65;
+  font-feature-settings: "palt";
+  word-break: auto-phrase;
+  counter-reset: folio var(--dek-slide-number) folios var(--dek-slide-count);
+}
+
+/* The deep sheet: the cover only. */
+.slide[data-bg="deep"] {
+  --bg: var(--ai-deep);
+  --fg: var(--white);
+  --muted: var(--muted-night);
+  --line: var(--veil-line);
+  --card: var(--veil);
+  background:
+    radial-gradient(ellipse 70% 80% at 85% 50%, var(--ai-glow), transparent 70%),
+    var(--ai-deep);
+}
+
+/* Running head, top left, with a hairline under the whole header. */
+.slide::before {
+  content: "十分な者同士の会社  ／  組織づくり 配布資料";
+  position: absolute;
+  inset: var(--head) var(--margin) auto;
+  padding-bottom: calc(var(--gap) * 0.35);
+  border-bottom: var(--hair) solid var(--line);
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  white-space: pre;
+  pointer-events: none;
+}
+
+/* Folio, bottom right. */
+.slide::after {
+  content: counter(folio, decimal-leading-zero) " / " counter(folios, decimal-leading-zero);
+  position: absolute;
+  right: var(--margin);
+  bottom: var(--foot);
+  color: var(--muted);
+  font-family: var(--font-num);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+}
+
+.slide * {
+  box-sizing: border-box;
+}
+
+.slide p,
+.slide ol,
+.slide ul,
+.slide dl,
+.slide dd,
+.slide dt,
+.slide h2,
+.slide h3,
+.slide figure,
+.slide blockquote {
+  margin: 0;
+}
+
+.slide ol,
+.slide ul {
+  padding: 0;
+  list-style: none;
+}
+
+.slide b,
+.slide strong {
+  font-weight: 800;
+}
+
+.slide svg {
+  display: block;
+  flex: none;
+}
+
+/* Chapter tag, top right: where this page sits in the whole. */
+.slide .chapter {
+  position: absolute;
+  top: calc(var(--head) - var(--hair) * 3);
+  right: var(--margin);
+  display: flex;
+  align-items: baseline;
+  gap: 0.6em;
+  color: var(--ai-ink);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+}
+
+.slide .chapter b {
+  padding: 0 0.55em;
+  border-radius: var(--round);
+  background: var(--ai);
+  color: var(--white);
+  font-family: var(--font-num);
+}
+
+.slide[data-bg="deep"] .chapter {
+  color: var(--muted-night);
+}
+
+/* Source, bottom left: the evidence the reader can trace. */
+.slide .source {
+  position: absolute;
+  left: var(--margin);
+  right: calc(var(--margin) + var(--gap) * 3.5);
+  bottom: var(--foot);
+  padding-top: calc(var(--gap) * 0.3);
+  border-top: var(--hair) solid var(--line);
+  color: var(--muted);
+  font-size: var(--size-caption);
+  line-height: 1.5;
+}
+
+.slide .source::before {
+  content: "出典 ";
+  color: var(--fg);
+  font-weight: 800;
+}
+
+/* An icon of one sufficiency, larger, inside a figure. */
+.slide .ico {
+  display: inline-grid;
+  place-items: center;
+  width: calc(var(--icon-big) * 1.6);
+  height: calc(var(--icon-big) * 1.6);
+  flex: none;
+  border-radius: var(--round);
+  background: var(--white);
+  color: var(--ai-ink);
+}
+
+.slide .ico svg {
+  width: var(--icon-big);
+  height: var(--icon-big);
+}
+
+/* A sufficiency named in a table row: its icon, then its name. */
+.slide .dim {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.slide .dim .ico {
+  width: calc(var(--icon-big) * 1.3);
+  height: calc(var(--icon-big) * 1.3);
+  background: var(--ai-soft);
+}
+
+.slide .dim .ico svg {
+  width: calc(var(--icon-big) * 0.8);
+  height: calc(var(--icon-big) * 0.8);
+}
+
+.slide .slide-title {
+  font-family: var(--font-title);
+  font-size: var(--size-title);
+  font-weight: 800;
+  line-height: 1.38;
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+}
+
+.slide .kicker {
+  color: var(--ai);
+  font-size: var(--size-small);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.slide .lede {
+  color: var(--ink-2);
+  font-size: var(--size-lede);
+  line-height: 1.7;
+}
+
+.slide[data-bg="deep"] .lede {
+  color: var(--muted-night);
+}
+
+.slide .note {
+  color: var(--muted);
+  font-size: var(--size-small);
+  line-height: 1.65;
+}
+
+.slide .label {
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.slide .mark {
+  background: linear-gradient(transparent 60%, var(--ai-mid) 60%);
+  font-weight: 800;
+}
+
+.slide .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  align-self: flex-start;
+  padding: 0.1em 0.75em;
+  border-radius: var(--round);
+  background: var(--white);
+  color: var(--ai-ink);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.8;
+}
+
+.slide .chip svg {
+  width: var(--icon);
+  height: var(--icon);
+}
+
+/* A card: a soft fill, rounded, no border. data-on marks the one the page argues for,
+   data-warn the one that goes wrong. */
+.slide .card {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.45);
+  padding: var(--gap) calc(var(--gap) * 1.1);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.slide .card h3 {
+  font-size: calc(var(--size-lede) * 1.1);
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.slide .card[data-on] {
+  background: var(--ai-soft);
+}
+
+.slide .card[data-on] .label {
+  color: var(--ai-ink);
+}
+
+.slide .card[data-warn] {
+  background: var(--kaki-soft);
+}
+
+.slide .card[data-warn] .label {
+  color: var(--kaki-ink);
+}
+
+/* A line at the foot of a card: what the idea means once it is put in a company. */
+.slide .co {
+  margin-top: auto;
+  padding-top: calc(var(--gap) * 0.3);
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.slide .co b {
+  display: block;
+  color: var(--ai-ink);
+  font-size: var(--size-caption);
+  letter-spacing: 0.06em;
+}
+
+/* A term, defined on the page where it is used. */
+.slide .term {
+  padding: calc(var(--gap) * 0.5) calc(var(--gap) * 0.9);
+  border-radius: var(--radius-small);
+  background: var(--panel);
+  font-size: var(--size-small);
+  line-height: 1.65;
+}
+
+.slide .term::before {
+  content: "用語";
+  margin-right: 0.8em;
+  padding: 0.1em 0.6em;
+  border-radius: var(--round);
+  background: var(--ink-2);
+  color: var(--white);
+  font-size: var(--size-caption);
+  font-weight: 800;
+}
+
+/* An objection. Every page that has one shows it, so the reader weighs the claim. */
+.slide .rebut {
+  padding: calc(var(--gap) * 0.55) calc(var(--gap) * 0.9);
+  border-radius: var(--radius-small);
+  background: var(--kaki-soft);
+  color: var(--ink);
+  font-size: var(--size-small);
+  line-height: 1.65;
+}
+
+.slide .rebut::before {
+  content: "反論";
+  margin-right: 0.8em;
+  padding: 0.1em 0.6em;
+  border-radius: var(--round);
+  background: var(--kaki);
+  color: var(--white);
+  font-size: var(--size-caption);
+  font-weight: 800;
+}
+
+/* What it means for a company: the line to take home. */
+.slide .takeaway {
+  padding: calc(var(--gap) * 0.6) calc(var(--gap) * 0.9);
+  border-radius: var(--radius-small);
+  background: var(--ai);
+  color: var(--white);
+  font-size: var(--size-body);
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.slide .takeaway::before {
+  content: "会社では";
+  margin-right: 0.9em;
+  padding: 0.1em 0.6em;
+  border-radius: var(--round);
+  background: var(--white);
+  color: var(--ai-ink);
+  font-size: var(--size-caption);
+  font-weight: 800;
+}
+
+/* The stage holds the page's one figure. It is a grid by default; a table in it fills it. */
+.slide .stage {
+  display: grid;
+  gap: var(--gap);
+  min-height: 0;
+}
+
+.slide .stage > table {
+  height: 100%;
+}
+
+/* A stage split into two equal halves, for two cases set side by side. */
+.slide .stage[data-split] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* An arrow between the steps of a figure. */
+.slide .arrow {
+  color: var(--ai);
+  font-size: var(--size-stat);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.slide .cols {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  gap: var(--gap);
+}
+
+.slide .col {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+  min-width: 0;
+}
+
+/* Tables: ruled, no fills, the header row in caption weight. */
+.slide table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--size-body);
+  line-height: 1.5;
+}
+
+.slide th {
+  padding: calc(var(--gap) * 0.3) calc(var(--gap) * 0.45);
+  border-bottom: var(--rule) solid var(--ink);
+  color: var(--muted);
+  font-size: var(--size-caption);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-align: left;
+}
+
+.slide td {
+  padding: calc(var(--gap) * 0.35) calc(var(--gap) * 0.45);
+  border-bottom: var(--hair) solid var(--line);
+  vertical-align: middle;
+}
+
+.slide.is-current [data-step] {
+  transition: opacity var(--step-transition), translate var(--step-transition);
+}
+
+.slide.is-current [data-step]:not(.is-shown) {
+  opacity: 0;
+  translate: 0 var(--rise);
+}
+
+/* @layout cover
+<section class="slide" data-bg="deep" data-layout="cover">
+  <div class="col">
+    <p class="kicker">組織づくりの論点整理</p>
+    <h2 class="slide-title">十分な者<br>同士の会社</h2>
+    <p class="lede">What it is about.</p>
+  </div>
+  <div class="stage">Figure</div>
+</section>
+*/
+.slide[data-layout="cover"] {
+  display: grid;
+  grid-template-columns: 6fr 5fr;
+  align-items: center;
+  gap: calc(var(--gap) * 2.5);
+}
+
+.slide[data-layout="cover"] .slide-title {
+  font-size: var(--size-hero);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.slide[data-layout="cover"] .kicker {
+  color: var(--ai-mid);
+}
+
+/* @layout default
+<section class="slide" data-layout="default">
+  <p class="chapter"><b>3/5</b>会社に当てはめると</p>
+  <h2 class="slide-title">The claim</h2>
+  <p class="term"><b>用語</b>　Its definition.</p>
+  <div class="stage">Figure</div>
+  <p class="takeaway">What it means for a company.</p>
+  <p class="source">Author (Year)</p>
+  <ol class="six">…six li, the ones this page is about with data-on…</ol>
+</section>
+*/
+.slide[data-layout="default"] {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.7);
+}
+
+.slide[data-layout="default"] > .stage {
+  flex: 1;
+}

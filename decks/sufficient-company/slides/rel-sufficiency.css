@@ -1,0 +1,69 @@
+.slide .pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-rows: auto auto auto auto;
+  align-content: center;
+  column-gap: var(--gap);
+}
+
+.slide .pair .card {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  gap: calc(var(--gap) * 0.8);
+  padding: calc(var(--gap) * 1.2);
+  font-size: var(--size-lede);
+}
+
+.slide .head {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.7);
+}
+
+.slide .head > span:last-child {
+  display: flex;
+  flex-direction: column;
+}
+
+.slide .head b {
+  font-size: calc(var(--size-stat) * 0.8);
+  line-height: 1.3;
+}
+
+.slide .pair .ico {
+  width: calc(var(--icon-big) * 2.3);
+  height: calc(var(--icon-big) * 2.3);
+}
+
+.slide .pair .ico svg {
+  width: calc(var(--icon-big) * 1.3);
+  height: calc(var(--icon-big) * 1.3);
+}
+
+.slide .pair .co {
+  margin-top: 0;
+  font-size: var(--size-body);
+}
+
+.slide .lack {
+  font-size: var(--size-body);
+  font-weight: 700;
+}
+
+.slide .lack b {
+  margin-right: 0.7em;
+  padding: 0.1em 0.6em;
+  border-radius: var(--round);
+  background: var(--kaki-soft);
+  color: var(--kaki-ink);
+  font-size: var(--size-caption);
+}
+
+.slide .op {
+  grid-row: span 4;
+  align-self: center;
+  color: var(--muted);
+  font-size: var(--size-stat);
+  font-weight: 800;
+}

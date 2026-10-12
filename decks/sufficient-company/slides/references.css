@@ -1,0 +1,26 @@
+.slide .stage {
+  align-items: start;
+}
+
+.slide .stage .col {
+  gap: calc(var(--gap) * 0.4);
+}
+
+.slide .stage .label {
+  padding-bottom: calc(var(--gap) * 0.25);
+  border-bottom: var(--rule) solid var(--ink);
+  color: var(--fg);
+}
+
+.slide .refs {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.4);
+  font-size: var(--size-small);
+  line-height: 1.55;
+}
+
+.slide .refs li {
+  padding-left: 1.2em;
+  text-indent: -1.2em;
+}

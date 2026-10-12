@@ -1,0 +1,39 @@
+.slide .stage {
+  grid-template-columns: 7fr auto 5fr;
+  align-items: center;
+}
+
+.slide .ruled {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.5);
+}
+
+.slide .ruled li {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.1);
+  padding: var(--gap) calc(var(--gap) * 1.1);
+  border-radius: var(--radius);
+  background: var(--card);
+  font-size: calc(var(--size-lede) * 1.3);
+  line-height: 1.4;
+}
+
+.slide .ruled span {
+  color: var(--muted);
+  font-size: var(--size-small);
+}
+
+.slide .verdict {
+  justify-content: center;
+  padding: calc(var(--gap) * 1.3);
+  background: var(--ai);
+  color: var(--white);
+  font-size: calc(var(--size-lede) * 1.25);
+  line-height: 1.6;
+}
+
+.slide .verdict .label {
+  color: var(--ai-mid);
+}

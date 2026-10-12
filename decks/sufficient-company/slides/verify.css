@@ -1,0 +1,9 @@
+.slide td:first-child {
+  width: 16%;
+}
+
+.slide td:last-child {
+  width: 30%;
+  color: var(--muted);
+  font-size: var(--size-small);
+}

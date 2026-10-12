@@ -1,0 +1,99 @@
+.slide .stage {
+  grid-template-rows: 1fr auto;
+  gap: calc(var(--gap) * 0.8) var(--gap);
+}
+
+.slide .stage .card {
+  justify-content: flex-start;
+  gap: calc(var(--gap) * 0.7);
+  padding: calc(var(--gap) * 1.2) calc(var(--gap) * 1.3);
+}
+
+.slide .card[data-warn] h3 {
+  color: var(--kaki-ink);
+}
+
+.slide .rank {
+  width: 62%;
+  margin-bottom: calc(var(--gap) * 0.2);
+  overflow: visible;
+}
+
+.slide .rank .rest {
+  fill: var(--panel-2);
+}
+
+.slide .card[data-warn] .rank .rest {
+  fill: var(--kaki-mid);
+}
+
+.slide .rank .hit {
+  fill: var(--ink-2);
+}
+
+.slide .card[data-warn] .rank .hit {
+  fill: var(--kaki);
+}
+
+.slide .rank .med {
+  stroke: var(--ink);
+  stroke-width: var(--rule);
+  stroke-dasharray: 4 3;
+}
+
+.slide .rank .med-label {
+  fill: var(--ink);
+  font-size: var(--size-caption);
+  font-weight: 800;
+}
+
+.slide .stage .card .label {
+  font-size: var(--size-small);
+}
+
+.slide .effects {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .effects li {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: calc(var(--size-lede) * 1.5);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.slide .dir {
+  display: inline-grid;
+  place-items: center;
+  width: 1.7em;
+  height: 1.7em;
+  flex: none;
+  border-radius: var(--round);
+  background: var(--white);
+  color: var(--muted);
+}
+
+.slide .card[data-warn] .dir {
+  background: var(--kaki);
+  color: var(--white);
+}
+
+.slide .finding {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  gap: var(--gap);
+  padding: calc(var(--gap) * 0.7) calc(var(--gap) * 1.1);
+  border-radius: var(--radius-small);
+  background: var(--ai-soft);
+  font-size: var(--size-lede);
+}
+
+.slide .finding .label {
+  flex: none;
+  color: var(--ai-ink);
+}

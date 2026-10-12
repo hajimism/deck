@@ -1,0 +1,20 @@
+.slide td:first-child {
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.slide td:nth-child(3) {
+  color: var(--ai-ink);
+  font-weight: 700;
+}
+
+.slide .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3em;
+}
+
+.slide .chip {
+  background: var(--ai-soft);
+  white-space: nowrap;
+}

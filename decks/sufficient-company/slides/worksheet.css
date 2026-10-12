@@ -1,0 +1,43 @@
+.slide .sheet {
+  height: 100%;
+  table-layout: fixed;
+}
+
+.slide .sheet th:nth-child(1),
+.slide .sheet th:nth-child(2) {
+  width: 17%;
+}
+
+.slide .sheet td + td {
+  border-left: var(--hair) solid var(--line);
+}
+
+.slide .sheet tr[data-example] td {
+  background: var(--panel);
+  color: var(--muted);
+  font-size: var(--size-small);
+}
+
+.slide .sheet tr[data-example] .label {
+  margin-right: 0.8em;
+}
+
+.slide .scale {
+  display: flex;
+  gap: 0.35em;
+}
+
+.slide .scale span {
+  display: inline-grid;
+  place-items: center;
+  width: 1.9em;
+  height: 1.9em;
+  border-radius: var(--round);
+  background: var(--panel);
+  color: var(--muted);
+}
+
+.slide .scale span[data-pick] {
+  background: var(--ai);
+  color: var(--white);
+}

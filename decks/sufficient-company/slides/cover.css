@@ -1,0 +1,46 @@
+.slide .col {
+  gap: calc(var(--gap) * 0.9);
+}
+
+.slide .meta {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: calc(var(--gap) * 0.25) var(--gap);
+  margin-top: calc(var(--gap) * 0.4);
+  padding-top: calc(var(--gap) * 0.7);
+  border-top: var(--hair) solid var(--line);
+  font-size: var(--size-small);
+}
+
+.slide .meta dt {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.slide .stage {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.6);
+}
+
+.slide .tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(var(--gap) * 0.55);
+}
+
+.slide .tiles li {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * 0.6);
+  padding: calc(var(--gap) * 0.75) calc(var(--gap) * 0.85);
+  border-radius: var(--radius);
+  background: var(--card);
+  font-size: var(--size-lede);
+  font-weight: 800;
+}
+
+.slide .tiles .ico {
+  background: var(--ai-night);
+  color: var(--white);
+}

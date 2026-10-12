@@ -1,0 +1,33 @@
+.slide .stage {
+  grid-template-columns: 5fr 6fr;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: calc(var(--gap) * 0.8) var(--gap);
+}
+
+.slide .stage .card {
+  justify-content: center;
+  gap: calc(var(--gap) * 0.3);
+  padding: calc(var(--gap) * 0.8) calc(var(--gap) * 1.1);
+}
+
+.slide .answer {
+  background: var(--ai);
+  color: var(--white);
+}
+
+.slide .answer .label {
+  color: var(--ai-mid);
+}
+
+.slide .stage > table {
+  grid-column: 1 / -1;
+  font-size: var(--size-small);
+}
+
+.slide td:first-child {
+  width: 15%;
+}
+
+.slide td:last-child {
+  width: 40%;
+}

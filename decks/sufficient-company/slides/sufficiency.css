@@ -1,0 +1,30 @@
+.slide .stage {
+  grid-template-columns: 6fr 5fr;
+  align-items: center;
+  gap: calc(var(--gap) * 1.6);
+}
+
+.slide .plot svg {
+  width: 100%;
+  overflow: visible;
+}
+
+.slide .bar-low {
+  fill: var(--ai);
+}
+
+.slide .bar-high {
+  fill: var(--kaki-mid);
+}
+
+.slide .thr {
+  stroke: var(--ink);
+  stroke-width: var(--rule);
+  stroke-dasharray: 6 4;
+}
+
+.slide .thr-label {
+  fill: var(--ink);
+  font-size: var(--size-small);
+  font-weight: 800;
+}
