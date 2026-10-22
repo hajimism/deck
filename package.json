@@ -9,7 +9,7 @@
     "setup": "playwright install chromium"
   },
   "devDependencies": {
-    "@hajimism/dek": "0.3.1",
+    "@hajimism/dek": "0.3.3",
     "playwright": "^1.63.0"
   }
 }
