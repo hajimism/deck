@@ -1,0 +1,37 @@
+<section class="slide" data-layout="default">
+  <header>
+    <p class="kicker">原理：QAとは何か</p>
+    <ol class="tracker"><li aria-current="true">原理</li><li>品質目標</li><li>検出段階</li><li>テスト設計</li><li>有効性</li><li>リリース</li><li>AI</li></ol>
+    <h2 class="slide-title">QA・QC・テストの違い</h2>
+    <p class="message">QAはプロセスに向けた予防、QCはプロダクトに向けた是正であり、欠陥を減らすには、見つけて直すだけでなく作り方も変える</p>
+  </header>
+  <div class="fill center">
+  <div class="frame">
+    <p class="frame-head">品質を守る仕組み全体</p>
+    <div class="halves">
+      <div class="half" data-kind="qa">
+        <p class="half-head"><b>QA</b>品質保証</p>
+        <p class="aim"><span>向ける先</span>プロセス（作り方）</p>
+        <p class="aim"><span>ねらい</span>予防：正しく作れる仕組みを整える</p>
+        <p class="ex"><span class="tag">例</span>日時は共通の関数でだけ表示すると決め、直接の変換を lint で禁じる</p>
+        <ul class="chips"><li>型の設計</li><li>lint の規則</li><li>コーディング規約</li><li>レビューの仕組み</li><li>CI</li></ul>
+      </div>
+      <div class="half" data-kind="qc">
+        <p class="half-head"><b>QC</b>品質管理</p>
+        <p class="aim"><span>向ける先</span>プロダクト（作ったもの）</p>
+        <p class="aim"><span>ねらい</span>是正：作られたものから欠陥を見つける</p>
+        <p class="ex"><span class="tag">例</span>どの画面でも日時が正しく表示されるかを、テストで確かめる</p>
+        <div class="inner">
+          <p class="half-head"><b>テスト</b>QCの主要な手段</p>
+          <ul class="chips"><li>動的テスト：実行して確かめる</li><li>静的テスト：レビュー・静的解析</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <p class="takeaway">同じ lint でも、書いた誤りを探して直せばQC、規則にして同じ誤りを書けなくすればQA。分かれ目は道具ではなく、手を打つ相手</p>
+  <footer>
+    <p class="note">用語：静的テスト＝コードを動かさずに確かめるテスト。人が読むレビューと、ツールで調べる静的解析がある。動的テスト＝コードを実際に動かして、期待どおりの結果になるかを確かめるテスト。lint＝コードの書き方の誤りや規約違反を自動で指摘する道具（ESLint など）。CI＝変更のたびにビルドやテストを自動で回す仕組み。プロセス＝作り方、プロダクト＝作ったもの</p>
+    <p class="source">出所：ISTQB Foundation Level シラバス v4.0（JSTQB 訳）</p>
+  </footer>
+</section>

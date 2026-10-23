@@ -1,0 +1,74 @@
+.slide .ro {
+  display: grid;
+  grid-template-columns: repeat(2, var(--col));
+  align-items: stretch;
+  gap: var(--space-5);
+}
+
+.slide .ro-left,
+.slide .ro-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.slide .ro-head {
+  color: var(--accent-text);
+  font-size: var(--size-lead);
+  font-weight: 700;
+}
+
+.slide .stage {
+  display: grid;
+  grid-template-columns: repeat(4, var(--col));
+  align-items: end;
+  gap: var(--cell);
+}
+
+.slide .stage li {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--space-1);
+  padding: var(--space-2);
+  background: var(--navy);
+  color: var(--white);
+  text-align: center;
+}
+
+.slide .stage li b {
+  font-size: var(--size-title);
+}
+
+.slide .stage li span {
+  color: var(--on-dark);
+  font-size: var(--size-caption);
+}
+
+.slide .stage li:nth-child(1) { height: 5em; }
+.slide .stage li:nth-child(2) { height: 7em; }
+.slide .stage li:nth-child(3) { height: 9em; }
+.slide .stage li:nth-child(4) { height: 11em; }
+
+.slide .ro-watch {
+  padding: var(--space-2) var(--space-3);
+  background: var(--tile);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.slide .ro-back {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-left: var(--rule) solid var(--ng);
+  background: var(--tile);
+  font-size: var(--size-small);
+}
+
+.slide .ro-back b {
+  flex: none;
+  color: var(--ng);
+}

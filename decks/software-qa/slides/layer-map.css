@@ -1,0 +1,21 @@
+.slide .tbl thead th:first-child {
+  width: 30%;
+}
+
+.slide .tbl thead th:nth-child(2) {
+  width: 8%;
+}
+
+.slide .tbl thead th:nth-child(3) {
+  width: 22%;
+}
+
+.slide .tbl td.ly {
+  color: var(--muted);
+  text-align: center;
+}
+
+.slide .tbl td:nth-child(3) {
+  font-weight: 700;
+}
+

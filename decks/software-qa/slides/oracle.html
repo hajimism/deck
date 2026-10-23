@@ -1,0 +1,36 @@
+<section class="slide" data-layout="default">
+  <header>
+    <p class="kicker">問い4　テストは有効か</p>
+    <ol class="tracker"><li>原理</li><li>品質目標</li><li>検出段階</li><li>テスト設計</li><li aria-current="true">有効性</li><li>リリース</li><li>AI</li></ol>
+    <h2 class="slide-title">期待値の決め方</h2>
+    <p class="message">実装を見て逆算した期待値は実装の誤りをそのまま写すので、期待値は、仕様や受け入れ基準から、実装と独立に決める</p>
+  </header>
+  <dl class="terms">
+    <dt>期待値</dt><dd>テストで「こうなるはず」と書く、正しい結果</dd>
+    <dt>オラクル</dt><dd>テストの結果が正しいかを判定するよりどころ。仕様や受け入れ基準のほか、前の版の結果や「クラッシュしないこと」もよりどころになる</dd>
+  </dl>
+  <div class="fill orc">
+    <div class="orc-spec"><p class="tag">仕様</p><p class="card-title">税込金額 ＝ 税抜金額 × 1.10（税率10%）</p><p class="orc-bug">ところが実装は、誤って <code>price * 1.08</code> と書かれている</p></div>
+    <div class="orc-pair">
+      <div class="orc-case" data-kind="ng">
+        <p class="oc-head">実装を見て、期待値を逆算したテスト</p>
+        <pre><code>// 実装を読むと 1.08 倍しているので…
+expect(withTax(1000)).toBe(1080);</code></pre>
+        <p class="oc-res" data-mark="ok">✓ 通る</p>
+        <p class="oc-say">テストは通るが、欠陥も一緒に固定される。これはオラクルではなく、いまの実装の記録にすぎない</p>
+      </div>
+      <div class="orc-case" data-kind="ok">
+        <p class="oc-head">仕様から、期待値を決めたテスト</p>
+        <pre><code>// 仕様では税率10%なので
+expect(withTax(1000)).toBe(1100);</code></pre>
+        <p class="oc-res" data-mark="ng">✕ 落ちる</p>
+        <p class="oc-say">テストが落ちて、欠陥が見つかる。期待値が実装から独立しているから、実装の誤りに気づける</p>
+      </div>
+    </div>
+  </div>
+  <p class="takeaway">期待値が実装から独立していれば、テストが落ちたときに、実装の誤りに気づける</p>
+  <footer>
+    <p class="note">用語：回帰テスト＝変更によって既存の動きが壊れていないかを確かめるテスト</p>
+    <p class="source">出所：Barr ら, “The Oracle Problem in Software Testing: A Survey”, IEEE TSE 41(5), 2015</p>
+  </footer>
+</section>

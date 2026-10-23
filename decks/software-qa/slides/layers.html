@@ -1,0 +1,24 @@
+<section class="slide" data-layout="default">
+  <header>
+    <p class="kicker">問い2　どこで検出するか</p>
+    <ol class="tracker"><li>原理</li><li>品質目標</li><li aria-current="true">検出段階</li><li>テスト設計</li><li>有効性</li><li>リリース</li><li>AI</li></ol>
+    <h2 class="slide-title">欠陥を検出する5つの段階</h2>
+    <p class="message">欠陥は予防から本番まで5つの段階で検出でき、気づくまでが短い段階ほど直すのも速いので、手前で検出できるものは手前で検出する</p>
+  </header>
+  <div class="fill lay">
+    <p class="dir"><span>← 書いてすぐ気づく</span><span>気づくまでが長い →</span></p>
+    <ol class="lay-cols">
+      <li><p class="ln">予防</p><p class="lm">型・lint・テスト容易性</p><p class="lt"><span>気づくとき</span>書いている最中</p><p class="lc"><span>検出する欠陥</span>値の取り違え、規約違反</p></li>
+      <li><p class="ln">自動テスト</p><p class="lm">ユニット・コンポーネント・E2E</p><p class="lt"><span>気づくとき</span>手元と CI で、数秒〜数十分</p><p class="lc"><span>検出する欠陥</span>計算・表示・操作・流れの誤り</p></li>
+      <li><p class="ln">レビュー</p><p class="lm">人が読む</p><p class="lt"><span>気づくとき</span>PR を出し、読んでもらったとき</p><p class="lc"><span>検出する欠陥</span>設計の誤り、仕様の読み違え、観点の抜け</p></li>
+      <li><p class="ln">探索</p><p class="lm">学びながら試す</p><p class="lt"><span>気づくとき</span>リリースの前</p><p class="lc"><span>検出する欠陥</span>仕様の漏れ、想定外の使い方</p></li>
+      <li><p class="ln">本番</p><p class="lm">監視・段階公開</p><p class="lt"><span>気づくとき</span>利用者の手元</p><p class="lc"><span>検出する欠陥</span>本番でしか起きない組み合わせ</p></li>
+    </ol>
+  </div>
+  <p class="takeaway">予防は欠陥を作り込ませず、残りの4つは作り込まれた欠陥を検出する。後ろの段階ほど、気づいたときには影響が広がっている</p>
+  <footer>
+    <p class="note">用語：PR（プルリクエスト）＝変更を取り込む前にレビューを受ける単位。監視＝本番のエラーや速さを見続けること。段階公開＝一部の利用者から順に公開すること。テスト容易性は次のスライドで見る</p>
+    <p class="note">注：「後で見つけるほど修正コストが何倍にもなる」という曲線は有名だが、171件のプロジェクトを調べた研究では一貫した証拠が見つからなかった。この資料は、段階の順の根拠を、気づくまでの時間に置く。自動テストは PR を出す前に手元でも回せるので、レビューより手前に置いた</p>
+    <p class="source">出所：Menzies, Nichols, Shull, Layman (2016) arXiv:1609.04886</p>
+  </footer>
+</section>

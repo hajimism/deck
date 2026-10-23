@@ -1,0 +1,25 @@
+.slide .qs {
+  display: grid;
+  grid-template-columns: repeat(5, var(--col));
+  gap: var(--cell);
+  margin-top: var(--space-2);
+}
+
+.slide .qs li {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-2) var(--space-3);
+  background: var(--navy);
+  color: var(--white);
+  font-weight: 700;
+}
+
+.slide .qs b {
+  color: var(--accent);
+  font-size: var(--size-caption);
+  letter-spacing: 0.06em;
+}
+
+.slide .rows > [data-lit] {
+  padding-block: var(--space-4);
+}

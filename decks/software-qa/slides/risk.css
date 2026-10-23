@@ -1,0 +1,40 @@
+.slide .risk-steps {
+  display: grid;
+  grid-template-columns: repeat(3, var(--col));
+  gap: var(--cell);
+  margin-bottom: var(--space-3);
+}
+
+.slide .risk-steps li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  background: var(--tile);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.slide .risk-steps b {
+  color: var(--accent-text);
+  font-size: var(--size-title);
+  line-height: 1;
+}
+
+.slide .tbl thead th:first-child {
+  width: 12%;
+}
+
+.slide .tbl thead th:nth-child(2) {
+  width: 28%;
+}
+
+.slide .tbl thead th:nth-child(3),
+.slide .tbl thead th:nth-child(4),
+.slide .tbl thead th:nth-child(5) {
+  width: 8%;
+}
+
+.slide .tbl td.pri b {
+  color: var(--accent-text);
+}

@@ -1,0 +1,34 @@
+<section class="slide" data-layout="default">
+  <header>
+    <p class="kicker">問い1　何を保証するか</p>
+    <ol class="tracker"><li>原理</li><li aria-current="true">品質目標</li><li>検出段階</li><li>テスト設計</li><li>有効性</li><li>リリース</li><li>AI</li></ol>
+    <h2 class="slide-title">受け入れ基準（完成の定義）</h2>
+    <p class="message">完成の定義を Given-When-Then の具体例で合意しておくと、その例が、仕様、テストのシナリオ、AIへの指示の共通の出発点になる</p>
+  </header>
+  <div class="fill acc">
+    <div class="acc-left">
+      <div class="vague"><p class="tag">曖昧な一文</p><p class="vq">「パスワードを何度も間違えたら、ロックする」</p><p class="vqs">何回で？ 何分？ ロック中に正しいパスワードを入れたら？ 人によって読み方が変わる</p></div>
+      <p class="arrow-down">具体例にする</p>
+      <div class="gwt">
+        <p class="tag">具体例1</p>
+        <dl><div><dt>Given</dt><dd>パスワードを4回続けて間違えたアカウントがある</dd></div><div><dt>When</dt><dd>5回目も間違える</dd></div><div><dt>Then</dt><dd>アカウントを30分ロックし、「30分後にもう一度お試しください」と表示する</dd></div></dl>
+      </div>
+      <div class="gwt">
+        <p class="tag">具体例2</p>
+        <dl><div><dt>Given</dt><dd>ロック中のアカウントがある</dd></div><div><dt>When</dt><dd>正しいパスワードを入れる</dd></div><div><dt>Then</dt><dd>ログインせず、ロック中であることを表示する</dd></div></dl>
+      </div>
+    </div>
+    <div class="uses-wrap">
+      <p class="uses-head">合意した具体例は、3つの用途の出発点になる</p>
+      <ul class="uses">
+      <li><b>仕様として読める</b><p>プロダクトオーナーと合意した「完成」の定義。実装する人もレビューする人も、同じ例を見て判断できる</p></li>
+      <li><b>テストのシナリオに書き写せる</b><p>Given・When・Then が、そのままテストの準備・操作・確認になる。E2E やコンポーネントテストのシナリオにする</p></li>
+      <li><b>AIへの指示として渡せる</b><p>実装やテストをAIに書かせるときの仕様になる。期待値が実装から独立する（問い4）</p></li>
+      </ul>
+    </div>
+  </div>
+  <footer>
+    <p class="note">用語：受け入れ基準＝「何ができたら完成か」を、関係者で合意した条件。Given＝前提となる状態、When＝利用者の操作、Then＝期待する結果。プロダクトオーナー（PO）＝何を作るかに責任を持つ人</p>
+    <p class="source">出所：ISTQB Foundation Level シラバス v4.0（JSTQB 訳）4.5節「協働ベースのテストアプローチ」</p>
+  </footer>
+</section>

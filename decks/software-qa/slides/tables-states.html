@@ -1,0 +1,43 @@
+<section class="slide" data-layout="default">
+  <header>
+    <p class="kicker">問い3　どのテストケースで確かめるか</p>
+    <ol class="tracker"><li>原理</li><li>品質目標</li><li>検出段階</li><li aria-current="true">テスト設計</li><li>有効性</li><li>リリース</li><li>AI</li></ol>
+    <h2 class="slide-title">デシジョンテーブルと状態遷移</h2>
+    <p class="message">条件の組み合わせと画面の状態を表に書き出せば、テストを書く前に仕様の穴が見つかり、表の列やマスが、そのままテストケースになる</p>
+  </header>
+  <div class="fill ts">
+    <div class="panel">
+      <h3>デシジョンテーブル：条件の組み合わせを表にする</h3>
+      <p class="tdesc">例：送料のルール。条件を縦に、組み合わせを列に並べ、列ごとの結果を埋める</p>
+      <table class="tbl">
+        <thead><tr><th></th><th data-align="center">1</th><th data-align="center">2</th><th data-align="center">3</th><th data-align="center">4</th></tr></thead>
+        <tbody>
+          <tr><th>会員である</th><td data-align="center">Y</td><td data-align="center">Y</td><td data-align="center">N</td><td data-align="center">N</td></tr>
+          <tr><th>5,000円以上</th><td data-align="center">Y</td><td data-align="center">N</td><td data-align="center">Y</td><td data-align="center">N</td></tr>
+          <tr><th>送料</th><td data-align="center"><b>無料</b></td><td data-align="center"><b>300円</b></td><td data-align="center" class="hole">記載なし</td><td data-align="center"><b>600円</b></td></tr>
+        </tbody>
+      </table>
+      <p class="find"><b>見つかった穴</b>非会員が5,000円以上買ったときの送料が、仕様書に書かれていない</p>
+      <ol class="next"><li>プロダクトオーナーに送料を確認し、仕様書に書き足してもらう</li><li>決まった送料を表の3列目に入れる</li><li>表の4列を、そのまま4件のテストケースにする</li></ol>
+    </div>
+    <div class="panel">
+      <h3>状態遷移：画面の状態と、移り変わりを表にする</h3>
+      <p class="tdesc">例：送信フォーム。いまの状態を縦に、起きたことを横に並べ、次の状態を埋める。「−」は起きないこと</p>
+      <table class="tbl">
+        <thead><tr><th>状態 ＼ 起きたこと</th><th data-align="center">送信を押す</th><th data-align="center">成功が返る</th><th data-align="center">失敗が返る</th></tr></thead>
+        <tbody>
+          <tr><th>入力中</th><td data-align="center">送信中へ</td><td data-align="center" class="na">−</td><td data-align="center" class="na">−</td></tr>
+          <tr><th>送信中</th><td data-align="center" class="hole">決まっていない</td><td data-align="center">完了へ</td><td data-align="center">エラーへ</td></tr>
+          <tr><th>エラー</th><td data-align="center">送信中へ</td><td data-align="center" class="na">−</td><td data-align="center" class="na">−</td></tr>
+        </tbody>
+      </table>
+      <p class="find"><b>見つかった穴</b>送信中にもう一度ボタンを押したときの動きが決まっていない。二重送信の欠陥の入り口になる</p>
+      <ol class="next"><li>「送信中はボタンを押せなくする」など、動きをプロダクトオーナーと決める</li><li>決めた動きを、表の「決まっていない」マスに入れる</li><li>表の「−」以外のマスを、すべて1回ずつテストする</li></ol>
+    </div>
+  </div>
+  <p class="takeaway">どちらも、テストを書く前に仕様の穴を見つけられる。見つけた穴は、テストではなくプロダクトオーナーへの質問になる</p>
+  <footer>
+    <p class="note">注：条件が n 個なら組み合わせは最大 2<sup>n</sup> 列。結果が同じ列はまとめて減らせる</p>
+    <p class="source">出所：ISTQB Foundation Level シラバス v4.0（JSTQB 訳）4.2節</p>
+  </footer>
+</section>

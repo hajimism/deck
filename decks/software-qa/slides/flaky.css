@@ -1,0 +1,138 @@
+.slide .flk {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: var(--space-5);
+}
+
+.slide .flk-why,
+.slide .flk-fix {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.slide .flk-why .fchart {
+  flex: 1;
+  justify-content: center;
+  padding: var(--space-4);
+  background: var(--tile);
+}
+
+.slide .flk-fix .fx {
+  flex: 1;
+  align-content: center;
+}
+
+.slide .fh {
+  color: var(--accent-text);
+  font-size: var(--size-lead);
+  font-weight: 700;
+}
+
+.slide .chain2 {
+  display: grid;
+  grid-template-columns: repeat(3, var(--col));
+  gap: var(--cell);
+}
+
+.slide .chain2 li {
+  padding: var(--space-3);
+  border-top: var(--rule) solid var(--gray-light);
+  background: var(--tile);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.slide .chain2 li:last-child {
+  border-top-color: var(--ng);
+  color: var(--ng);
+}
+
+.slide .fchart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.slide .fchart figcaption {
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+
+.slide .fb {
+  height: var(--space-5);
+  background: var(--accent);
+}
+
+
+
+.slide .fsub {
+  font-size: var(--size-small);
+}
+
+.slide .fx {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--tile);
+}
+
+.slide .fx-k {
+  font-weight: 700;
+}
+
+.slide .fx-k[data-kind="ng"] {
+  color: var(--ng);
+}
+
+.slide .fx-k[data-kind="ok"] {
+  color: var(--ok);
+}
+
+.slide .fx pre {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--size-caption);
+}
+
+.slide .fx-d {
+  font-size: var(--size-small);
+}
+
+
+.slide .fbars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.slide .fbars li {
+  display: grid;
+  grid-template-columns: 8em var(--col) 3.5em;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.slide .fb {
+  height: var(--space-5);
+  background: var(--gray-light);
+}
+
+.slide .fbars li[data-lit] .fb {
+  background: var(--accent);
+}
+
+.slide .fb[data-w="74"] {
+  width: 85%;
+}
+
+.slide .fb[data-w="87"] {
+  width: 100%;
+}
+
+.slide .fdef {
+  font-size: var(--size-small);
+}

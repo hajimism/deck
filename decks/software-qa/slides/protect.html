@@ -1,0 +1,28 @@
+<section class="slide" data-layout="default">
+  <header>
+    <p class="kicker">問い1　何を保証するか</p>
+    <ol class="tracker"><li>原理</li><li aria-current="true">品質目標</li><li>検出段階</li><li>テスト設計</li><li>有効性</li><li>リリース</li><li>AI</li></ol>
+    <h2 class="slide-title">品質特性</h2>
+    <p class="message">保証する品質は機能だけではないので、9つの品質特性ごとに起きうる問題を洗い出し、それぞれに確かめ方を用意する</p>
+  </header>
+  <dl class="terms">
+    <dt>ISO/IEC 25010</dt><dd>ソフトウェアの品質を、性質ごとに分けて定義した国際規格。分けた1つ1つを品質特性と呼ぶ</dd>
+  </dl>
+  <ul class="fill traits">
+    <li class="card"><p class="card-title">機能適合性<span class="tag">自動テストの多くはここ</span></p><p class="fe">計算結果、バリデーション、画面遷移</p><p class="how"><span>確かめる手段</span>ユニット・コンポーネント・E2Eテスト</p></li>
+    <li class="card"><p class="card-title">性能効率性</p><p class="fe">Core Web Vitals、バンドルサイズ</p><p class="how"><span>確かめる手段</span>Lighthouse CI、利用者環境での計測</p></li>
+    <li class="card"><p class="card-title">互換性</p><p class="fe">ブラウザの違い、APIスキーマとの整合</p><p class="how"><span>確かめる手段</span>複数ブラウザでの実行、契約テスト</p></li>
+    <li class="card"><p class="card-title">相互作用性</p><p class="fe">使いやすさ、アクセシビリティ、エラー文言</p><p class="how"><span>確かめる手段</span>axe の自動監査、キーボードでの確認</p></li>
+    <li class="card"><p class="card-title">信頼性</p><p class="fe">オフライン時の挙動、エラー境界、リトライ</p><p class="how"><span>確かめる手段</span>エラー状態のテスト、本番の監視</p></li>
+    <li class="card"><p class="card-title">セキュリティ</p><p class="fe">XSS、認可の漏れ、トークンの扱い</p><p class="how"><span>確かめる手段</span>依存の検査、セキュリティテスト</p></li>
+    <li class="card"><p class="card-title">保守性</p><p class="fe">モジュール性、テストのしやすさ</p><p class="how"><span>確かめる手段</span>型・lint、レビュー</p></li>
+    <li class="card"><p class="card-title">柔軟性</p><p class="fe">画面サイズ、多言語対応</p><p class="how"><span>確かめる手段</span>画面サイズ・言語ごとの見た目の確認</p></li>
+    <li class="card"><p class="card-title">安全性</p><p class="fe">二重決済の防止、危険な操作の確認</p><p class="how"><span>確かめる手段</span>二重送信や確認ダイアログのテスト</p></li>
+  </ul>
+  <p class="takeaway">自動テストの多くは機能適合性の確認にとどまる。ほかの特性には、計測や監査など別の確かめ方を用意する</p>
+  <footer>
+    <p class="note">用語：Core Web Vitals＝表示の速さ・操作への反応・見た目の安定を測る指標。Lighthouse CI＝ページの速さなどを自動で計測する仕組み。axe＝アクセシビリティの違反を自動で検出する道具。XSS＝悪意のあるスクリプトを画面に埋め込まれる脆弱性。認可＝誰に何をさせてよいかの判定</p>
+    <p class="note">注：2023年版で8特性から9特性になった。改称（使用性→相互作用性、移植性→柔軟性）と安全性の追加は、規格本文が有料のため二次の解説による</p>
+    <p class="source">出所：ISO/IEC 25010:2023 製品品質モデル</p>
+  </footer>
+</section>

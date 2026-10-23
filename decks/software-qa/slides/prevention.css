@@ -1,0 +1,82 @@
+.slide .prev {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: var(--space-4);
+}
+
+.slide .prev .panel {
+  gap: var(--space-3);
+}
+
+.slide .code-pair {
+  display: grid;
+  grid-template-columns: 5fr 6fr;
+  grid-template-rows: repeat(3, auto);
+  align-content: center;
+  flex: 1;
+  column-gap: var(--space-3);
+}
+
+.slide .code {
+  display: grid;
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--tile);
+}
+
+.slide .code .tag {
+  justify-self: start;
+}
+
+.slide .code[data-kind="ng"] .tag {
+  color: var(--ng);
+}
+
+.slide .code[data-kind="ok"] {
+  outline: var(--outline) solid var(--accent);
+  outline-offset: calc(var(--outline) * -1);
+}
+
+.slide .code pre {
+  font-size: var(--size-caption);
+  line-height: 1.8;
+  white-space: pre;
+}
+
+.slide .cap {
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+
+.slide .props {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--cell);
+}
+
+.slide .props li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  padding: var(--space-2) var(--space-3);
+  background: var(--tile);
+}
+
+.slide .props b {
+  color: var(--accent-text);
+  font-size: var(--size-lead);
+}
+
+.slide .props .fe {
+  color: var(--ink-soft);
+  font-size: var(--size-small);
+}
+
+.slide .lead2 {
+  font-size: var(--size-body);
+}

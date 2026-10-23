@@ -1,0 +1,30 @@
+<section class="slide" data-layout="default">
+  <header>
+    <p class="kicker">問い2　どこで検出するか</p>
+    <ol class="tracker"><li>原理</li><li>品質目標</li><li aria-current="true">検出段階</li><li>テスト設計</li><li>有効性</li><li>リリース</li><li>AI</li></ol>
+    <h2 class="slide-title">コードレビュー</h2>
+    <p class="message">人が読むレビューは欠陥の検出に期待ほど強くないので、規則で判定できるものは機械に任せ、人は文脈で判断が要るものを見る</p>
+  </header>
+  <div class="fill rev">
+    <div class="gapcmp">
+      <div class="gc" data-kind="exp"><p class="tag">期待</p><p class="gc-big">動機の筆頭は「欠陥を見つけること」</p><p class="gc-src">開発者873人と管理職165人への調査</p></div>
+      <div class="gc" data-kind="real"><p class="tag">実際</p>
+        <ol class="hbars">
+          <li><span>コードの改善</span><i class="hb" data-w="29"></i><b>29%</b></li>
+          <li data-lit><span>欠陥の指摘</span><i class="hb" data-w="14"></i><b>14%</b></li>
+        </ol>
+        <p class="gc-src">実際のレビューコメント570件の内訳（上位2つ）</p></div>
+    </div>
+    <p class="to">人の目は、期待ほど欠陥の検出に向いていない。だから、機械と人で分担する</p>
+    <div class="split2">
+      <div class="who-box" data-kind="machine"><p class="wb-head">機械に任せる</p><p class="wb-rule">規則で白黒がつくもの</p><p class="wb-why">毎回、全件を、数秒で確かめられる。人が読むと見落とす</p><ul class="points"><li>型の誤り、書き方の規約と整形（型チェック・lint）</li><li>依存パッケージの既知の脆弱性（依存の検査）</li><li>既存のふるまいの破壊（自動テスト）</li></ul></div>
+      <div class="who-box" data-kind="human"><p class="wb-head">人が見る</p><p class="wb-rule">仕様や文脈を知らないと判断できないもの</p><p class="wb-why">正解を規則に書けないので、機械では判定できない</p><ul class="points"><li>設計：この分け方で、あとで直しやすいか</li><li>境界とエラー処理：空、上限、失敗したとき</li><li>認可：見てはいけない人に見えないか</li></ul></div>
+    </div>
+  </div>
+  <p class="takeaway">機械で判定できるものを人が見ると、見落とすうえに、人にしか見られないものを見る時間がなくなる</p>
+  <footer>
+    <p class="note">用語：フォーマッタ＝コードの見た目を自動で整える道具。依存の検査＝使っている外部パッケージに、既知の脆弱性がないかを調べること。認可＝誰に何をさせてよいかの判定</p>
+    <p class="note">注：コメントの分類は、論文の分類から上位2つを抜き出した。改善の指摘は、チームの中で知識を渡し合う役割も果たしている</p>
+    <p class="source">出所：Bacchelli & Bird, “Expectations, Outcomes, and Challenges of Modern Code Review”, ICSE 2013</p>
+  </footer>
+</section>

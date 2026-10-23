@@ -1,0 +1,38 @@
+<section class="slide" data-layout="default">
+  <header>
+    <p class="kicker">問い5　リリースしてよいか</p>
+    <ol class="tracker"><li>原理</li><li>品質目標</li><li>検出段階</li><li>テスト設計</li><li>有効性</li><li aria-current="true">リリース</li><li>AI</li></ol>
+    <h2 class="slide-title">段階公開とロールバック</h2>
+    <p class="message">リリースしても止めて戻せるようにしておけば、本番でしか起きない故障の影響を、一部の利用者の範囲にとどめられる</p>
+  </header>
+  <div class="fill ro">
+    <div class="ro-left">
+      <p class="ro-head">段階公開：一部の利用者から順に広げる</p>
+      <ol class="stage">
+        <li><b>1%</b><span>社内と一部の利用者</span></li>
+        <li><b>10%</b><span>指標を見て広げる</span></li>
+        <li><b>50%</b><span>指標を見て広げる</span></li>
+        <li><b>100%</b><span>全員に公開</span></li>
+      </ol>
+      <p class="ro-watch">各段で見る指標：エラー率、主要フローの完了率、表示速度</p>
+    </div>
+    <div class="ro-right">
+      <p class="ro-head">止める基準：リリースの前に決めておく（記入例）</p>
+      <table class="tbl">
+        <thead><tr><th>指標</th><th>止める条件</th></tr></thead>
+        <tbody>
+          <tr><th>エラー率</th><td>普段の2倍を超えた</td></tr>
+          <tr><th>購入の完了率</th><td>普段より1割以上下がった</td></tr>
+          <tr><th>表示速度</th><td>目標を30分以上続けて下回った</td></tr>
+        </tbody>
+      </table>
+      <p class="ro-back"><b>超えたら</b>公開を止め、前の版に戻す（ロールバック）。機能だけを切るなら、フィーチャーフラグを使う</p>
+    </div>
+  </div>
+  <p class="takeaway">止める基準は、故障が起きる前に決める。起きてから決めると、止めるかどうかの議論の間に影響が広がる</p>
+  <footer>
+    <p class="note">用語：段階公開＝新しい版を一部の利用者から順に公開すること。ロールバック＝前の版に戻すこと。フィーチャーフラグ＝機能ごとに公開・非公開を切り替える仕組み。エラー率＝利用者の操作のうち、エラーになった割合</p>
+    <p class="note">注：基準や数値は説明のための記入例。指標は、問い1で優先度を高とした品質特性から選ぶ</p>
+    <p class="source">出所：ISTQB Foundation Level シラバス v4.0（JSTQB 訳）5章</p>
+  </footer>
+</section>

@@ -1,0 +1,29 @@
+<section class="slide" data-layout="default">
+  <header>
+    <p class="kicker">問い2　どこで検出するか</p>
+    <ol class="tracker"><li>原理</li><li>品質目標</li><li aria-current="true">検出段階</li><li>テスト設計</li><li>有効性</li><li>リリース</li><li>AI</li></ol>
+    <h2 class="slide-title">欠陥の棚卸し</h2>
+    <p class="message">過去の欠陥を、見つかった段階と本来検出できた段階で棚卸しすると、どの段階を強化すれば最も効くかが、自分たちのデータで分かる</p>
+  </header>
+  <div class="fill inv">
+    <p class="steps-line">手順：① 過去の欠陥を集める　② 見つかった段階（●）と、本来検出できた段階（○）をつける　③ 本来の段階ごとに数え、多い段階を強化する</p>
+    <table class="tbl">
+      <thead><tr><th data-align="center">#</th><th>欠陥（記入例・架空）</th><th data-align="center">予防</th><th data-align="center">自動テスト</th><th data-align="center">レビュー</th><th data-align="center">探索</th><th data-align="center">本番</th></tr></thead>
+      <tbody>
+        <tr><th data-align="center">1</th><td>合計金額に、税抜と税込が混ざって表示された</td><td data-at="should"><b>○</b>本来</td><td data-gap></td><td data-gap></td><td data-gap></td><td data-at="found"><b>●</b>発見</td></tr>
+        <tr><th data-align="center">2</th><td>日付が1日ずれて表示された</td><td></td><td data-at="should"><b>○</b>本来</td><td data-gap></td><td data-at="found"><b>●</b>発見</td><td></td></tr>
+        <tr><th data-align="center">3</th><td>割引の計算で、端数の丸めが逆だった</td><td></td><td data-at="should"><b>○</b>本来</td><td data-gap></td><td data-gap></td><td data-at="found"><b>●</b>発見</td></tr>
+        <tr><th data-align="center">4</th><td>モーダルを閉じると、フォーカスが行方不明になった</td><td></td><td data-at="should"><b>○</b>本来</td><td data-gap></td><td data-at="found"><b>●</b>発見</td><td></td></tr>
+        <tr><th data-align="center">5</th><td>決済のあと、完了画面に進まなかった</td><td></td><td data-at="should"><b>○</b>本来</td><td data-gap></td><td data-gap></td><td data-at="found"><b>●</b>発見</td></tr>
+        <tr><th data-align="center">6</th><td>URL の番号を変えると、他人の注文が見えた</td><td></td><td></td><td data-at="should"><b>○</b>本来</td><td data-gap></td><td data-at="found"><b>●</b>発見</td></tr>
+      </tbody>
+      <tfoot><tr><th></th><th>本来検出できた段階ごとの件数</th><td data-align="center">1件</td><td data-align="center" class="most"><b>4件</b></td><td data-align="center">1件</td><td data-align="center">0件</td><td data-align="center">0件</td></tr></tfoot>
+    </table>
+    <p class="legend-line"><span class="sw" aria-hidden="true"></span>○ から ● までの網かけが、欠陥が漏れた区間</p>
+  </div>
+  <p class="takeaway">この例では、6件中4件が自動テストで検出できたのに漏れていた。次に工数を割くのは、自動テストの強化になる</p>
+  <footer>
+    <p class="note">用語：探索＝リリース前に、人が触って確かめること（問い3で見る探索的テスト）。本番＝利用者の問い合わせや監視で見つかること</p>
+    <p class="note">注：記入例は架空。実際には過去半年ほどの欠陥を対象にする。本来の段階は、「どこで検出する仕組みがあれば、その場で気づけたか」で決める</p>
+  </footer>
+</section>

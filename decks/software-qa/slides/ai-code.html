@@ -1,0 +1,24 @@
+<section class="slide" data-layout="default">
+  <header>
+    <p class="kicker">AIと一緒に開発する</p>
+    <ol class="tracker"><li>原理</li><li>品質目標</li><li>検出段階</li><li>テスト設計</li><li>有効性</li><li>リリース</li><li aria-current="true">AI</li></ol>
+    <h2 class="slide-title">AIが書いたコードを受け取る</h2>
+    <p class="message">AIが書いたコードには出やすい欠陥の型があるので、依存の追加とテストの書き換えを中心に、人が確かめてから取り込む</p>
+  </header>
+  <div class="fill">
+    <table class="tbl">
+      <thead><tr><th>出やすい欠陥</th><th>分かっていること</th><th data-pick>防ぎ方</th></tr></thead>
+      <tbody>
+        <tr><th>存在しないパッケージを使う</th><td>AIが書いたコードに出てくる架空のパッケージ名の割合は、商用のモデルで少なくとも5.2%、公開されたモデルで21.7%だった</td><td data-pick>依存の追加は人が承認する。lockfile の差分をレビューで見る</td></tr>
+        <tr><th>エラー処理が抜ける</th><td>オープンソースの470件の PR の分析では、AI が関わった PR は、エラー処理の抜けがほぼ2倍だった</td><td data-pick>エラーの状態を型で表す。AI に境界値分析を指示する</td></tr>
+        <tr><th>テストを弱めて CI を通す</th><td>落ちるテストの期待値を書き換える、skip する、消す、といった変更で CI を通そうとすることがある</td><td data-pick>アサーションの変更は、実装の変更と別に確かめる。skip・削除されたテストの数を見える化する</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="takeaway">依存の追加とテストの書き換えは、人が確かめる。レビューでは、差分を小さく保ち、境界・エラー処理・認可を毎回の観点にする</p>
+  <footer>
+    <p class="note">用語：依存＝自分のコードが使っている外部のパッケージ。lockfile＝インストールする依存の版を固定したファイル。アサーション＝テストの中で結果を確かめる1行（expect など）。skip＝テストを一時的に実行しないようにすること</p>
+    <p class="note">注：2行目の分析は、AIレビューを提供する企業によるもの。倍率そのものより「どこが抜けやすいか」の傾向として使う</p>
+    <p class="source">出所：Spracklen ら, USENIX Security 2025。CodeRabbit「State of AI vs Human Code Generation」</p>
+  </footer>
+</section>

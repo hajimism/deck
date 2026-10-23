@@ -1,0 +1,28 @@
+<section class="slide" data-layout="default">
+  <header>
+    <p class="kicker">原理：QAとは何か</p>
+    <ol class="tracker"><li aria-current="true">原理</li><li>品質目標</li><li>検出段階</li><li>テスト設計</li><li>有効性</li><li>リリース</li><li>AI</li></ol>
+    <h2 class="slide-title">テストの限界</h2>
+    <p class="message">テストは欠陥がないことを示せず、すべての入力を試すこともできないので、どのテストケースで確かめるかを設計する</p>
+  </header>
+  <div class="fill lim">
+    <div class="card">
+      <p class="tag">原則1</p>
+      <p class="card-title">テストは欠陥があることは示せるが、<br>欠陥がないことは示せない</p>
+      <p class="expl">テストが確かめられるのは、決めたケースで期待どおりに動いたことだけ。試していない入力に欠陥が残っていても、テストは通る</p>
+      <div class="result"><p class="pass">✓ 128 tests passed</p><p class="means">＝「正しい」ではなく<br><b>「見つからなかった」</b></p></div>
+    </div>
+    <div class="card">
+      <p class="tag">原則2</p>
+      <p class="card-title">全数テストは不可能</p>
+      <p class="expl">パスワード欄のような単純な入力でも、入りうる値は天文学的な数になる。だから、どの値を試すかを技法で選ぶ</p>
+      <div class="result"><p class="big"><span>10<sup>126</sup></span><span>通り以上</span></p><p class="means">8〜64文字のパスワード欄に<br>入りうる文字列の数</p></div>
+    </div>
+  </div>
+  <p class="takeaway">テストが通ったことは「正しい」ではなく「見つからなかった」。だから、何を、どこで、どのケースで確かめるかを設計する</p>
+  <footer>
+    <p class="note">用語：JSTQB＝ソフトウェアテストの資格試験を国内で運営する団体。ISTQB はその国際組織。シラバス＝試験で問われる知識の範囲をまとめた文書</p>
+    <p class="note">注：シラバスの7原則のうち、残りの5つ（早期テスト、欠陥の偏在、テストの弱化、コンテキスト次第、「欠陥ゼロ」の落とし穴）は出所を参照。10<sup>126</sup> は、印字できる ASCII 文字95種で64文字の場合だけの数（95<sup>64</sup> ≒ 3.7×10<sup>126</sup>）</p>
+    <p class="source">出所：JSTQB Foundation Level シラバス v4.0 日本語版 1.3節「テストの7原則」</p>
+  </footer>
+</section>

@@ -1,0 +1,1947 @@
+/* Theme from the ref file/accenture-style at 1c2ffe9, recolored: navy base, yellow accent. */
+/*
+ * dek で作るアクセンチュア風スライド — a template library for project documents.
+ *
+ * Every slide: a header (navigator kicker, tracker, title with its rule, message line),
+ * a body, and a footer (note, source). The folio prints itself.
+ * Every 型 is a layout: `dekc theme <layout>` prints its markup.
+ *
+ * Status colors keep their meaning everywhere: ok = green, info = blue, warn = amber,
+ * ng = red, done = gray. Use data-mark="ok|info|warn|ng|done" on any element.
+ */
+.slide {
+  --ink: #0b1424;
+  --ink-soft: #344056;
+  --paper: #fff;
+  --white: #fff;
+  --navy: #0b2c66;
+  --navy-deep: #071d45;
+  --azure: #1f6fe0;
+  --yellow: #ffc20e;
+  --wash-yellow: #fff1bf;
+  --wash-azure: #dde9fc;
+  --gray: #545f72;
+  --gray-mid: #5f6a7d;
+  --gray-light: #c3cad6;
+  --line-light: #dfe5ee;
+  --tile-light: #f2f5f9;
+  --tile-mid: #e4eaf2;
+  --green: #1a7a43;
+  --green-wash: #e4f4ea;
+  --blue: #1660b8;
+  --blue-wash: #e3eefb;
+  --amber: #965800;
+  --amber-wash: #fdf0d9;
+  --red: #b81f1f;
+  --red-wash: #fbe5e5;
+  --shadow-tint: #071d45;
+  --on-dark: color-mix(in srgb, var(--white) 80%, transparent);
+
+  --fg: var(--ink);
+  --bg: var(--paper);
+  --muted: var(--gray);
+  --accent: var(--yellow);
+  --accent-text: var(--navy);
+  --mark: var(--wash-yellow);
+  --line: var(--line-light);
+  --tile: var(--tile-light);
+  --surface: var(--white);
+  --grad: linear-gradient(90deg, var(--navy) 0%, var(--azure) 78%, var(--yellow) 78%, var(--yellow) 100%);
+  --wash:
+    radial-gradient(40% 62% at 100% 0%, var(--wash-azure) 0%, transparent 72%),
+    radial-gradient(36% 58% at 0% 100%, var(--wash-yellow) 0%, transparent 72%);
+
+  --ok: var(--green);
+  --ok-wash: var(--green-wash);
+  --info: var(--blue);
+  --info-wash: var(--blue-wash);
+  --warn: var(--amber);
+  --warn-wash: var(--amber-wash);
+  --ng: var(--red);
+  --ng-wash: var(--red-wash);
+  --done: var(--gray-mid);
+  --done-wash: var(--tile-mid);
+
+  --font-title: "Helvetica Neue", "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif;
+  --font-body: "Helvetica Neue", "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif;
+  --font-code: "SFMono-Regular", "Menlo", monospace;
+
+  --size-mega: 4.5rem;
+  --size-display: 3rem;
+  --size-title: 1.625rem;
+  --size-message: 1.1875rem;
+  --size-lead: 1.0625rem;
+  --size-body: 0.9375rem;
+  --size-small: 0.8125rem;
+  --size-caption: 0.75rem;
+  --size-tiny: 0.6875rem;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.875rem;
+  --space-4: 1.25rem;
+  --space-5: 2rem;
+  --gap: var(--space-4);
+  --pad: 30px 56px 22px;
+  --bar: 6px;
+  --rule: 3px;
+  --hair: 1px;
+  --line-w: 1.5px;
+  --outline: 3px;
+  --radius: 3px;
+  --pill: 999px;
+  --cell: 2px;
+  --shadow: 0 10px 28px color-mix(in srgb, var(--shadow-tint) 9%, transparent);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --step-transition: 0.5s var(--ease);
+  --folio-x: 56px;
+  --folio-y: 22px;
+  --cover-bottom: 88px;
+  --col: minmax(0, 1fr);
+  --cols: 2;
+  --label-w: 9rem;
+  --num-w: 5.5rem;
+  --arrow: 10px;
+  --tree-gap: 28px;
+  --tree-box: 9.5rem;
+  --flow-label: 6.5rem;
+  --flow-end: 3.25rem;
+  --flow-head: 2rem;
+  --flow-row: 92px;
+  --flow-gap: 10px;
+  --flow-col-gap: 30px;
+  --flow-inset: 10px;
+  --gantt-label: 12rem;
+  --gantt-row: 30px;
+  --chev-notch: 14px;
+  --weeks: 12;
+  --phases: 4;
+  --lanes: 3;
+
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: var(--pad);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  font-feature-settings: "palt";
+  word-break: auto-phrase;
+  counter-reset: folio var(--dek-slide-number) total var(--dek-slide-count);
+}
+
+.slide *,
+.slide *::before,
+.slide *::after {
+  box-sizing: border-box;
+}
+
+/* The gradient band along the top edge: the one mark every slide carries. */
+.slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--bar);
+  background: var(--grad);
+}
+
+/* Folio, from the script's own numbering. */
+.slide::after {
+  content: counter(folio, decimal-leading-zero) " / " counter(total, decimal-leading-zero);
+  position: absolute;
+  right: var(--folio-x);
+  bottom: var(--folio-y);
+  color: var(--muted);
+  font-size: var(--size-caption);
+  letter-spacing: 0.12em;
+  font-variant-numeric: tabular-nums;
+}
+
+.slide p,
+.slide h2,
+.slide h3,
+.slide ul,
+.slide ol,
+.slide figure {
+  margin: 0;
+}
+
+.slide ul,
+.slide ol {
+  padding: 0;
+  list-style: none;
+}
+
+.slide b,
+.slide strong {
+  font-weight: 700;
+}
+
+.slide code {
+  font-family: var(--font-code);
+  font-size: 0.92em;
+  letter-spacing: 0;
+}
+
+/*
+ * Header: navigator kicker on the left, tracker on the right, then the title with its rule
+ * and the message line under it. Same height on every slide, so titles never jump.
+ */
+.slide > header {
+  display: grid;
+  grid-template-columns: var(--col) auto;
+  align-items: center;
+  column-gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.slide > header > .slide-title,
+.slide > header > .message {
+  grid-column: 1 / -1;
+}
+
+/* Navigator: where this slide sits in the deck. */
+.slide .kicker {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+  color: var(--accent-text);
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 0.08em;
+}
+
+.slide .kicker::before {
+  content: "";
+  align-self: center;
+  width: 0.6em;
+  height: 0.6em;
+  background: var(--accent);
+}
+
+/* Tracker: every part of the deck, the current one lit by aria-current. */
+.slide .tracker {
+  display: flex;
+  gap: var(--cell);
+  justify-self: end;
+}
+
+.slide .tracker li {
+  padding: 0.15em 0.8em;
+  background: var(--tile);
+  color: var(--muted);
+  font-size: var(--size-tiny);
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.slide .tracker [aria-current] {
+  background: var(--accent-text);
+  color: var(--white);
+}
+
+/* Title: the topic, never the claim. */
+.slide .slide-title {
+  margin-top: var(--space-2);
+  font-family: var(--font-title);
+  font-size: var(--size-title);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+/* Message line: the claim. Three lines at most; read it aloud. */
+.slide .message {
+  margin-top: var(--space-2);
+  font-size: var(--size-message);
+  font-weight: 700;
+  line-height: 1.55;
+  word-break: auto-phrase;
+}
+
+.slide .lede {
+  font-size: var(--size-lead);
+  line-height: 1.6;
+}
+
+.slide .display {
+  font-family: var(--font-title);
+  font-size: var(--size-display);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0;
+  word-break: auto-phrase;
+  text-wrap: balance;
+}
+
+.slide .accent {
+  color: var(--accent-text);
+  background: linear-gradient(transparent 62%, var(--mark) 62%);
+}
+
+/* Footer: note, then source. Kept clear of the folio. */
+.slide > footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cell);
+  margin-top: var(--space-3);
+  padding-right: calc(var(--folio-x) + var(--space-5));
+}
+
+.slide .note,
+.slide .source {
+  color: var(--muted);
+  font-size: var(--size-caption);
+  line-height: 1.5;
+}
+
+/* The 記入例 label over a template's body. */
+.slide .fill > .tag {
+  margin-bottom: var(--space-3);
+}
+
+/* A table in the body takes the body's height; its rows share it. */
+.slide .fill > .tbl {
+  flex: 1;
+}
+
+/* The body takes what the header and footer leave. */
+.slide .fill {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Grids: data-cols sets the count. */
+.slide .grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), var(--col));
+  gap: var(--gap);
+}
+
+.slide .grid[data-cols="3"] {
+  --cols: 3;
+}
+
+.slide .grid[data-cols="4"] {
+  --cols: 4;
+}
+
+.slide .grid[data-cols="5"] {
+  --cols: 5;
+}
+
+/*
+ * Panels side by side whose parts line up row by row: data-sub="N" on the grid,
+ * N being how many children each panel has. The second row takes the spare height.
+ */
+.slide .grid[data-sub] > * {
+  display: grid;
+  grid-row: span var(--sub);
+  grid-template-rows: subgrid;
+  row-gap: var(--space-2);
+}
+
+.slide .grid[data-sub="3"] {
+  --sub: 3;
+  grid-template-rows: auto 1fr auto;
+}
+
+.slide .grid[data-sub="4"] {
+  --sub: 4;
+  grid-template-rows: auto 1fr auto auto;
+}
+
+.slide .grid[data-sub="5"] {
+  --sub: 5;
+  grid-template-rows: auto auto 1fr 1fr 1fr;
+}
+
+/* A panel: one block of the body, under a heading bar. */
+.slide .panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.slide .panel > h3 {
+  padding: var(--space-1) var(--space-3);
+  background: var(--fg);
+  color: var(--white);
+  font-size: var(--size-body);
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.slide .panel[data-variant="tint"] > h3 {
+  background: var(--tile-mid);
+  color: var(--fg);
+}
+
+.slide .panel[data-variant="accent"] > h3 {
+  background: var(--accent-text);
+}
+
+/* Card: a box of its own. */
+.slide .card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--tile);
+}
+
+.slide .card[data-variant="line"] {
+  border-top: var(--rule) solid var(--tile-mid);
+  background: none;
+  padding: var(--space-3) 0 0;
+}
+
+.slide .card[data-variant="lit"] {
+  outline: var(--outline) solid var(--accent);
+  outline-offset: calc(var(--outline) * -1);
+  background: var(--surface);
+}
+
+.slide .card-title {
+  font-size: var(--size-lead);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.slide .num {
+  color: var(--accent-text);
+  font-family: var(--font-title);
+  font-size: var(--size-title);
+  font-weight: 800;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.slide .tag {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 0.1em 0.7em;
+  border: var(--hair) solid currentColor;
+  border-radius: var(--pill);
+  color: var(--accent-text);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+/* Bulleted points, square-marked. */
+.slide .points li {
+  position: relative;
+  padding: var(--space-1) 0 var(--space-1) 1em;
+  border-bottom: var(--hair) solid var(--line);
+  line-height: 1.6;
+}
+
+.slide .points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(var(--space-1) + 0.62em);
+  width: 0.4em;
+  height: 0.4em;
+  background: var(--accent);
+}
+
+/* Rows: a label column and its content, divided by hairlines. */
+.slide .rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.slide .rows > * {
+  display: grid;
+  grid-template-columns: var(--label-w) var(--col);
+  gap: var(--space-4);
+  align-items: baseline;
+  padding: var(--space-2) 0;
+  border-bottom: var(--hair) solid var(--line);
+}
+
+.slide .rows > :first-child {
+  border-top: var(--hair) solid var(--line);
+}
+
+.slide .rows > * > :first-child {
+  color: var(--accent-text);
+  font-weight: 700;
+}
+
+/* Wrap-up: the line that sums the slide or leads to the next one. */
+.slide .takeaway {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  padding: var(--space-2) var(--space-4);
+  border-left: var(--rule) solid var(--accent);
+  background: var(--tile);
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.slide .takeaway::before {
+  content: "総括";
+  flex: none;
+  color: var(--accent-text);
+  font-size: var(--size-caption);
+  letter-spacing: 0.1em;
+}
+
+/* Status colors, by meaning. Text in the color, or a wash behind it. */
+.slide [data-mark] {
+  font-weight: 700;
+}
+
+.slide [data-mark="ok"] {
+  color: var(--ok);
+}
+
+.slide [data-mark="info"] {
+  color: var(--info);
+}
+
+.slide [data-mark="warn"] {
+  color: var(--warn);
+}
+
+.slide [data-mark="ng"] {
+  color: var(--ng);
+}
+
+.slide [data-mark="done"] {
+  color: var(--done);
+}
+
+/* Legend: what each mark means, under the body. */
+.slide .legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin-top: var(--space-3);
+  color: var(--muted);
+  font-size: var(--size-caption);
+  line-height: 1.5;
+}
+
+.slide .legend > * {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4em;
+}
+
+/* Square chip, colored by data-mark, for a legend or an org's key. */
+.slide .legend [data-chip]::before {
+  content: "";
+  align-self: center;
+  width: 0.9em;
+  height: 0.9em;
+  background: var(--tile-mid);
+}
+
+.slide .legend [data-chip="us"]::before {
+  background: var(--accent-text);
+}
+
+.slide .legend [data-chip="client"]::before {
+  background: var(--fg);
+}
+
+.slide .legend [data-chip="partner"]::before {
+  border: var(--line-w) solid var(--fg);
+  background: var(--surface);
+}
+
+/*
+ * Table built as stacked tiles, not as ruled grid lines: every cell is its own box.
+ * The header row is ink; the first column is the label column.
+ * data-pick on cells outlines the recommended column.
+ */
+.slide .tbl {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: var(--cell);
+  table-layout: fixed;
+  font-size: var(--size-small);
+  line-height: 1.5;
+}
+
+.slide .tbl th,
+.slide .tbl td {
+  padding: var(--space-2) var(--space-3);
+  background: var(--tile);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.slide .tbl thead th {
+  background: var(--fg);
+  color: var(--white);
+  font-weight: 700;
+}
+
+.slide .tbl tbody th {
+  background: var(--tile-mid);
+  font-weight: 700;
+}
+
+.slide .tbl [data-align="center"] {
+  text-align: center;
+}
+
+.slide .tbl td[data-mark] {
+  font-size: var(--size-lead);
+  text-align: center;
+}
+
+.slide .tbl tr[data-mark="done"] {
+  font-weight: 400;
+}
+
+.slide .tbl tr[data-mark="done"] > * {
+  background: var(--tile);
+  color: var(--done);
+}
+
+.slide .tbl tfoot th,
+.slide .tbl tfoot td {
+  background: var(--tile-mid);
+  font-weight: 700;
+}
+
+/*
+ * The recommended column: one unbroken outline. Cells sit flush top to bottom; a white inset
+ * at each cell's foot stands in for the row gap, so the side borders run without a break.
+ */
+.slide .tbl:has([data-pick]) {
+  border-spacing: var(--cell) 0;
+}
+
+.slide .tbl:has([data-pick]) th,
+.slide .tbl:has([data-pick]) td {
+  box-shadow: inset 0 calc(var(--cell) * -1) 0 var(--surface);
+}
+
+.slide .tbl:has([data-pick]) > :last-child > tr:last-child > * {
+  box-shadow: none;
+}
+
+.slide .tbl [data-pick] {
+  border-right: var(--outline) solid var(--accent);
+  border-left: var(--outline) solid var(--accent);
+}
+
+.slide .tbl thead [data-pick] {
+  border-top: var(--outline) solid var(--accent);
+  background: var(--accent-text);
+}
+
+.slide .tbl > :last-child > tr:last-child > [data-pick] {
+  border-bottom: var(--outline) solid var(--accent);
+}
+
+/* A cell's mark, bold, with its one-line reason beside it. */
+.slide .tbl td[data-mark] > b {
+  display: inline-block;
+  width: 1.5em;
+  font-size: var(--size-message);
+  -webkit-text-stroke: 0.05em currentColor;
+  vertical-align: middle;
+}
+
+.slide .tbl td[data-mark] > b + small {
+  color: var(--fg);
+  font-size: var(--size-body);
+  font-weight: 400;
+  line-height: 1.45;
+  vertical-align: middle;
+}
+
+/* Chevron process: steps that read left to right, each with its detail under it. */
+.slide .steps {
+  display: grid;
+  grid-auto-columns: var(--col);
+  grid-auto-flow: column;
+  gap: var(--cell);
+}
+
+.slide .steps > li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.slide .steps > li > b {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(var(--size-body) * 3.4);
+  padding: var(--space-1) calc(var(--chev-notch) + var(--space-2));
+  background: var(--tile-mid);
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--chev-notch)) 0,
+    100% 50%,
+    calc(100% - var(--chev-notch)) 100%,
+    0 100%,
+    var(--chev-notch) 50%
+  );
+  font-size: var(--size-body);
+  line-height: 1.4;
+  text-align: center;
+}
+
+.slide .steps > li:first-child > b {
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--chev-notch)) 0,
+    100% 50%,
+    calc(100% - var(--chev-notch)) 100%,
+    0 100%
+  );
+}
+
+.slide .steps > li[data-lit] > b {
+  background: var(--accent-text);
+  color: var(--white);
+}
+
+.slide .steps > li > p {
+  padding: 0 var(--space-2);
+  font-size: var(--size-small);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Org tree: one box per role, report lines straight down and across. */
+.slide .tree,
+.slide .tree ul {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.slide .tree ul {
+  padding-top: calc(var(--tree-gap) / 2);
+}
+
+.slide .tree ul::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: calc(var(--tree-gap) / 2);
+  border-left: var(--line-w) solid var(--fg);
+}
+
+.slide .tree li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: calc(var(--tree-gap) / 2) var(--space-1) 0;
+}
+
+.slide .tree li::before,
+.slide .tree li::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 50%;
+  width: 50%;
+  height: calc(var(--tree-gap) / 2);
+  border-top: var(--line-w) solid var(--fg);
+}
+
+.slide .tree li::after {
+  right: auto;
+  left: 50%;
+  border-left: var(--line-w) solid var(--fg);
+}
+
+.slide .tree li:first-child::before,
+.slide .tree li:last-child::after {
+  border-top: 0;
+}
+
+.slide .tree li:only-child::before {
+  display: none;
+}
+
+.slide .tree li:last-child::before {
+  border-right: var(--line-w) solid var(--fg);
+}
+
+.slide .tree li:last-child:not(:only-child)::after {
+  display: none;
+}
+
+.slide .tree > li {
+  padding-top: 0;
+}
+
+.slide .tree > li::before,
+.slide .tree > li::after {
+  display: none;
+}
+
+/* A role box: role on top, the person under it. data-org colors it by company. */
+.slide .box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: var(--tree-box);
+  padding: var(--space-2) var(--space-2);
+  border: var(--line-w) solid var(--fg);
+  background: var(--surface);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.slide .box > b {
+  font-size: var(--size-small);
+}
+
+.slide .box > span {
+  color: var(--muted);
+  font-size: var(--size-caption);
+}
+
+.slide .box[data-org="client"] {
+  background: var(--fg);
+  color: var(--white);
+}
+
+.slide .box[data-org="us"] {
+  border-color: var(--accent-text);
+  background: var(--accent-text);
+  color: var(--white);
+}
+
+.slide .box[data-org="client"] > span,
+.slide .box[data-org="us"] > span {
+  color: var(--on-dark);
+}
+
+/*
+ * Swimlane flow. Lanes (data-lane) run down, phases (data-phase) across, with a start and an
+ * end column. A step sits at its lane and phase; its <i data-to> draws the line out of it:
+ * right to the next phase, down or up to the next lane's next phase.
+ */
+.slide .flow {
+  display: grid;
+  grid-template-columns: var(--flow-label) var(--flow-end) repeat(var(--phases), var(--col)) var(--flow-end);
+  grid-template-rows: var(--flow-head) repeat(var(--lanes), var(--flow-row));
+  column-gap: var(--flow-col-gap);
+  row-gap: var(--flow-gap);
+}
+
+.slide .flow[data-phases="3"] {
+  --phases: 3;
+}
+
+.slide .flow[data-phases="5"] {
+  --phases: 5;
+}
+
+.slide .flow[data-lanes="2"] {
+  --lanes: 2;
+}
+
+.slide .flow[data-lanes="4"] {
+  --lanes: 4;
+}
+
+.slide .flow > * {
+  position: relative;
+  min-width: 0;
+}
+
+/* Phase heads across the top. */
+.slide .flow > [data-phase]:not([data-lane]) {
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--fg);
+  color: var(--white);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+/* Lane bands: the label on the left, a tint across the row. */
+.slide .flow > [data-lane]:not([data-phase]) {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  padding-left: var(--space-3);
+  background: linear-gradient(90deg, var(--tile-mid) var(--flow-label), var(--tile) var(--flow-label));
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.slide .flow [data-lane="1"] {
+  grid-row: 2;
+}
+
+.slide .flow [data-lane="2"] {
+  grid-row: 3;
+}
+
+.slide .flow [data-lane="3"] {
+  grid-row: 4;
+}
+
+.slide .flow [data-lane="4"] {
+  grid-row: 5;
+}
+
+.slide .flow [data-phase="start"] {
+  grid-column: 2;
+}
+
+.slide .flow [data-phase="1"] {
+  grid-column: 3;
+}
+
+.slide .flow [data-phase="2"] {
+  grid-column: 4;
+}
+
+.slide .flow [data-phase="3"] {
+  grid-column: 5;
+}
+
+.slide .flow [data-phase="4"] {
+  grid-column: 6;
+}
+
+.slide .flow [data-phase="5"] {
+  grid-column: 7;
+}
+
+.slide .flow [data-phase="end"] {
+  grid-column: -2;
+}
+
+.slide .flow .step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: var(--flow-inset) 0;
+  padding: var(--space-1) var(--space-2);
+  border: var(--line-w) solid var(--fg);
+  background: var(--surface);
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* Start and end: a rounded terminal. */
+.slide .flow .step[data-kind="terminal"] {
+  margin: calc(var(--flow-inset) * 2.2) 0;
+  border-radius: var(--pill);
+  background: var(--fg);
+  color: var(--white);
+  font-size: var(--size-caption);
+}
+
+/* Branch: a diamond. */
+.slide .flow .step[data-kind="decision"] {
+  border: 0;
+  background: var(--fg);
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  color: var(--white);
+  font-size: var(--size-caption);
+}
+
+.slide .flow .step[data-org="us"] {
+  border-color: var(--accent-text);
+  color: var(--accent-text);
+}
+
+/* Connectors. A diamond clips its own children, so its lines hang off the cell, not the box. */
+.slide .flow i {
+  position: absolute;
+  color: var(--fg);
+  font-size: var(--size-tiny);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.slide .flow i[data-to="right"] {
+  left: 100%;
+  top: calc(50% - var(--arrow) / 2);
+  width: var(--flow-col-gap);
+  height: var(--arrow);
+}
+
+.slide .flow i[data-to="right"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--fg);
+  clip-path: polygon(0 45%, 65% 45%, 65% 0, 100% 50%, 65% 100%, 65% 55%, 0 55%);
+}
+
+.slide .flow i[data-to="right"] > span {
+  left: 0;
+  top: auto;
+  bottom: calc(100% + var(--cell));
+}
+
+.slide .flow i[data-to="down"],
+.slide .flow i[data-to="up"] {
+  left: 100%;
+  width: var(--flow-col-gap);
+  height: calc(var(--flow-row) + var(--flow-gap));
+}
+
+.slide .flow i[data-to="down"] {
+  top: 50%;
+}
+
+.slide .flow i[data-to="up"] {
+  bottom: 50%;
+}
+
+.slide .flow i[data-to="down"]::before,
+.slide .flow i[data-to="up"]::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  border-right: var(--line-w) solid var(--fg);
+}
+
+.slide .flow i[data-to="down"]::before {
+  top: 0;
+  border-top: var(--line-w) solid var(--fg);
+}
+
+.slide .flow i[data-to="up"]::before {
+  bottom: 0;
+  border-bottom: var(--line-w) solid var(--fg);
+}
+
+.slide .flow i[data-to="down"]::after,
+.slide .flow i[data-to="up"]::after {
+  content: "";
+  position: absolute;
+  left: calc(50% - var(--line-w) / 2);
+  right: 0;
+  height: var(--arrow);
+  background: var(--fg);
+  clip-path: polygon(0 45%, 40% 45%, 40% 0, 100% 50%, 40% 100%, 40% 55%, 0 55%);
+}
+
+.slide .flow i[data-to="down"]::after {
+  bottom: calc(var(--arrow) / -2);
+}
+
+.slide .flow i[data-to="up"]::after {
+  top: calc(var(--arrow) / -2);
+}
+
+/* A connector's label (承認 / 差戻し) sits beside its line. */
+.slide .flow i > span {
+  position: absolute;
+  left: calc(50% + var(--space-1));
+  top: 50%;
+  padding: var(--cell);
+  background: var(--tile);
+  white-space: nowrap;
+}
+
+/*
+ * Gantt: weeks across (data-from / data-to, 1–12, inclusive), work down. A row is a label then
+ * its bars; data-group starts a band of work; milestones (data-ms) ride the top row.
+ */
+.slide .gantt {
+  display: grid;
+  grid-template-columns: var(--gantt-label) repeat(var(--weeks), var(--col));
+  grid-auto-rows: var(--gantt-row);
+  row-gap: var(--cell);
+  font-size: var(--size-small);
+  line-height: 1.3;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent calc((100% - var(--gantt-label)) / var(--weeks) - var(--hair)),
+      var(--line) calc((100% - var(--gantt-label)) / var(--weeks) - var(--hair)),
+      var(--line) calc((100% - var(--gantt-label)) / var(--weeks))
+    )
+    var(--gantt-label) 0 / calc(100% - var(--gantt-label)) 100% no-repeat;
+}
+
+.slide .gantt > * {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+/* Month heads: data-from/data-to give their span. */
+.slide .gantt > [data-head] {
+  justify-content: center;
+  background: var(--fg);
+  color: var(--white);
+  font-weight: 700;
+  border-right: var(--cell) solid var(--surface);
+}
+
+.slide .gantt > [data-head="label"] {
+  grid-column: 1;
+  justify-content: flex-start;
+  padding-left: var(--space-2);
+}
+
+/* The milestone row: a downward triangle and its name, at its week. */
+.slide .gantt > [data-ms] {
+  grid-row: 2;
+  justify-content: center;
+  gap: 0.3em;
+  color: var(--ng);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.slide .gantt > [data-ms]::before {
+  content: "▼";
+  font-size: var(--size-tiny);
+}
+
+.slide .gantt > [data-ms="label"] {
+  grid-column: 1;
+  justify-content: flex-start;
+  padding-left: var(--space-2);
+  color: var(--fg);
+}
+
+.slide .gantt > [data-ms="label"]::before {
+  content: none;
+}
+
+.slide .gantt > [data-group] {
+  grid-column: 1 / -1;
+  padding-left: var(--space-2);
+  border-bottom: var(--hair) solid var(--line);
+  color: var(--accent-text);
+  font-weight: 700;
+}
+
+.slide .gantt > [data-task] {
+  grid-column: 1;
+  padding-left: var(--space-4);
+}
+
+/* Arrow-feather bar: the task's detail sits inside it. */
+.slide .gantt .bar {
+  margin: var(--cell) 0;
+  padding: 0 calc(var(--chev-notch) + var(--space-1)) 0 var(--space-2);
+  background: var(--tile-mid);
+  clip-path: polygon(0 0, calc(100% - var(--chev-notch)) 0, 100% 50%, calc(100% - var(--chev-notch)) 100%, 0 100%);
+  font-size: var(--size-caption);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.slide .gantt .bar[data-org="us"] {
+  background: var(--accent-text);
+  color: var(--white);
+}
+
+.slide .gantt .bar[data-org="client"] {
+  background: var(--fg);
+  color: var(--white);
+}
+
+.slide .gantt [data-from="1"] { --from: 2; }
+.slide .gantt [data-from="2"] { --from: 3; }
+.slide .gantt [data-from="3"] { --from: 4; }
+.slide .gantt [data-from="4"] { --from: 5; }
+.slide .gantt [data-from="5"] { --from: 6; }
+.slide .gantt [data-from="6"] { --from: 7; }
+.slide .gantt [data-from="7"] { --from: 8; }
+.slide .gantt [data-from="8"] { --from: 9; }
+.slide .gantt [data-from="9"] { --from: 10; }
+.slide .gantt [data-from="10"] { --from: 11; }
+.slide .gantt [data-from="11"] { --from: 12; }
+.slide .gantt [data-from="12"] { --from: 13; }
+.slide .gantt [data-to="1"] { --to: 3; }
+.slide .gantt [data-to="2"] { --to: 4; }
+.slide .gantt [data-to="3"] { --to: 5; }
+.slide .gantt [data-to="4"] { --to: 6; }
+.slide .gantt [data-to="5"] { --to: 7; }
+.slide .gantt [data-to="6"] { --to: 8; }
+.slide .gantt [data-to="7"] { --to: 9; }
+.slide .gantt [data-to="8"] { --to: 10; }
+.slide .gantt [data-to="9"] { --to: 11; }
+.slide .gantt [data-to="10"] { --to: 12; }
+.slide .gantt [data-to="11"] { --to: 13; }
+.slide .gantt [data-to="12"] { --to: 14; }
+
+.slide .gantt [data-from] {
+  grid-column: var(--from) / span 1;
+}
+
+.slide .gantt [data-from][data-to] {
+  grid-column: var(--from) / var(--to);
+}
+
+/*
+ * Issue map: current state → issue → fix, one row each, joined by arrows.
+ * A box is a current state unless data-col says "issue" or "fix".
+ * data-span="2" lets one fix answer the two issues beside it; the next row then skips its fix.
+ */
+.slide .map {
+  display: grid;
+  grid-template-columns: var(--col) var(--col) var(--col);
+  grid-auto-rows: minmax(0, 1fr);
+  column-gap: var(--space-5);
+  row-gap: var(--space-2);
+}
+
+.slide .map > h3 {
+  padding: var(--space-1) var(--space-3);
+  background: var(--fg);
+  color: var(--white);
+  font-size: var(--size-body);
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.slide .map > h3:last-of-type {
+  background: var(--accent-text);
+}
+
+.slide .map > p {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: var(--space-2) var(--space-3);
+  background: var(--tile);
+  font-size: var(--size-small);
+  line-height: 1.5;
+}
+
+.slide .map > p[data-col="issue"] {
+  background: var(--ng-wash);
+}
+
+.slide .map > p[data-col="fix"] {
+  outline: var(--line-w) solid var(--accent-text);
+  outline-offset: calc(var(--line-w) * -1);
+  background: var(--surface);
+  font-weight: 700;
+}
+
+.slide .map > p[data-span="2"] {
+  grid-row: span 2;
+}
+
+.slide .map > p:not([data-col="fix"])::after {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: calc(50% - var(--arrow) / 2);
+  width: var(--space-5);
+  height: var(--arrow);
+  background: var(--fg);
+  clip-path: polygon(10% 45%, 75% 45%, 75% 0, 95% 50%, 75% 100%, 75% 55%, 10% 55%);
+}
+
+/* Bar chart drawn in SVG: data-hl lights the bars the message is about. */
+.slide .chart {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.slide .chart rect {
+  fill: var(--gray-light);
+}
+
+.slide .chart rect[data-hl] {
+  fill: var(--accent-text);
+}
+
+.slide .chart text {
+  fill: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--size-caption);
+}
+
+.slide .chart text[data-hl] {
+  fill: var(--accent-text);
+  font-weight: 700;
+}
+
+.slide .chart line {
+  stroke: var(--fg);
+  stroke-width: var(--hair);
+}
+
+.slide .chart line[data-trend] {
+  stroke: var(--accent);
+  stroke-width: var(--line-w);
+  stroke-dasharray: 5 4;
+}
+
+/* Callout: the interpretation, pinned to what it reads. */
+.slide .callout {
+  position: relative;
+  padding: var(--space-2) var(--space-3);
+  border: var(--line-w) solid var(--accent-text);
+  background: var(--surface);
+  color: var(--accent-text);
+  font-size: var(--size-small);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.slide .callout::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: var(--space-4);
+  width: var(--arrow);
+  height: var(--arrow);
+  background: var(--accent-text);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+/* @layout cover
+<section class="slide" data-layout="cover">
+  <p class="kicker">Project · 2026.10</p>
+  <h2 class="display">資料のタイトル</h2>
+  <p class="lede">サブタイトル</p>
+</section>
+日常のプロジェクト資料は、このまま無地の表紙で使う。
+*/
+.slide[data-layout="cover"] {
+  justify-content: flex-end;
+  padding-bottom: var(--cover-bottom);
+  background: var(--wash), var(--bg);
+}
+
+.slide[data-layout="cover"] .kicker {
+  margin-bottom: var(--space-4);
+}
+
+.slide[data-layout="cover"] .display {
+  font-size: var(--size-mega);
+  line-height: 1.12;
+}
+
+.slide[data-layout="cover"] .lede {
+  margin-top: var(--space-5);
+  font-size: var(--size-message);
+  font-weight: 700;
+}
+
+/* @layout default
+<section class="slide" data-layout="default">
+  <header>
+    <p class="kicker">1. パート名</p>
+    <ol class="tracker"><li aria-current="true">パート1</li><li>パート2</li><li>パート3</li></ol>
+    <h2 class="slide-title">トピック（タイトル）</h2>
+    <p class="message">主張（メッセージライン）。長くても3行。ボディにない情報は書かない</p>
+  </header>
+  <div class="fill grid" data-cols="3">
+    <div class="panel"><h3>観点</h3><ul class="points"><li>中身</li></ul></div>
+  </div>
+  <p class="takeaway">総括・次のスライドへの繋ぎ（必要なときだけ）</p>
+  <footer>
+    <p class="note">注：定義や前提</p>
+    <p class="source">出所：…</p>
+  </footer>
+</section>
+*/
+.slide[data-layout="default"] {
+  justify-content: flex-start;
+}
+
+/* @layout agenda
+<section class="slide" data-layout="agenda">
+  <header>…（default と同じ。トラッカーは付けない）</header>
+  <ol class="fill rows">
+    <li><span class="num">01</span><div><p class="card-title">パート名</p><p>扱う内容</p></div></li>
+    <li aria-current="true"><span class="num">02</span><div><p class="card-title">いま説明しているパート</p><p>扱う内容</p></div></li>
+  </ol>
+</section>
+*/
+.slide[data-layout="agenda"] .rows > * {
+  grid-template-columns: var(--num-w) var(--col);
+  flex: 1;
+  align-items: center;
+}
+
+.slide[data-layout="agenda"] .rows > * > :first-child {
+  font-weight: 800;
+}
+
+/* @layout summary
+<section class="slide" data-layout="summary">
+  <header>…（default と同じ：kicker・tracker・slide-title・message）</header>
+  <div class="fill rows">
+    <div><p>背景</p><p>なぜ今この話をするのか</p></div>
+    <div><p>課題</p><p>何が問題か</p></div>
+    <div><p>提言</p><p>何をすべきか</p></div>
+    <div><p>お願い事項</p><p>この会議で決めたいこと</p></div>
+  </div>
+</section>
+*/
+.slide[data-layout="summary"] .rows > * {
+  flex: 1;
+  align-items: center;
+  padding: var(--space-4) 0;
+}
+
+.slide[data-layout="summary"] .rows > * > :last-child {
+  font-size: var(--size-lead);
+  line-height: 1.6;
+}
+
+/* @layout process
+<section class="slide" data-layout="process">
+  <header>…（default と同じ：kicker・tracker・slide-title・message）</header>
+  <ol class="fill steps">
+    <li><b>手順1</b><p>中身</p></li>
+    <li data-lit><b>強調する手順</b><p>中身</p></li>
+    <li><b>手順3</b><p>中身</p></li>
+  </ol>
+</section>
+*/
+.slide[data-layout="process"] .steps {
+  align-content: start;
+}
+
+/* @layout org
+<section class="slide" data-layout="org">
+  <header>…（default と同じ：kicker・tracker・slide-title・message）</header>
+  <div class="fill">
+    <ul class="tree">
+      <li><div class="box" data-org="client"><b>ステアリングコミッティ</b><span>担当者名</span></div>
+        <ul>
+          <li><div class="box" data-org="us"><b>PMO</b><span>担当者名</span></div>
+            <ul>
+              <li><div class="box"><b>Role 名</b><span>担当者名</span></div></li>
+              <li><div class="box"><b>Role 名</b><span>担当者名</span></div></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <ul class="legend"><li data-chip="client">クライアント</li><li data-chip="us">当社</li><li data-chip="partner">パートナー</li></ul>
+</section>
+同じ階層は同じ深さに置くと、会社が違っても横に並ぶ。
+*/
+.slide[data-layout="org"] .tree {
+  margin-block: auto;
+}
+
+/* @layout raci
+<section class="slide" data-layout="raci">
+  <header>…（default と同じ：kicker・tracker・slide-title・message）</header>
+  <div class="fill">
+    <table class="tbl">
+      <thead><tr><th>タスク</th><th data-align="center">Role A</th><th data-align="center">Role B</th></tr></thead>
+      <tbody>
+        <tr><th>タスク名</th><td data-raci="A">A</td><td data-raci="R">R</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul class="legend"><li><b data-raci="R">R</b>実行責任</li><li><b data-raci="A">A</b>説明責任（1タスクに1人）</li><li><b data-raci="C">C</b>相談</li><li><b data-raci="I">I</b>報告</li></ul>
+</section>
+状況の色（data-mark）は使わない。A だけを補色で塗り、R は太字、C と I は灰色。
+*/
+.slide[data-layout="raci"] .tbl thead th:first-child {
+  width: 26%;
+}
+
+.slide .tbl td[data-raci] {
+  font-size: var(--size-lead);
+  font-weight: 700;
+  text-align: center;
+}
+
+.slide .tbl td[data-raci="A"] {
+  background: var(--accent-text);
+  color: var(--white);
+}
+
+.slide [data-raci="C"],
+.slide [data-raci="I"] {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.slide .legend [data-raci] {
+  display: inline-grid;
+  place-items: center;
+  align-self: center;
+  width: 1.7em;
+  height: 1.7em;
+  background: var(--tile);
+}
+
+.slide .legend [data-raci="A"] {
+  background: var(--accent-text);
+  color: var(--white);
+}
+
+/* @layout meeting
+<section class="slide" data-layout="meeting">
+  <header>…（default と同じ：kicker・tracker・slide-title・message）</header>
+  <div class="fill">
+    <table class="tbl">
+      <thead><tr><th>会議体</th><th>目的</th><th>頻度</th><th>参加者</th><th>決めること</th></tr></thead>
+      <tbody><tr><th>会議名</th><td>…</td><td>…</td><td>…</td><td>…</td></tr></tbody>
+    </table>
+  </div>
+</section>
+*/
+.slide[data-layout="meeting"] .tbl thead th:nth-child(3) {
+  width: 11%;
+}
+
+/* @layout flow
+<section class="slide" data-layout="flow">
+  <header>…（default と同じ：kicker・tracker・slide-title・message）</header>
+  <div class="fill flow" data-lanes="3" data-phases="4">
+    <p data-phase="1">プロセス1</p><p data-phase="2">プロセス2</p><p data-phase="3">プロセス3</p><p data-phase="4">プロセス4</p>
+    <p data-lane="1">部門A</p><p data-lane="2">部門B</p><p data-lane="3">部門C</p>
+    <p class="step" data-kind="terminal" data-lane="1" data-phase="start">開始<i data-to="right"></i></p>
+    <p class="step" data-lane="1" data-phase="1">作業<i data-to="down"></i></p>
+    <p class="step" data-kind="decision" data-lane="2" data-phase="2">判断</p>
+    <p data-lane="2" data-phase="2"><i data-to="down"><span>Yes</span></i></p>
+    <p class="step" data-lane="3" data-phase="3">作業<i data-to="right"></i></p>
+    <p class="step" data-kind="terminal" data-lane="3" data-phase="end">終了</p>
+  </div>
+</section>
+ひし形は自分の線を切り抜くので、分岐の線は同じセルに置いた空の <p> の <i> で引く。
+data-to="right" は同じレーンの次の列へ、"down" / "up" は隣のレーンの次の列へ。
+*/
+.slide[data-layout="flow"] .flow {
+  margin-block: auto;
+}
+
+/* @layout schedule
+<section class="slide" data-layout="schedule">
+  <header>…（default と同じ：kicker・tracker・slide-title・message）</header>
+  <div class="fill gantt">
+    <p data-head="label">作業</p><p data-head data-from="1" data-to="4">11月</p><p data-head data-from="5" data-to="8">12月</p><p data-head data-from="9" data-to="12">1月</p>
+    <p data-ms="label">マイルストーン</p><p data-ms data-from="4">要件確定</p>
+    <p data-group>作業の概要</p>
+    <p data-task>タスク</p><p class="bar" data-from="1" data-to="4">矢羽の中にタスクの詳細</p>
+  </div>
+  <ul class="legend"><li data-chip="client">クライアント</li><li data-chip="us">当社</li></ul>
+</section>
+列は週（1〜12）。data-from / data-to は両端を含む。
+見出しの <p data-head> を先頭に、マイルストーンの <p data-ms> をその次に書く。
+*/
+.slide[data-layout="schedule"] .fill {
+  align-content: start;
+}
+
+/* @layout progress
+<section class="slide" data-layout="progress">
+  <header>…（default と同じ：kicker・tracker・slide-title・message）</header>
+  <div class="fill">
+    <table class="tbl">
+      <thead><tr><th>チーム</th><th data-align="center">計画</th><th data-align="center">完了</th><th data-align="center">持越し</th><th>進捗</th></tr></thead>
+      <tbody><tr><th>チーム名</th><td data-align="center">10</td><td data-align="center">9</td><td data-align="center">1</td><td><span data-bar="a"></span></td></tr></tbody>
+    </table>
+  </div>
+</section>
+バーの長さはデータなので、slides/<id>.css で [data-bar] ごとに width を % で書く。
+*/
+.slide[data-layout="progress"] [data-bar] {
+  display: block;
+  height: var(--space-3);
+  background: var(--ok);
+}
+
+.slide[data-layout="progress"] [data-bar][data-mark="ng"] {
+  background: var(--ng);
+}
+
+/* @layout status
+<section class="slide" data-layout="status">
+  <header>…（default と同じ：kicker・tracker・slide-title・message）</header>
+  <div class="fill">
+    <table class="tbl">
+      <thead><tr><th>報告単位</th><th data-align="center">総合</th><th data-align="center">進捗</th><th data-align="center">品質</th><th>状況と対応</th></tr></thead>
+      <tbody><tr><th>チーム名</th><td data-mark="ok">☀︎</td><td data-mark="ok">○</td><td data-mark="warn">△</td><td>…</td></tr></tbody>
+    </table>
+  </div>
+  <ul class="legend"><li><b data-mark="ok">☀︎ ○</b>計画どおり</li><li><b data-mark="warn">☁︎ △</b>遅れの兆し</li><li><b data-mark="ng">☂︎ ×</b>要対応</li></ul>
+</section>
+*/
+.slide[data-layout="status"] .tbl tbody td:last-child {
+  font-size: var(--size-small);
+}
+
+/* @layout issue-log
+<section class="slide" data-layout="issue-log">
+  <header>…（default と同じ：kicker・tracker・slide-title・message）</header>
+  <div class="fill">
+    <table class="tbl">
+      <thead><tr><th>No.</th><th>課題</th><th>影響度</th><th>担当</th><th>期限</th><th>状態</th></tr></thead>
+      <tbody>
+        <tr><th>01</th><td>…</td><td data-mark="ng">高</td><td>…</td><td>…</td><td data-mark="ng">未着手</td></tr>
+        <tr data-mark="done"><th>02</th><td>…</td><td>低</td><td>…</td><td>…</td><td>完了</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+*/
+.slide[data-layout="issue-log"] .tbl td[data-mark] {
+  font-size: var(--size-small);
+}
+
+/* @layout issue-map
+<section class="slide" data-layout="issue-map">
+  <header>…（default と同じ：kicker・tracker・slide-title・message）</header>
+  <div class="fill map">
+    <h3>現状</h3><h3>課題</h3><h3>改善策</h3>
+    <p>現状1</p><p data-col="issue">課題1</p><p data-col="fix" data-span="2">課題1と2をまとめて解く改善策</p>
+    <p>現状2</p><p data-col="issue">課題2</p>
+    <p>現状3</p><p data-col="issue">課題3</p><p data-col="fix">改善策</p>
+  </div>
+</section>
+各行は 現状・課題・改善策 の順。改善策が縦に2行をまたぐときは data-span="2" を付け、次の行は改善策を省く。
+*/
+.slide[data-layout="issue-map"] .map {
+  align-content: stretch;
+}
+
+/* @layout selection
+<section class="slide" data-layout="selection">
+  <header>…（default と同じ：kicker・tracker・slide-title・message）</header>
+  <div class="fill">
+    <table class="tbl">
+      <thead><tr><th>評価項目</th><th>案A</th><th data-pick>案B（推奨）</th><th>案C</th></tr></thead>
+      <tbody><tr><th>評価項目</th><td data-mark="ok"><b>◎</b><small>理由</small></td><td data-pick data-mark="ok"><b>○</b><small>理由</small></td><td data-mark="ng"><b>×</b><small>理由</small></td></tr></tbody>
+      <tfoot><tr><th>総合評価</th><td>…</td><td data-pick>…</td><td>…</td></tr></tfoot>
+    </table>
+  </div>
+  <ul class="legend"><li>◎ 優れている</li><li>○ 要件を満たす</li><li>△ 条件付き</li><li>× 満たさない</li></ul>
+</section>
+*/
+.slide[data-layout="selection"] .tbl tbody td {
+  text-align: left;
+}
+
+/* @layout decision
+<section class="slide" data-layout="decision">
+  <header>…（default と同じ：kicker・tracker・slide-title・message）</header>
+  <ol class="fill grid" data-cols="3">
+    <li class="card" data-variant="lit"><p class="num">01</p><p class="card-title">承認いただきたい事項</p>
+      <div class="rows"><div><p>根拠</p><p>…</p></div><div><p>見送った場合</p><p>…</p></div></div></li>
+  </ol>
+</section>
+*/
+.slide[data-layout="decision"] .rows > * {
+  grid-template-columns: var(--num-w) var(--col);
+  font-size: var(--size-small);
+}
+
+/* @layout pyramid
+<section class="slide" data-layout="pyramid">
+  <header>…（default と同じ：kicker・tracker・slide-title・message）</header>
+  <div class="fill">
+    <ul class="tree">
+      <li><div class="box"><b>答え（ガバニング・ソート）を1文で</b></div>
+        <ul>
+          <li><div class="box"><b>キーライン1を文で</b><span>支える事実</span></div></li>
+          <li><div class="box"><b>キーライン2を文で</b><span>支える事実</span></div></li>
+          <li><div class="box"><b>キーライン3を文で</b><span>支える事実</span></div></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+キーラインは3〜5本。同じ段の箱は同じ幅と高さに揃う。
+*/
+.slide[data-layout="pyramid"] .tree ul > li {
+  flex: 1;
+  min-width: 0;
+}
+
+.slide[data-layout="pyramid"] .tree .box {
+  flex: 1;
+  width: 100%;
+  padding: var(--space-3);
+  border-color: var(--tile);
+  background: var(--tile);
+}
+
+.slide[data-layout="pyramid"] .tree > li > .box {
+  width: auto;
+  padding: var(--space-3) var(--space-5);
+  border-color: var(--accent-text);
+  background: var(--accent-text);
+  color: var(--white);
+}
+
+.slide[data-layout="pyramid"] .box > b {
+  font-size: var(--size-body);
+}
+
+.slide[data-layout="pyramid"] .box > span {
+  font-size: var(--size-small);
+}
+
+/* @layout storyline
+<section class="slide" data-layout="storyline">
+  <header>…（default と同じ：kicker・tracker・slide-title・message）</header>
+  <div class="fill">
+    <table class="tbl">
+      <thead><tr><th data-align="center">#</th><th>タイトル</th><th>メッセージライン</th><th>使う型</th></tr></thead>
+      <tbody>
+        <tr><th data-align="center">1</th><td>エグゼクティブサマリー</td><td>答え（ガバニング・ソート）</td><td>summary</td></tr>
+        <tr><th data-align="center">2</th><td>トピック</td><td>キーラインを文で</td><td>status など</td></tr>
+        <tr data-mark="done"><th data-align="center">A</th><td>参考</td><td>メッセージラインは書かない</td><td>Appendix</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+ゴーストデッキの表。dek では、この表がそのまま script.md の ## 見出しと1段落目になる。
+*/
+.slide[data-layout="storyline"] .tbl thead th:first-child {
+  width: 6%;
+}
+
+.slide[data-layout="storyline"] .tbl thead th:nth-child(2) {
+  width: 19%;
+}
+
+.slide[data-layout="storyline"] .tbl thead th:last-child {
+  width: 15%;
+}
+
+.slide[data-layout="storyline"] .tbl td:nth-child(3) {
+  font-size: var(--size-body);
+  font-weight: 700;
+}
+
+.slide[data-layout="storyline"] .tbl tr[data-mark="done"] td {
+  font-weight: 400;
+}
+
+/* @layout chart
+<section class="slide" data-layout="chart">
+  <header>…（default と同じ：kicker・tracker・slide-title・message）</header>
+  <div class="fill grid">
+    <figure class="panel"><h3>グラフの見出し（単位）</h3>
+      <svg class="chart" viewBox="0 0 600 300" role="img" aria-label="何を示すグラフか">…<rect data-hl …/>…</svg>
+    </figure>
+    <div class="panel"><h3>読み取れること</h3><ul class="points"><li>…</li></ul></div>
+  </div>
+  <footer><p class="note">注：軸の定義</p><p class="source">出所：…</p></footer>
+</section>
+*/
+.slide[data-layout="chart"] .grid {
+  grid-template-columns: 3fr 2fr;
+}
+
+.slide.is-current [data-step] {
+  opacity: 0;
+  transform: translateY(0.5em);
+  transition: var(--step-transition);
+}
+
+.slide.is-current [data-step].is-shown {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+::view-transition-old(slide) {
+  animation: fade-out var(--step-transition);
+}
+
+::view-transition-new(slide) {
+  animation: fade-in var(--step-transition);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide.is-current [data-step] {
+    transition: none;
+    animation: none;
+  }
+
+  ::view-transition-old(slide),
+  ::view-transition-new(slide) {
+    animation: none;
+  }
+}
+
+/* A wrap-up that ends the slide keeps clear of the folio. */
+.slide > .takeaway:last-child {
+  margin-bottom: var(--space-4);
+}
+
+/* Code shown as evidence: a dark block, set in the code face. */
+.slide pre {
+  margin: 0;
+  padding: var(--space-3);
+  background: var(--navy-deep);
+  color: var(--white);
+  font-family: var(--font-code);
+  font-size: var(--size-small);
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+/*
+ * Terms: the words this slide introduces, defined before the body uses them.
+ * Each <dt> is a term and its <dd> one plain sentence a newcomer can read alone.
+ */
+.slide .terms {
+  display: grid;
+  grid-template-columns: max-content var(--col);
+  gap: var(--space-1) var(--space-4);
+  margin: 0 0 var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  background: var(--tile);
+  font-size: var(--size-small);
+  line-height: 1.55;
+}
+
+.slide .terms dt {
+  color: var(--accent-text);
+  font-weight: 700;
+}
+
+.slide .terms dd {
+  margin: 0;
+}
+
+/* A dense table: many short rows, tighter cells. */
+.slide .tbl[data-dense] th,
+.slide .tbl[data-dense] td {
+  padding-block: var(--space-1);
+}
+
+/*
+ * Fork: straight lines from one box above to the columns below it.
+ * data-n="2|3" is the number of columns; --fork-gap matches their gap.
+ */
+.slide .fork {
+  --fork-gap: var(--gap);
+  position: relative;
+  height: var(--space-5);
+}
+
+.slide .fork::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 50%;
+  border-left: var(--line-w) solid var(--fg);
+}
+
+.slide .fork::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: var(--fork-edge);
+  bottom: 0;
+  left: var(--fork-edge);
+  border: var(--line-w) solid var(--fg);
+  border-bottom: 0;
+}
+
+.slide .fork[data-n="2"] {
+  --fork-edge: calc((100% - var(--fork-gap)) / 4);
+}
+
+.slide .fork[data-n="3"] {
+  --fork-edge: calc((100% - var(--fork-gap) * 2) / 6);
+}
+
+.slide .fork[data-n="3"]::before {
+  height: 100%;
+}
+
+/* To: a short straight arrow down to the next box. Its text, if any, sits beside the line. */
+.slide .to {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--space-5);
+  padding-left: calc(50% + var(--space-3));
+  color: var(--accent-text);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.slide .to::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: var(--arrow);
+  left: 50%;
+  border-left: var(--line-w) solid var(--fg);
+}
+
+.slide .to::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - var(--arrow) / 2);
+  width: var(--arrow);
+  height: var(--arrow);
+  background: var(--fg);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}

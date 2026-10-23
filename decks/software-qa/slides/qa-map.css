@@ -1,0 +1,46 @@
+.slide .qam {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.slide .principle,
+.slide .ai-line {
+  display: grid;
+  grid-template-columns: 7em var(--col);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--size-small);
+}
+
+.slide .principle,
+.slide .ai-line {
+  background: var(--tile);
+}
+
+.slide .principle b,
+.slide .ai-line b {
+  color: var(--accent-text);
+}
+
+.slide .tbl thead th:first-child {
+  width: 15%;
+}
+
+.slide .tbl thead th:nth-child(2) {
+  width: 24%;
+}
+
+.slide .tbl tbody th {
+  font-size: var(--size-body);
+}
+
+.slide .tbl tbody th span {
+  display: block;
+  color: var(--accent-text);
+  font-size: var(--size-caption);
+}
+
+.slide .tbl td:nth-child(2) {
+  font-weight: 700;
+}

@@ -1,0 +1,11 @@
+.slide .tbl thead th:first-child {
+  width: 22%;
+}
+
+.slide .tbl td,
+.slide .tbl th {
+  padding-block: var(--space-4);
+  font-size: var(--size-body);
+}
+
+

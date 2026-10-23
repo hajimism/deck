@@ -1,0 +1,52 @@
+.slide .kinds {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slide .tbl th small {
+  display: block;
+  color: var(--muted);
+  font-size: var(--size-small);
+  font-weight: 400;
+}
+
+.slide .tbl th b {
+  font-size: var(--size-lead);
+}
+
+.slide .tbl td {
+  text-align: center;
+  font-size: var(--size-small);
+}
+
+.slide .tbl td b {
+  display: block;
+  font-size: var(--size-title);
+  line-height: 1.2;
+}
+
+.slide .tbl td.miss {
+  color: var(--done);
+}
+
+.slide .tbl td.hit {
+  color: var(--ok);
+  font-weight: 700;
+}
+
+.slide .tbl td small {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--size-caption);
+  font-weight: 400;
+}
+
+.slide .tbl thead th small {
+  display: block;
+  margin-top: var(--space-1);
+  color: var(--on-dark);
+  font-size: var(--size-caption);
+  font-weight: 400;
+  line-height: 1.5;
+}

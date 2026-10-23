@@ -1,0 +1,25 @@
+.slide[data-layout="summary"] .rows > * {
+  padding: var(--space-2) 0;
+}
+
+
+
+.slide[data-layout="summary"] .rows {
+  margin-bottom: var(--space-5);
+}
+
+.slide[data-layout="summary"] .lab {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-weight: 700;
+}
+
+.slide[data-layout="summary"] .lab b {
+  min-width: 4em;
+  padding: var(--space-1) var(--space-2);
+  background: var(--navy);
+  color: var(--white);
+  font-size: var(--size-caption);
+  text-align: center;
+}

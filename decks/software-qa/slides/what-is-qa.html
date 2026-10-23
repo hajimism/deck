@@ -1,0 +1,31 @@
+<section class="slide" data-layout="default">
+  <header>
+    <p class="kicker">原理：QAとは何か</p>
+    <ol class="tracker"><li aria-current="true">原理</li><li>品質目標</li><li>検出段階</li><li>テスト設計</li><li>有効性</li><li>リリース</li><li>AI</li></ol>
+    <h2 class="slide-title">QAと言える基準</h2>
+    <p class="message">1件の欠陥を直すのはQCであり、同じ種類の欠陥を作り込めない、または作り込んでもすぐ検出できる仕組みに変えて、はじめてQAと言える</p>
+  </header>
+  <div class="fill wq">
+    <div class="bug"><p class="tag">見つかった欠陥</p><p class="card-title">予約日時の表示が1日ずれる</p><p>原因：サーバーの UTC の日時を、そのまま日付に変換していた</p></div>
+    <div class="fork" data-n="2" aria-hidden="true"><span></span><span></span></div>
+    <div class="lanes">
+      <div class="lane" data-kind="qc">
+        <p class="lane-name"><b>QC</b>で終わる場合</p>
+        <p class="act">予約一覧の表示を直す</p>
+        <p class="to" aria-hidden="true"></p>
+        <p class="out">1件は解決する。<br>しかし、別の画面では同じずれがまた起きうる</p>
+      </div>
+      <div class="lane" data-kind="qa">
+        <p class="lane-name"><b>QA</b>まで進める場合</p>
+        <div class="act"><p>種類で一般化する：日時の変換を、画面ごとに書いている</p>
+          <ul class="moves"><li><b>予防</b>日時は共通の関数でだけ表示する</li><li><b>lint</b>直接の変換を禁じる</li><li><b>テスト</b>日付の境目の値を足す</li></ul></div>
+        <p class="to" aria-hidden="true"></p>
+        <p class="out">同じ種類の欠陥を、どの画面でも作り込めない、または作り込んでもすぐ検出できる</p>
+      </div>
+    </div>
+  </div>
+  <p class="takeaway">欠陥を1件直したら、「この種類の欠陥は、次も作り込めてしまうか」と問う。答えが「はい」なら、QAの仕事が残っている</p>
+  <footer>
+    <p class="note">用語：UTC＝世界共通の基準時刻。日本時間より9時間遅いので、そのまま日付にすると前日になることがある。lint＝コードの書き方の誤りを自動で指摘する道具</p>
+  </footer>
+</section>

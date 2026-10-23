@@ -51,5 +51,11 @@ A build system for talks. Write what you will say; dek builds, measures, and shi
 - You have read `dekc shot --sheet` and judged the deck's balance.
 - Say what you could not judge, such as the argument and the timing, and leave it to the author.
 
+## References
+
+Other people's decks, pinned in `dek.toml` `[refs]`, to read as models. They are read-only. To build a deck on a ref's layouts, start it with `dekc new <name> --theme-from <ref>`, which copies the ref's theme into it. Otherwise read a slide with `dekc show <ref> <slug>`, then write your own in this deck's theme.
+
+- `file/accenture-style`: dek で作るアクセンチュア風スライド
+
 For commands, run `dekc help --agent`.
 <!-- dek:end -->

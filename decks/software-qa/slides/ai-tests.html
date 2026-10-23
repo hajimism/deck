@@ -1,0 +1,37 @@
+<section class="slide" data-layout="default">
+  <header>
+    <p class="kicker">AIと一緒に開発する</p>
+    <ol class="tracker"><li>原理</li><li>品質目標</li><li>検出段階</li><li>テスト設計</li><li>有効性</li><li>リリース</li><li aria-current="true">AI</li></ol>
+    <h2 class="slide-title">AIにテストを書かせる</h2>
+    <p class="message">AIはテストを速く大量に作れるが、何が正しいかは決められないので、人が期待値を握ったまま、仕様からテストを書かせる</p>
+  </header>
+  <div class="fill ait">
+    <section class="panel">
+      <h3>AI に任せられること、人が決めること</h3>
+      <table class="tbl" data-dense>
+        <thead><tr><th>任せやすいこと</th><th data-pick>任せにくいこと（人が決める）</th></tr></thead>
+        <tbody>
+          <tr><td>既存のパターンに沿ったテストの量産、テスト用データの用意</td><td data-pick>期待値（正しい結果）を決めること</td></tr>
+          <tr><td>指定した技法での、境界値や同値クラスの列挙</td><td data-pick>何をテストしないかという、リスクの判断</td></tr>
+          <tr><td>性質を表すテストの候補出し</td><td data-pick>テストの失敗が、欠陥か意図した変更かの判断</td></tr>
+          <tr><td>失敗ログの要約、フレーキーの原因の候補</td><td data-pick>マージしてよいかの最終判断</td></tr>
+          <tr><td>探索的テストでの、組み合わせの試行</td><td data-pick>仕様の漏れに気づくこと</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="panel">
+      <h3>人が「正しさ」を握ったまま AI にテストを書かせる、3つのやり方</h3>
+      <ol class="prac">
+        <li><b>1</b><div><p class="pt">仕様からテストを書かせる</p><p>実装を見せず、受け入れ基準や型の定義から書かせる。期待値が実装から独立する（問い4）</p></div></li>
+        <li><b>2</b><div><p class="pt">落ちるのを見てから採用する</p><p>実装をわざと壊して、そのテストが落ちることを確かめる。通るだけのテストは採用しない</p></div></li>
+        <li><b>3</b><div><p class="pt">技法を指定する</p><p>「境界値分析で」「先にデシジョンテーブルを作って」と頼む。レビューは表を見るだけで済む</p></div></li>
+      </ol>
+    </section>
+  </div>
+  <p class="takeaway">AIに書かせたテストは、コードをわざと壊したときに落ちるのを見てから採用する</p>
+  <footer>
+    <p class="note">用語：性質を表すテスト＝「どんな入力でも成り立つはずの性質」を書くテスト（プロパティベーステスト）。フレーキー＝実行のたびに結果が変わること。マージ＝変更を本体に取り込むこと</p>
+    <p class="note">注：Meta の自動テスト生成の例では、通らないテストを捨てて残すため、生まれるのは「いまの動きを固定する回帰テスト」であり、既存の欠陥を見つけるテストではなかった</p>
+    <p class="source">出所：Alshahwan ら, “Automated Unit Test Improvement using Large Language Models at Meta”, arXiv:2402.09171（2024）</p>
+  </footer>
+</section>

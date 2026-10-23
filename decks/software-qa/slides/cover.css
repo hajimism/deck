@@ -1,0 +1,50 @@
+.slide {
+  --bg: var(--navy-deep);
+  --fg: var(--white);
+  --wash:
+    radial-gradient(48% 70% at 100% 0%, color-mix(in srgb, var(--azure) 38%, transparent) 0%, transparent 72%),
+    radial-gradient(30% 46% at 0% 100%, color-mix(in srgb, var(--navy) 90%, transparent) 0%, transparent 72%);
+}
+
+.slide .kicker {
+  color: var(--accent);
+}
+
+.slide .display {
+  font-size: var(--size-mega);
+}
+
+.slide .accent {
+  color: var(--accent);
+  background: none;
+}
+
+.slide .lede {
+  color: var(--on-dark);
+}
+
+.slide::after {
+  color: var(--on-dark);
+}
+
+.slide .meta {
+  display: flex;
+  gap: var(--space-5);
+  margin: var(--space-5) 0 0;
+  color: var(--on-dark);
+  font-size: var(--size-small);
+}
+
+.slide .meta div {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.slide .meta dt {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.slide .meta dd {
+  margin: 0;
+}

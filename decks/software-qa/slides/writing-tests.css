@@ -1,0 +1,32 @@
+.slide .tbl thead th:first-child {
+  width: 22%;
+}
+
+.slide .tbl thead th:nth-child(2),
+.slide .tbl thead th:nth-child(3) {
+  width: 27%;
+}
+
+.slide .tbl code {
+  font-size: var(--size-caption);
+  word-break: break-all;
+}
+
+.slide .tbl td.c-ng {
+  color: var(--ng);
+}
+
+.slide .tbl td.c-ok {
+  color: var(--ok);
+}
+
+.slide .tbl tbody th {
+  font-size: var(--size-body);
+}
+
+.slide .tbl td small {
+  display: block;
+  margin-top: var(--space-1);
+  color: var(--ink-soft);
+  font-size: var(--size-caption);
+}

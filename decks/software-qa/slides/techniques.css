@@ -1,0 +1,73 @@
+.slide .tgrid {
+  display: grid;
+  grid-template-columns: repeat(4, var(--col));
+  grid-template-rows: repeat(4, auto);
+  align-content: center;
+  column-gap: var(--space-3);
+}
+
+.slide .tgrid .card {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-top: var(--rule) solid var(--navy);
+}
+
+.slide .tgrid .card-title {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--size-message);
+}
+
+.slide .tgrid .card-title span {
+  color: var(--muted);
+  font-size: var(--size-caption);
+}
+
+.slide .basis,
+.slide .fe {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--size-small);
+}
+
+.slide .basis span,
+.slide .fe span {
+  color: var(--muted);
+  font-size: var(--size-tiny);
+}
+
+.slide .basis {
+  font-weight: 700;
+}
+
+.slide .q {
+  color: var(--accent-text);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+
+
+
+
+.slide .tlist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cell);
+}
+
+.slide .tlist li {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface);
+  font-size: var(--size-caption);
+  line-height: 1.5;
+}
+
+.slide .tlist b {
+  font-size: var(--size-small);
+}

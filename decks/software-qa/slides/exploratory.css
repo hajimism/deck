@@ -1,0 +1,74 @@
+.slide .ex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.slide .ex .tbl thead th:first-child {
+  width: 9em;
+}
+
+.slide .ex .tbl td.ex-pick {
+  background: var(--surface);
+}
+
+.slide .ex .tbl tbody tr:first-child td {
+  font-size: var(--size-lead);
+}
+
+.slide .ex-head {
+  margin-top: var(--space-2);
+  color: var(--accent-text);
+  font-weight: 700;
+}
+
+.slide .ex-flow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--cell);
+}
+
+.slide .ex-flow li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--tile);
+  font-size: var(--size-small);
+}
+
+.slide .ex-flow li[data-lit] {
+  outline: var(--outline) solid var(--accent);
+  outline-offset: calc(var(--outline) * -1);
+  background: var(--surface);
+}
+
+.slide .ef-t {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-size: var(--size-body);
+  font-weight: 700;
+}
+
+.slide .ef-t b {
+  color: var(--accent-text);
+  font-size: var(--size-title);
+  line-height: 1;
+}
+
+.slide .tpl {
+  padding: var(--space-2) var(--space-3);
+  background: var(--tile);
+}
+
+.slide .tpl span {
+  color: var(--accent-text);
+  font-weight: 700;
+}
+
+.slide .ef-ex {
+  font-size: var(--size-body);
+  font-weight: 700;
+}

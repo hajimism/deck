@@ -1,0 +1,120 @@
+.slide .rel {
+  display: grid;
+  grid-template-columns: repeat(2, var(--col));
+  grid-template-rows: auto auto auto var(--col);
+  column-gap: var(--space-4);
+}
+
+.slide .rstep {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  grid-template-columns: auto var(--col);
+  row-gap: var(--space-3);
+  column-gap: var(--space-3);
+  padding: var(--space-4);
+  border-top: var(--rule) solid var(--navy);
+  background: var(--tile);
+}
+
+.slide .rs-n {
+  color: var(--accent-text);
+  font-size: var(--size-display);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.slide .rs-t {
+  align-self: center;
+  font-size: var(--size-lead);
+  font-weight: 700;
+}
+
+.slide .rs-d,
+.slide .rstep > .tbl,
+.slide .tri,
+.slide .roll {
+  grid-column: 1 / -1;
+}
+
+.slide .roll {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.slide .rs-d {
+  font-size: var(--size-small);
+}
+
+.slide .rstep .tbl tbody th,
+.slide .rstep .tbl td {
+  background: var(--surface);
+}
+
+.slide .judge {
+  grid-column: 1 / -1;
+  align-self: end;
+  padding: var(--space-3);
+  border-left: var(--rule) solid var(--accent);
+  background: var(--surface);
+  font-size: var(--size-small);
+}
+
+.slide .judge b {
+  display: block;
+  color: var(--accent-text);
+}
+
+.slide .tri {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cell);
+}
+
+.slide .tri li {
+  display: grid;
+  grid-template-columns: 5em var(--col);
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface);
+  font-size: var(--size-small);
+}
+
+.slide .tri li[data-kind="fix"] b {
+  color: var(--ng);
+}
+
+.slide .tri li[data-kind="wait"] b {
+  color: var(--warn);
+}
+
+.slide .tri li[data-kind="ship"] b {
+  color: var(--ok);
+}
+
+.slide .stage {
+  display: grid;
+  grid-template-columns: repeat(4, var(--col));
+  align-items: end;
+  gap: var(--cell);
+}
+
+.slide .stage li {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: var(--space-1);
+  background: var(--navy);
+  color: var(--white);
+  font-size: var(--size-small);
+}
+
+.slide .stage li:nth-child(1) { height: 1.8em; }
+.slide .stage li:nth-child(2) { height: 2.6em; }
+.slide .stage li:nth-child(3) { height: 3.6em; }
+.slide .stage li:nth-child(4) { height: 4.8em; }
+
+.slide .stop {
+  font-size: var(--size-small);
+  font-weight: 700;
+}

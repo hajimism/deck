@@ -1,0 +1,16 @@
+.slide .tbl thead th:nth-child(odd) {
+  width: 17%;
+}
+
+.slide .tbl thead th:nth-child(even) {
+  width: 33%;
+}
+
+.slide .tbl th,
+.slide .tbl td {
+  font-size: var(--size-caption);
+}
+
+.slide .tbl tbody th {
+  color: var(--accent-text);
+}

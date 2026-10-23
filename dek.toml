@@ -1,3 +1,6 @@
 # dek project
 # Where dist/ is published: GitHub Pages serves the root dist/ built by CI.
 url = "https://hajimism.github.io/deck/"
+
+[refs]
+"file/accenture-style" = "1c2ffe936661f954265925755481d5fcdb71b329a6f5fae2ee16616cc63874ba"

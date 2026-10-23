@@ -1,0 +1,96 @@
+.slide .chain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.slide .stages,
+.slide .handles {
+  display: grid;
+  grid-template-columns: repeat(3, var(--col));
+  gap: var(--space-2);
+}
+
+.slide .stages {
+  grid-template-rows: repeat(4, auto);
+}
+
+.slide .stages li {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  row-gap: var(--space-3);
+  padding: var(--space-5) calc(var(--space-5) + var(--chev-notch)) var(--space-5) var(--space-5);
+  background: var(--tile);
+  clip-path: polygon(0 0, calc(100% - var(--chev-notch) * 2) 0, 100% 50%, calc(100% - var(--chev-notch) * 2) 100%, 0 100%);
+}
+
+.slide .stages li:last-child {
+  clip-path: none;
+}
+
+.slide .st-name {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  color: var(--muted);
+  font-size: var(--size-small);
+}
+
+.slide .st-name b {
+  color: var(--fg);
+  font-size: var(--size-display);
+  line-height: 1;
+}
+
+.slide .st-where {
+  color: var(--accent-text);
+  font-weight: 700;
+}
+
+.slide .st-ex {
+  font-size: var(--size-message);
+  font-weight: 700;
+}
+
+.slide .handles li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-4);
+  border-top: var(--rule) solid var(--navy);
+  background: var(--tile);
+  font-weight: 700;
+}
+
+.slide .handles li > p:first-child {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+.slide .handles li > p:last-child {
+  font-size: var(--size-small);
+  font-weight: 400;
+}
+
+.slide .handles b {
+  color: var(--accent-text);
+  font-size: var(--size-lead);
+}
+
+.slide .handles li[data-lit] {
+  outline: var(--outline) solid var(--accent);
+  outline-offset: calc(var(--outline) * -1);
+  background: var(--surface);
+}
+
+.slide .st-def {
+  font-size: var(--size-small);
+}
+
+.slide .st-ex {
+  padding-top: var(--space-3);
+  border-top: var(--hair) solid var(--gray-light);
+}

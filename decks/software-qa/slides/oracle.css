@@ -1,0 +1,63 @@
+.slide .orc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.slide .orc-spec {
+  display: grid;
+  grid-template-columns: auto auto var(--col);
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-top: var(--rule) solid var(--navy);
+  background: var(--tile);
+}
+
+.slide .orc-bug {
+  justify-self: end;
+  color: var(--ng);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.slide .orc-pair {
+  display: grid;
+  grid-template-columns: repeat(2, var(--col));
+  grid-template-rows: repeat(4, auto);
+  column-gap: var(--space-4);
+}
+
+.slide .orc-case {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--tile);
+}
+
+.slide .orc-case[data-kind="ok"] {
+  outline: var(--outline) solid var(--accent);
+  outline-offset: calc(var(--outline) * -1);
+  background: var(--surface);
+}
+
+.slide .oc-head {
+  color: var(--accent-text);
+  font-size: var(--size-lead);
+  font-weight: 700;
+}
+
+.slide .orc-case pre {
+  white-space: pre;
+}
+
+.slide .oc-res {
+  font-size: var(--size-title);
+}
+
+.slide .oc-say {
+  font-size: var(--size-body);
+}

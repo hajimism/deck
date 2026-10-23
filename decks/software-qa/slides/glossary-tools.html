@@ -1,0 +1,28 @@
+<section class="slide" data-layout="default">
+  <header>
+    <p class="kicker">まとめ</p>
+    <h2 class="slide-title">参考：用語集（テストの種類と道具）</h2>
+  </header>
+  <div class="fill">
+    <table class="tbl" data-dense>
+      <thead><tr><th>用語</th><th>意味</th><th>用語</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><th>ユニットテスト</th><td>関数や部品を1つずつ切り離して確かめるテスト</td><th>Vitest</th><td>JavaScript・TypeScript のテストを実行する道具</td></tr>
+        <tr><th>コンポーネントテスト</th><td>画面の部品を描画し、操作して確かめるテスト</td><th>Testing Library</th><td>ロールやラベルなど、利用者に見えるもので要素を取るテストの道具</td></tr>
+        <tr><th>結合テスト</th><td>部品どうしや、API とのつながりを確かめるテスト</td><th>Storybook</th><td>画面の部品を、状態ごとに表示して確かめる道具。1つの状態を Story と呼ぶ</td></tr>
+        <tr><th>E2E テスト</th><td>画面を通して、最初から最後まで操作するテスト</td><th>Playwright</th><td>ブラウザを自動で操作する道具。E2E テストや画面の撮影に使う</td></tr>
+        <tr><th>見た目の回帰テスト（VRT）</th><td>画面を撮影して前回と比べ、意図しない見た目の変化を見つけるテスト</td><th>MSW</th><td>アプリの通信をその場で差し替え、決まった応答を返す道具</td></tr>
+        <tr><th>契約テスト</th><td>API を出す側と使う側が、やりとりの形の約束を守っているかを確かめるテスト</td><th>fast-check</th><td>ランダムな入力を大量に作って、性質が成り立つかを試す道具</td></tr>
+        <tr><th>モック</th><td>テストのために、本物の API などの代わりに置く偽物</td><th>Stryker</th><td>JavaScript でミューテーションテストを行う道具</td></tr>
+        <tr><th>lint</th><td>コードの書き方の誤りや規約違反を自動で指摘する道具（ESLint、Biome など）</td><th>axe</th><td>アクセシビリティの違反を自動で検出する道具</td></tr>
+        <tr><th>型（TypeScript）</th><td>値の形をあらかじめ決め、違う形の値を使うとエラーにする仕組み</td><th>Lighthouse CI</th><td>ページの速さなどを自動で計測し、基準を下回ったら知らせる仕組み</td></tr>
+        <tr><th>判別可能 union</th><td>共通の項目の値で、どの形かを区別できる型。ありえない状態を書けなくできる</td><th>フェイクタイマー</th><td>テストの中で、時計を止めたり進めたりできる仕組み</td></tr>
+        <tr><th>CI</th><td>変更のたびに、ビルドやテストを自動で回す仕組み</td><th>lockfile</th><td>インストールする依存パッケージの版を固定したファイル</td></tr>
+        <tr><th>PR（プルリクエスト）</th><td>変更を本体に取り込む前に、レビューを受ける単位</td><th>エラートラッキング・RUM</th><td>本番で起きたエラーを集める仕組みと、実際の利用者の環境で速さを計測すること</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <footer>
+    <p class="note">注：参考情報のため、メッセージラインは書いていない。道具の名前は覚えなくてよい。どの段階で、どんな欠陥を検出する道具かが分かれば足りる</p>
+  </footer>
+</section>

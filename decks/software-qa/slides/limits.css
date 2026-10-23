@@ -1,0 +1,99 @@
+.slide .lim {
+  display: grid;
+  grid-template-columns: repeat(2, var(--col));
+  grid-template-rows: var(--col) auto;
+  gap: var(--space-4);
+}
+
+.slide .lim .card {
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+}
+
+.slide .lim .card-title {
+  font-size: var(--size-message);
+}
+
+.slide .result {
+  display: grid;
+  grid-template-columns: var(--col) var(--col);
+  align-items: center;
+  flex: 1;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--surface);
+}
+
+.slide .pass {
+  padding: var(--space-3);
+  background: var(--ok-wash);
+  color: var(--ok);
+  font-family: var(--font-code);
+  font-size: var(--size-lead);
+  font-weight: 700;
+  text-align: center;
+}
+
+.slide .means {
+  font-size: var(--size-body);
+}
+
+.slide .means b {
+  color: var(--accent-text);
+  font-size: var(--size-message);
+}
+
+.slide .big {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--space-2);
+  color: var(--accent-text);
+  font-size: var(--size-mega);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.slide .big sup {
+  font-size: 0.5em;
+}
+
+.slide .big > span:last-child {
+  font-size: var(--size-body);
+}
+
+.slide .rest {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(5, var(--col));
+  gap: var(--cell);
+}
+
+.slide .rest li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--tile);
+  color: var(--ink-soft);
+  font-size: var(--size-small);
+}
+
+.slide .rest b {
+  color: var(--muted);
+}
+
+.slide .expl {
+  font-size: var(--size-body);
+}
+
+.slide .rest p {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+}
+
+.slide .rest p span {
+  font-size: var(--size-caption);
+  font-weight: 400;
+}

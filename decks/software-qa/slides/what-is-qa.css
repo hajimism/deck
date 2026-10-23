@@ -1,0 +1,126 @@
+.slide .wq {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slide .bug {
+  align-self: center;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-top: var(--rule) solid var(--ng);
+  background: var(--tile);
+  font-size: var(--size-small);
+}
+
+.slide .bug .tag {
+  color: var(--ng);
+}
+
+.slide .bug .card-title {
+  color: var(--ng);
+  font-size: var(--size-message);
+}
+
+.slide .lanes {
+  display: grid;
+  grid-template-columns: repeat(2, var(--col));
+  grid-template-rows: repeat(4, auto);
+  column-gap: var(--gap);
+}
+
+.slide .lane {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  padding: var(--space-4);
+  background: var(--tile);
+}
+
+.slide .lane[data-kind="qa"] {
+  outline: var(--outline) solid var(--accent);
+  outline-offset: calc(var(--outline) * -1);
+  background: var(--surface);
+}
+
+.slide .lane-name {
+  margin-bottom: var(--space-3);
+  font-weight: 700;
+}
+
+.slide .lane-name b {
+  margin-right: var(--space-2);
+  color: var(--accent-text);
+  font-size: var(--size-title);
+}
+
+.slide .act {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-2);
+  font-weight: 700;
+}
+
+.slide .lane[data-kind="qc"] .act {
+  padding: var(--space-3);
+  background: var(--surface);
+}
+
+.slide .moves {
+  display: grid;
+  grid-template-columns: repeat(3, var(--col));
+  gap: var(--cell);
+}
+
+.slide .moves li {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-2) var(--space-3);
+  background: var(--tile);
+  font-size: var(--size-small);
+}
+
+.slide .moves b {
+  color: var(--accent-text);
+  font-size: var(--size-caption);
+}
+
+.slide .out {
+  padding: var(--space-3);
+  font-weight: 700;
+}
+
+.slide .lane[data-kind="qc"] .out {
+  background: var(--surface);
+  color: var(--muted);
+}
+
+.slide .lane[data-kind="qa"] .out {
+  background: var(--tile);
+  color: var(--accent-text);
+}
+
+.slide .fork {
+  margin-bottom: var(--arrow);
+}
+
+.slide .fork span {
+  position: absolute;
+  bottom: calc(var(--arrow) * -1);
+  width: var(--arrow);
+  height: var(--arrow);
+  background: var(--fg);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.slide .fork span:first-child {
+  left: calc(var(--fork-edge) - var(--arrow) / 2);
+}
+
+.slide .fork span:last-child {
+  right: calc(var(--fork-edge) - var(--arrow) / 2);
+}

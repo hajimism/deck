@@ -1,0 +1,48 @@
+.slide .voices {
+  display: grid;
+  grid-template-columns: repeat(5, var(--col));
+  grid-template-rows: repeat(4, auto);
+  align-content: center;
+  column-gap: var(--space-3);
+}
+
+.slide .voices .card {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-4);
+  border-top: var(--rule) solid var(--navy);
+}
+
+.slide .voices .num {
+  color: var(--accent-text);
+  font-size: var(--size-display);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.slide .voices .card-title {
+  font-size: var(--size-message);
+  line-height: 1.4;
+}
+
+.slide .voice {
+  color: var(--ink-soft);
+  font-size: var(--size-body);
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.slide .cause {
+  padding-top: var(--space-3);
+  border-top: var(--hair) solid var(--gray-light);
+  color: var(--ink-soft);
+  font-size: var(--size-small);
+}
+
+.slide .cause b {
+  display: block;
+  color: var(--muted);
+  font-size: var(--size-caption);
+}

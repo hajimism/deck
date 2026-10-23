@@ -1,0 +1,12 @@
+.slide .tbl thead th:first-child {
+  width: 10%;
+}
+
+.slide .tbl thead th:nth-child(2) {
+  width: 45%;
+}
+
+.slide .tbl td,
+.slide .tbl th {
+  padding-block: var(--space-2);
+}

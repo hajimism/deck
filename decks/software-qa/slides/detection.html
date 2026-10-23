@@ -1,0 +1,38 @@
+<section class="slide" data-layout="default">
+  <header>
+    <p class="kicker">問い4　テストは有効か</p>
+    <ol class="tracker"><li>原理</li><li>品質目標</li><li>検出段階</li><li>テスト設計</li><li aria-current="true">有効性</li><li>リリース</li><li>AI</li></ol>
+    <h2 class="slide-title">テストの検出力</h2>
+    <p class="message">テストの検出力はカバレッジでは測れないので、わざとコードを壊し、テストが落ちるかどうかで、良いテストと弱いテストを見分ける</p>
+  </header>
+  <div class="fill det">
+    <div class="det-top">
+      <div class="det-code"><p class="tag">確かめたい実装：18歳以上なら登録できる</p><pre><code>const canRegister = (age: number) =&gt; age <span data-diff>&gt;=</span> 18;</code></pre></div>
+      <p class="det-break"><b>わざと壊す</b><span><code>&gt;=</code> を <code>&gt;</code> に変える</span></p>
+      <div class="det-code" data-kind="mut"><p class="tag">壊したコード（ミュータント）</p><pre><code>const canRegister = (age: number) =&gt; age <span data-diff>&gt;</span> 18;</code></pre></div>
+    </div>
+    <p class="det-ask">同じミュータントを当てると、弱いテストと良いテストを見分けられる</p>
+    <div class="fork" data-n="2" aria-hidden="true"></div>
+    <div class="det-pair">
+      <div class="det-case" data-kind="ng">
+        <p class="dc-head">弱いテスト：30歳でしか試していない</p>
+        <pre><code>expect(canRegister(30)).toBe(true);</code></pre>
+        <p class="dc-res">壊したコードでも<b>通ってしまう</b>。カバレッジは 100%</p>
+        <p class="dc-say">ミュータントが生き残った。このテストは、境界の欠陥を検出できない</p>
+      </div>
+      <div class="det-case" data-kind="ok">
+        <p class="dc-head">良いテスト：境界の18歳と17歳を確かめる</p>
+        <pre><code>expect(canRegister(18)).toBe(true);
+expect(canRegister(17)).toBe(false);</code></pre>
+        <p class="dc-res">壊したコードで<b>落ちる</b></p>
+        <p class="dc-say">ミュータントを検出した。このテストは、境界の欠陥を検出できる</p>
+      </div>
+    </div>
+  </div>
+  <p class="takeaway">テストの良し悪しは、壊したコードで落ちるかで判定する（ミューテーションテスト）。カバレッジは、コードが実行されたことしか示さない</p>
+  <footer>
+    <p class="note">用語：Stryker＝JavaScript でミューテーションテストを行う道具。ミュータントを検出する（kill）＝壊したコードでテストが落ちること</p>
+    <p class="note">注：実際の欠陥357件での研究では、ミュータントを検出する力は、実際の欠陥を検出する力と相関し、カバレッジとは独立だった。全体の点数を目標にせず、変更した部分で生き残ったミュータントを見る</p>
+    <p class="source">出所：Just ら, “Are Mutants a Valid Substitute for Real Faults in Software Testing?”, FSE 2014</p>
+  </footer>
+</section>

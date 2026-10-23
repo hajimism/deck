@@ -1,0 +1,82 @@
+.slide .ts {
+  display: grid;
+  grid-template-columns: repeat(2, var(--col));
+  gap: var(--space-4);
+}
+
+.slide .ts .panel {
+  gap: var(--space-3);
+}
+
+.slide .tdesc {
+  font-size: var(--size-small);
+}
+
+.slide .tbl td,
+.slide .tbl th {
+  font-size: var(--size-body);
+}
+
+.slide .tbl td.hole {
+  color: var(--ng);
+  font-weight: 700;
+}
+
+.slide .find {
+  font-size: var(--size-small);
+}
+
+.slide .tbl td.na {
+  color: var(--muted);
+}
+
+.slide .tbl td.hole {
+  outline: var(--outline) solid var(--accent);
+  outline-offset: calc(var(--outline) * -1);
+}
+
+.slide .find b {
+  display: block;
+  color: var(--ng);
+}
+
+
+
+
+
+
+
+
+
+.slide .tbl thead th:first-child {
+  width: 30%;
+}
+
+.slide .next {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cell);
+  counter-reset: next;
+}
+
+.slide .next li {
+  display: grid;
+  grid-template-columns: 1.6em var(--col);
+  padding: var(--space-1) var(--space-3);
+  background: var(--tile);
+  font-size: var(--size-small);
+  counter-increment: next;
+}
+
+.slide .next li::before {
+  content: counter(next);
+  color: var(--accent-text);
+  font-weight: 700;
+}
+
+.slide .next::before {
+  content: "次にやること";
+  color: var(--accent-text);
+  font-size: var(--size-small);
+  font-weight: 700;
+}

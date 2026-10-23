@@ -1,0 +1,39 @@
+.slide .ait {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.slide .ait .panel {
+  gap: var(--space-2);
+}
+
+.slide .prac {
+  display: grid;
+  grid-template-columns: repeat(3, var(--col));
+  gap: var(--space-3);
+}
+
+.slide .prac li {
+  display: grid;
+  grid-template-columns: 2em var(--col);
+  padding: var(--space-3) var(--space-4);
+  border-top: var(--rule) solid var(--navy);
+  background: var(--tile);
+}
+
+.slide .prac li > b {
+  color: var(--accent-text);
+  font-size: var(--size-title);
+  line-height: 1.1;
+}
+
+.slide .pt {
+  font-size: var(--size-lead);
+  font-weight: 700;
+}
+
+.slide .prac li p:last-child {
+  font-size: var(--size-small);
+}

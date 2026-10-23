@@ -1,0 +1,47 @@
+.slide .traits {
+  display: grid;
+  grid-template-columns: repeat(3, var(--col));
+  grid-template-rows: repeat(3, var(--col));
+  gap: var(--cell);
+}
+
+.slide .traits .card {
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-4);
+}
+
+.slide .traits .card-title {
+  font-size: var(--size-lead);
+}
+
+.slide .fe {
+  font-size: var(--size-small);
+}
+
+.slide .how {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  color: var(--accent-text);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.slide .how span {
+  flex: none;
+  color: var(--muted);
+  font-size: var(--size-tiny);
+  font-weight: 400;
+}
+
+
+.slide .traits .card-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.slide .traits .card-title .tag {
+  font-size: var(--size-tiny);
+}

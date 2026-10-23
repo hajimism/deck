@@ -1,0 +1,32 @@
+<section class="slide" data-layout="default">
+  <header>
+    <p class="kicker">問い1　何を保証するか</p>
+    <ol class="tracker"><li>原理</li><li aria-current="true">品質目標</li><li>検出段階</li><li>テスト設計</li><li>有効性</li><li>リリース</li><li>AI</li></ol>
+    <h2 class="slide-title">保証する品質の決め方</h2>
+    <p class="message">保証する品質は、起きうる問題ごとに「影響の大きさ×起きやすさ」で優先度をつけて決め、優先度の高いものから工数を割く</p>
+  </header>
+  <ol class="risk-steps">
+    <li><b>1</b>特性ごとに、この画面で起きうる問題を挙げる</li>
+    <li><b>2</b>影響の大きさと起きやすさを、3段階（3・2・1）でつける</li>
+    <li><b>3</b>2つを掛けた値で優先度を決め、高いものから確かめ方を割り当てる</li>
+  </ol>
+  <div class="fill">
+    <table class="tbl">
+      <thead><tr><th>品質特性</th><th>起きうる問題（記入例：ECサイトの購入画面）</th><th data-align="center">影響</th><th data-align="center">起きやすさ</th><th data-align="center">優先度</th><th>確かめ方</th></tr></thead>
+      <tbody>
+        <tr><th>機能適合性</th><td>税込金額や送料の計算がずれる</td><td data-align="center">3</td><td data-align="center">3</td><td class="pri" data-align="center"><b>9 高</b></td><td>デシジョンテーブルで組み合わせを洗い出し、ユニットテストにする</td></tr>
+        <tr><th>信頼性</th><td>通信が切れて再送すると、二重に注文される</td><td data-align="center">3</td><td data-align="center">2</td><td class="pri" data-align="center"><b>6 高</b></td><td>状態遷移表で送信中の動きを決め、エラー状態をテストする</td></tr>
+        <tr><th>相互作用性</th><td>キーボードだけでは支払い方法を選べない</td><td data-align="center">2</td><td data-align="center">3</td><td class="pri" data-align="center"><b>6 高</b></td><td>axe の自動監査と、キーボードでの操作確認</td></tr>
+        <tr><th>性能効率性</th><td>購入ボタンが表示されるまでが遅い</td><td data-align="center">2</td><td data-align="center">2</td><td class="pri" data-align="center">4 中</td><td>Lighthouse CI で、表示の速さに上限を設ける</td></tr>
+        <tr><th>セキュリティ</th><td>他人の注文内容が見えてしまう</td><td data-align="center">3</td><td data-align="center">1</td><td class="pri" data-align="center">3 中</td><td>認可をレビューの毎回の観点にする</td></tr>
+        <tr><th>柔軟性</th><td>英語表示で、ボタンの文字があふれる</td><td data-align="center">1</td><td data-align="center">2</td><td class="pri" data-align="center">2 低</td><td>主要な画面だけ、見た目を確認する</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="takeaway">すべての特性を同じ厚さで確かめることはできない。優先度の高い特性から、確かめる工数を割く</p>
+  <footer>
+    <p class="note">用語：リスク＝起きると困ることと、その起きやすさ。リスクベースドテスト＝リスクにもとづいて、テストの範囲と厚さを決めるやり方</p>
+    <p class="note">注：記入例の数値は説明のためのもの。優先度は 6 以上を高、3〜4 を中、2 以下を低とした。表はプロダクトオーナーと一緒に作り、影響の大きさは事業の側から、起きやすさは開発の側から見積もる</p>
+    <p class="source">出所：ISTQB Foundation Level シラバス v4.0（JSTQB 訳）5.2節「リスクマネジメント」</p>
+  </footer>
+</section>

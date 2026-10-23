@@ -1,0 +1,11 @@
+.slide .tbl thead th:first-child {
+  width: 24%;
+}
+
+.slide .tbl thead th:nth-child(2) {
+  width: 28%;
+}
+
+.slide .tbl tr[data-own] > * {
+  background: var(--wash-yellow);
+}
