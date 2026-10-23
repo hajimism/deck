@@ -9,10 +9,6 @@
   width: 9em;
 }
 
-.slide .ex .tbl td.ex-pick {
-  background: var(--surface);
-}
-
 .slide .ex .tbl tbody tr:first-child td {
   font-size: var(--size-lead);
 }

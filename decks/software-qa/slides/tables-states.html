@@ -22,7 +22,7 @@
     </div>
     <div class="panel">
       <h3>状態遷移：画面の状態と、移り変わりを表にする</h3>
-      <p class="tdesc">例：送信フォーム。いまの状態を縦に、起きたことを横に並べ、次の状態を埋める。「−」は、その状態では起きない操作や応答</p>
+      <p class="tdesc">例：送信フォーム。いまの状態を縦に、起きたことを横に並べ、次の状態を埋める</p>
       <table class="tbl">
         <thead><tr><th>状態 ＼ 起きたこと</th><th data-align="center">送信を押す</th><th data-align="center">成功が返る</th><th data-align="center">失敗が返る</th></tr></thead>
         <tbody>
@@ -37,7 +37,7 @@
   </div>
   <p class="takeaway">どちらも、テストを書く前に仕様の穴を見つけられる。見つけた穴は、テストではなくプロダクトオーナーへの質問になる</p>
   <footer>
-    <p class="note">注：条件が n 個なら組み合わせは最大 2<sup>n</sup> 列。結果が同じ列はまとめて減らせる</p>
+    <p class="note">注：状態遷移の表の「−」は、その状態では起きない操作や応答。条件が n 個なら組み合わせは最大 2<sup>n</sup> 列。結果が同じ列はまとめて減らせる</p>
     <p class="source">出所：ISTQB Foundation Level シラバス v4.0（JSTQB 訳）4.2節</p>
   </footer>
 </section>

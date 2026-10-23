@@ -31,25 +31,30 @@
   flex-direction: column;
   justify-content: flex-end;
   gap: var(--space-1);
-  padding: var(--space-2);
-  background: var(--navy);
-  color: var(--white);
   text-align: center;
 }
 
 .slide .stage li b {
+  color: var(--accent-text);
   font-size: var(--size-title);
+  line-height: 1;
 }
 
 .slide .stage li span {
-  color: var(--on-dark);
+  margin-bottom: var(--space-1);
+  color: var(--muted);
   font-size: var(--size-caption);
 }
 
-.slide .stage li:nth-child(1) { height: 5em; }
-.slide .stage li:nth-child(2) { height: 7em; }
-.slide .stage li:nth-child(3) { height: 9em; }
-.slide .stage li:nth-child(4) { height: 11em; }
+.slide .stage .bar {
+  display: block;
+  background: var(--navy);
+}
+
+.slide .stage li[data-p="1"] .bar { height: 0.4em; }
+.slide .stage li[data-p="10"] .bar { height: 1.6em; }
+.slide .stage li[data-p="50"] .bar { height: 8em; }
+.slide .stage li[data-p="100"] .bar { height: 16em; }
 
 .slide .ro-watch {
   padding: var(--space-2) var(--space-3);
