@@ -1,0 +1,78 @@
+<section class="slide" data-layout="default">
+  <header>
+    <p class="kicker">問い2　欠陥をどこで検出するか</p>
+    <ol class="tracker"><li>原理</li><li>品質目標</li><li aria-current="true">検出段階</li><li>テスト設計</li><li>有効性</li><li>リリース</li><li>AI</li></ol>
+    <h2 class="slide-title">考え方：欠陥のろ過</h2>
+    <p class="message">欠陥は一定の割合で作り込まれ、どの段階もすべては検出できないので、段階を重ねてすり抜けを減らしたうえで、本番に届いた欠陥をすぐ検出して直せる状態にしておく</p>
+  </header>
+  <div class="fill flt">
+    <figure class="flt-fig">
+      <svg viewBox="0 0 560 336" role="img" aria-label="欠陥のろ過の図。予防で流れ込む欠陥を減らし、自動テストで4件、レビューで2件、探索で1件を検出する。それでも1件が本番に届いて故障になり、監視ですぐ検出して修正するかロールバックする">
+        <polygon data-k="funnel" points="140,6 490,6 440,56 190,56"/>
+        <g data-k="in">
+          <circle cx="220" cy="28" r="7"/><circle cx="250" cy="20" r="7"/><circle cx="280" cy="30" r="7"/><circle cx="310" cy="21" r="7"/><circle cx="340" cy="29" r="7"/><circle cx="370" cy="20" r="7"/><circle cx="400" cy="28" r="7"/><circle cx="430" cy="21" r="7"/>
+        </g>
+        <line data-k="wall" x1="190" y1="56" x2="190" y2="280"/>
+        <line data-k="wall" x1="440" y1="56" x2="440" y2="280"/>
+        <line data-k="mesh" x1="190" y1="115" x2="440" y2="115"/>
+        <line data-k="mesh" x1="190" y1="170" x2="440" y2="170"/>
+        <line data-k="mesh" x1="190" y1="225" x2="440" y2="225"/>
+        <line data-k="floor" x1="190" y1="280" x2="440" y2="280"/>
+        <g data-k="fall">
+          <circle cx="260" cy="78" r="7"/><circle cx="330" cy="88" r="7"/><circle cx="390" cy="76" r="7"/>
+          <circle cx="225" cy="144" r="7"/><circle cx="285" cy="138" r="7"/><circle cx="345" cy="147" r="7"/><circle cx="405" cy="140" r="7"/>
+          <circle cx="265" cy="199" r="7"/><circle cx="375" cy="193" r="7"/>
+          <circle cx="315" cy="250" r="7"/>
+        </g>
+        <g data-k="caught">
+          <circle cx="230" cy="106" r="7"/><circle cx="290" cy="106" r="7"/><circle cx="350" cy="106" r="7"/><circle cx="410" cy="106" r="7"/>
+          <circle cx="285" cy="161" r="7"/><circle cx="405" cy="161" r="7"/>
+          <circle cx="265" cy="216" r="7"/>
+        </g>
+        <circle data-k="hit" cx="315" cy="271" r="7"/>
+        <g data-k="label">
+          <text x="0" y="28">予防</text>
+          <text x="0" y="120">自動テスト</text>
+          <text x="0" y="175">レビュー</text>
+          <text x="0" y="230">探索</text>
+          <text x="0" y="285">本番</text>
+        </g>
+        <g data-k="sub">
+          <text x="0" y="46">流れ込む欠陥を減らす</text>
+          <text x="0" y="302">利用者の手元</text>
+        </g>
+        <g data-k="count">
+          <text x="456" y="120">4件を検出</text>
+          <text x="456" y="175">2件を検出</text>
+          <text x="456" y="230">1件を検出</text>
+        </g>
+        <text data-k="count-ng" x="456" y="285">1件が故障に</text>
+        <line data-k="arrow" x1="315" y1="282" x2="315" y2="300"/>
+        <polygon data-k="arrow-head" points="308,298 322,298 315,308"/>
+        <rect data-k="fix" x="155" y="310" width="320" height="26"/>
+        <text data-k="fix-text" x="315" y="328">監視ですぐ検出し、修正するかロールバックする</text>
+      </svg>
+      <figcaption><span class="flt-key" data-k="caught">検出された欠陥</span><span class="flt-key" data-k="fall">まだ検出されていない欠陥</span><span class="flt-key" data-k="hit">本番に届いた欠陥</span></figcaption>
+    </figure>
+    <div class="flt-text">
+      <div class="card">
+        <p class="card-title">どの段階も、すべての欠陥は検出できない</p>
+        <p>自動テストは書いたケースの範囲しか確かめず、レビューは人の目なので見落とし、探索は試した操作の範囲しか見ません。どのフィルターにも目があり、一部の欠陥は通り抜けます。</p>
+      </div>
+      <div class="card">
+        <p class="card-title">重ねるほど減るが、ゼロにはならない</p>
+        <p>目の違うフィルターを重ねるたびに、すり抜ける欠陥は減ります。それでも人が開発する以上、誤りは一定の割合で起きるので、本番に届く欠陥はなくなりません。</p>
+      </div>
+      <div class="card" data-variant="lit">
+        <p class="card-title">本番に届いた欠陥は、すぐ検出して直す</p>
+        <p>監視で故障にすぐ気づき、修正するか、ロールバックします。気づいてから直すまでが短いほど、影響を受ける利用者は少なくて済みます。</p>
+      </div>
+    </div>
+  </div>
+  <p class="takeaway">目指すのは本番の欠陥をゼロにすることではなく、すり抜けた欠陥の影響を小さく抑えることである</p>
+  <footer>
+    <p class="note">用語：監視＝本番のエラーや速さを見続けること。ロールバック＝新しい版を取り下げ、前の版に戻すこと。止める基準と戻し方は、問い5の「段階公開とロールバック」で見る</p>
+    <p class="note">注：件数は説明のための記入例。安全工学で、穴の位置が違う防護を重ねて事故を防ぐ考え方として知られる、J. Reason のスイスチーズモデルに近い</p>
+    <p class="source">出所：Reason, J. (1990) Human Error. Cambridge University Press</p>
+  </footer>
+</section>

@@ -1,0 +1,135 @@
+.slide .flt {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  grid-template-rows: minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.slide .flt-fig {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-2);
+  height: 100%;
+  min-height: 0;
+}
+
+.slide .flt-fig svg {
+  flex: 0 1 auto;
+  min-height: 0;
+  width: 100%;
+}
+
+.slide .flt-fig figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--space-3);
+  color: var(--muted);
+  font-size: var(--size-caption);
+}
+
+.slide .flt-key::before {
+  content: "";
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  margin-right: var(--space-1);
+  border-radius: var(--pill);
+  vertical-align: -0.05em;
+}
+
+.slide .flt-key[data-k="caught"]::before { background: var(--navy); }
+.slide .flt-key[data-k="fall"]::before { background: var(--gray-light); }
+.slide .flt-key[data-k="hit"]::before { background: var(--ng); }
+
+.slide .flt svg text {
+  font-family: var(--font-body);
+}
+
+.slide .flt [data-k="funnel"] {
+  fill: var(--tile-mid);
+}
+
+.slide .flt [data-k="in"],
+.slide .flt [data-k="fall"] {
+  fill: var(--gray-light);
+}
+
+.slide .flt [data-k="caught"] {
+  fill: var(--navy);
+}
+
+.slide .flt [data-k="hit"] {
+  fill: var(--ng);
+}
+
+.slide .flt [data-k="wall"] {
+  stroke: var(--gray-light);
+  stroke-width: var(--line-w);
+}
+
+.slide .flt [data-k="mesh"] {
+  stroke: var(--gray-mid);
+  stroke-width: var(--rule);
+  stroke-dasharray: 10 6;
+}
+
+.slide .flt [data-k="floor"] {
+  stroke: var(--fg);
+  stroke-width: var(--rule);
+}
+
+.slide .flt [data-k="label"] {
+  fill: var(--fg);
+  font-size: var(--size-lead);
+  font-weight: 700;
+}
+
+.slide .flt [data-k="sub"] {
+  fill: var(--muted);
+  font-size: var(--size-caption);
+}
+
+.slide .flt [data-k="count"] {
+  fill: var(--accent-text);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.slide .flt [data-k="count-ng"] {
+  fill: var(--ng);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.slide .flt [data-k="arrow"] {
+  stroke: var(--ng);
+  stroke-width: var(--line-w);
+}
+
+.slide .flt [data-k="arrow-head"] {
+  fill: var(--ng);
+}
+
+.slide .flt [data-k="fix"] {
+  fill: var(--ng-wash);
+}
+
+.slide .flt [data-k="fix-text"] {
+  fill: var(--ng);
+  font-size: var(--size-small);
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.slide .flt-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.slide .flt-text .card p:not(.card-title) {
+  font-size: var(--size-small);
+  line-height: 1.6;
+}
