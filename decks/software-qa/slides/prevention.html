@@ -1,6 +1,6 @@
 <section class="slide" data-layout="default">
   <header>
-    <p class="kicker">問い2　どこで検出するか</p>
+    <p class="kicker">問い2　欠陥をどこで検出するか</p>
     <ol class="tracker"><li>原理</li><li>品質目標</li><li aria-current="true">検出段階</li><li>テスト設計</li><li>有効性</li><li>リリース</li><li>AI</li></ol>
     <h2 class="slide-title">予防：欠陥を作り込ませない設計</h2>
     <p class="message">型で誤った状態を書けなくし、テストしやすいコードにしておけば、欠陥を作り込む余地そのものが減り、後ろの段階で探す手間も減る</p>
@@ -8,7 +8,7 @@
   <div class="fill prev">
     <div class="panel">
       <h3>型で、誤った状態を書けなくする</h3>
-      <p class="lead2">データの取得状態を真偽値と省略できる項目で表すと、ありえない組み合わせまで書けてしまう。状態ごとの形を型で並べると、ありうる状態しか書けなくなる</p>
+      <p class="lead2">データの取得状態を真偽値と省略できる項目で表すと、ありえない組み合わせまで書けてしまう。状態ごとにデータの形を型で書き分けると、ありうる状態しか書けなくなる</p>
       <div class="code-pair">
         <div class="code" data-kind="ng"><p class="tag">書けてしまう</p><pre><code>type State = {
   loading: boolean;
@@ -27,7 +27,7 @@
       <ul class="props">
         <li><b>制御できる</b><p>入力と状態を、外から与えられる</p><p class="fe">時刻・乱数を引数で受け取る</p></li>
         <li><b>観測できる</b><p>結果を、外から確かめられる</p><p class="fe">ロールやラベルで要素を取れる UI にする</p></li>
-        <li><b>分離できる</b><p>依存を、差し替えられる</p><p class="fe">fetch などの副作用を境界に寄せる</p></li>
+        <li><b>分離できる</b><p>依存を、差し替えられる</p><p class="fe">fetch などの副作用を、差し替えやすい境界にまとめる</p></li>
       </ul>
       <p class="lead2">ロールやラベルで要素を取れる UI は、テストしやすく、同時にアクセシブルでもある</p>
     </div>

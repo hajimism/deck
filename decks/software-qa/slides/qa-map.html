@@ -10,7 +10,7 @@
       <thead><tr><th>問い</th><th>やること</th><th>技法</th><th>フロントエンドの道具</th></tr></thead>
       <tbody>
         <tr><th><span>問い1</span>何を保証するか</th><td>品質特性ごとのリスクで優先度をつけ、完成の定義を決める</td><td>品質特性の洗い出し、リスクによる優先度づけ、受け入れ基準</td><td>Lighthouse CI、axe、依存の検査</td></tr>
-        <tr><th><span>問い2</span>どこで検出するか</th><td>欠陥の種類ごとに、最も早く気づける段階に検出の仕組みを置き、工数を割り振る</td><td>予防（型・lint）、コードレビュー、欠陥の棚卸し、テスト戦略</td><td>TypeScript、ESLint、Vitest、Testing Library、Playwright</td></tr>
+        <tr><th><span>問い2</span>欠陥をどこで検出するか</th><td>欠陥の種類ごとに、最も早く気づける段階に検出の仕組みを置き、工数を割り振る</td><td>予防（型・lint）、コードレビュー、欠陥の棚卸し、テスト戦略</td><td>TypeScript、ESLint、Vitest、Testing Library、Playwright</td></tr>
         <tr><th><span>問い3</span>どのテストケースで確かめるか</th><td>テストケースを技法で選び、足りる理由を説明できるようにする</td><td>同値分割・境界値分析、デシジョンテーブル、状態遷移、探索的テスト</td><td>Storybook、MSW、fast-check</td></tr>
         <tr><th><span>問い4</span>テストは有効か</th><td>テストが欠陥で本当に落ちるかを確かめる</td><td>仕様からの期待値（オラクル）、ミューテーションテスト、フレーキー対策</td><td>Stryker、フェイクタイマー</td></tr>
         <tr><th><span>問い5</span>リリースしてよいか</th><td>リリースの条件と、止めて戻す条件を先に決める</td><td>終了基準、欠陥の振り分け、段階公開とロールバック</td><td>フィーチャーフラグ、エラートラッキング</td></tr>

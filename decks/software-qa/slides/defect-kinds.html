@@ -1,6 +1,6 @@
 <section class="slide" data-layout="default">
   <header>
-    <p class="kicker">問い2　どこで検出するか</p>
+    <p class="kicker">問い2　欠陥をどこで検出するか</p>
     <ol class="tracker"><li>原理</li><li>品質目標</li><li aria-current="true">検出段階</li><li>テスト設計</li><li>有効性</li><li>リリース</li><li>AI</li></ol>
     <h2 class="slide-title">テストの種類ごとに検出できる欠陥</h2>
     <p class="message">どのテストにも検出できない欠陥があるので、テストの種類は、検出したい欠陥の種類から選ぶ</p>
@@ -9,8 +9,8 @@
     <table class="tbl">
       <thead><tr><th>欠陥の種類</th><th data-align="center">ユニットテスト<small>関数や部品を1つずつ切り離し、入力に対する結果を確かめる</small></th><th data-align="center">見た目の回帰テスト（VRT）<small>画面を撮影して前回と比べ、意図しない見た目の変化を見つける</small></th><th data-align="center">APIの契約テスト<small>API を出す側と使う側が、やりとりの形の約束を守っているかを確かめる</small></th></tr></thead>
       <tbody>
-        <tr><th><b>金額の計算がずれる</b><small>税込金額が1円ずれる</small></th><td class="hit"><b>○</b>検出できる<small>計算の関数を直接呼んで、結果を確かめる</small></td><td class="miss"><b>×</b>検出できない<small>数字が違っても、見た目は崩れていない</small></td><td class="miss"><b>×</b>検出できない<small>APIの形は約束どおり</small></td></tr>
-        <tr><th><b>ボタンが重なって押せない</b><small>狭い画面でボタンが重なる</small></th><td class="miss"><b>×</b>検出できない<small>画面を描画しないので、重なりは見えない</small></td><td class="hit"><b>○</b>検出できる<small>画面を撮影し、前回との差を見つける</small></td><td class="miss"><b>×</b>検出できない<small>APIは関係していない</small></td></tr>
+        <tr><th><b>金額の計算がずれる</b><small>税込金額が1円ずれる</small></th><td class="hit"><b>○</b>検出できる<small>計算の関数を直接呼んで、結果を確かめる</small></td><td class="miss"><b>×</b>検出できない<small>数字が違っても、見た目は崩れていない</small></td><td class="miss"><b>×</b>検出できない<small>API のやりとりの形は約束どおりなので、気づかない</small></td></tr>
+        <tr><th><b>ボタンが重なって押せない</b><small>狭い画面でボタンが重なる</small></th><td class="miss"><b>×</b>検出できない<small>画面を描画しないので、重なりは見えない</small></td><td class="hit"><b>○</b>検出できる<small>画面を撮影し、前回との差を見つける</small></td><td class="miss"><b>×</b>検出できない<small>API のやりとりは関係していない</small></td></tr>
         <tr><th><b>APIの項目名が変わって画面が空になる</b><small>サーバーが項目名を変え、一覧が空になる</small></th><td class="miss"><b>×</b>検出できない<small>APIをモックで固定しているので気づかない</small></td><td class="miss"><b>×</b>検出できない<small>固定のデータで撮影するので、空にならない</small></td><td class="hit"><b>○</b>検出できる<small>APIの形の約束が破られたことを検出する</small></td></tr>
       </tbody>
     </table>

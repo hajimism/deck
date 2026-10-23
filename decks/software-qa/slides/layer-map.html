@@ -1,6 +1,6 @@
 <section class="slide" data-layout="default">
   <header>
-    <p class="kicker">問い2　どこで検出するか</p>
+    <p class="kicker">問い2　欠陥をどこで検出するか</p>
     <ol class="tracker"><li>原理</li><li>品質目標</li><li aria-current="true">検出段階</li><li>テスト設計</li><li>有効性</li><li>リリース</li><li>AI</li></ol>
     <h2 class="slide-title">欠陥の種類と検出段階の対応表</h2>
     <p class="message">フロントエンドでは、欠陥の種類ごとに最も早く検出できる段階と道具が決まるので、チームでこの表を作れば、どこに何を置くかの基準になる</p>
@@ -11,13 +11,13 @@
       <tbody>
         <tr><th>値の取り違え、規約違反</th><td class="ly">予防</td><td>型・lint</td><td>TypeScript の strict、typescript-eslint、Biome</td></tr>
         <tr><th>計算・変換・状態遷移の誤り</th><td class="ly">自動テスト</td><td>ユニット</td><td>Vitest、fast-check</td></tr>
-        <tr><th>コンポーネントの描画と操作</th><td class="ly">自動テスト</td><td>コンポーネント</td><td>Testing Library、Storybook、Vitest の Browser Mode</td></tr>
+        <tr><th>コンポーネントの表示や操作の誤り</th><td class="ly">自動テスト</td><td>コンポーネント</td><td>Testing Library、Storybook、Vitest の Browser Mode</td></tr>
         <tr><th>見た目の崩れ</th><td class="ly">自動テスト</td><td>見た目の回帰（VRT）</td><td>Playwright の toHaveScreenshot、Chromatic、reg-suit</td></tr>
         <tr><th>アクセシビリティ違反</th><td class="ly">自動テスト</td><td>自動監査＋手での確認</td><td>axe-core、キーボードとスクリーンリーダーでの操作</td></tr>
         <tr><th>API との食い違い</th><td class="ly">自動テスト</td><td>契約・結合</td><td>OpenAPI から型とモックを生成、MSW</td></tr>
-        <tr><th>画面をまたぐ流れ、実環境の差</th><td class="ly">自動テスト</td><td>E2E</td><td>Playwright</td></tr>
-        <tr><th>設計の誤り、認可やエラー処理の抜け</th><td class="ly">レビュー</td><td>人が読む</td><td>PR のレビュー（境界・エラー処理・認可を毎回の観点にする）</td></tr>
-        <tr><th>仕様の漏れ、想定外の使い方</th><td class="ly">探索</td><td>探索的テスト</td><td>チャーター付きのセッション</td></tr>
+        <tr><th>画面をまたぐ流れの誤り、実際のブラウザでの差</th><td class="ly">自動テスト</td><td>E2E</td><td>Playwright</td></tr>
+        <tr><th>設計の誤り、認可やエラー処理の抜け</th><td class="ly">レビュー</td><td>人がコードを読む</td><td>PR のレビュー（境界・エラー処理・認可を毎回確かめる）</td></tr>
+        <tr><th>仕様の漏れ、想定外の使い方で起きる故障</th><td class="ly">探索</td><td>探索的テスト</td><td>チャーターを決めて行う探索のセッション</td></tr>
         <tr><th>性能の劣化</th><td class="ly">自動テスト</td><td>CI での計測</td><td>Lighthouse CI、バンドルサイズの上限</td></tr>
         <tr><th>本番でしか起きない問題、利用者の環境での遅さ</th><td class="ly">本番</td><td>監視</td><td>エラートラッキング、RUM、合成監視</td></tr>
       </tbody>

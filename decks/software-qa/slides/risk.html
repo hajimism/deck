@@ -17,9 +17,9 @@
         <tr><th>機能適合性</th><td>税込金額や送料の計算がずれる</td><td data-align="center">3</td><td data-align="center">3</td><td class="pri" data-align="center"><b>9 高</b></td><td>デシジョンテーブルで組み合わせを洗い出し、ユニットテストにする</td></tr>
         <tr><th>信頼性</th><td>通信が切れて再送すると、二重に注文される</td><td data-align="center">3</td><td data-align="center">2</td><td class="pri" data-align="center"><b>6 高</b></td><td>状態遷移表で送信中の動きを決め、エラー状態をテストする</td></tr>
         <tr><th>相互作用性</th><td>キーボードだけでは支払い方法を選べない</td><td data-align="center">2</td><td data-align="center">3</td><td class="pri" data-align="center"><b>6 高</b></td><td>axe の自動監査と、キーボードでの操作確認</td></tr>
-        <tr><th>性能効率性</th><td>購入ボタンが表示されるまでが遅い</td><td data-align="center">2</td><td data-align="center">2</td><td class="pri" data-align="center">4 中</td><td>Lighthouse CI で、表示の速さに上限を設ける</td></tr>
-        <tr><th>セキュリティ</th><td>他人の注文内容が見えてしまう</td><td data-align="center">3</td><td data-align="center">1</td><td class="pri" data-align="center">3 中</td><td>認可をレビューの毎回の観点にする</td></tr>
-        <tr><th>柔軟性</th><td>英語表示で、ボタンの文字があふれる</td><td data-align="center">1</td><td data-align="center">2</td><td class="pri" data-align="center">2 低</td><td>主要な画面だけ、見た目を確認する</td></tr>
+        <tr><th>性能効率性</th><td>購入ボタンが表示されるまでが遅い</td><td data-align="center">2</td><td data-align="center">2</td><td class="pri" data-align="center">4 中</td><td>Lighthouse CI で、表示にかかる時間に上限を設ける</td></tr>
+        <tr><th>セキュリティ</th><td>他人の注文内容が見えてしまう</td><td data-align="center">3</td><td data-align="center">1</td><td class="pri" data-align="center">3 中</td><td>毎回のレビューで、認可の漏れを確かめる</td></tr>
+        <tr><th>柔軟性</th><td>英語表示で、ボタンの文字があふれる</td><td data-align="center">1</td><td data-align="center">2</td><td class="pri" data-align="center">2 低</td><td>主要な画面だけ、英語表示の見た目を確認する</td></tr>
       </tbody>
     </table>
   </div>
