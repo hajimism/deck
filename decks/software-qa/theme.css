@@ -1368,6 +1368,57 @@
   font-weight: 700;
 }
 
+/* @layout section
+<section class="slide" data-layout="section">
+  <p class="kicker">02 · 問い1</p>
+  <h2 class="display">章の名前</h2>
+  <p class="lede">この章で答えること</p>
+  <ol class="tracker"><li>パート1</li><li aria-current="true">パート2</li><li>パート3</li></ol>
+</section>
+章の扉。トラッカーを縦に大きく出し、全体のどこから始まる章かを示す。
+*/
+.slide[data-layout="section"] {
+  display: grid;
+  grid-template-columns: var(--col) auto;
+  grid-template-rows: var(--col) auto auto var(--col);
+  column-gap: var(--space-5);
+  background: var(--wash), var(--bg);
+}
+
+.slide[data-layout="section"] > :not(.tracker) {
+  grid-column: 1;
+}
+
+.slide[data-layout="section"] .kicker {
+  grid-row: 1;
+  align-self: end;
+  margin-bottom: var(--space-3);
+}
+
+.slide[data-layout="section"] .display {
+  grid-row: 2;
+}
+
+.slide[data-layout="section"] .lede {
+  grid-row: 3;
+  margin-top: var(--space-4);
+  font-weight: 700;
+}
+
+.slide[data-layout="section"] .tracker {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  align-self: center;
+  flex-direction: column;
+  padding-left: var(--space-5);
+  border-left: var(--hair) solid var(--line);
+}
+
+.slide[data-layout="section"] .tracker li {
+  padding: 0.4em 1.2em;
+  font-size: var(--size-small);
+}
+
 /* @layout default
 <section class="slide" data-layout="default">
   <header>
