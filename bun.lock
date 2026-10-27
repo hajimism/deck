@@ -5,13 +5,13 @@
     "": {
       "name": "deck",
       "devDependencies": {
-        "@hajimism/dek": "0.3.3",
+        "@hajimism/dek": "0.5.0",
         "playwright": "^1.63.0",
       },
     },
   },
   "packages": {
-    "@hajimism/dek": ["@hajimism/dek@0.3.3", "", { "dependencies": { "zod": "^4.6.5" }, "bin": { "dekc": "src/cli.ts" } }, "sha512-qy6aEEFRIIMsGPVBO7i8N3bThLVQIQ6jjF75VsuKXg8V+BjA/+pueMjhK9G4t02JQfM+lz8nRJdA9NN45aGEeQ=="],
+    "@hajimism/dek": ["@hajimism/dek@0.5.0", "", { "dependencies": { "zod": "^4.6.5" }, "bin": { "dekc": "src/cli.ts" } }, "sha512-L7yjeUKJrPntDJrSxYo3H+Py/ZhV7ihrr9fu2IEu0ugRPG/auQsdJVTodmZ0WQfLFTb5zH/q6Txgq6xxk83uEA=="],
 
     "playwright": ["playwright@1.63.0", "", { "dependencies": { "playwright-core": "1.63.0" }, "bin": { "playwright": "cli.js" } }, "sha512-+7ziBLidS4NaNCdt57SUDT+wYmmd5fmiQejUic/kb+YsYSCPyOOE9sebzMjNmQrsnNpDJqd4WHvV/8lfKfUDUg=="],
 
