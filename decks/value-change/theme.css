@@ -105,6 +105,8 @@
   line-height: 1.7;
   font-feature-settings: "palt";
   counter-reset: folio var(--dek-slide-number) folios var(--dek-slide-count);
+  word-break: auto-phrase;
+  text-wrap: pretty;
 }
 
 /* Tape fields: the cover, chapter doors, and the closing are printed on the tape itself. */

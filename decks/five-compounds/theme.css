@@ -57,6 +57,8 @@
   font-size: var(--size-body);
   line-height: 1.7;
   font-feature-settings: "palt";
+  word-break: auto-phrase;
+  text-wrap: pretty;
 }
 
 /* Running head and folio. The folio comes from data-folio on the section. */

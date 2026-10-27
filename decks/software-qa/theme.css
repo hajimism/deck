@@ -135,6 +135,7 @@
   font-feature-settings: "palt";
   word-break: auto-phrase;
   counter-reset: folio var(--dek-slide-number) total var(--dek-slide-count);
+  text-wrap: pretty;
 }
 
 .slide *,

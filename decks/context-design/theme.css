@@ -78,6 +78,8 @@
   font-size: var(--size-body);
   line-height: 1.65;
   font-feature-settings: "palt";
+  word-break: auto-phrase;
+  text-wrap: pretty;
 }
 
 /* Colour fields. */

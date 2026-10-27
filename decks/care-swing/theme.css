@@ -80,6 +80,8 @@
   font-size: var(--size-body);
   line-height: 1.7;
   font-feature-settings: "palt";
+  word-break: auto-phrase;
+  text-wrap: pretty;
 }
 
 /* Paper carries a faint dot grid, like a product canvas. */

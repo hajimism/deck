@@ -101,6 +101,8 @@
   line-height: 1.7;
   font-feature-settings: "palt";
   counter-reset: folio var(--dek-slide-number) folios var(--dek-slide-count);
+  word-break: auto-phrase;
+  text-wrap: pretty;
 }
 
 /* Night sheets: the cover's partner pages, chapter doors and the closing, printed on forest. */

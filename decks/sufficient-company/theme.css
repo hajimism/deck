@@ -82,6 +82,7 @@
   font-feature-settings: "palt";
   word-break: auto-phrase;
   counter-reset: folio var(--dek-slide-number) folios var(--dek-slide-count);
+  text-wrap: pretty;
 }
 
 /* The deep sheet: the cover only. */

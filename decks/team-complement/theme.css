@@ -98,6 +98,8 @@
   line-height: 1.7;
   font-feature-settings: "palt";
   counter-reset: folio var(--dek-slide-number) folios var(--dek-slide-count);
+  word-break: auto-phrase;
+  text-wrap: pretty;
 }
 
 /* Night sheets: navy, lit from the top right in violet and from the bottom left in coral. */
