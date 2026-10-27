@@ -1,0 +1,47 @@
+<section class="slide" data-layout="default">
+  <header>
+    <p class="kicker">問い2　欠陥をどこで検出するか</p>
+    <ol class="tracker"><li>原理</li><li>保証する品質</li><li aria-current="true">検出段階</li><li>テスト設計</li><li>有効性</li><li>リリース判定</li><li>AI</li><li>まとめ</li></ol>
+    <h2 class="slide-title">Confidence Tree：確信を木に分解する</h2>
+    <p class="message">「この機能は正しく動く」という確信を、部品と部品の組み合わせ方に分けて木にすると、各テストが何を確かめるかが決まり、テストの抜けと重複が見えるので、テストを書く前に木を描く</p>
+  </header>
+  <div class="fill ct">
+    <figure class="ct-fig">
+      <ul class="tree">
+        <li><div class="box" data-g><b>フォームが正しく動く</b><span>glue：ページへの配線</span></div>
+          <ul>
+            <li><div class="box"><b>入力欄</b><span>受付・正規化・表示</span></div></li>
+            <li><div class="box" data-g><b>検証</b><span>glue：いつ、どの欄を検証するか</span></div>
+              <ul>
+                <li><div class="box"><b>検証のルール</b><span>必須・形式・相関</span></div></li>
+                <li><div class="box" data-g><b>エラーの表示</b><span>どの欄に出し、いつ消すか</span></div></li>
+              </ul>
+            </li>
+            <li><div class="box" data-g><b>状態</b><span>初期値・変更の有無・リセット</span></div></li>
+            <li><div class="box"><b>送信の値変換</b><span>API に送る形に直す</span></div></li>
+          </ul>
+        </li>
+      </ul>
+      <figcaption><span class="ct-key" data-g>[G] glue の確信が要るノード</span><span class="ct-key">部品の確信だけで足りるノード</span></figcaption>
+    </figure>
+    <div class="ct-text">
+      <div class="card">
+        <p class="card-title">部品の確信：部品がそれぞれ正しく動く</p>
+        <p>入力欄や検証のルールは、部品単体のテストで、安く十分に確かめられます。</p>
+      </div>
+      <div class="card">
+        <p class="card-title">glue の確信：部品の組み合わせ方が正しい</p>
+        <p>部品がすべて正しくても、組み合わせ方を誤れば機能は動きません。この確信は部品のテストをいくら足しても得られず、組み合わせた状態でテストするしかありません。</p>
+      </div>
+      <div class="card" data-variant="lit">
+        <p class="card-title">木を描くと、抜けと重複が見える</p>
+        <p>[G] のノードにテストがなければ、抜けです。結合テストが部品の振る舞いまで確かめていれば、同じ確信に二重に工数をかける重複です。</p>
+      </div>
+    </div>
+  </div>
+  <p class="takeaway">各テストは、木のどのノードの確信を得るものかで決める。何を、どこでテストするかは、そこから決まる</p>
+  <footer>
+    <p class="note">用語：確信＝その部分が正しく動くと言える根拠。glue（グルー）＝部品どうしの組み合わせ方。いつ検証するか、エラーをどの欄に出すか、などを指す。ノード＝木の1つの節。下のノードを組み合わせると、上のノードになる。アサート＝テストの中で期待値と比べること</p>
+    <p class="note">注：部品のテストが通っても、組み合わせる側がその部品を想定外の使い方で使えば、確信は上のノードに伝わらない。Confidence Tree は本資料の著者による整理で、安全工学の Assurance case（GSN など）で主張をサブ主張に分解して論証で支える考え方に近い</p>
+  </footer>
+</section>

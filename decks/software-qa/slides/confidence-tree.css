@@ -1,0 +1,68 @@
+.slide {
+  --tree-box: 8.25rem;
+  --tree-gap: 22px;
+}
+
+.slide .ct {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  column-gap: var(--space-5);
+  align-items: center;
+}
+
+.slide .ct-fig {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.slide .ct-fig .box[data-g] {
+  border-color: var(--navy);
+  background: var(--wash-yellow);
+}
+
+.slide .ct-fig .box[data-g] > b::after {
+  content: " [G]";
+  color: var(--navy);
+}
+
+.slide .ct-fig .box > span {
+  font-size: var(--size-tiny);
+}
+
+.slide .ct-fig figcaption {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+  font-size: var(--size-caption);
+}
+
+.slide .ct-key::before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: var(--space-1);
+  vertical-align: -0.15em;
+  border: var(--line-w) solid var(--fg);
+  background: var(--surface);
+}
+
+.slide .ct-key[data-g]::before {
+  border-color: var(--navy);
+  background: var(--wash-yellow);
+}
+
+.slide .ct-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.slide .ct-text p:not(.card-title) {
+  font-size: var(--size-small);
+}
+
+.slide .ct-fig .tree > li > .box {
+  width: calc(var(--tree-box) * 1.5);
+}

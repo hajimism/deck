@@ -1,0 +1,129 @@
+.slide .gp {
+  display: grid;
+  grid-template-columns: var(--col) auto var(--col);
+  grid-template-rows: auto auto auto auto auto auto;
+  column-gap: var(--space-4);
+  row-gap: var(--space-3);
+  align-content: center;
+}
+
+.slide .gp-label {
+  grid-column: 1 / -1;
+  margin-top: var(--space-2);
+  color: var(--accent-text);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.slide .gp-label[data-warn] {
+  grid-row: 5;
+  color: var(--ng);
+}
+
+.slide .gp-panel {
+  display: grid;
+  grid-row: 2 / span 3;
+  grid-column: 1;
+  grid-template-rows: subgrid;
+  row-gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--tile);
+}
+
+.slide .gp-panel[data-after] {
+  grid-column: 3;
+  outline: var(--outline) solid var(--accent);
+  outline-offset: calc(var(--outline) * -1);
+  background: var(--surface);
+}
+
+.slide .gp-head {
+  font-size: var(--size-body);
+  font-weight: 700;
+}
+
+.slide .gp-to {
+  grid-row: 2 / span 3;
+  grid-column: 2;
+  align-self: center;
+  color: var(--accent-text);
+  font-size: var(--size-title);
+  font-weight: 700;
+}
+
+.slide .gp-arch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.slide .gp-feats {
+  display: grid;
+  grid-template-columns: repeat(3, var(--col));
+  align-items: start;
+  gap: var(--space-2);
+}
+
+.slide .gp-feats li,
+.slide .gp-base {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  border: var(--line-w) solid var(--fg);
+  background: var(--surface);
+  text-align: center;
+  font-size: var(--size-caption);
+}
+
+.slide .gp-decl,
+.slide .gp-glue,
+.slide .gp-test {
+  font-size: var(--size-tiny);
+  font-weight: 700;
+}
+
+.slide .gp-decl {
+  background: var(--tile-mid);
+}
+
+.slide .gp-glue {
+  border: var(--line-w) solid var(--navy);
+  background: var(--wash-yellow);
+}
+
+.slide .gp-test {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.slide .gp-test[data-light] {
+  background: var(--tile-mid);
+  color: var(--navy);
+}
+
+.slide .gp-say {
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.slide .gp-rules {
+  display: grid;
+  grid-row: 6;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(3, var(--col));
+  gap: var(--space-3);
+}
+
+.slide .gp-rules .card-title {
+  font-size: var(--size-body);
+}
+
+.slide .gp-rules p:not(.card-title) {
+  font-size: var(--size-small);
+}
+
+.slide .gp-rules .card {
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-4);
+}
