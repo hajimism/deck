@@ -3,31 +3,31 @@
     <p class="kicker">問い5　リリースしてよいか</p>
     <ol class="tracker"><li>原理</li><li>保証する品質</li><li>検出段階</li><li>テスト設計</li><li>有効性</li><li aria-current="true">リリース判定</li><li>AI</li><li>まとめ</li></ol>
     <h2 class="slide-title">リリース判定</h2>
-    <p class="message">リリースしてよいかは、事前に決めた終了基準と比べ、残った欠陥を影響の大きさで振り分けて判断すれば、勘や声の大きさに頼らずに決められる</p>
+    <p class="message">リリースしてよいかは、事前に決めた終了基準と比べ、残った欠陥を影響の大きさで振り分けて判断すれば、<br>勘や声の大きさに頼らずに決められる</p>
   </header>
   <ol class="fill rel">
     <li class="rstep">
       <p class="rs-n">1</p><p class="rs-t">終了基準と比べる</p>
-      <p class="rs-d">「何を満たしたらリリースしてよいか」を、テストを始める前に決めておく。終わってから決めると、結果に合わせて基準が緩む</p>
+      <p class="rs-d">「何を満たしたらリリースしてよいか」を、テストを始める前に決めておく。<br>終わってから決めると、結果に合わせて基準が緩む</p>
       <table class="tbl">
         <thead><tr><th>終了基準（記入例）</th><th data-align="center">結果</th></tr></thead>
         <tbody>
           <tr><th>重大な欠陥が残っていない</th><td data-mark="ok" data-align="center">○</td></tr>
           <tr><th>主要フローの E2E がすべて通る</th><td data-mark="ok" data-align="center">○</td></tr>
-          <tr><th>優先度が高の品質特性を、決めた方法で確かめた</th><td data-mark="ok" data-align="center">○</td></tr>
+          <tr><th>優先度が高の品質特性を、<br>決めた方法で確かめた</th><td data-mark="ok" data-align="center">○</td></tr>
           <tr><th>表示にかかる時間が目標以内</th><td data-mark="warn" data-align="center">△</td></tr>
         </tbody>
       </table>
     </li>
     <li class="rstep">
       <p class="rs-n">2</p><p class="rs-t">残った欠陥を振り分ける</p>
-      <p class="rs-d">基準を満たさない項目や、見つかった欠陥を、利用者への影響の大きさで3つに分ける。すべてを直してからリリースする、ではない</p>
+      <p class="rs-d">基準を満たさない項目や、見つかった欠陥を、利用者への影響の大きさで3つに分ける。<br>すべてを直してからリリースする、ではない</p>
       <ul class="tri">
         <li data-kind="fix"><b>直す</b>リリース前に直す。利用者への影響が大きい</li>
         <li data-kind="wait"><b>止める</b>その機能だけ止めてリリースする（フィーチャーフラグ）</li>
         <li data-kind="ship"><b>次で直す</b>影響が小さい。記録して次の版で直す</li>
       </ul>
-      <p class="judge"><b>判定の記入例</b>左の表の「表示にかかる時間△」は、遅いのが利用の少ない画面だけなので「次で直す」に振り分け、ほかの基準を満たしたのでリリースする</p>
+      <p class="judge"><b>判定の記入例</b>左の表の「表示にかかる時間△」は、遅いのが利用の少ない画面だけなので<br>「次で直す」に振り分け、ほかの基準を満たしたのでリリースする</p>
     </li>
   </ol>
   <p class="takeaway">基準を先に決めておけば、判定は声の大きさではなく、基準との比較になる</p>

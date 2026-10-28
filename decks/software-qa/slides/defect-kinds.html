@@ -7,7 +7,7 @@
   </header>
   <div class="fill kinds">
     <table class="tbl">
-      <thead><tr><th>欠陥の種類</th><th data-align="center">ユニットテスト<small>関数や部品を1つずつ切り離し、入力に対する結果を確かめる</small></th><th data-align="center">見た目の回帰テスト（VRT）<small>画面を撮影して前回と比べ、意図しない見た目の変化を見つける</small></th><th data-align="center">APIの契約テスト<small>API を出す側と使う側が、やりとりの形の約束を守っているかを確かめる</small></th></tr></thead>
+      <thead><tr><th>欠陥の種類</th><th data-align="center">ユニットテスト<small>関数や部品を1つずつ切り離し、<br>入力に対する結果を確かめる</small></th><th data-align="center">見た目の回帰テスト（VRT）<small>画面を撮影して前回と比べ、<br>意図しない見た目の変化を見つける</small></th><th data-align="center">APIの契約テスト<small>API を出す側と使う側が、<br>やりとりの形の約束を守っているかを確かめる</small></th></tr></thead>
       <tbody>
         <tr><th><b>金額の計算がずれる</b><small>税込金額が1円ずれる</small></th><td class="hit"><b>○</b>検出できる<small>計算の関数を直接呼んで、結果を確かめる</small></td><td class="miss"><b>×</b>検出できない<small>数字が違っても、見た目は崩れていない</small></td><td class="miss"><b>×</b>検出できない<small>API のやりとりの形は約束どおりなので、気づかない</small></td></tr>
         <tr><th><b>ボタンが重なって押せない</b><small>狭い画面でボタンが重なる</small></th><td class="miss"><b>×</b>検出できない<small>画面を描画しないので、重なりは見えない</small></td><td class="hit"><b>○</b>検出できる<small>画面を撮影し、前回との差を見つける</small></td><td class="miss"><b>×</b>検出できない<small>API のやりとりは関係していない</small></td></tr>

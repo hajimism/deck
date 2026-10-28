@@ -17,14 +17,14 @@
         <pre><code>// 実装を読むと 1.08 倍しているので…
 expect(withTax(1000)).toBe(1080);</code></pre>
         <p class="oc-res" data-mark="ok">✓ 通る</p>
-        <p class="oc-say">テストは通るが、欠陥も一緒に固定される。これはオラクルではなく、いまの実装の記録にすぎない</p>
+        <p class="oc-say">テストは通るが、欠陥も一緒に固定される。<br>これはオラクルではなく、いまの実装の記録にすぎない</p>
       </div>
       <div class="orc-case" data-kind="ok">
         <p class="oc-head">仕様から、期待値を決めたテスト</p>
         <pre><code>// 仕様では税率10%なので
 expect(withTax(1000)).toBe(1100);</code></pre>
         <p class="oc-res" data-mark="ng">✕ 落ちる</p>
-        <p class="oc-say">テストが落ちて、欠陥が見つかる。期待値が実装から独立しているから、実装の誤りに気づける</p>
+        <p class="oc-say">テストが落ちて、欠陥が見つかる。<br>期待値が実装から独立しているから、実装の誤りに気づける</p>
       </div>
     </div>
   </div>

@@ -14,11 +14,11 @@
   loading: boolean;
   data?: User;
   error?: string;
-};</code></pre><p class="cap">読み込みが終わったのに、データもエラーもない状態が書けてしまう</p></div>
+};</code></pre><p class="cap">読み込みが終わったのに、<br>データもエラーもない状態が書けてしまう</p></div>
         <div class="code" data-kind="ok"><p class="tag">書けない</p><pre><code>type State =
   | { status: "loading" }
   | { status: "success"; data: User }
-  | { status: "error"; message: string };</code></pre><p class="cap">「成功したのにデータがない」状態は、型エラーになって書けない</p></div>
+  | { status: "error"; message: string };</code></pre><p class="cap">「成功したのにデータがない」状態は、<br>型エラーになって書けない</p></div>
       </div>
       <p class="lead2">何を禁止するかを決めるのは人。守らせるのは型と lint で、違反は書いた瞬間に分かる</p>
     </div>
@@ -29,7 +29,7 @@
         <li><b>観測できる</b><p>結果を、外から確かめられる</p><p class="fe">ロールやラベルで要素を取れる UI にする</p></li>
         <li><b>分離できる</b><p>依存を、差し替えられる</p><p class="fe">fetch などの副作用を、差し替えやすい境界にまとめる</p></li>
       </ul>
-      <p class="lead2">ロールやラベルで要素を取れる UI は、テストしやすく、同時にアクセシブルでもある</p>
+      <p class="lead2">ロールやラベルで要素を取れる UI は、<br>テストしやすく、同時にアクセシブルでもある</p>
     </div>
   </div>
   <p class="takeaway">予防は、検出より前の段階で誤りを止める。後ろの段階で欠陥を探す手間そのものを減らすので、最も効く</p>

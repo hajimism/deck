@@ -3,11 +3,11 @@
     <p class="kicker">問い2　欠陥をどこで検出するか</p>
     <ol class="tracker"><li>原理</li><li>保証する品質</li><li aria-current="true">検出段階</li><li>テスト設計</li><li>有効性</li><li>リリース判定</li><li>AI</li><li>まとめ</li></ol>
     <h2 class="slide-title">テストの配分</h2>
-    <p class="message">テストに割ける工数は限られているので、検出したい欠陥が多く、早く検出できる種類のテストに厚く割く。ピラミッドなどの形は、その配分の結果である</p>
+    <p class="message">テストに割ける工数は限られているので、検出したい欠陥が多く、早く検出できる種類のテストに厚く割く。<br>ピラミッドなどの形は、その配分の結果である</p>
   </header>
   <ol class="fill shapes">
-    <li class="card"><p class="card-title">テストピラミッド</p><ol class="shape"><li data-w="20"><span>E2E</span></li><li data-w="50"><span>結合</span></li><li data-w="90"><span>ユニット</span></li></ol><p class="claim">速いユニットテストを土台に厚くし、上に行くほど少なくする</p><p class="fit"><span>向く場面</span>計算やルールの多いシステム</p></li>
-    <li class="card"><p class="card-title">テスティングトロフィー</p><ol class="shape"><li data-w="20"><span>E2E</span></li><li data-w="90"><span>結合</span></li><li data-w="55"><span>ユニット</span></li><li data-w="75"><span>静的解析</span></li></ol><p class="claim">静的解析を土台に、結合テストへ最も多く投資する</p><p class="fit"><span>向く場面</span>画面が中心の JavaScript アプリ</p></li>
+    <li class="card"><p class="card-title">テストピラミッド</p><ol class="shape"><li data-w="20"><span>E2E</span></li><li data-w="50"><span>結合</span></li><li data-w="90"><span>ユニット</span></li></ol><p class="claim">速いユニットテストを土台に厚くし、<br>上に行くほど少なくする</p><p class="fit"><span>向く場面</span>計算やルールの多いシステム</p></li>
+    <li class="card"><p class="card-title">テスティングトロフィー</p><ol class="shape"><li data-w="20"><span>E2E</span></li><li data-w="90"><span>結合</span></li><li data-w="55"><span>ユニット</span></li><li data-w="75"><span>静的解析</span></li></ol><p class="claim">静的解析を土台に、<br>結合テストへ最も多く投資する</p><p class="fit"><span>向く場面</span>画面が中心の JavaScript アプリ</p></li>
     <li class="card"><p class="card-title">テスティングハニカム</p><ol class="shape"><li data-w="30"><span>統合済み</span></li><li data-w="90"><span>結合</span></li><li data-w="30"><span>実装の詳細</span></li></ol><p class="claim">サービスどうしをつなぐ結合テストを中心に置く</p><p class="fit"><span>向く場面</span>多くのサービスに分かれたシステム</p></li>
     <li class="card" data-bad><p class="card-title">アイスクリームコーン</p><ol class="shape"><li data-w="90"><span>手動</span></li><li data-w="70"><span>E2E</span></li><li data-w="35"><span>結合</span></li><li data-w="15"><span>ユニット</span></li></ol><p class="claim">手動と E2E に偏った、逆さの三角形</p><p class="fit"><span>向く場面</span>避けるべき形</p></li>
   </ol>
@@ -16,6 +16,6 @@
   <p class="takeaway">形から入らず、限られた工数を、検出したい欠陥が多いところに厚く割く</p>
   <footer>
     <p class="note">用語：テスト戦略＝限られた工数を、どの種類のテストにどれだけ割くかの方針。結合テスト＝部品どうしや、API とのつながりを確かめるテスト。静的解析＝コードを動かさずにツールで調べること。手動テスト＝人が画面を操作して確かめるテスト</p>
-    <p class="note">注：形の違いの多くは、「ユニット」「結合」という言葉の定義の違いから来る。チームでは「検出する欠陥の種類」と「実行時間」で定義しておくと話がずれない。ピラミッドは Mike Cohn、トロフィーは Kent C. Dodds の提唱とされ、ハニカムは Spotify の技術ブログ（2018）で紹介された</p>
+    <p class="note">注：形の違いの多くは、「ユニット」「結合」という言葉の定義の違いから来る。チームでは「検出する欠陥の種類」と「実行時間」で定義しておくと話がずれない。ピラミッドは Mike Cohn、トロフィーは Kent C.&nbsp;Dodds の提唱とされ、ハニカムは Spotify の技術ブログ（2018）で紹介された</p>
   </footer>
 </section>

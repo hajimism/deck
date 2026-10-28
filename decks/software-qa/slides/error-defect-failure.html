@@ -8,13 +8,13 @@
   <div class="fill chain">
     <ol class="stages">
       <li><p class="st-name"><b>誤り</b>error</p><p class="st-where">人の頭の中</p><p class="st-def">仕様を読み違えたり、考え漏らしたりすること</p><p class="st-ex">「18歳以上」を<br>「18歳より上」と読み違える</p></li>
-      <li><p class="st-name"><b>欠陥</b>defect・bug</p><p class="st-where">コードの中</p><p class="st-def">誤りがコードに入り込んだもの。動かすまで表には出ない</p><p class="st-ex"><code>if (age &gt; 18)</code> と書く</p></li>
+      <li><p class="st-name"><b>欠陥</b>defect・bug</p><p class="st-where">コードの中</p><p class="st-def">誤りがコードに入り込んだもの。<br>動かすまで表には出ない</p><p class="st-ex"><code>if (age &gt; 18)</code> と書く</p></li>
       <li><p class="st-name"><b>故障</b>failure</p><p class="st-where">実行したとき</p><p class="st-def">欠陥のあるコードが動き、期待と違う結果が出ること</p><p class="st-ex">18歳の人が<br>登録できない</p></li>
     </ol>
     <ol class="handles">
-      <li data-lit><p><b>QA</b>誤りが起きる原因を断つ</p><p>読み違えにくい仕様の書き方、型、レビューで、誤りそのものを起きにくくする</p></li>
-      <li><p><b>デバッグ</b>欠陥の場所を特定する</p><p>故障の手がかりから、コードのどこに欠陥があるかを突き止める</p></li>
-      <li><p><b>テスト</b>故障を観測する</p><p>コードを動かして故障が起きるかを見る。欠陥そのものは直接は見えない</p></li>
+      <li data-lit><p><b>QA</b>誤りが起きる原因を断つ</p><p>読み違えにくい仕様の書き方、型、レビューで、<br>誤りそのものを起きにくくする</p></li>
+      <li><p><b>デバッグ</b>欠陥の場所を特定する</p><p>故障の手がかりから、<br>コードのどこに欠陥があるかを突き止める</p></li>
+      <li><p><b>テスト</b>故障を観測する</p><p>コードを動かして故障が起きるかを見る。<br>欠陥そのものは直接は見えない</p></li>
     </ol>
   </div>
   <p class="takeaway">テストが観測できるのは故障だけ。QAは、その手前で誤りが起きる原因に手を打つ</p>

@@ -3,7 +3,7 @@
     <p class="kicker">問い3　どのテストケースで確かめるか</p>
     <ol class="tracker"><li>原理</li><li>保証する品質</li><li>検出段階</li><li aria-current="true">テスト設計</li><li>有効性</li><li>リリース判定</li><li>AI</li><li>まとめ</li></ol>
     <h2 class="slide-title">同値分割と境界値分析</h2>
-    <p class="message">同値分割で入力をまとめ、境界値分析で欠陥が集まる境目を狙えば、無数にある入力を、足りる理由を説明できる少数のテストケースに絞り込める</p>
+    <p class="message">同値分割で入力をまとめ、境界値分析で欠陥が集まる境目を狙えば、<br>無数にある入力を、足りる理由を説明できる少数のテストケースに絞り込める</p>
   </header>
   <div class="fill bva">
     <p class="tag">例：パスワード欄。8〜64文字を受け付け、それ以外はエラーにする</p>
@@ -13,8 +13,8 @@
       <div class="seg" data-valid="no"><p><b>無効</b>65文字以上</p><p class="ticks"><span>65</span></p></div>
     </div>
     <div class="cases">
-      <div><p class="cn">① 同値分割</p><p class="cd">同じ扱いになる値のグループ（同値クラス）に分け、各グループから代表を1つずつ選ぶ。グループの中のどの値でも、結果は同じはずだから</p><p class="vals"><span>4文字</span><span>20文字</span><span>80文字</span></p></div>
-      <div><p class="cn">② 境界値分析</p><p class="cd">欠陥は境目に集まる。「8文字以上」を「8文字より多い」と書き間違えると、8文字ちょうどの入力でしか見つからない。境界とその隣の値を足す</p><p class="vals" data-kind="edge"><span>7</span><span>8</span><span>64</span><span>65</span></p></div>
+      <div><p class="cn">① 同値分割</p><p class="cd">同じ扱いになる値のグループ（同値クラス）に分け、<br>各グループから代表を1つずつ選ぶ。<br>グループの中のどの値でも、結果は同じはずだから</p><p class="vals"><span>4文字</span><span>20文字</span><span>80文字</span></p></div>
+      <div><p class="cn">② 境界値分析</p><p class="cd">欠陥は境目に集まる。<br>「8文字以上」を「8文字より多い」と書き間違えると、<br>8文字ちょうどの入力でしか見つからない。<br>境界とその隣の値を足す</p><p class="vals" data-kind="edge"><span>7</span><span>8</span><span>64</span><span>65</span></p></div>
     </div>
   </div>
   <p class="takeaway">同値分割はケースの数を減らし、境界値分析は欠陥が集まる場所を狙う。組み合わせると、少ないケースで、足りる理由まで説明できる</p>

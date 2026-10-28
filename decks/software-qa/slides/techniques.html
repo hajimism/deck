@@ -9,10 +9,10 @@
     <dt>テストケース</dt><dd>「この条件で、この入力を与えたら、この結果になるはず」という1件の確かめ</dd>
   </dl>
   <ol class="fill tgrid">
-    <li class="card"><p class="card-title">仕様ベース<span>ブラックボックス：中身を見ずに、仕様から選ぶ</span></p><p class="q">問い：何を入れたら、何が返るべきか</p><ul class="tlist"><li><b>同値分割・境界値分析</b>同じ扱いになる値をまとめ、代表と境目の値を選ぶ</li><li><b>デシジョンテーブル</b>条件の組み合わせを表にして選ぶ</li><li><b>状態遷移</b>画面の状態と移り変わりを表にして選ぶ</li></ul><p class="fe"><span>フロントエンドの例</span>フォームの検証、料金の計算、ウィザード</p></li>
-    <li class="card"><p class="card-title">構造ベース<span>ホワイトボックス：コードの中身を見て選ぶ</span></p><p class="q">問い：コードのどの道を通ったか</p><ul class="tlist"><li><b>命令・分岐の網羅</b>コードの各行・各分岐を、少なくとも1回は通るように選ぶ</li></ul><p class="fe"><span>フロントエンドの例</span>ユーティリティ関数、reducer（状態と操作から次の状態を返す関数）</p></li>
-    <li class="card"><p class="card-title">経験ベース<span>知識と経験から、壊れやすいところを狙う</span></p><p class="q">問い：どこで、どう壊れやすいか</p><ul class="tlist"><li><b>エラー推測</b>過去の経験から、誤りが起きやすい入力（空、上限、二重送信など）を狙う</li><li><b>探索的テスト</b>学びながら、次に試すことをその場で決める</li></ul><p class="fe"><span>フロントエンドの例</span>新機能をチームで触ってみる会</p></li>
-    <li class="card"><p class="card-title">協働ベース<span>関係者と合意した具体例から選ぶ</span></p><p class="q">問い：何ができたら完成か</p><ul class="tlist"><li><b>受け入れ基準</b>「何ができたら完成か」を、Given-When-Then の具体例で合意する（問い1）</li></ul><p class="fe"><span>フロントエンドの例</span>ストーリー（開発する機能の単位）の受け入れ条件</p></li>
+    <li class="card"><p class="card-title">仕様ベース<span>ブラックボックス：中身を見ずに、仕様から選ぶ</span></p><p class="q">問い：何を入れたら、何が返るべきか</p><ul class="tlist"><li><b>同値分割・境界値分析</b>同じ扱いになる値をまとめ、<br>代表と境目の値を選ぶ</li><li><b>デシジョンテーブル</b>条件の組み合わせを表にして選ぶ</li><li><b>状態遷移</b>画面の状態と移り変わりを表にして選ぶ</li></ul><p class="fe"><span>フロントエンドの例</span>フォームの検証、料金の計算、ウィザード</p></li>
+    <li class="card"><p class="card-title">構造ベース<span>ホワイトボックス：コードの中身を見て選ぶ</span></p><p class="q">問い：コードのどの道を通ったか</p><ul class="tlist"><li><b>命令・分岐の網羅</b>コードの各行・各分岐を、<br>少なくとも1回は通るように選ぶ</li></ul><p class="fe"><span>フロントエンドの例</span>ユーティリティ関数、reducer<br>（状態と操作から次の状態を返す関数）</p></li>
+    <li class="card"><p class="card-title">経験ベース<span>知識と経験から、壊れやすいところを狙う</span></p><p class="q">問い：どこで、どう壊れやすいか</p><ul class="tlist"><li><b>エラー推測</b>過去の経験から、誤りが起きやすい入力<br>（空、上限、二重送信など）を狙う</li><li><b>探索的テスト</b>学びながら、<br>次に試すことをその場で決める</li></ul><p class="fe"><span>フロントエンドの例</span>新機能をチームで触ってみる会</p></li>
+    <li class="card"><p class="card-title">協働ベース<span>関係者と合意した具体例から選ぶ</span></p><p class="q">問い：何ができたら完成か</p><ul class="tlist"><li><b>受け入れ基準</b>「何ができたら完成か」を、<br>Given-&#8288;When-&#8288;Then の具体例で<br>合意する（問い1）</li></ul><p class="fe"><span>フロントエンドの例</span>ストーリー<br>（開発する機能の単位）の受け入れ条件</p></li>
   </ol>
   <p class="takeaway">系統は1つに絞らない。仕様が明確なら仕様ベースで網羅し、壊れやすさに心当たりがあれば経験ベースで狙い撃つ</p>
   <footer>

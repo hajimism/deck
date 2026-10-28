@@ -9,17 +9,17 @@
     <table class="tbl">
       <thead><tr><th>原則</th><th>避ける書き方</th><th data-pick>こう書く</th><th>なぜ</th></tr></thead>
       <tbody>
-        <tr><th>利用者が知覚するもので要素を取る</th><td class="c-ng"><code>container.querySelector(".btn-primary")</code><small>クラス名 btn-primary の要素を探す</small></td><td data-pick class="c-ok"><code>screen.getByRole("button", { name: "送信" })</code><small>役割がボタンで、読み上げられる名前が「送信」の要素を探す。利用者やスクリーンリーダーと同じ見方</small></td><td>クラス名を変えても壊れない。ラベルが消えたら気づける</td></tr>
-        <tr><th>実装の詳細ではなく、結果を確かめる</th><td class="c-ng"><code>expect(state.isOpen).toBe(true)</code><small>コンポーネント内部の変数を見る</small></td><td data-pick class="c-ok"><code>expect(screen.getByRole("dialog")).toBeVisible()</code><small>ダイアログが画面に見えているかを見る。利用者が目にする結果そのもの</small></td><td>作り方を変えても、利用者に見える結果が同じならテストは通る</td></tr>
-        <tr><th>非同期は、時間ではなく条件で待つ</th><td class="c-ng"><code>await sleep(1000)</code><small>1秒待ってから確かめる</small></td><td data-pick class="c-ok"><code>await screen.findByText("保存しました")</code><small>「保存しました」が表示されるまで待ち、表示されたらすぐ次へ進む</small></td><td>遅い環境でも落ちず、速い環境で待ちすぎない</td></tr>
-        <tr><th>ネットワークは、境界で差し替える</th><td class="c-ng">API を呼ぶ関数を、テストごとに書き換える</td><td data-pick class="c-ok">MSW で、HTTP の応答を差し替える</td><td>アプリのコードをそのまま、本番に近い形で試せる</td></tr>
-        <tr><th>状態ごとに Story を作る</th><td class="c-ng">正常な表示の Story だけを作る</td><td data-pick class="c-ok">読み込み中・成功・空・エラーの Story を、それぞれ作る</td><td>操作テスト・見た目の回帰・アクセシビリティ監査を、同じ単位で回せる</td></tr>
+        <tr><th>利用者が知覚するもので要素を取る</th><td class="c-ng"><code>container.querySelector(".btn-primary")</code><small>クラス名 btn-primary の要素を探す</small></td><td data-pick class="c-ok"><code>screen.getByRole("button",<br>{ name: "送信" })</code><small>役割がボタンで、<br>読み上げられる名前が「送信」の要素を探す。<br>利用者やスクリーンリーダーと同じ見方</small></td><td>クラス名を変えても壊れない。<br>ラベルが消えたら気づける</td></tr>
+        <tr><th>実装の詳細ではなく、結果を確かめる</th><td class="c-ng"><code>expect(state.isOpen).toBe(true)</code><small>コンポーネント内部の変数を見る</small></td><td data-pick class="c-ok"><code>expect(screen.getByRole("dialog"))<wbr>.toBeVisible()</code><small>ダイアログが画面に見えているかを見る。<br>利用者が目にする結果そのもの</small></td><td>作り方を変えても、<br>利用者に見える結果が同じならテストは通る</td></tr>
+        <tr><th>非同期は、時間ではなく条件で待つ</th><td class="c-ng"><code>await sleep(1000)</code><small>1秒待ってから確かめる</small></td><td data-pick class="c-ok"><code>await screen.findByText("保存しました")</code><small>「保存しました」が表示されるまで待ち、<br>表示されたらすぐ次へ進む</small></td><td>遅い環境でも落ちず、<br>速い環境で待ちすぎない</td></tr>
+        <tr><th>ネットワークは、境界で差し替える</th><td class="c-ng">API を呼ぶ関数を、テストごとに書き換える</td><td data-pick class="c-ok">MSW で、HTTP の応答を差し替える</td><td>アプリのコードをそのまま、<br>本番に近い形で試せる</td></tr>
+        <tr><th>状態ごとに Story を作る</th><td class="c-ng">正常な表示の Story だけを作る</td><td data-pick class="c-ok">読み込み中・成功・空・エラーの<br>Story を、それぞれ作る</td><td>操作テスト・見た目の回帰・アクセシビリティ監査を、同じ単位で回せる</td></tr>
       </tbody>
     </table>
   </div>
   <p class="takeaway">テストが実装の詳細に依存すると、直すたびに無駄に落ち、本当の失敗がその中に埋もれる</p>
   <footer>
-    <p class="note">用語：Testing Library＝利用者に見えるもの（ロール、ラベル、テキスト）で要素を取るテストの道具。test id＝テストのためだけに要素に付ける目印。MSW＝通信をその場で差し替える道具。Story＝Storybook で、部品を1つの状態で表示したもの</p>
+    <p class="note">用語：Testing Library＝利用者に見えるもの（ロール、ラベル、テキスト）で要素を取るテストの道具。test id＝テストのためだけに要素に付ける目印。MSW＝通信をその場で差し替える道具。Story＝Storybook&nbsp;で、部品を1つの状態で表示したもの</p>
     <p class="note">注：要素を取る優先順は、ロール → ラベル → テキスト → 最後に test id</p>
   </footer>
 </section>

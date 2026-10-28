@@ -14,7 +14,7 @@
       <ol class="chain2"><li>同じコードなのに、ときどき落ちる</li><li>「またか」と再実行で済ませる</li><li>本当の失敗まで見過ごされる</li></ol>
       <p class="fh">② よくある原因：非同期の処理を、固定の時間で待っている</p>
       <figure class="fchart">
-        <p class="fdef">非同期の処理＝通信や描画のように、終わるのを待たずに次の処理へ進むもの。いつ終わるかが毎回少しずつ違うので、固定の時間で待つと、間に合ったり間に合わなかったりする</p>
+        <p class="fdef">非同期の処理＝通信や描画のように、終わるのを待たずに次の処理へ進むもの。<br>いつ終わるかが毎回少しずつ違うので、固定の時間で待つと、間に合ったり間に合わなかったりする</p>
         <figcaption>原因が分かったフレーキーテスト161件の内訳（Apache の51プロジェクト）</figcaption>
         <ol class="fbars">
           <li data-lit><span>非同期の待ち方</span><i class="fb" data-w="74"></i><b>74件</b></li>
@@ -27,7 +27,7 @@
       <p class="fh">③ 直し方：時間ではなく、条件で待つ</p>
       <div class="fx"><p class="fx-k" data-kind="ng">避ける</p><pre><code>await sleep(1000);
 screen.getByText("保存しました");</code></pre><p class="fx-d">1秒で終わる保証はない。遅い CI では落ち、速い手元では無駄に待つ</p></div>
-      <div class="fx"><p class="fx-k" data-kind="ok">こう書く</p><pre><code>await screen.findByText("保存しました");</code></pre><p class="fx-d">表示されるまで待ち、表示されたらすぐ進む。時刻に頼る処理は、フェイクタイマーで時計を固定する</p></div>
+      <div class="fx"><p class="fx-k" data-kind="ok">こう書く</p><pre><code>await screen.findByText("保存しました");</code></pre><p class="fx-d">表示されるまで待ち、表示されたらすぐ進む。<br>時刻に頼る処理は、フェイクタイマーで時計を固定する</p></div>
     </div>
   </div>
   <p class="takeaway">フレーキーテストは、テストの欠陥として記録し、隔離し、原因を直す。非同期の処理は、時間ではなく条件で待つ</p>

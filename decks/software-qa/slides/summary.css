@@ -2,7 +2,10 @@
   padding: var(--space-2) 0;
 }
 
-
+/* The longest label, 保証する品質, stays on one line. */
+.slide[data-layout="summary"] {
+  --label-w: 10rem;
+}
 
 .slide[data-layout="summary"] .rows {
   margin-bottom: var(--space-5);
